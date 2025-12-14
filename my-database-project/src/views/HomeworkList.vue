@@ -2,7 +2,7 @@
  * @Author: Garyonit 3253975221@qq.com
  * @Date: 2025-12-07 20:26:04
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-12 13:10:42
+ * @LastEditTime: 2025-12-12 19:54:09
  * @FilePath: \my-database-project\src\views\HomeworkList.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -53,7 +53,7 @@
 
         <el-table-column label="提交进度" width="200">
           <template slot-scope="scope">
-            <el-progress :percentage="scope.row.progress" :status="scope.row.progress === 100 ? 'success' : ''"></el-progress>
+            <el-progress :percentage="scope.row.progress" :status="scope.row.progress === 100 ? 'success' : null"></el-progress>
           </template>
         </el-table-column>
 

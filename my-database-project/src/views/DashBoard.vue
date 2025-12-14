@@ -2,11 +2,12 @@
   <div class="dashboard-container">
     <el-row :gutter="20" style="margin-bottom: 20px;">
       
+      <!-- 学生总数 -->
       <el-col :span="6">
         <el-card shadow="hover" class="data-card" style="background: #409EFF; color: white;">
           <div class="card-content">
             <div class="card-left">
-              <div class="card-num">45</div>
+              <div class="card-num">{{ stats.student }}</div><!-- 实在不行在这里改为静态 -->
               <div class="card-text">学生总数</div>
             </div>
             <i class="el-icon-user-solid card-icon"></i>
@@ -14,11 +15,25 @@
         </el-card>
       </el-col>
 
+      <!-- 课程总数 -->
       <el-col :span="6">
         <el-card shadow="hover" class="data-card" style="background: #67C23A; color: white;">
           <div class="card-content">
             <div class="card-left">
-              <div class="card-num">12</div>
+              <div class="card-num">{{ stats.course }}</div><!-- 实在不行在这里改为静态 -->
+              <div class="card-text">课程总数</div>
+            </div>
+            <i class="el-icon-reading card-icon"></i>
+          </div>
+        </el-card>
+      </el-col>
+
+      <!-- 进行中的作业 -->
+      <el-col :span="6">
+        <el-card shadow="hover" class="data-card" style="background: #E6A23C; color: white;">
+          <div class="card-content">
+            <div class="card-left">
+              <div class="card-num">{{ stats.homework }}</div><!-- 实在不行在这里改为静态 -->
               <div class="card-text">进行中的作业</div>
             </div>
             <i class="el-icon-notebook-1 card-icon"></i>
@@ -26,18 +41,7 @@
         </el-card>
       </el-col>
 
-      <el-col :span="6">
-        <el-card shadow="hover" class="data-card" style="background: #E6A23C; color: white;">
-          <div class="card-content">
-            <div class="card-left">
-              <div class="card-num">8</div>
-              <div class="card-text">待批改</div>
-            </div>
-            <i class="el-icon-edit-outline card-icon"></i>
-          </div>
-        </el-card>
-      </el-col>
-
+      <!-- 预警课程 (暂时保留或设为静态) -->
       <el-col :span="6">
         <el-card shadow="hover" class="data-card" style="background: #F56C6C; color: white;">
           <div class="card-content">
@@ -51,6 +55,7 @@
       </el-col>
     </el-row>
 
+    <!-- 下半部分：日历和时间线保持不变 -->
     <el-row :gutter="20">
       <el-col :span="16">
         <el-card shadow="never">
@@ -109,7 +114,35 @@ export default {
   name: 'DashBoard',
   data() {
     return {
-      currentDate: new Date()
+      currentDate: new Date(),
+      // 统计数据对象
+      stats: {
+        student: 0,
+        course: 0,
+        homework: 0
+      }
+    }
+  },
+  created() {
+    this.fetchDashboardData();
+  },
+  methods: {
+    // 获取看板数据
+    fetchDashboardData() {
+      // 获取学生总数 (只取 total 字段，pageSize设为1即可)
+      this.$api({ apiType: 'student', data: { page: 1, pageSize: 1 } }).then(res => {
+          this.stats.student = res.total || 0;
+        }).catch(err => console.error('获取学生数失败', err));
+
+      // 获取课程总数
+      this.$api({ apiType: 'course', data: { page: 1, pageSize: 1 } }).then(res => {
+          this.stats.course = res.total || 0;
+        }).catch(err => console.error('获取课程数失败', err));
+
+      // 获取作业数 (这里暂时取总数，如果后端支持 filter 可以在 data 里加 active: true)
+      this.$api({ apiType: 'homework', data: { page: 1, pageSize: 1 } }).then(res => {
+          this.stats.homework = res.total || 0;
+        }).catch(err => console.error('获取作业数失败', err));
     }
   }
 }
@@ -119,6 +152,10 @@ export default {
 .data-card {
   border: none;
   cursor: pointer;
+  transition: transform 0.3s;
+}
+.data-card:hover {
+  transform: translateY(-5px);
 }
 .card-content {
   display: flex;
