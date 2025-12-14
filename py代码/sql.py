@@ -1,5 +1,5 @@
 import pymysql
-from flask import jsonify
+# from flask import jsonify
 
 # 创建连接
 connection = pymysql.connect(
