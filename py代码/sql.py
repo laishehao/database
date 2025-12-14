@@ -1,4 +1,5 @@
 import pymysql
+from flask import jsonify
 
 # 创建连接
 connection = pymysql.connect(
@@ -34,7 +35,26 @@ def register(username, password, name, email):
 def login(username, password):
     pass
 def select_student(query, page, page_size):
-    pass
+    students=[]
+    student= {
+          "studentId": "2023001",
+          "name": "王小明",
+          "gender": "男",
+          "major": "计算机科学",
+          "phone": "13812345678",
+          "avatar":
+            "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+        }
+    # role_check=True
+    students.append(student)
+    # ans={
+    #     "role_chech":role_check,
+    #     "data":students
+    # }
+    # test
+    # print(students)
+    return students
+
 def add_student (id, name, age, gender):
     pass
 def update_student():
@@ -42,6 +62,7 @@ def update_student():
 def delete_student():
     pass
 def select_course():
+    
     pass
 def add_course():
     pass
@@ -59,4 +80,4 @@ def delete_work():
     pass
 
 if __name__ == '__main__':
-    test()
+    select_student(1,2,3)

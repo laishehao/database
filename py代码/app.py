@@ -1,16 +1,17 @@
-from flask import Flask, request
+from flask import Flask, request,jsonify
 from sql import *
+from flask_cors import CORS
 app = Flask(__name__)
-
+CORS(app)
 @app.route('/')
 def welcome():
     """主界面
         return: True
     """
-    return True
+    return 'True'
 
 @app.route('/test')
-def test():
+def app_test():
     """测试数据库是否连接
     """
     return str(test())
@@ -45,10 +46,15 @@ def app_select_student():
         成功：返回学生信息列表
         失败：返回错误原因
     """
-    query=request.form.get('query')
-    page=request.form.get('page')
-    page_size=request.form.get('pageSize')
+    # print(request.args)
+    # print(request.form)
+    # print(request)
+    query=request.args.get('query')
+    page=request.args.get('page')
+    page_size=request.args.get('pageSize')
+    # print(query,page,page_size)
     students = select_student (query, page, page_size)
+    
     return students
 
 @app.route('/student',methods=['POST'])
@@ -85,7 +91,7 @@ def app_update_student():
     return if_ok
 
 # DELETE 请求处理
-@app.app_delete_student('/student/<int:id>', methods=['DELETE'])
+@app.route('/student/<int:id>', methods=['DELETE'])
 def app_delete_student(id):
     """删除学生信息
         成功：返回True
@@ -140,7 +146,7 @@ def app_update_course():
     return if_ok
 
 # DELETE 请求处理
-@app.app_delete_course('/student/<int:id>', methods=['DELETE'])
+@app.route('/student/<int:id>', methods=['DELETE'])
 def app_delete_course(id):
     """删除学生信息
         成功：返回True
@@ -187,7 +193,7 @@ def app_delete_work(id):
 
 # 修改这2行
 if __name__ == '__main__':
-    # app.run(debug=True, host='0.0.0.0', port=5000)
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
+    # app.run(debug=True)
     # host='0.0.0.0' 允许所有IP访问
     # port=5000 指定端口（可选）
