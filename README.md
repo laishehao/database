@@ -16,8 +16,11 @@ TUKI
 
 # 依赖关系
 User：Uno → { Uname, Upassword, Uemail, Urole, Ugender, Umajor, Uphone, Uavatar }
+
 Course：Cno → { Cname, Cmajor, Ccredit, Ctype, Uno }
+
 Work：Wno → { Wtitle, Cno, Wprogress, Wstart, Wover }
+
 Write：(Wno, Uno) → State
 
 # database功能
