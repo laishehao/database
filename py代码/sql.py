@@ -1,8 +1,7 @@
 import pymysql
-<<<<<<< Updated upstream
+
 # from flask import jsonify
-=======
->>>>>>> Stashed changes
+
 
 # 创建连接
 connection = pymysql.connect(
@@ -14,15 +13,15 @@ connection = pymysql.connect(
     charset='utf8'
     # cursorclass=pymysql.cursors.DictCursor
 )
-<<<<<<< Updated upstream
+
 def test():
     """用于测试数据库连接是否成功
     Returns:
         json: _description_
     """
-=======
+
 def select_humans():
->>>>>>> Stashed changes
+
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * FROM humans "
@@ -37,7 +36,7 @@ def select_humans():
     finally:
         connection.close()
     return result
-<<<<<<< Updated upstream
+
 def register(username, password, name, email):
     pass
 def login(username, password):
@@ -89,7 +88,5 @@ def delete_work():
 
 if __name__ == '__main__':
     select_student(1,2,3)
-=======
-if __name__ == '__main__':
-    select_humans()
->>>>>>> Stashed changes
+
+
