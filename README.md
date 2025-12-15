@@ -14,6 +14,12 @@ TUKI
 Work|Wno(ID)|Cno（课程号）|Wtitle (作业名字)|Wprogress（有多少学生完成作业）|Wstart (作业开始时间)|Wend（作业结束时间）
 Write （学生与作业对应表）|Wno（作业号）|Uno (用户ID)|Wstate (作业状态：已完成/未完成)
 
+# 依赖关系
+User：Uno → { Uname, Upassword, Uemail, Urole, Ugender, Umajor, Uphone, Uavatar }
+Course：Cno → { Cname, Cmajor, Ccredit, Ctype, Uno }
+Work：Wno → { Wtitle, Cno, Wprogress, Wstart, Wover }
+Write：(Wno, Uno) → State
+
 # database功能
 ## 游客
 1、登录
