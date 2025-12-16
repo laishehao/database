@@ -44,8 +44,8 @@ CREATE TABLE `Write` (
 
 DELIMITER $$
 CREATE PROCEDURE Register(
-    IN p_name INT,
-    IN p_phone VARCHAR(50),
+    IN p_name VARCHAR(50),
+    IN p_phone VARCHAR(20),
     IN p_password VARCHAR(100),
     IN p_email VARCHAR(100),
     IN p_role VARCHAR(20)
@@ -79,7 +79,7 @@ BEGIN
     );
     
     COMMIT;
-    SELECT 'SUCCESS' AS result_type, p_id AS user_id, p_role AS user_role;
+    SELECT 'SUCCESS' AS result_type,  (select Uno from User where Uphone =  p_phone) AS user_id, p_role AS user_role;
 END
 $$
 DELIMITER ;
