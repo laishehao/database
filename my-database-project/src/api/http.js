@@ -2,7 +2,7 @@
  * @Author: Garyonit 3253975221@qq.com
  * @Date: 2025-12-11 00:05:32
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-12 16:18:09
+ * @LastEditTime: 2025-12-16 00:22:54
  * @FilePath: \my-database-project\src\api\http.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,11 +24,16 @@ export default async function Http({ apiType, data }) {
 
   // 获取接口配置信息
   // noMessage: 是否屏蔽错误提示 (默认 false，即显示错误)
-  let { url, method } = apiConfig[apiType]
+  let { url, method, rest = false} = apiConfig[apiType]
 
   try {
     method = method.toLowerCase() // 统一转换为小写，防止配置写成 'POST' 导致 axios 无法识别
 
+    //替换RESTFUL风格的url
+    if(rest){
+      let restSymbol = url.match(/:(.*)$/)[1]
+      url = url.replace(/:(.*)$/, data[restSymbol])
+    }
     // 适配 Axios 参数格式
     // 'get' 请求参数需要放在 { params: ... } 中
     // 'post'/'put' 等请求参数直接作为第二个参数传递
@@ -36,12 +41,11 @@ export default async function Http({ apiType, data }) {
 
     // 发起网络请求
     let result = await service[method](url, data)
-
-    // 返回成功结果
     return result
   } catch (error) {
     if (error.response) {
-      let message = error.response.data?.message || '' 
+      console.log('捕捉到response')
+      let message = error.response.data?.msg || '' 
       this.$notify.error({ title: '错误', message })
     } 
     return Promise.reject(error);

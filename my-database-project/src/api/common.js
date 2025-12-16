@@ -1,8 +1,8 @@
 /*
  * @Author: Garyonit 3253975221@qq.com
  * @Date: 2025-09-26 16:58:03
- * @LastEditors: Garyonit 3253975221@qq.com
- * @LastEditTime: 2025-12-11 21:46:08
+ * @LastEditors: kusachan 3253975221@qq.com
+ * @LastEditTime: 2025-12-14 20:53:56
  * @FilePath: \vue-blog\src\api\common.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -45,7 +45,7 @@ service.interceptors.request.use(async (config) => {
 service.interceptors.response.use((response) => {
   let result = response?.data || {}
   console.log('response拦截!!', response)
-  return result?.data;
+  return result;
 }, (error) => {  
   // 判断是否是超时错误
   if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
@@ -55,7 +55,6 @@ service.interceptors.response.use((response) => {
       duration: 3000
     });
   } 
-  // 判断是否有响应对象（如果没有 response 通常是断网或跨域彻底失败）
   else if (!error.response) {
     Notification.error({
       title: '网络错误',
@@ -63,7 +62,6 @@ service.interceptors.response.use((response) => {
       duration: 3000
     });
   }
-  // 其他类型的 HTTP 错误 (如 404, 500) 可以在这里处理，也可以留给组件自己处理
   else {
     Notification.error({
       title: '请求错误',

@@ -146,12 +146,15 @@ export default {
 
           this.$api({
             apiType: apiType,
-            data: this.form
+            data: {
+              role: 'teacher',
+              ...this.form
+            }
           }).then(() => {
             this.$message.success(this.isEdit ? '课程修改成功' : '课程创建成功');
             this.$emit('success');
-          }).catch(err => {
-            console.error(err);
+          }).catch(error => {
+            console.error(error);
             const errorMsg =  (this.isEdit ? '修改失败' : '创建失败');
             this.$message.error(errorMsg);
           }).finally(() => {

@@ -1,8 +1,8 @@
 /*
  * @Author: Garyonit 3253975221@qq.com
  * @Date: 2025-12-11 00:16:43
- * @LastEditors: Garyonit 3253975221@qq.com
- * @LastEditTime: 2025-12-11 21:00:58
+ * @LastEditors: kusachan 3253975221@qq.com
+ * @LastEditTime: 2025-12-15 16:25:29
  * @FilePath: \my-database-project\src\config\api.config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -36,13 +36,14 @@ export default {
     method: 'POST'
   },
   'studentDelete': {
-    url: '/student/:id',  // 删除通常使用 DELETE 请求，需要在 URL 中携带 ID
+    url: '/student/:studentId',  // 删除通常使用 DELETE 请求，需要在 URL 中携带 ID
     method: 'DELETE',
     rest: true            // 开启 RESTful 替换模式 (你的 Http 封装需要这个标记)
   },
   'studentEdit': {        // 修改功能
-    url: '/student',
-    method: 'PUT'
+    url: '/student/:studentId',
+    method: 'PUT',
+    rest: true
   },
 
   // ==========================
@@ -64,7 +65,7 @@ export default {
   },
   'courseEdit':   { 
     url: '/course', 
-    method: 'PUT' 
+    method: 'PUT' ,
   },
 
   // ==========================
@@ -80,8 +81,13 @@ export default {
     method: 'POST'
   },
   'homeworkDelete': {
-    url: '/homework/:id',
+    url: '/homework/:courseId',
     method: 'DELETE',
+    rest: true
+  },
+  'homeworkSubmit': {
+    url: '/homework/submit/:id',
+    method: 'POST',
     rest: true
   }
 }

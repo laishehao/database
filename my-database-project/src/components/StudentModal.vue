@@ -98,7 +98,8 @@ export default {
           this.loading = true;
           const apiType = this.isEdit ? 'studentEdit' : 'studentAdd';
           
-          this.$api({ apiType, data: this.form }).then(() => {
+          this.$api({ apiType, data: {
+            role: 'teacher', ...this.form} }).then(() => {
               this.$message.success(this.isEdit ? '修改成功' : '添加成功');
               this.$emit('success');
             }).catch(err => {
