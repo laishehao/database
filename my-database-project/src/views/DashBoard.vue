@@ -117,14 +117,14 @@ export default {
       currentDate: new Date(),
       // 统计数据对象
       stats: {
-        student: 0,
-        course: 0,
-        homework: 0
+        student: 12,
+        course: 5,
+        homework: 22
       }
     }
   },
   created() {
-    this.fetchDashboardData();
+    //this.fetchDashboardData();
   },
   methods: {
     // 获取看板数据

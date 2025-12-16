@@ -2,9 +2,8 @@
  * @Author: Garyonit 3253975221@qq.com
  * @Date: 2025-12-07 20:26:04
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-12 19:54:09
- * @FilePath: \my-database-project\src\views\HomeworkList.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @LastEditTime: 2025-12-16 21:43:35
+ * @Description: 作业列表管理
 -->
 <template>
   <el-card shadow="never">
@@ -28,11 +27,12 @@
           >查询</el-button
         >
       </div>
+      <!-- 点击发布时传 null，表示新增 -->
       <el-button
         type="primary"
         size="small"
         icon="el-icon-plus"
-        @click="openModal"
+        @click="openModal(null)"
         >发布作业</el-button
       >
     </div>
@@ -67,7 +67,8 @@
 
         <el-table-column label="操作" width="150" fixed="right">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleView(scope.row)">查看</el-button>
+            <!-- 新增编辑按钮 -->
+            <el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button>
             <el-button type="text" size="small" style="color: #F56C6C" @click="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -84,13 +85,15 @@
     </div>
 
     <el-empty v-else description="暂无作业数据">
-      <el-button type="primary" size="small" @click="openModal"
+      <el-button type="primary" size="small" @click="openModal(null)"
         >立即发布作业</el-button
       >
     </el-empty>
 
+    <!-- 传入 row-data 以支持回显 -->
     <homework-modal
       :visible.sync="modalVisible"
+      :row-data="currentRow"
       @success="handleSuccess"
     ></homework-modal>
   </el-card>
@@ -108,43 +111,8 @@ export default {
     return {
       searchKey: "",
       modalVisible: false,
-      tableData: [
-        {
-          id: 1,
-          title: "数据库设计与规范化作业",
-          course: "数据库系统原理",
-          progress: 85,
-          active: true,
-        },
-        {
-          id: 2,
-          title: "高等数学期末复习题（上）",
-          course: "高等数学",
-          progress: 40,
-          active: true,
-        },
-        {
-          id: 3,
-          title: "Java 面向对象设计模式",
-          course: "计算机科学",
-          progress: 100,
-          active: false,
-        },
-        {
-          id: 4,
-          title: "Unit 5 听力练习",
-          course: "大学英语",
-          progress: 100,
-          active: true,
-        },
-        {
-          id: 5,
-          title: "线性代数习题三",
-          course: "数学院",
-          progress: 0,
-          active: true,
-        },
-      ],
+      tableData: [],
+      currentRow: null 
     };
   },
   computed: {
@@ -153,72 +121,37 @@ export default {
     },
   },
   methods: {
-    openModal() {
+    // 修改 openModal，接收 row 参数
+    openModal(row = null) {
+      this.currentRow = row;
       this.modalVisible = true;
+    },
+    handleEdit(row) {
+      this.openModal(row);
     },
     handleSuccess() {
       this.getHomework();
     },
+    // 获取Homework列表
     getHomework() {
       this.$api({
         apiType: "homework",
-        data: { query: this.searchKey },
+        data: { role: 'teacher', query: this.searchKey, page: 1, pageSize: 10},
       }).then((result) => {
-          console.log(result);
-          this.tableData = [
-            {
-              id: 1,
-              title: "数据库设计与规范化作业",
-              course: "数据库系统原理",
-              progress: 85,
-              active: true,
-            },
-            {
-              id: 2,
-              title: "高等数学期末复习题（上）",
-              course: "高等数学",
-              progress: 40,
-              active: true,
-            },
-            {
-              id: 3,
-              title: "Java 面向对象设计模式",
-              course: "计算机科学",
-              progress: 100,
-              active: false,
-            },
-            {
-              id: 4,
-              title: "Unit 5 听力练习",
-              course: "大学英语",
-              progress: 100,
-              active: true,
-            },
-            {
-              id: 5,
-              title: "线性代数习题三",
-              course: "数学院",
-              progress: 0,
-              active: true,
-            },
-          ];
+          this.tableData = result.list || this.tableData;
         }).catch((err) => {
           console.error(err);
         });
     },
-    handleView(row) {
-      this.$message.info(`查看作业：${row.title}`);
-    },
+    // 删除作业
     handleDelete(row) {
       this.$confirm(`确认删除作业 ${row.title} 吗?`, "提示", {
         type: "warning",
       }).then(() => {
-        if (!row.id) {
-          console.warn("缺少ID，可能无法删除", row);
-        }
         this.$api({
           apiType: "homeworkDelete",
-          data: { id: row.id }, // 对应 api.config.js 中 /homework/:id
+          // 注意：这里参数应该是 id 对应 restful 的 :id
+          data: { id: row.id }, 
         }).then(() => {
           this.$message.success("删除成功");
           this.getHomework();

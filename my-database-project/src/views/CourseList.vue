@@ -1,14 +1,7 @@
 <template>
   <el-card shadow="never">
     <div slot="header" class="clearfix header-actions">
-      <div class="filter-left">
-        <el-select v-model="majorFilter" placeholder="筛选专业" size="small" style="width: 150px; margin-right: 10px;" clearable>
-          <el-option label="所有专业" value=""></el-option>
-          <el-option label="计算机学院" value="cs"></el-option>
-          <el-option label="数学院" value="math"></el-option>
-          <el-option label="外国语学院" value="eng"></el-option>
-        </el-select>
-        
+      <div class="filter-left">  
         <el-input 
           v-model="searchKey" 
           placeholder="搜索课程名或代码" 
@@ -60,7 +53,6 @@
 
         <el-table-column label="操作" width="150" fixed="right">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleSchedule(scope.row)">排课</el-button>
             <el-button type="text" size="small" @click="openModal(scope.row)">编辑</el-button>
             <el-button type="text" size="small" style="color: #F56C6C" @click="handleStop(scope.row)">停开</el-button>
           </template>
@@ -97,7 +89,6 @@ export default {
   data() {
     return {
       searchKey: '',
-      majorFilter: '',
       modalVisible: false, 
       currentRow: null,
       tableData: [
@@ -153,11 +144,13 @@ export default {
       this.$api({
         apiType: 'course', 
         data: { 
+          role: 'teacher',
           query: this.searchKey,
-          major: this.majorFilter 
+          page: 1,
+          pageSize: 10
         }
       }).then(result => { 
-        this.tableData = result?.list || this.tableData; 
+        this.tableData = result || this.tableData; 
       }).catch(err => {
          console.error(err);
       })
@@ -180,7 +173,6 @@ export default {
         });
       });
     },
-    handleSchedule(row) { this.$message.success(`排课: ${row.courseName}`); },
   },
   created(){
     this.getCourses()

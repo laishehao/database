@@ -103,33 +103,7 @@ export default {
       searchKey: "",
       modalVisible: false,
       currentRow: null,
-      tableData: [
-        {
-          studentId: "2023001",
-          name: "王小明",
-          gender: "男",
-          major: "计算机科学",
-          phone: "13812345678",
-          avatar:
-            "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-        },
-        {
-          "studentId": "2023002",
-          "name": "李清照",
-          "gender": "女",
-          "major": "外国语学院",
-          "phone": "13987654321",
-          "avatar": "https://cube.elemecdn.com/9/c2/f0ee8444e8777e4ad9d5b4104d55eapng.png"
-        },
-        {
-          "studentId": "2023003",
-          "name": "张子凡",
-          "gender": "男",
-          "major": "数学院",
-          "phone": "13700010002",
-          "avatar": "" // 测试默认头像情况
-        },
-      ],
+      tableData: [],
     };
   },
   computed: {
@@ -145,8 +119,6 @@ export default {
     },
     // 添加学生信息
     handleSuccess() {
-      // 重新调用接口获取最新列表，确保数据与后端一致
-      // 如果后端没有返回 ID 或其他自动生成的字段，仅仅 push 到前端数组是不够严谨的
       this.tableData = []; // 可选：清空当前数据会有 loading 效果
       this.getStudents();
     },
@@ -154,12 +126,13 @@ export default {
       this.$api({
         apiType: "student",
         data: {
+          role: 'teacher',
           query: this.searchKey, // 假设后端接收的参数名是 query
           page: 1,
           pageSize: 15
         },
       }).then((result) => {
-          this.tableData = result?.list || this.tableData;
+          this.tableData = result.data.list || this.tableData;
         }).catch((err) => {
           console.error(err);
         });
@@ -173,7 +146,7 @@ export default {
           // 调用删除接口
           this.$api({
             apiType: "studentDelete",
-            data: { id: row.studentId }, //对应 api.config.js 中 url 的 '/student/:id'
+            data: { studentId: row.studentId }, //对应 api.config.js 中 url 的 '/student/:id'
           }).then(() => {
             this.$message.success("删除成功");
             this.getStudents(); // 刷新列表
