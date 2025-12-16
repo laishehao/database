@@ -27,10 +27,12 @@ def test():
             # # 提交事务
             # connection.commit()
             
-            sql = "select * from student; "
+            sql = "select * from tmp; "
             # sql = "desc student;"
             cursor.execute(sql)  # 注意参数必须是元组，单个参数也要加逗号
             result = cursor.fetchall()
+            print(result[1][0])
+            print(type(result[1][0]))
             print(result)
             # for res in result:
             #     print(res[2])

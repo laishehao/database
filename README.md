@@ -11,9 +11,9 @@ TUKI
 # database制表
 | 表名     | 属性1     | 属性2        | 属性3           | 属性4                  | 属性5             | 属性6             | 属性7         | 属性8        | 属性9       |
 | ------ | ------- | ---------- | ------------- | -------------------- | --------------- | --------------- | ----------- | ---------- | --------- |
-| User   | Uni(ID) | Uname      | Upassword（密码） | Umail                | Uphone          | Uavatar（头像）     | Ugender（性别） | Umajor（专业） | Urole（角色） |
-| Course | Cno(ID) | Cname（课程名） | Uno（教师）       | Cmajor (所属学院)        | Ccredit（学分）     | Ctype(类型：必修/选修) |             |            |           |
-| Work   | Wno(ID) | Cno（课程号）   | Wtitle (作业名字) | Wprogress（有多少学生完成作业） | Wstart (作业开始时间) | Wend（作业结束时间）    |             |            |           |
+| User   | Uno(ID)int | Uname      | Upassword（密码） | Umail                | Uphone          | Uavatar（头像）     | Ugender（性别） | Umajor（专业） | Urole（角色） |
+| Course | Cno(ID)int | Cname（课程名） | Uno（教师）       | Cmajor (所属学院)        | Ccredit（学分）int     | Ctype(类型：必修/选修) |             |            |           |
+| Work   | Wno(ID)int | Cno（课程号）   | Wtitle (作业名字) | Wprogress（有多少学生完成作业）int | Wstart (作业开始时间)datetime | Wend（作业结束时间）datetime    |             |            |           |
 |Write （学生与作业对应表）|Wno（作业号）|Uno (用户ID)|Wstate (作业状态：已完成/未完成)
 
 # 依赖关系
