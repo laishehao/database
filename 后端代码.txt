@@ -41,45 +41,6 @@ CREATE TABLE `Write` (
     FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
 );
 
-DELIMITER $$
-CREATE PROCEDURE Register(
-    IN p_id INT,
-    IN p_username VARCHAR(50),
-    IN p_password VARCHAR(100),
-    IN p_email VARCHAR(100),
-    IN p_role VARCHAR(20)
-)
-BEGIN
-    DECLARE v_error VARCHAR(50) DEFAULT NULL;
-    
-    -- 检查Uno是否已存在
-    IF EXISTS (SELECT 1 FROM `User` WHERE Uno = p_id) THEN
-        SET v_error = 'ERROR:UNO_EXISTS';
-    -- 检查邮箱是否已存在
-    ELSEIF EXISTS (SELECT 1 FROM `User` WHERE Uemail = p_email) THEN
-        SET v_error = 'ERROR:EMAIL_EXISTS';
-    END IF;
-    
-    -- 如果有错误，返回错误
-    IF v_error IS NOT NULL THEN
-        SELECT v_error AS result_type, NULL AS user_id, NULL AS user_role;
-    ELSE
-        -- 插入新用户
-        INSERT INTO `User` (
-            Uno, Uname, Upassword, Uemail, Urole
-        ) VALUES (
-            p_id, p_username, SHA2(p_password, 256), 
-            p_email, p_role
-        );
-        
-        SELECT 'SUCCESS' AS result_type, p_id AS user_id, p_role AS user_role;
-    END IF;
-END
-$$
-DELIMITER ;
-
-
-
 
 DELIMITER $$
 CREATE PROCEDURE Register(
