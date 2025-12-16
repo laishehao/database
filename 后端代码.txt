@@ -1,5 +1,5 @@
 CREATE TABLE User (
-    Uno int PRIMARY KEY,
+    Uno int AUTO_INCREMENT PRIMARY KEY,
     Uname VARCHAR(50) NOT NULL,
     Upassword VARCHAR(100) NOT NULL,
     Uemail VARCHAR(100) NOT NULL UNIQUE,
@@ -12,7 +12,7 @@ CREATE TABLE User (
 
 
 CREATE TABLE Course (
-    Cno VARCHAR(20) PRIMARY KEY,
+    Cno int AUTO_INCREMENT PRIMARY KEY,
     Cname VARCHAR(100) NOT NULL,
     Cmajor VARCHAR(50),
     Ccredit INT,
@@ -23,9 +23,9 @@ CREATE TABLE Course (
 
 
 CREATE TABLE Work (
-    Wno VARCHAR(20) PRIMARY KEY,
+    Wno int AUTO_INCREMENT PRIMARY KEY,
     Wtitle VARCHAR(200) NOT NULL,
-    Cno VARCHAR(20),
+    Cno int,
     Wprogress INT DEFAULT 0,
     Wstart DATETIME,
     Wover DATETIME,
@@ -33,7 +33,7 @@ CREATE TABLE Work (
 );
 
 CREATE TABLE `Write` (
-    Wno VARCHAR(20) NOT NULL,
+    Wno int NOT NULL,
     Uno int NOT NULL,
     State INT DEFAULT 0,
     PRIMARY KEY (Wno, Uno),
