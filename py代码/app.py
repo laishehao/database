@@ -1,3 +1,4 @@
+# <<<<<<< Updated upstream
 from flask import Flask, request,jsonify
 from sql import *
 from flask_cors import CORS
@@ -195,5 +196,3 @@ def app_delete_work(id):
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
     # app.run(debug=True)
-    # host='0.0.0.0' 允许所有IP访问
-    # port=5000 指定端口（可选）
