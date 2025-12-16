@@ -1,0 +1,124 @@
+CREATE TABLE User (
+    Uno int PRIMARY KEY,
+    Uname VARCHAR(50) NOT NULL,
+    Upassword VARCHAR(100) NOT NULL,
+    Uemail VARCHAR(100) NOT NULL UNIQUE,
+    Urole VARCHAR(20),
+    Ugender CHAR(1),
+    Umajor VARCHAR(50),
+    Uphone VARCHAR(20) UNIQUE,
+    Uavatar VARCHAR(200)
+);
+
+
+CREATE TABLE Course (
+    Cno VARCHAR(20) PRIMARY KEY,
+    Cname VARCHAR(100) NOT NULL,
+    Cmajor VARCHAR(50),
+    Ccredit INT,
+    Ctype VARCHAR(20),
+    Uno int,
+    FOREIGN KEY (Uno) REFERENCES User(Uno) ON DELETE SET NULL
+);
+
+
+CREATE TABLE Work (
+    Wno VARCHAR(20) PRIMARY KEY,
+    Wtitle VARCHAR(200) NOT NULL,
+    Cno VARCHAR(20),
+    Wprogress INT DEFAULT 0,
+    Wstart DATETIME,
+    Wover DATETIME,
+    FOREIGN KEY (Cno) REFERENCES Course(Cno) ON DELETE CASCADE
+);
+
+CREATE TABLE `Write` (
+    Wno VARCHAR(20) NOT NULL,
+    Uno int NOT NULL,
+    State INT DEFAULT 0,
+    PRIMARY KEY (Wno, Uno),
+    FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
+    FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
+);
+
+DELIMITER $$
+CREATE PROCEDURE Register(
+    IN p_id INT,
+    IN p_username VARCHAR(50),
+    IN p_password VARCHAR(100),
+    IN p_email VARCHAR(100),
+    IN p_role VARCHAR(20)
+)
+BEGIN
+    DECLARE v_error VARCHAR(50) DEFAULT NULL;
+    
+    -- 检查Uno是否已存在
+    IF EXISTS (SELECT 1 FROM `User` WHERE Uno = p_id) THEN
+        SET v_error = 'ERROR:UNO_EXISTS';
+    -- 检查邮箱是否已存在
+    ELSEIF EXISTS (SELECT 1 FROM `User` WHERE Uemail = p_email) THEN
+        SET v_error = 'ERROR:EMAIL_EXISTS';
+    END IF;
+    
+    -- 如果有错误，返回错误
+    IF v_error IS NOT NULL THEN
+        SELECT v_error AS result_type, NULL AS user_id, NULL AS user_role;
+    ELSE
+        -- 插入新用户
+        INSERT INTO `User` (
+            Uno, Uname, Upassword, Uemail, Urole
+        ) VALUES (
+            p_id, p_username, SHA2(p_password, 256), 
+            p_email, p_role
+        );
+        
+        SELECT 'SUCCESS' AS result_type, p_id AS user_id, p_role AS user_role;
+    END IF;
+END
+$$
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE Register(
+    IN p_id INT,
+    IN p_username VARCHAR(50),
+    IN p_password VARCHAR(100),
+    IN p_email VARCHAR(100),
+    IN p_role VARCHAR(20)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR 1062  
+    BEGIN
+        ROLLBACK;
+        
+        IF EXISTS (SELECT 1 FROM `User` WHERE Uno = p_id) THEN
+            SELECT 'ERROR:UNO_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;
+        ELSE
+            SELECT 'ERROR:EMAIL_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;
+        END IF;
+    END;
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type, NULL AS user_id, NULL AS user_role;
+    END;
+    
+    START TRANSACTION;
+    
+   
+    INSERT INTO `User` (
+        Uno, Uname, Upassword, Uemail, Urole
+    ) VALUES (
+        p_id, p_username, SHA2(p_password, 256), 
+        p_email, p_role
+    );
+    
+    COMMIT;
+    SELECT 'SUCCESS' AS result_type, p_id AS user_id, p_role AS user_role;
+END
+$$
+DELIMITER ;
