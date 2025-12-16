@@ -6,7 +6,7 @@ CREATE TABLE User (
     Urole VARCHAR(20),
     Ugender CHAR(1),
     Umajor VARCHAR(50),
-    Uphone VARCHAR(20) UNIQUE,
+    Uphone VARCHAR(20) NOT NULL UNIQUE,
     Uavatar VARCHAR(200)
 );
 
@@ -44,8 +44,8 @@ CREATE TABLE `Write` (
 
 DELIMITER $$
 CREATE PROCEDURE Register(
-    IN p_id INT,
-    IN p_username VARCHAR(50),
+    IN p_name INT,
+    IN p_phone VARCHAR(50),
     IN p_password VARCHAR(100),
     IN p_email VARCHAR(100),
     IN p_role VARCHAR(20)
@@ -55,8 +55,8 @@ BEGIN
     BEGIN
         ROLLBACK;
         
-        IF EXISTS (SELECT 1 FROM `User` WHERE Uno = p_id) THEN
-            SELECT 'ERROR:UNO_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;
+        IF EXISTS (SELECT 1 FROM `User` WHERE Uphone = p_phone) THEN
+            SELECT 'ERROR:PHONE_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;
         ELSE
             SELECT 'ERROR:EMAIL_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;
         END IF;
@@ -72,10 +72,10 @@ BEGIN
     
    
     INSERT INTO `User` (
-        Uno, Uname, Upassword, Uemail, Urole
+        Uname, Upassword, Uemail, Urole,Uphone
     ) VALUES (
-        p_id, p_username, SHA2(p_password, 256), 
-        p_email, p_role
+        p_name, SHA2(p_password, 256), 
+        p_email, p_role,p_phone
     );
     
     COMMIT;
