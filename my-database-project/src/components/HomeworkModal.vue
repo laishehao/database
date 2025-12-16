@@ -1,16 +1,8 @@
-<!--
- * @Author: Garyonit 3253975221@qq.com
- * @Date: 2025-12-11 20:35:54
- * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-12 13:18:20
- * @FilePath: \my-database-project\src\components\HomeworkModal.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
   <el-dialog 
-    title="发布新作业" 
+    :title="isEdit ? '编辑作业' : '发布新作业'" 
     :visible.sync="modalVisible" 
-    width="500px"
+    width="600px"
     :before-close="handleClose"
     :close-on-click-modal="false"
   >
@@ -24,7 +16,18 @@
           <el-option label="高等数学" value="高等数学"></el-option>
           <el-option label="计算机科学" value="计算机科学"></el-option>
           <el-option label="大学英语" value="大学英语"></el-option>
+          <el-option label="数据库系统原理" value="数据库系统原理"></el-option>
         </el-select>
+      </el-form-item>
+
+      <!-- 新增：作业内容字段 -->
+      <el-form-item label="作业内容" prop="content">
+        <el-input 
+          type="textarea" 
+          v-model="form.content" 
+          :rows="4"
+          placeholder="请输入作业详细要求或内容描述..."
+        ></el-input>
       </el-form-item>
     </el-form>
 
@@ -42,12 +45,42 @@ export default {
     visible: {
       type: Boolean,
       default: false
+    },
+    // 接收回显数据
+    rowData: {
+      type: Object,
+      default: null
     }
   },
   computed: {
     modalVisible: {
       get() { return this.visible; },
       set(val) { this.$emit('update:visible', val); }
+    },
+    // 判断是否为编辑模式
+    isEdit() {
+      return !!this.rowData;
+    }
+  },
+  watch: {
+    // 监听打开，初始化表单
+    visible(val) {
+      if (val) {
+        if (this.rowData) {
+          // 编辑模式：回显数据
+          this.form = JSON.parse(JSON.stringify(this.rowData));
+        } else {
+          // 新增模式：重置
+          this.form = {
+            title: '',
+            course: '',
+            content: '' // 初始化 content
+          };
+        }
+        this.$nextTick(() => {
+          this.$refs.formRef && this.$refs.formRef.clearValidate();
+        });
+      }
     }
   },
   data() {
@@ -55,34 +88,45 @@ export default {
       loading: false,
       form: {
         title: '',
-        course: ''
+        course: '',
+        content: ''
       },
       rules: {
         title: [{ required: true, message: '请输入作业名称', trigger: 'blur' }],
-        course: [{ required: true, message: '请选择所属课程', trigger: 'change' }]
+        course: [{ required: true, message: '请选择所属课程', trigger: 'change' }],
+        content: [{ required: true, message: '请输入作业内容', trigger: 'blur' }]
       }
     };
   },
   methods: {
     handleClose() {
-      this.$refs.formRef.resetFields();
       this.modalVisible = false;
     },
     handleSubmit() {
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           this.loading = true;
+          
+          // 根据模式选择接口
+          // 注意：需要在 api.config.js 中配置 homeworkEdit (PUT /homework)
+          const apiType = this.isEdit ? 'homeworkEdit' : 'homeworkAdd';
+
+          // 准备提交的数据
+          const submitData = {
+            ...this.form,
+            // 如果是新增，可以带上默认状态
+            ...(this.isEdit ? {} : { progress: 0, active: true })
+          };
+
           this.$api({
-            apiType: 'homeworkAdd', 
-            data: {
-              ...this.form,
-              progress: 0,
-              active: true
-            }
+            apiType: apiType,
+            data: submitData
           }).then(() => {
-            this.$message.success('发布成功');
+            this.$message.success(this.isEdit ? '修改成功' : '发布成功');
             this.$emit('success');
             this.handleClose();
+          }).catch(err => {
+             console.error(err);
           }).finally(() => {
             this.loading = false;
           });

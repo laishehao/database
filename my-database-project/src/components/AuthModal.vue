@@ -10,6 +10,13 @@
     <el-form :model="form" :rules="rules" ref="formRef" label-width="0px">
       
       <template v-if="mode === 'register'">
+        <el-form-item prop="role" style="text-align: center">
+          <el-radio-group v-model="form.role" size="small">
+            <el-radio label="student" border>我是学生</el-radio>
+            <el-radio label="teacher" border>我是老师</el-radio>
+          </el-radio-group>
+        </el-form-item>
+
         <el-form-item prop="name">
           <el-input 
             v-model="form.name" 
@@ -66,6 +73,21 @@
 </template>
 
 <script>
+// 正则定义提取到外面
+const REGEX_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!.#*?&]{8,12}$/;
+const REGEX_USERNAME = /^[a-zA-Z0-9_-]{4,16}$/;
+const REGEX_EMAIL = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+
+const validatePassword = (rule, value, callback) => {
+  if (!value) {
+    callback(new Error('请输入密码'));
+  } else if (!REGEX_PASSWORD.test(value)) {
+    callback(new Error('密码需8-12位，含大写、小写字母及数字'));
+  } else {
+    callback();
+  }
+};
+
 export default {
   name: 'AuthModal',
   props: {
@@ -73,31 +95,6 @@ export default {
     initialMode: { type: String, default: 'login' }
   },
   data() {
-      /*
-      *密码 (REGEX_PASSWORD):/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!.#*?&]{8,12}$/
-      *(?=.*[a-z]): 必须包含至少一个小写字母。
-      *(?=.*[A-Z]): 必须包含至少一个大写字母。
-      *(?=.*\d): 必须包含至少一个数字。
-      *[a-zA-Z\d!.#*?&]{8,12}: 长度在 8 到 12 位之间，且字符只能是字母、数字和 !.#*?& 这些特殊字符。
-      */
-      /*
-      *账号 (REGEX_USERNAME)/^[a-zA-Z0-9_-]{4,16}$/
-      *允许大小写字母、数字、下划线、减号，长度 4-16 位。
-      */
-    const REGEX_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!.#*?&]{8,12}$/;
-    const REGEX_USERNAME = /^[a-zA-Z0-9_-]{4,16}$/;
-    const REGEX_EMAIL = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
-
-    const validatePassword = (rule, value, callback) => {
-      if (!value) {
-        callback(new Error('请输入密码'));
-      } else if (!REGEX_PASSWORD.test(value)) {
-        callback(new Error('密码需8-12位，含大写、小写字母及数字'));
-      } else {
-        callback();
-      }
-    };
-
     return {
       mode: 'login',
       loading: false,
@@ -105,9 +102,9 @@ export default {
         username: '',
         password: '',
         name: '',
-        email: '' // 新增
+        email: '',
+        role: 'student'
       },
-      // 3. 校验规则配置
       rules: {
         username: [
           { required: true, message: '请输入账号', trigger: 'blur' },
@@ -148,8 +145,7 @@ export default {
       this.modalVisible = false;
     },
     resetForm() {
-      // 重置时记得包含 email
-      this.form = { username: '', password: '', name: '', email: '' };
+      this.form = { username: '', password: '', name: '', email: '', role: 'student' };
       this.$nextTick(() => {
         this.$refs.formRef && this.$refs.formRef.clearValidate();
       });
@@ -164,20 +160,46 @@ export default {
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           this.loading = true;
-          const apiType = this.mode; 
+          const apiType = this.mode;
           
           this.$api({
             apiType: apiType,
             data: this.form
           }).then(res => {
             this.$message.success(this.mode === 'login' ? '登录成功' : '注册成功');
-            // 注意：如果注册成功后后端不直接返回用户信息，而是要求去登录，
-            // 这里可能需要判断一下 mode，如果是 register 则切换到 login 模式
-            const userInfo = res.user || res; 
+            
+            // 1. 获取用户信息 (兼容 res 是 user 对象 或 res.user 是 user 对象)
+            let userInfo = res.user || res;
+
+            // 防御性检查：确保 userInfo 存在
+            if (!userInfo) {
+              throw new Error('获取用户信息失败');
+            }
+
+            // 2. 数据补全 (角色、名字、头像)
+            if (this.mode === 'register' && !userInfo.role) {
+              userInfo.role = this.form.role;
+            }
+            if (!userInfo.name) {
+              userInfo.name = this.form.name || this.form.username;
+            }
+            if (!userInfo.avatar) {
+              userInfo.avatar = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png';
+            }
+
+            // 3. 存储到 Vuex Store (Store 内部会自动存 localStorage)
+            this.$store.dispatch('login', userInfo);
+
+            // 4. 派发事件 (保留以兼容旧的 SideMenu 监听逻辑)
+            const setItemEvent = new Event('setItemEvent');
+            window.dispatchEvent(setItemEvent);
+
+            // 5. 通知父组件
             this.$emit('success', userInfo);
             this.handleClose();
           }).catch(err => {
             console.error(err);
+            // 错误提示已在 http.js 统一处理，此处不用写 notify
           }).finally(() => {
             this.loading = false;
           });
