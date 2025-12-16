@@ -62,7 +62,7 @@ Write：(Wno, Uno) → State
 |角色	|需求	|请求数据格式 (Object Structure)|	返回数据	|url	|方法|
 |------|------|------|------|------|------|
 |游客	|登录|	username，password|	role, id	|/login	|post|
- |   |注册	|role，username，password，name，email	|role, id|	/register|	post|
+  |   |注册	|role，username，password，name，email	|role, id|	/register|	post|
 |学生	|查看作业	|role，studentId，query	|total,list|	/homework|	get|
   | | 提交作业|	role，studentId，writecheck	|成功信息(比如"提交成功"这样的)	|/homework/submit	|post|
  ||   个人信息（待定）|	role	|		
@@ -82,6 +82,9 @@ Write：(Wno, Uno) → State
 
 =======
 🦌
+# 前后端数据对应表
+||
+
 
 # 修改意见
 >>>>>>> 1b57c4fc4d57a3a548bd36ac15c160af402828cc
