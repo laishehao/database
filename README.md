@@ -91,6 +91,7 @@ Write：(Wno, Uno) → State
 |        | **注册**       | `role`: string<br>`phone`:string<br>`password`:string<br>`name`:string<br>`email`: string | `msg`: string('注册成功')<br>`user`:object<br>包含: `phone`:string, `name`:string, `role`:string, `avatar`:string<br/>`email`:string | `/api/register`            | **POST**   |
 | **用户** | **提交用户信息修改** | `phone`:string<br>`name`: string<br />`email`:string | `msg`: string('修改成功')<br>`user`:object<br>_包含(更新后的用户信息 ): `phone`:string, `name`:string, `role`:string, `avatar`:string, `email`:string_ | `/api/user`                | **POST**   |
 | **学生** | **查看作业列表**   | `query`: string (搜索关键词)<br>`page`:number<br>`pageSize`:number | `total`:number<br>`list`: Array          | `/homework`                | **GET**    |
+|        | **查看单个作业**     | `workId`:string | `code`: 200<br> `workId`:string<br>`title`: string<br>`course`:string<br>`content`:string<br>`completed`:boolean    | `/homework/:workId` | **GET**   |
 |        | **提交作业**     | `role`: string<br />`studentId`:string<br/>`workId`:string<br>`writecheck`: string ('true' 或 'false') | `code`: 200<br>`msg`: string('提交成功')     | `/homework/submit/:workId` | **POST**   |
 | **老师** | **查看课程列表**   | `query`: string <br>`page`:number<br>`pageSize`:number | `total`:number<br>`list`: Array          | `/course`                  | **GET**    |
 |        | **增加课程**     | `courseId`:string<br>`courseName`:string<br>`major`:string<br>`credits`: number<br>`type`:string<br>`teacher`: string | `code`: 200<br>`msg`: string('创建成功')     | `/course`                  | **POST**   |
