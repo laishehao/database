@@ -30,7 +30,7 @@ def app_register():
     if_ok= register (username, password, name, email)
     return if_ok
 
-@app.route('/login',methods=['POST'])
+@app.route('/api/login',methods=['POST'])
 def app_login():
     """登录用户，需要传入用户名和密码
         成功：返回True
@@ -41,7 +41,7 @@ def app_login():
     if_ok= login (username, password)
     return if_ok
 
-@app.route('/student',methods=['GET'])
+@app.route('/api/student',methods=['GET'])
 def app_select_student():
     """查询学生信息
         成功：返回学生信息列表
@@ -64,15 +64,15 @@ def app_add_student():
         成功：返回True
         失败：返回错误原因
     """
-    studentId = request.form.get('studentId')
-    name = request.form.get('name')
-    gender = request.form.get('gender')
-    major = request.form.get('major')
-    phone = request.form.get('phone')
-    avatar = request.form.get('avatar')
+    studentId = request.args.get('studentId')
+    name = request.args.get('name')
+    gender = request.args.get('gender')
+    major = request.args.get('major')
+    phone = request.args.get('phone')
+    # avatar = request.args.get('avatar')
     # age = request.form.get('age')
     
-    if_ok= add_student (studentId,name,gender,major,phone,avatar)
+    if_ok= add_student (studentId,name,gender,major,phone)
     return if_ok
 
 @app.route('/student',methods=['PUT'])
@@ -81,36 +81,37 @@ def app_update_student():
         成功：返回True
         失败：返回错误原因
     """
-    studentId = request.form.get('studentId')
-    name = request.form.get('name')
-    gender = request.form.get('gender')
-    major = request.form.get('major')
-    phone = request.form.get('phone')
-    avatar = request.form.get('avatar')
+    studentId = request.args.get('studentId')
+    name = request.args.get('name')
+    gender = request.args.get('gender')
+    major = request.args.get('major')
+    phone = request.args.get('phone')
+    # avatar = request.args.get('avatar')
     
-    if_ok= update_student (studentId,name,gender,major,phone,avatar)
+    if_ok= update_student (studentId,name,gender,major,phone)
     return if_ok
 
 # DELETE 请求处理
-@app.route('/student/<int:id>', methods=['DELETE'])
-def app_delete_student(id):
+@app.route('/student/<int:studentId>', methods=['DELETE'])
+def app_delete_student(studentId):
     """删除学生信息
         成功：返回True
         失败：返回错误原因
     """
-    if_ok= delete_student (id)
+    if_ok= delete_student (studentId)
     return if_ok
 
 # 课程处理
 @app.route('/course',methods=['GET'])
 def app_select_course():
-    """查询学生信息
+    """查询课程信息
         成功：返回学生信息列表
         失败：返回错误原因
     """
-    query=request.form.get('query')
-    major=request.form.get('major')
-    students = select_course (query, major)
+    query=request.args.get('query')
+    page=request.args.get('page')
+    pageSize=request.args.get('pageSize')
+    students = select_course (query, page, pageSize)
     return students
 
 @app.route('/student',methods=['POST'])
@@ -119,12 +120,12 @@ def app_add_course():
         成功：返回True
         失败：返回错误原因
     """
-    courseId = request.form.get('courseId')
-    CourseName = request.form.get('CourseName')
-    major = request.form.get('major')
-    credits = request.form.get('credits')
-    type = request.form.get('type')
-    teacher = request.form.get('teacher')
+    courseId = request.args.get('courseId')
+    CourseName = request.args.get('CourseName')
+    major = request.args.get('major')
+    credits = request.args.get('credits')
+    type = request.args.get('type')
+    teacher = request.args.get('teacher')
     # age = request.form.get('age')
     
     if_ok= add_course (courseId,CourseName,major,credits,type,teacher)
@@ -136,18 +137,18 @@ def app_update_course():
         成功：返回True
         失败：返回错误原因
     """
-    courseId = request.form.get('courseId')
-    CourseName = request.form.get('CourseName')
-    major = request.form.get('major')
-    credits = request.form.get('credits')
-    type = request.form.get('type')
-    teacher = request.form.get('teacher')
+    courseId = request.args.get('courseId')
+    CourseName = request.args.get('CourseName')
+    major = request.args.get('major')
+    credits = request.args.get('credits')
+    type = request.args.get('type')
+    teacher = request.args.get('teacher')
     
     if_ok= update_course (courseId,CourseName,major,credits,type,teacher)
     return if_ok
 
 # DELETE 请求处理
-@app.route('/student/<int:id>', methods=['DELETE'])
+@app.route('/student/<int:courseId>', methods=['DELETE'])
 def app_delete_course(id):
     """删除学生信息
         成功：返回True
@@ -163,8 +164,11 @@ def app_select_work():
         成功：返回学生信息列表
         失败：返回错误原因
     """
-    query=request.form.get('query')
-    work = select_work (query)
+    query=request.args.get('query')
+    page = request.args.get('page')
+    pageSize=request.args.get('pageSize')
+    
+    work = select_work (query,page,pageSize)
     return work
 
 @app.route('/homework',methods=['POST'])
@@ -174,23 +178,46 @@ def app_add_work():
         失败：返回错误原因
     """
     title = request.form.get('title')
-    content = request.form.get('course')
+    content = request.form.get('content')
     progress = request.form.get('progress')
-    active = request.form.get('active')
+    course = request.form.get('course')
     # age = request.form.get('age')
     
-    if_ok= add_work (title,content,progress,active)
+    if_ok= add_work (title,course,content,progress)
     return if_ok
 
-@app.route('/homework/<int:id>',methods=['DELETE'])
-def app_delete_work(id):
+@app.route('/homework/<int:workId>',methods=['DELETE'])
+def app_delete_work(workId):
     """删除学生信息
         成功：返回True
         失败：返回错误原因
     """
-    if_ok= delete_work (id)
+    if_ok= delete_work (workId)
     return if_ok
- 
+@app.route('/homework',methods=['PUT'])
+def app_update_work():
+    """更新学生信息
+        成功：返回True
+        失败：返回错误原因
+    """
+    workId = request.args.get('workId')
+    title = request.args.get('title')
+    content = request.args.get('content')
+    
+    if_ok= update_work (workId,title,content)
+    return if_ok
+
+@app.route('/homework/submit/<int:workId>',methods=['POST'])
+def app_submit_work(workId):
+    """
+    提交作业
+    """
+    role=request.args.get('role')
+    syudentId=request.args.get('studentId')
+    workId=request.args.get('workId')
+    writecheck=request.args.get('writecheck')
+    if_ok= submit_work (role,syudentId,workId,writecheck)
+    return if_ok
 
 # 修改这2行
 if __name__ == '__main__':

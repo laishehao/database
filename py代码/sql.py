@@ -44,58 +44,124 @@ def test():
     return result
     pass
 
-def select_humans():
-
-    pass
-
 def register(username, password, name, email):
-    pass
+    user={
+        "username":"testuser_datacheck",
+        "name":"testname",
+        "role":"teacher",
+        "avatar":"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+    }
+    ans={
+        "msg":"注册成功",
+        "user" :user
+    }
+    return ans
 def login(username, password):
-    pass
-# def select_student(query, page, page_size):
-#     students=[]
-#     student= {
-#           "studentId": "2023001",
-#           "name": "王小明",
-#           "gender": "男",
-#           "major": "计算机科学",
-#           "phone": "13812345678",
-#           "avatar":
-#             "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-#         }
-#     # role_check=True
-#     students.append(student)
-#     # ans={
-#     #     "role_chech":role_check,
-#     #     "data":students
-#     # }
-#     # test
-#     # print(students)
-#     return students
+    user={
+        "username":"testuser_datacheck",
+        "name":"testname",
+        "role":"teacher",
+        "avatar":"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+    }
+    ans={
+        "msg":"注册成功",
+        "user" :user
+    }
+    return ans
+def select_student(query, page, page_size):
+    students=[]
+    student= {
+          "studentId": "2023001",
+          "name": "王小明",
+          "gender": "男",
+          "major": "计算机科学",
+          "phone": "13812345678",
+          "avatar":
+            "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+        }
+    # role_check=True
+    students.append(student)
+    # ans={
+    #     "role_chech":role_check,
+    #     "data":students
+    # }
+    # test
+    # print(students)
+    return students
 
-def add_student (id, name, age, gender):
-    pass
-def update_student():
-    pass
-def delete_student():
-    pass
-def select_course():
+def add_student (studentId, name, major, gender,phone):
+    ans={
+        "code":200,
+        "msg":"添加成功"
+    }
+    return ans
+def update_student(studentId, name, major, gender,phone):
+    ans={
+        "code":200,
+        "msg":"更新成功"
+    }
+    return ans
+def delete_student(studentId):
+    ans={
+        "code":200,
+        "msg":"删除成功"
+    }
+    return ans
+def select_course(query,page,pageSize):
+    ans={
+        "total":10,
+        # "list":[{"id":1},{"id":2}] #格式未知
+    }
+    return ans
+def add_course(courseId,CourseName,major,credits,type,teacher):
+    ans={
+        "code":200,
+        "msg":"添加成功"
+    }
+    return ans
+
+def update_course(courseId,CourseName,major,credits,type,teacher):
+    ans={
+        "code":200,
+        "msg":"更新成功"
+    }
+    return ans
+def delete_course(courseId):
+    ans={
+        "code":200,
+        "msg":"删除成功"
+    }
+    return ans
     
-    pass
-def add_course():
-    pass
-def update_course():
-    pass
-def delete_course():
-    pass
-def select_work():
-    pass
-def add_work():
-    pass
-def update_work():
-    pass
-def delete_work():
-    pass
+def select_work(query,page,pageSize):
+    ans={
+        "total":10,
+        # "list":[{"id":1},{"id":2}] #格式未知
+    }
+    return ans
+def add_work(title,course,content,progress):
+    ans={
+        "code":200,
+        "msg":"添加成功"
+    }
+    return ans
+def update_work(workId,title,content):
+    ans={
+        "code":200,
+        "msg":"更新成功"
+    }
+    return ans
+def delete_work(workId):
+    ans={
+        "code":200,
+        "msg":"删除成功"
+    }
+    return ans
+def submit_work(role,studentId,workId,writecheck):
+    ans={
+        "code":200,
+        "msg":"提交成功"
+    }
 
 if __name__ == '__main__':
     test()
