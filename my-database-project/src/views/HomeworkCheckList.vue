@@ -2,14 +2,12 @@
  * @Author: kusachan 3253975221@qq.com
  * @Date: 2025-12-15 00:57:59
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-16 13:32:00
- * @FilePath: \my-database-project\src\views\HomeworkCheckList.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @LastEditTime: 2025-12-17 01:22:30
+ * @Description: 学生作业查看列表
 -->
 <template>
   <el-card shadow="never">
     <div slot="header" class="clearfix header-actions">
-      <!-- 移除了发布按钮 -->
       <div class="filter-left">
         <el-input
           v-model="searchKey"
@@ -32,21 +30,18 @@
 
     <div v-if="hasHomework">
       <el-table :data="tableData" style="width: 100%" stripe>
-        <!-- 1. 作业名称 -->
         <el-table-column prop="title" label="作业名称" min-width="180">
           <template slot-scope="scope">
             <span style="font-weight: 500;">{{ scope.row.title }}</span>
           </template>
         </el-table-column>
 
-        <!-- 2. 课程 -->
         <el-table-column prop="course" label="课程">
           <template slot-scope="scope">
             <el-tag size="medium" effect="plain">{{ scope.row.course }}</el-tag>
           </template>
         </el-table-column>
 
-        <!-- 3. 状态 -->
         <el-table-column label="状态" width="120">
           <template slot-scope="scope">
             <el-tag
@@ -59,7 +54,6 @@
           </template>
         </el-table-column>
 
-        <!-- 4. 操作 -->
         <el-table-column label="操作" width="200" fixed="right">
           <template slot-scope="scope">
             <el-button 
@@ -69,16 +63,14 @@
               @click="handleView(scope.row)"
             >查看</el-button>
             
-            <!-- 确认完成按钮：如果已完成则禁用或隐藏 -->
             <el-button 
               type="text" 
               size="small" 
-              icon="el-icon-check"
-              :disabled="scope.row.completed"
+              :icon="scope.row.completed ? 'el-icon-refresh-left' : 'el-icon-check'"
               :style="{ color: scope.row.completed ? '#909399' : '#67C23A' }"
               @click="handleComplete(scope.row)"
             >
-              {{ scope.row.completed ? '已完成' : '确认完成' }}
+              {{ scope.row.completed ? '取消完成' : '确认完成' }}
             </el-button>
           </template>
         </el-table-column>
@@ -106,7 +98,7 @@ export default {
     return {
       searchKey: "",
       total: 0,
-      tableData: [ ],
+      tableData: [],
     };
   },
   computed: {
@@ -116,17 +108,24 @@ export default {
   },
   methods: {
     getHomework() {
-      // 调用获取作业列表接口
       this.$api({
         apiType: "homework",
         data: { query: this.searchKey },
       }).then((result) => {
-          // 这里假设后端返回的数据结构包含 list 和 total
-          // 如果是模拟数据，这里可能会直接使用上面的 mock 数据
-          if (result ) {
-            this.tableData = result.data.list || this.tableData;
-            this.total = result.total || this.tableData.length;
-          }
+          // 1. 获取列表数据 (兼容不同的返回结构)
+          const list = result.list || (result.data && result.data.list) || [];
+          this.tableData = list;
+          this.total = result.total || (result.data && result.data.total) || list.length;
+
+          // 2. 关键修改：自动同步 checkHomework 到 Vuex
+          // 遍历后端返回的列表，如果后端标记为已完成，则确保 Vuex 中也有这个 ID
+          list.forEach(item => {
+            if (item.completed) {
+              // 这是一个幂等操作，Vuex action 内部会去重，不用担心重复添加
+              this.$store.dispatch('completeHomework', item.id);
+            }
+          });
+
         }).catch((err) => {
           console.error(err);
         });
@@ -140,27 +139,37 @@ export default {
       })
     },
     handleComplete(row) {
-      this.$confirm(`确认已完成作业《${row.title}》吗?`, "提示", {
+      const isUndo = row.completed;
+      const actionText = isUndo ? "撤销完成" : "确认完成";
+      const confirmType = isUndo ? "warning" : "success";
+
+      this.$confirm(`确定要${actionText}作业《${row.title}》吗?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "success",
+        type: confirmType,
       }).then(() => {
-          // 调用 API 更新状态
-          // 假设有一个 homeworkEdit 接口用于更新状态
           this.$api({
             apiType: "homeworkSubmit", 
             data: { 
               role: 'student',
               id: row.id, 
-              writeCheck: true 
+              writeCheck: !isUndo 
             },
           }).then(() => {
-            this.$message.success("作业状态已更新");
-            // 乐观更新：直接修改本地数据，避免刷新页面
-            row.completed = true;
+            this.$message.success(`${actionText}成功`);
+            
+            // 更新本地数据
+            row.completed = !isUndo;
+
+            // 更新 Vuex Store
+            if (row.completed) {
+              this.$store.dispatch('completeHomework', row.id);
+            } else {
+              this.$store.dispatch('undoHomework', row.id);
+            }
           });
-        }).catch(() => {
-          // 取消操作
+        }).catch((err) => {
+          if (err !== 'cancel') console.error(err);
         });
     },
   },

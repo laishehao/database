@@ -69,10 +69,10 @@ export default {
     handleCommand(command) {
       if (command === 'logout') {
         this.handleLogout();
-      } else if (command === 'profile') {
+      } 
+      else if (command === 'profile') {
         // 如果有个人中心页，可以在这里跳转
-        // this.$router.push('/profile');
-        this.$message.info('个人中心开发中...');
+        this.$router.push('/profile');
       }
     },
     handleLogout() {
@@ -95,7 +95,7 @@ export default {
 
     // 登录/注册成功回调
     handleAuthSuccess(user) {
-      console.log('用户已登录:', user.username);
+      console.log('用户已登录:', `user-${user.phone}`);
     }
   },
   created() {
