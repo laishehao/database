@@ -65,23 +65,23 @@ Write：(Wno, Uno) → State
 |角色	|需求	|请求数据格式 (Object Structure)|	返回数据	|url	|方法|
 |------|------|------|------|------|------|
 |游客	|登录|	username，password|	role, id	|/login	|post|
-  |   |注册	|role，username，password，name，email	|role, id|	/register|	post|
+|   |注册	|role，username，password，name，email	|role, id|	/register|	post|
 |学生	|查看作业	|role，studentId，query	|total,list|	/homework|	get|
-  | | 提交作业|	role，studentId，writecheck	|成功信息(比如"提交成功"这样的)	|/homework/submit	|post|
- ||   个人信息（待定）|	role	|		
+| | 提交作业|	role，studentId，writecheck	|成功信息(比如"提交成功"这样的)	|/homework/submit	|post|
+||   个人信息（待定）|	role	|
 |老师|	查看课程	|role，query	|total,list|/course|	get|
- | |  增加课程	|role，courseId，courseName，major，credits，type，teacher	|成功信息(比如"创建成功"这样的)	|/course	|post|
- |  | 删除课程	|role，courseId	|成功信息(比如"删除成功"这样的)	|/course/:courseId	|delete|
- | |  编辑课程	|role，courseId，courseName，major，credits，type，teacher	|成功信息(比如"修改成功"这样的)|	/course|put|
- | |  查看学生	|role，query,page,pageSize	|total,list	|/student|	get|
-  ||  增加学生	|role，studentId，name，major，gender，phone，avatar|	成功信息(比如"创建成功"这样的)|	/student	|post|
- ||   删除学生	|role，studentId	|成功信息(比如"删除成功"这样的)	|/student/:studentId|	delete|
-  ||  编辑学生	|role，studentId，name，major，gender，phone，avatar|	成功信息(比如"修改成功"这样的)|	/student|	put|
- ||   布置作业	|role，title，course，progress	|成功信息(比如"创建成功"这样的)	|/homework	|post|
-  ||  删除作业	|role，workId|	成功信息(比如"删除成功"这样的)|	/homework/:workId|delete|
- ||   修改作业	|role，workId|	成功信息(比如"修改成功"这样的)	|/homework	|put|
-  ||  查看作业	|role，query	|total,list	|/homework	|get|
-  ||  个人信息（待定）	|role|			
+| |  增加课程	|role，courseId，courseName，major，credits，type，teacher	|成功信息(比如"创建成功"这样的)	|/course	|post|
+|  | 删除课程	|role，courseId	|成功信息(比如"删除成功"这样的)	|/course/:courseId	|delete|
+| |  编辑课程	|role，courseId，courseName，major，credits，type，teacher	|成功信息(比如"修改成功"这样的)|	/course|put|
+| |  查看学生	|role，query,page,pageSize	|total,list	|/student|	get|
+||  增加学生	|role，studentId，name，major，gender，phone，avatar|	成功信息(比如"创建成功"这样的)|	/student	|post|
+||   删除学生	|role，studentId	|成功信息(比如"删除成功"这样的)	|/student/:studentId|	delete|
+||  编辑学生	|role，studentId，name，major，gender，phone，avatar|	成功信息(比如"修改成功"这样的)|	/student|	put|
+||   布置作业	|role，title，course，progress	|成功信息(比如"创建成功"这样的)	|/homework	|post|
+||  删除作业	|role，workId|	成功信息(比如"删除成功"这样的)|	/homework/:workId|delete|
+||   修改作业	|role，workId|	成功信息(比如"修改成功"这样的)	|/homework	|put|
+||  查看作业	|role，query	|total,list	|/homework	|get|
+||  个人信息（待定）	|role|
 =======
 ### 前后端 API 接口文档
 
@@ -113,4 +113,6 @@ Write：(Wno, Uno) → State
 
 
 # 修改意见
->>>>>>> 1b57c4fc4d57a3a548bd36ac15c160af402828cc
+1. 
+
+
