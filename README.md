@@ -100,7 +100,9 @@ Write：(Wno, Uno) → State
 |        | **增加学生**     | `studentId`: string<br>`name`: string<br>`major`: string<br>`gender`: string<br>`phone`: string | `code`: 200<br>`msg`: string('创建成功')     | `/student`                 | **POST**   |
 |        | **删除学生**     | ``studentId`: string                     | `code`: 200<br>`msg`: string('删除成功')     | `/student/:studentId`      | **DELETE** |
 |        | **编辑学生**     | `studentId`: string<br>`name`: string<br>`major`: string<br>`gender`: string<br>`phone`: string | `code`: 200<br>`msg`: string('修改成功')     | `/student`                 | **PUT**    |
-|        | **查看作业**列表   | `query`: string<br>`pageSize`:number<br>`page`:number | `total`:number<br>`list`:Array           | `/homework`                | **GET**    |
+|        | **查看作业列表**   | `query`: string<br>`pageSize`:number<br>`page`:number | `total`:number<br>`list`:Array           | `/homework`                | **GET**    
+|        | **查看某一个作业的提交情况**   | `workId`: string | `list`:Array 每一项包含`userId`:string<br>`name`: string<br>`status`:string(unsubmitted或者submitted或者graded) <br>`grade`:number<br>`content`:string<br>`teacherComment`:string(教师评语)    | `/homework/submissions:workId`                | **GET**    |
+|        | **提交某一个作业的批改情况**   | `workId`: string <br> `userId`: string <br> `score`:string <br> `comment`:string |  `msg`:string('批改成功')    | `/homework/grade`                | **GET**   
 |        | **发布作业**     | `title`: string<br>`course`: string<br>`progress`: string<br>`content`: string | `code`: 200<br>`msg`: string('发布成功')     | `/homework`                | **POST**   |
 |        | **删除作业**     | `workId`: string                         | `code`: 200<br>`msg`: string('删除成功')     | `/homework/:workId`        | **DELETE** |
 |        | **修改作业**     | `workId`: string<br>`title`: string<br>`content`: string | `code`: 200<br>`msg`: string('修改成功')     | `/homework`                | **PUT**    |
