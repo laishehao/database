@@ -22,7 +22,10 @@ export default {
     rsaKey: 'password', // 登录时对密码加密
     setToken: true
   },
-
+  'profileSubmit': {
+    url: '/api/user',
+    method: 'post',
+  },
   // ==========================
   // 学生模块 (Student)
   // RESTful: /student

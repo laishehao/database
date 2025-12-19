@@ -34,11 +34,11 @@
         </el-form-item>
       </template>
 
-      <el-form-item prop="username">
+      <el-form-item prop="phone">
         <el-input 
-          v-model="form.username" 
-          prefix-icon="el-icon-user-solid" 
-          placeholder="请输入账号 (4-16位字母/数字)">
+          v-model="form.phone" 
+          prefix-icon="el-icon-phone" 
+          placeholder="请输入手机号">
         </el-input>
       </el-form-item>
 
@@ -75,7 +75,7 @@
 <script>
 // 正则定义提取到外面
 const REGEX_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!.#*?&]{8,12}$/;
-const REGEX_USERNAME = /^[a-zA-Z0-9_-]{4,16}$/;
+const REGEX_PHONE = /^1[3-9]\d{9}$/;
 const REGEX_EMAIL = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
 
 const validatePassword = (rule, value, callback) => {
@@ -99,16 +99,16 @@ export default {
       mode: 'login',
       loading: false,
       form: {
-        username: '',
+        phone: '',
         password: '',
         name: '',
         email: '',
         role: 'student'
       },
       rules: {
-        username: [
+        phone: [
           { required: true, message: '请输入账号', trigger: 'blur' },
-          { pattern: REGEX_USERNAME, message: '账号需为4-16位字母、数字、下划线或减号', trigger: 'blur' }
+          { pattern: REGEX_PHONE, message: '请输入合法的手机号', trigger: 'blur' }
         ],
         password: [
           { required: true, validator: validatePassword, trigger: 'blur' }
@@ -145,13 +145,14 @@ export default {
       this.modalVisible = false;
     },
     resetForm() {
-      this.form = { username: '', password: '', name: '', email: '', role: 'student' };
+      this.form = { phone: '', password: '', name: '', email: '', role: 'student' };
       this.$nextTick(() => {
         this.$refs.formRef && this.$refs.formRef.clearValidate();
       });
     },
     switchMode(targetMode) {
       this.mode = targetMode;
+      this.resetForm()
       this.$nextTick(() => {
         this.$refs.formRef.clearValidate();
       });
