@@ -2,7 +2,7 @@
  * @Author: kusachan 3253975221@qq.com
  * @Date: 2025-12-16 00:47:26
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-16 16:30:00
+ * @LastEditTime: 2025-12-19 00:44:23
  * @Description: Vuex Store 配置
  */
 import Vue from 'vue'
@@ -93,7 +93,7 @@ export default new Vuex.Store({
     completeHomework({ commit }, id) {
       commit('ADD_CHECKHOMEWORK', id)
     },
-    // 新增：撤销完成作业 (如果需要)
+    // 新增：撤销完成作业 
     undoHomework({ commit }, id) {
       commit('REMOVE_CHECKHOMEWORK', id)
     }

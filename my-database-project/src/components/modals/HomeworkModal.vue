@@ -63,14 +63,11 @@ export default {
     }
   },
   watch: {
-    // 监听打开，初始化表单
     visible(val) {
       if (val) {
         if (this.rowData) {
-          // 编辑模式：回显数据
           this.form = JSON.parse(JSON.stringify(this.rowData));
         } else {
-          // 新增模式：重置
           this.form = {
             title: '',
             course: '',
@@ -99,6 +96,7 @@ export default {
     };
   },
   methods: {
+    //关闭窗口
     handleClose() {
       this.modalVisible = false;
     },
@@ -108,13 +106,11 @@ export default {
           this.loading = true;
           
           // 根据模式选择接口
-          // 注意：需要在 api.config.js 中配置 homeworkEdit (PUT /homework)
           const apiType = this.isEdit ? 'homeworkEdit' : 'homeworkAdd';
 
           // 准备提交的数据
           const submitData = {
             ...this.form,
-            // 如果是新增，可以带上默认状态
             ...(this.isEdit ? {} : { progress: 0, active: true })
           };
 

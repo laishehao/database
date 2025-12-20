@@ -11,6 +11,7 @@ export default {
  
   },
   created(){
+    //修改this.$route和this.$router
     if (this.$route.path !== '/index'){
       this.$router.replace('/index')
     }  

@@ -1,19 +1,10 @@
-<!--
- * @Author: kusachan 3253975221@qq.com
- * @Date: 2025-12-07 20:23:58
- * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-17 01:07:58
- * @FilePath: \my-database-project\src\components\LayoutPage.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
   <div class="app-wrapper">
     <el-container style="height: 100vh">
       <!-- 侧边栏 -->
       <el-aside
         :width="isCollapse ? '64px' : '220px'"
-        class="sidebar-container"
-      >
+        class="sidebar-container">
         <SideMenu :is-collapse="isCollapse" />
       </el-aside>
 
@@ -22,12 +13,12 @@
         <el-header class="app-header-container">
           <AppHeader
             :is-collapse="isCollapse"
-            :page-title="$route.name"
+            :page-path="$route.name"
             @toggle-collapse="isCollapse = !isCollapse"
           />
         </el-header>
 
-        <el-main style="background-color: #f0f2f5; padding: 20px">
+        <el-main class="main-content">
           <transition name="el-fade-in-linear" mode="out-in">
             <router-view></router-view>
           </transition>
@@ -35,24 +26,33 @@
       </el-container>
     </el-container>
 
-    <div class="sakana-box"></div>
+    <!-- 🐟 Sakana 组件 (左下角) -->
+    <div id="sakana-container" class="sakana-box" v-show="!isCollapse"></div>
+
+    <!-- 🎵 新增：音乐悬浮球组件 (右下角) -->
+    <MusicPlayer />
+
   </div>
 </template>
 
 <script>
-import SideMenu from "../components/SideMenu.vue";
-import AppHeader from "../components/AppHeader.vue";
-import Sakana from "sakana";
+import SideMenu from '@/components/layout/SideMenu.vue';
+import AppHeader from '@/components/layout/AppHeader.vue';
+import MusicPlayer from '@/components/features/MusicPlayer.vue';
+
+import Sakana from 'sakana';
 
 export default {
-  name: "LayoutPage",
+  name: 'HomePage',
   components: {
     SideMenu,
     AppHeader,
+    // 2. 注册组件
+    MusicPlayer
   },
   data() {
     return {
-      isCollapse: false,
+      isCollapse: false
     };
   },
   mounted() {
@@ -63,19 +63,19 @@ export default {
   methods: {
     initSakana() {
       try {
-        const container = document.getElementsByClassName("sakana-box");
-        if (container) container.innerHTML = "";
+        const container = document.getElementById('sakana-container');
+        if (container) container.innerHTML = '';
 
         Sakana.init({
-          el: ".sakana-box", // 启动元素 node 或 选择器
-          scale: 0.5, // 缩放倍数
-          canSwitchCharacter: true, // 允许换角色
+          el: '#sakana-container', 
+          scale: 0.5,
+          canSwitchCharacter: true,
         });
       } catch (error) {
-        console.error("Sakana 组件初始化失败:", error);
+        console.error('Sakana 组件初始化失败:', error);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -85,7 +85,7 @@ export default {
   transition: width 0.28s;
   overflow-x: hidden;
   position: relative;
-  z-index: 10; /* 确保侧边栏在底层 */
+  z-index: 10;
 }
 
 .app-header-container {
@@ -94,6 +94,14 @@ export default {
   padding: 0 20px;
   position: relative;
   z-index: 9;
+}
+
+.main-content {
+  padding: 20px;
+  background-image: linear-gradient(rgba(255, 240, 245, 0.9), rgba(255, 240, 245, 0.9)), url('~@/assets/img/profile/bg.png');
+  background-size: cover; /* 建议改为 cover 以适应不同屏幕 */
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .sakana-box {

@@ -20,6 +20,12 @@
           </el-tag>
         </el-descriptions-item>
         <el-descriptions-item label="截止时间">2025-12-31 23:59</el-descriptions-item>
+        <el-descriptions-item label="成绩" v-if="detail.completed && detail.score !== null && detail.score !== undefined">
+          <span class="score-display">{{ detail.score }} 分</span>
+        </el-descriptions-item>
+        <el-descriptions-item label="评语" v-if="detail.completed && detail.teacherComment">
+          <span style="color: #606266;">{{ detail.teacherComment }}</span>
+        </el-descriptions-item>
       </el-descriptions>
 
       <!-- 作业要求区域 -->
@@ -52,7 +58,7 @@
         </div>
       </div>
 
-      <!-- 底部操作区 -->
+      <!-- 4. 底部操作区 -->
       <div style="margin-top: 50px; text-align: center;" v-if="!detail.completed">
         <el-button type="primary" icon="el-icon-check" :loading="submitting" @click="handleComplete">
           确认提交作业
@@ -63,6 +69,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 // 1. 引入 Quill 样式
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
@@ -80,12 +87,14 @@ export default {
     return {
       loading: false,
       submitting: false, // 提交按钮加载状态
-      detail: {
+      detail: {       //单个作业信息
         id: '',
         title: '',
         course: '',
         completed: false,
-        content: ''
+        content: '',
+        score: null,        // 成绩
+        teacherComment: '' // 教师评语
       },
       // 学生作答内容 (HTML 字符串)
       submissionContent: '',
@@ -106,41 +115,58 @@ export default {
       }
     };
   },
+  computed: {
+    ...mapGetters(['userInfo']),
+  },
   created() {
     this.fetchDetail();
   },
   methods: {
+    //this.$router.go(-1)返回上一页
     goBack() {
-      this.$router.go(-1); // 返回上一页
+      this.$router.go(-1); 
     },
-    
-    // 获取作业详情
+    // 获取作业详情 
     fetchDetail() {
       this.loading = true;
-      const id = this.$route.params.id; // 获取路由参数中的 ID
+      const id = String(this.$route.params.id); // 获取路由参数中的 ID，确保是字符串类型
       
-      console.log(`正在获取 ID 为 ${id} 的作业详情`);
-      
-      //  this.$api({ apiType: 'homeworkDetail', data: { id } })
-      setTimeout(() => {
-        // 模拟后端返回的数据
-        this.detail = {
-          id: id,
-          title: '数据库设计与规范化作业',
-          course: '数据库系统原理',
-          completed: false, // 改为 true 可测试只读模式
-          content: '请阅读教材第三章，完成课后习题 1-5。并使用 Visio 或 ProcessOn 绘制图书管理系统的 E-R 图，导出为 PNG 格式上传。'
-        }; 
+      this.$api({
+        apiType: 'homeworkDetail', // 对应 api.config.js 中的配置
+        data: { workId: id, userId: this.userInfo.id }               // restful 替换 :id
+      }).then(res => {
+        /* this.detail = {
+          id: res.id ? String(res.id) : id,
+          title: res.title,
+          course: res.course,
+          completed: res.completed,
+          content: res.content || '', // 确保有内容字段
+          score: res.score !== undefined && res.score !== null ? res.score : null, // 成绩
+          teacherComment: res.teacherComment || res.comment || '' // 教师评语
+        }; */
+        this.detail = res.detail;
+
+        // 如果后端支持保存草稿或返回已提交的内容，可以回显
+        if (res.studentAnswer) {
+          this.submissionContent = res.studentAnswer;
+        } // 如果已完成且后端没有单独字段存答案，视情况回显
+        else if (res.content && res.completed) {  
+          // this.submissionContent = res.studentContent; 
+        }
+      }).catch(err => {
+        console.error(err);
+        this.$message.error('获取作业详情失败');
+      }).finally(() => {
         this.loading = false;
-      }, 500);
+      });
     },
 
     // 提交作业
     handleComplete() {
       // 校验内容是否为空
+      // 使用正则去除 HTML 标签，判断纯文本是否为空
       const plainText = this.submissionContent.replace(/<[^>]+>/g, "").trim();
       const hasImage = this.submissionContent.includes('<img');
-
       if (!plainText && !hasImage) {
         this.$message.warning('请填写作业内容后再提交');
         return;
@@ -153,26 +179,27 @@ export default {
       }).then(() => {
         this.submitting = true;
 
-        // 调用 API 提交
         this.$api({
           apiType: "homeworkSubmit", 
           data: { 
             role: 'student',
-            id: this.detail.id, 
+            workId: String(this.detail.id), // 确保 workId 是字符串类型
+            userId: this.userInfo.id,
             writeCheck: true,
             content: this.submissionContent // 将富文本 HTML 内容传给后端
           },
         }).then(() => {
           this.$message.success('提交成功');
-          // 更新本地状态为已完成，界面会自动切换为只读模式
           this.detail.completed = true;
+          // 同步 Vuex 状态 (可选)
+          this.$store.dispatch('completeHomework', this.detail.id);
         }).catch((err) => {
            console.error(err);
         }).finally(() => {
            this.submitting = false;
         });
-      }).catch((err) => {
-        console.error(err)
+      }).catch(() => {
+        // 取消提交
       });
     }
   }
@@ -223,5 +250,13 @@ export default {
 
 ::v-deep .ql-editor {
   min-height: 200px;
+}
+
+/* 成绩显示样式 */
+.score-display {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  color: #ff69b4;
+  font-weight: bold;
 }
 </style>

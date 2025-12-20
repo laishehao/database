@@ -2,63 +2,77 @@
   <div class="profile-container">
     <!-- 如果已登录显示内容 -->
     <el-card shadow="never" class="profile-card" v-if="userInfo">
-      <div slot="header" class="clearfix">
-        <span>个人中心</span>
+      <div slot="header" class="clearfix card-header">
+        <span>👤 个人中心</span>
+        <div class="header-decoration"></div>
       </div>
       
-      <el-row :gutter="40">
+      <el-row :gutter="40" type="flex" align="middle" style="flex-wrap: wrap;">
         <!-- 左侧：头像和身份概览 -->
-        <el-col :span="8" class="profile-left">
-          <div class="avatar-wrapper">
-            <el-avatar 
-              :size="120" 
-              :src="userInfo.avatar || 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"
-            ></el-avatar>
+        <el-col :xs="24" :sm="8" class="profile-left">
+          <div class="avatar-container">
+            <div class="avatar-wrapper">
+              <el-avatar 
+                :size="130" 
+                :src="userInfo.avatar || 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"
+                fit="cover"
+              ></el-avatar>
+            </div>
+            <!-- 装饰性光晕 -->
+            <div class="avatar-halo"></div>
           </div>
+          
           <h2 class="user-name">{{ userInfo.name || userInfo.username }}</h2>
-          <div class="user-role">
-            <el-tag :type="userInfo.role === 'teacher' ? 'success' : 'primary'" effect="dark">
-              {{ userInfo.role === 'teacher' ? '教 师' : '学 生' }}
-            </el-tag>
+          
+          <div class="user-role-badge">
+            <i :class="userInfo.role === 'teacher' ? 'el-icon-s-custom' : 'el-icon-user'"></i>
+            <span>{{ userInfo.role === 'teacher' ? '教 师' : '学 生' }}</span>
           </div>
+          
           <div class="last-login">
-            <p>上次登录时间：{{ lastLoginTime }}</p>
+            <i class="el-icon-time"></i> 上次登录：{{ lastLoginTime }}
           </div>
         </el-col>
 
         <!-- 右侧：详细资料列表 -->
-        <el-col :span="16">
-          <el-descriptions title="基本资料" :column="1" border size="medium">
-            <el-descriptions-item label="用户账号">
+        <el-col :xs="24" :sm="16" class="profile-right">
+          <el-descriptions class="custom-descriptions" :column="1" border size="medium">
+            <el-descriptions-item>
+              <template slot="label"><i class="el-icon-user-solid"></i> 用户账号</template>
               {{ userInfo.username }}
             </el-descriptions-item>
             
-            <el-descriptions-item label="姓名">
+            <el-descriptions-item>
+              <template slot="label"><i class="el-icon-postcard"></i> 真实姓名</template>
               {{ userInfo.name || '未设置' }}
             </el-descriptions-item>
 
-            <el-descriptions-item label="联系邮箱">
+            <el-descriptions-item>
+              <template slot="label"><i class="el-icon-message"></i> 联系邮箱</template>
               {{ userInfo.email || '未绑定' }}
             </el-descriptions-item>
 
-            <el-descriptions-item label="联系电话">
+            <el-descriptions-item>
+              <template slot="label"><i class="el-icon-mobile-phone"></i> 联系电话</template>
               {{ userInfo.phone || '未绑定' }}
             </el-descriptions-item>
             
             <!-- 针对学生角色的额外展示 -->
             <template v-if="userInfo.role === 'student'">
-               <el-descriptions-item label="学号">
+               <el-descriptions-item>
+                <template slot="label"><i class="el-icon-school"></i> 学号</template>
                 {{ userInfo.studentId || userInfo.username }}
               </el-descriptions-item>
-              <el-descriptions-item label="所属专业">
+              <el-descriptions-item>
+                <template slot="label"><i class="el-icon-reading"></i> 所属专业</template>
                 {{ userInfo.major || '计算机科学与技术' }}
               </el-descriptions-item>
             </template>
           </el-descriptions>
 
-          <div style="margin-top: 30px;">
-            <el-button type="primary"  @click="dialogVisible = true">编辑资料</el-button>
-            <el-button type="danger" plain @click="handleLogout">退出登录</el-button>
+          <div class="action-buttons">
+            <el-button type="primary" icon="el-icon-edit" class="pink-btn" @click="modalVisible = true">编辑资料</el-button>
+            <el-button type="danger" icon="el-icon-switch-button" class="glass-btn" plain @click="handleLogout">退出登录</el-button>
           </div>
         </el-col>
       </el-row>
@@ -66,12 +80,12 @@
 
     <!-- 未登录状态占位 -->
     <el-empty v-else description="您尚未登录，无法查看个人信息">
-      <el-button type="primary" @click="$router.push('/index')">返回首页</el-button>
+      <el-button type="primary" class="pink-btn" @click="$router.push('/index')">返回首页</el-button>
     </el-empty>
 
     <!-- 挂载新提取的组件 -->
     <profile-edit-modal 
-      :visible.sync="dialogVisible" 
+      :visible.sync="modalVisible" 
       :user-info="userInfo"
       @success="onEditSuccess"
     ></profile-edit-modal>
@@ -80,32 +94,34 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import ProfileEditModal from '@/components/ProfileModal.vue'; 
+import ProfileEditModal from '@/components/modals/ProfileModal.vue'; 
 
 export default {
   name: 'ProfilePage',
   components: {
-    ProfileEditModal // 2. 注册组件
+    ProfileEditModal
   },
   data() {
     return {
       lastLoginTime: new Date().toLocaleString(),
-      dialogVisible: false,
-      // form 数据移到子组件了，这里不需要了
+      modalVisible: false,
     };
   },
   computed: {
     ...mapGetters(['userInfo'])
   },
   methods: {
-    // 3. 处理编辑成功的回调
+    //个人信息编辑成功的回调函数
     onEditSuccess(updatedUser) {
-      // 调用 Vuex Action 更新本地状态和 LocalStorage
-      // 这样页面上的信息会立即刷新
       this.$store.dispatch('login', updatedUser); 
     },
+    //退出账号
     handleLogout() {
-      this.$confirm('确认退出当前账号吗?', '提示', { type: 'warning' }).then(() => {
+      this.$confirm('确认退出当前账号吗?', '提示', { 
+        confirmButtonText: '狠心退出',
+        cancelButtonText: '再留一会',
+        type: 'warning' 
+      }).then(() => {
         this.$store.dispatch('logout');
         this.$router.push('/index');
         this.$message.success('已退出登录');
@@ -116,35 +132,184 @@ export default {
 </script>
 
 <style scoped>
+/* 引入可爱字体 */
+@import url('https://fonts.font.im/css2?family=ZCOOL+KuaiLe&display=swap');
+
 .profile-container {
   padding: 20px;
+  /* 给整个页面加一个极淡的粉色渐变背景，增加氛围感 */
+  background: linear-gradient(135deg, #fff0f5 0%, #ffffff 100%);
+  min-height: 85vh; /* 撑开高度 */
 }
+
+/* --- 卡片立体化设计 --- */
 .profile-card {
   max-width: 900px;
-  margin: 0 auto;
-  min-height: 500px;
+  margin: 20px auto;
+  border: none;
+  border-radius: 20px; /* 大圆角 */
+  /* 核心：多层阴影营造悬浮感 */
+  box-shadow: 
+    0 10px 30px rgba(255, 182, 193, 0.2), /* 粉色光晕 */
+    0 5px 15px rgba(0, 0, 0, 0.05);       /* 基础阴影 */
+  background: rgba(255, 255, 255, 0.9);   /* 微微半透明 */
+  backdrop-filter: blur(10px);            /* 磨砂玻璃效果 */
+  position: relative;
+  overflow: visible; /* 允许头像光晕溢出 */
 }
+
+/* 卡片头部 */
+.card-header {
+  font-family: 'ZCOOL KuaiLe', cursive, sans-serif;
+  font-size: 22px;
+  color: #ff69b4;
+  position: relative;
+  padding-left: 10px;
+}
+.card-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background: #ff69b4;
+  border-radius: 4px;
+}
+
+/* --- 左侧区域：立体头像 --- */
 .profile-left {
   text-align: center;
-  border-right: 1px solid #EBEEF5;
-  padding-right: 20px;
-  padding-top: 20px;
+  position: relative;
+  padding: 30px 0;
 }
-.avatar-wrapper {
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
   margin-bottom: 20px;
 }
-.user-name {
-  font-size: 24px;
-  font-weight: 500;
-  color: #303133;
-  margin-bottom: 10px;
+
+.avatar-wrapper {
+  position: relative;
+  z-index: 2;
+  border-radius: 50%;
+  padding: 5px;
+  background: #fff;
+  /* 头像立体边框 */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
-.user-role {
+
+.avatar-wrapper:hover {
+  transform: scale(1.05) rotate(3deg);
+}
+
+.avatar-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 140px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,105,180,0.2) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  z-index: 1;
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
+}
+
+.user-name {
+  font-family: 'ZCOOL KuaiLe', cursive, sans-serif;
+  font-size: 28px;
+  color: #303133;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.user-role-badge {
+  display: inline-block;
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+  color: white;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(255, 154, 158, 0.4);
   margin-bottom: 30px;
 }
+
 .last-login {
   color: #909399;
   font-size: 13px;
+  background: #f8f9fa;
+  padding: 8px 15px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* --- 右侧区域：表格与按钮 --- */
+.profile-right {
+  padding: 20px;
+}
+
+/* 修改 Element Descriptions 样式 (深度选择器) */
+::v-deep .custom-descriptions {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+::v-deep .custom-descriptions .el-descriptions__header {
+  margin-bottom: 15px;
+}
+
+::v-deep .custom-descriptions .el-descriptions-item__label {
+  background: #fff0f5 !important; /* 淡粉色表头 */
+  color: #606266;
+  font-weight: bold;
+  width: 120px;
+}
+
+::v-deep .custom-descriptions .el-descriptions-item__content {
+  background: #fff !important;
+  color: #333;
+}
+
+/* 按钮样式优化 */
+.action-buttons {
   margin-top: 40px;
+  text-align: right;
+}
+
+.pink-btn {
+  background: linear-gradient(90deg, #ff9a9e 0%, #ff69b4 100%);
+  border: none;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+  padding: 12px 25px;
+  transition: all 0.3s;
+}
+
+.pink-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.4);
+}
+
+.glass-btn {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #ffcccc;
+  color: #ff69b4;
+}
+
+.glass-btn:hover {
+  background: #fff0f5;
+  color: #ff1493;
+  border-color: #ff69b4;
 }
 </style>

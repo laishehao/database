@@ -88,9 +88,26 @@ export default {
     method: 'DELETE',
     rest: true
   },
+  'homeworkDetail':{
+    url: '/homework/:workId',
+    method: 'GET',
+    rest: true
+  },
   'homeworkSubmit': {
-    url: '/homework/submit/:id',
+    url: '/homework/submit/:workId',
     method: 'POST',
     rest: true
+  },
+  // === 新增：批改相关接口 ===
+  // this.$api({ apiType: 'homeworkSubmissions', data: { homeworkId: 1 } })
+  'homeworkSubmissions': {
+    url: '/homework/submissions',
+    method: 'GET'
+  },
+
+  // this.$api({ apiType: 'homeworkGrade', data: { homeworkId: 1, studentId: '...', score: 95 } })
+  'homeworkGrade': {
+    url: '/homework/grade',
+    method: 'POST'
   }
 }

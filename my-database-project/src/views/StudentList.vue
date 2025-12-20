@@ -2,18 +2,14 @@
   <el-card shadow="never">
     <div slot="header" class="clearfix header-actions">
       <div class="filter-left">
-        <el-input
-          v-model="searchKey"
-          placeholder="请输入姓名或学号"
-          prefix-icon="el-icon-search"
-          size="small"
-          style="width: 240px; margin-right: 10px"
-          clearable
-          @keyup.enter.native="getStudents"
-          @clear="getStudents"
-        ></el-input>
-        <el-button type="primary" size="small" icon="el-icon-plus" @click="getStudents">搜索</el-button>
+        <!-- 自定义搜索组件 -->
+        <expandable-search 
+          v-model="searchKey" 
+          placeholder="请输入姓名或学号..."
+          @search="getStudents"
+        ></expandable-search>
       </div>
+
       <el-button
         type="primary"
         size="small"
@@ -23,9 +19,10 @@
       >
     </div>
 
-    <div v-if="hasStudent">
-      <el-table :data="tableData" style="width: 100%" stripe>
-        <el-table-column prop="studentId" label="学号" width="140" sortable>
+    <!-- 学生列表 -->
+    <div v-if="hasStudent || loading">
+      <el-table :data="tableData" style="width: 100%" stripe v-loading="loading">
+        <el-table-column prop="studentId" label="学号" width="140" sortable><!-- sortable需要prop来进行排序 -->
           <template slot-scope="scope">
             <span style="font-family: monospace; font-weight: bold">
               {{ scope.row.studentId }}
@@ -33,7 +30,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="姓名" min-width="150">
+        <el-table-column prop="name" label="姓名" min-width="150">
           <template slot-scope="scope">
             <div style="display: flex; align-items: center">
               <el-avatar size="small" :src="scope.row.avatar" style="margin-right: 10px"></el-avatar>
@@ -56,7 +53,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="phone" label="联系电话" width="150"></el-table-column>
+        <!-- <el-table-column prop="phone" label="联系电话" width="150"></el-table-column> -->
 
         <el-table-column label="操作" width="180" fixed="right">
           <template slot-scope="scope">
@@ -66,12 +63,17 @@
         </el-table-column>
 
       </el-table>
-
+      <!-- 分页组件 -->
       <div style="margin-top: 20px; text-align: right">
         <el-pagination
           background
-          layout="total, prev, pager, next"
-          :total="100"
+          layout="total, sizes, prev, pager, next, jumper"
+          :current-page="currentPage"
+          :page-sizes="[10, 20, 50]"
+          :page-size="pageSize"
+          :total="total"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
         ></el-pagination>
       </div>
     </div>
@@ -81,22 +83,24 @@
         >立即添加学生</el-button
       >
     </el-empty>
-
-    <StudentModal
+    <!-- 学生窗口 -->
+    <student-modal
       :visible.sync="modalVisible" 
       :rowData="currentRow" 
       @success="handleSuccess"
-    ></StudentModal>
+    ></student-modal>
   </el-card>
 </template>
 
 <script>
-import StudentModal from "@/components/StudentModal.vue";
+import StudentModal from "@/components/modals/StudentModal.vue";
+import ExpandableSearch from "@/components/features/ExpandableSearch.vue"; 
 
 export default {
   name: "StudentList",
   components: {
     StudentModal,
+    ExpandableSearch 
   },
   data() {
     return {
@@ -104,56 +108,83 @@ export default {
       modalVisible: false,
       currentRow: null,
       tableData: [],
+      loading: false,
+      currentPage: 1,
+      pageSize: 10,
+      total: 0
     };
   },
   computed: {
     hasStudent() {
-      return this.tableData && this.tableData.length > 0;
+      return (this.tableData && this.tableData.length > 0) || this.loading;
     },
   },
   methods: {
-    //展示窗口
-    openModal(row) {
+    //打开学生窗口
+    openModal(row = null) {
       this.currentRow = row;
       this.modalVisible = true;
     },
-    // 添加学生信息
+    //提交学生表单成功的回调函数
     handleSuccess() {
-      this.tableData = []; // 可选：清空当前数据会有 loading 效果
       this.getStudents();
     },
+    // handleSearch 仅保留作为重置页码的逻辑，供组件 @search 调用
+    handleSearch() {
+      this.currentPage = 1;
+      this.getStudents();
+    },
+    //获取学生列表
     getStudents() {
+      this.loading = true;
       this.$api({
         apiType: "student",
         data: {
           role: 'teacher',
-          query: this.searchKey, // 假设后端接收的参数名是 query
-          page: 1,
-          pageSize: 15
+          query: this.searchKey,
+          page: this.currentPage,
+          pageSize: this.pageSize
         },
       }).then((result) => {
-          this.tableData = result.data.list || this.tableData;
+          const resData = result.data || result;
+          this.tableData = resData.list || [];
+          this.total = resData.total || 0;
         }).catch((err) => {
           console.error(err);
+        }).finally(() => {
+          this.loading = false;
         });
     },
+    //删除学生
     handleDelete(row) {
       this.$confirm(`确认将学生 ${row.name} 删除吗?`, "警告", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-          // 调用删除接口
           this.$api({
             apiType: "studentDelete",
-            data: { studentId: row.studentId }, //对应 api.config.js 中 url 的 '/student/:id'
+            data: { id: row.studentId }, 
           }).then(() => {
             this.$message.success("删除成功");
-            this.getStudents(); // 刷新列表
+            if (this.tableData.length === 1 && this.currentPage > 1) {
+              this.currentPage--;
+            }
+            this.getStudents();
           });
         }).catch((error) => {
-          console.error(error);
+          if (error !== 'cancel') console.error(error);
         });
+    },
+    //以下两个函数用于分页组件
+    handleSizeChange(val) {
+      this.pageSize = val;
+      this.currentPage = 1; 
+      this.getStudents();
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
+      this.getStudents();
     },
   },
   created() {
@@ -172,4 +203,5 @@ export default {
   display: flex;
   align-items: center;
 }
+
 </style>

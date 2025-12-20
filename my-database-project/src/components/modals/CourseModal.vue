@@ -89,6 +89,7 @@ export default {
     }
   },
   watch: {
+    //(newValue, oldValue)
     visible(val) {
       if (val) {
         if (this.rowData) {
@@ -135,6 +136,7 @@ export default {
   methods: {
     // 关闭弹窗
     handleClose() {
+      //触发set
       this.modalVisible = false;
     },
     // 提交表单
