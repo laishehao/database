@@ -1,5 +1,6 @@
 <template>
   <el-dialog 
+    append-to-body
     :title="isEdit ? '编辑作业' : '发布新作业'" 
     :visible.sync="modalVisible" 
     width="600px"

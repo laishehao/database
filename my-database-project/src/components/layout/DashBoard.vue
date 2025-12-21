@@ -1,83 +1,11 @@
 <template>
   <div class="dashboard-container">
-    <!-- ... 上半部分 (统计卡片、轮播图、日历动态) 保持不变 ... -->
-    <el-row :gutter="20" style="margin-bottom: 20px" v-if="isLoggedIn">
-      <el-col :span="6" v-if="userRole === 'teacher'">
-        <el-card
-          shadow="hover"
-          class="data-card"
-          :style="getCardStyle('student_bg.png', '#409EFF')"
-        >
-          <div class="card-content">
-            <div class="card-left">
-              <div class="card-num">{{ stats.student }}</div>
-              <div class="card-text">学生总数</div>
-            </div>
-            <i class="el-icon-user-solid card-icon"></i>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="6">
-        <el-card
-          shadow="hover"
-          class="data-card"
-          :style="getCardStyle('course_bg.png', '#67C23A')"
-        >
-          <div class="card-content">
-            <div class="card-left">
-              <div class="card-num">{{ stats.course }}</div>
-              <div class="card-text">课程总数</div>
-            </div>
-            <i class="el-icon-reading card-icon"></i>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="6">
-        <el-card
-          shadow="hover"
-          class="data-card"
-          :style="getCardStyle('homework_bg.png', '#E6A23C')"
-        >
-          <div class="card-content">
-            <div class="card-left">
-              <div class="card-num">{{ stats.homework }}</div>
-              <div class="card-text">进行中的作业</div>
-            </div>
-            <i class="el-icon-notebook-1 card-icon"></i>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="6" v-if="userRole === 'student'">
-        <el-card
-          shadow="hover"
-          class="data-card"
-          :style="getCardStyle('warning_bg.png', '#F56C6C')"
-        >
-          <div class="card-content">
-            <div class="card-left">
-              <div class="card-num">3</div>
-              <div class="card-text">预警课程</div>
-            </div>
-            <i class="el-icon-warning-outline card-icon"></i>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="6" v-if="userRole === 'teacher'">
-        <el-card
-          shadow="hover"
-          class="data-card"
-          :style="getCardStyle('mark_bg.png', '#42b983')"
-        >
-          <div class="card-content">
-            <div class="card-left">
-              <div class="card-num">8</div>
-              <div class="card-text">待批改</div>
-            </div>
-            <i class="el-icon-edit-outline card-icon"></i>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
+    <!-- 统计卡片 -->
+    <StatsCards
+      v-if="isLoggedIn"
+      :stats="stats"
+      :user-role="userRole"
+    />
 
     <!-- 轮播图 -->
     <div v-else class="welcome-carousel">
@@ -90,177 +18,49 @@
     <!-- 中间部分：日历和动态 -->
     <el-row :gutter="20">
       <el-col :span="16">
-        <el-card shadow="never" class="pink-theme-card">
-          <div slot="header" class="cute-header"><span>📅 教学日历</span></div>
-          <el-calendar v-model="currentDate">
-            <template slot="dateCell" slot-scope="{ data }">
-              <p :class="data.isSelected ? 'is-selected' : ''">
-                {{ data.day.split("-").slice(1).join("-") }}
-                <span v-if="data.day === '2025-12-25'">🎄</span>
-              </p>
-            </template>
-          </el-calendar>
-        </el-card>
+        <TeachingCalendar />
       </el-col>
       <el-col :span="8">
-        <el-card shadow="never" class="pink-theme-card">
-          <div slot="header" class="cute-header">
-            <span>🔔 最新动态</span>
-            <el-button
-              style="float: right; padding: 3px 0; color: #ff69b4"
-              type="text"
-              >全部标为已读</el-button
-            >
-          </div>
-          <div style="overflow-y: auto">
-            <el-timeline>
-              <el-timeline-item
-                timestamp="2025/12/01"
-                placement="top"
-                color="#ff69b4"
-              >
-                <el-card
-                  ><h4>发布了新作业</h4>
-                  <p>王老师 发布了《微积分期中测试》</p></el-card
-                >
-              </el-timeline-item>
-              <el-timeline-item
-                timestamp="2025/11/28"
-                placement="top"
-                color="#ffb6c1"
-              >
-                <el-card
-                  ><h4>学生提交提醒</h4>
-                  <p>李明 提交了《Java 基础》作业</p></el-card
-                >
-              </el-timeline-item>
-              <el-timeline-item
-                timestamp="2025/11/25"
-                placement="top"
-                color="#ffb6c1"
-              >
-                <el-card
-                  ><h4>发布了新作业</h4>
-                  <p>祥老师 发布了《春日影》</p></el-card
-                >
-              </el-timeline-item>
-            </el-timeline>
-          </div>
-        </el-card>
+        <NewsTimeline />
       </el-col>
     </el-row>
 
     <!-- ============== 滚动动画区域 ============== -->
 
-    <!-- 板块 1: 热门课程 (简约风重构) -->
-    <div class="scroll-section">
-      <h2 class="section-title scroll-hidden">✨ 开启您的独享创作之旅</h2>
-      <el-row :gutter="50" type="flex" justify="center">
-        <el-col
-          :span="6"
-          v-for="(course, index) in recommendCourses"
-          :key="course.id"
-          class="scroll-hidden"
-          :style="{ transitionDelay: `${index * 100}ms` }"
-        >
-          <el-card
-            shadow="hover"
-            class="display-card minimal-course-card"
-            :body-style="{
-              padding: '40px 30px',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }"
-          >
-            <div class="minimal-icon" :style="{ color: course.color }">
-              <i :class="course.icon"></i>
-            </div>
-            <h3 class="minimal-title">{{ course.title }}</h3>
-            <p class="mid-desc">{{ course.desc }}</p>
-            <p class="minimal-desc">{{ course.minDesc }}</p>
-            <el-button type="primary" class="pink-btn-wide"
-              >Try Claude</el-button
-            >
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
+    <!-- 板块 1: 热门课程 -->
+    <RecommendCourses :courses="recommendCourses" />
 
-    <!-- 板块 2: 常见问题 FAQ  -->
-    <div class="scroll-section" style="margin-bottom: 80px">
-      <h2 class="section-title scroll-hidden">❓ 常见问题 FAQ</h2>
-      <div class="faq-container scroll-hidden" style="transition-delay: 200ms">
-        <el-card shadow="never" class="faq-card">
-          <el-collapse v-model="activeFaq" accordion>
-            <el-collapse-item
-              v-for="item in faqList"
-              :key="item.id"
-              :name="item.id"
-            >
-              <template slot="title">
-                <span class="faq-question">
-                  {{ item.question }}
-                </span>
-              </template>
-              <div class="faq-answer">{{ item.answer }}</div>
-            </el-collapse-item>
-          </el-collapse>
-        </el-card>
-      </div>
-    </div>
+    <!-- 板块 2: 常见问题 FAQ -->
+    <FaqSection
+      :faq-list="faqList"
+      :active-faq.sync="activeFaq"
+    />
 
     <!-- 板块 3: 优秀作业 -->
-    <div class="scroll-section">
-      <h2 class="section-title scroll-hidden">🏆 优秀作业展示</h2>
-      <!-- 
-        修改说明：
-        1. flex-wrap: wrap 允许换行
-        2. gutter 保持 20
-      -->
-      <el-row :gutter="20" type="flex" justify="center" style="flex-wrap: wrap">
-        <!-- 
-          修改说明：
-          1. span 改为 8 (24/8 = 3个每行)
-          2. style 中添加 margin-bottom 以增加行间距
-        -->
-        <el-col
-          :span="8"
-          v-for="(work, index) in excellentWorks"
-          :key="work.id"
-          class="scroll-hidden"
-          :style="{ transitionDelay: `${index * 100}ms`, marginBottom: '30px' }"
-        >
-          <el-card shadow="hover" class="display-card work-card">
-            <div class="work-header">
-              <el-avatar size="small" :src="work.avatar"></el-avatar>
-              <span class="author-name">{{ work.author }}</span>
-              <el-tag size="mini" type="danger" effect="plain">A+</el-tag>
-            </div>
-            <div class="work-content">
-              <h4>{{ work.title }}</h4>
-              <p>{{ work.comment }}</p>
-            </div>
-            <div class="work-footer">
-              <span><i class="el-icon-view"></i> {{ work.views }}</span>
-              <span><i class="el-icon-star-off"></i> {{ work.likes }}</span>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
+    <ExcellentWorks :works="excellentWorks" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import OracleCarouselVue from "@/components/features/OracleCarousel.vue";
+import StatsCards from "@/components/features/StatsCards.vue";
+import TeachingCalendar from "@/components/features/TeachingCalendar.vue";
+import NewsTimeline from "@/components/features/NewsTimeline.vue";
+import RecommendCourses from "@/components/features/RecommendCourses.vue";
+import FaqSection from "@/components/features/FaqSection.vue";
+import ExcellentWorks from "@/components/features/ExcellentWorks.vue";
 
 export default {
   name: "DashBoard",
   components: {
     OracleCarouselVue,
+    StatsCards,
+    TeachingCalendar,
+    NewsTimeline,
+    RecommendCourses,
+    FaqSection,
+    ExcellentWorks,
   },
   data() {
     return {
@@ -526,65 +326,7 @@ export default {
 <style scoped>
 @import url("https://fonts.font.im/css2?family=ZCOOL+KuaiLe&display=swap");
 
-.data-card {
-  cursor: pointer;
-  transition: transform 0.3s;
-  overflow: hidden;
-}
-.data-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-.card-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
-  padding: 20px;
-}
-.card-num {
-  font-size: 32px;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-.card-text {
-  font-size: 14px;
-  opacity: 0.9;
-  margin-top: 5px;
-}
-.card-icon {
-  font-size: 48px;
-  opacity: 0.8;
-}
-
-.cute-header span {
-  font-family: "ZCOOL KuaiLe", cursive, sans-serif;
-  font-size: 20px;
-  color: #ff69b4;
-}
-::v-deep .el-calendar__header {
-  border-bottom: 1px solid #ffe6f0;
-}
-::v-deep .el-calendar__title,
-::v-deep .el-calendar-table thead th {
-  color: #ff69b4;
-}
-::v-deep .el-calendar-table .el-calendar-day:hover {
-  background-color: #fff0f5;
-}
-::v-deep .el-calendar-table td.is-selected .el-calendar-day {
-  background-color: #ffe6f0;
-  color: #ff69b4;
-}
-::v-deep .el-calendar-table td.is-today,
-.is-selected {
-  color: #ff69b4;
-  font-weight: bold;
-}
-::v-deep .el-timeline-item__timestamp {
-  color: #909399;
-}
-
+/* 滚动动画相关样式 */
 .scroll-section {
   margin-top: 80px;
 }
@@ -609,143 +351,5 @@ export default {
 .scroll-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.display-card {
-  border: none;
-  border-radius: 16px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  overflow: hidden;
-  height: 100%;
-}
-
-.display-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(255, 105, 180, 0.15);
-}
-
-.minimal-course-card {
-  min-height: 420px;
-  border: 1px solid #fff0f5;
-}
-
-.minimal-icon {
-  font-size: 56px;
-  margin-bottom: 25px;
-  transition: transform 0.3s;
-}
-.minimal-course-card:hover .minimal-icon {
-  transform: scale(1.1);
-}
-
-.minimal-title {
-  margin: 0 0 15px 0;
-  font-size: 30px;
-  font-weight: bold;
-  color: #333;
-  text-align: left;
-  width: 100%;
-}
-
-.mid-desc {
-  color: #666;
-  font-size: 18px;
-  line-height: 1.6;
-  text-align: left;
-  margin-bottom: 20px;
-  overflow: hidden;
-  height: 120px;
-}
-
-.minimal-desc {
-  color: #666;
-  font-size: 12px;
-  font-weight: normal;
-  text-align: left;
-  width: 100%;
-  margin-bottom: 20px;
-  overflow: hidden;
-  height: 48px;
-}
-
-.minimal-rating {
-  margin-bottom: 25px;
-}
-
-.pink-btn-wide {
-  width: 100%;
-  margin-bottom: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  background: linear-gradient(90deg, #ff9a9e 0%, #ff69b4 100%);
-  border: none;
-  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
-  transition: all 0.3s;
-}
-.pink-btn-wide:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.4);
-}
-
-.work-card .el-card__body {
-  margin: 20px 0;
-  padding: 20px;
-}
-.work-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.author-name {
-  margin-left: 10px;
-  margin-right: auto;
-  font-size: 14px;
-  font-weight: bold;
-  color: #606266;
-}
-.work-content h4 {
-  margin: 10px 0;
-  color: #303133;
-}
-.work-content p {
-  font-size: 13px;
-  color: #606266;
-  background: #fff0f5;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-}
-.work-footer {
-  display: flex;
-  justify-content: space-between;
-  color: #909399;
-  font-size: 12px;
-}
-
-.faq-container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.faq-card {
-  border-radius: 12px;
-  border: 1px solid #ffe6f0;
-}
-.faq-question {
-  font-weight: bold;
-  font-size: 15px;
-  color: #303133;
-}
-.faq-answer {
-  color: #666;
-  line-height: 2.4;
-  padding: 10px 0;
-}
-::v-deep .el-collapse-item__header {
-  height: 80px;
-  line-height: 60px;
-  font-size: 20px;
-}
-::v-deep .el-collapse-item__header.is-active {
-  color: #ff69b4;
 }
 </style>
