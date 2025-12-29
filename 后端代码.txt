@@ -36,6 +36,7 @@ CREATE TABLE Work (
     Wtitle VARCHAR(200) NOT NULL,
     Cno int,
     Wprogress INT DEFAULT 0,
+    Content TEXT,				#新增题目内容
     Wstart DATETIME,
     Wover DATETIME,
     FOREIGN KEY (Cno) REFERENCES Course(Cno) ON DELETE CASCADE
@@ -50,6 +51,8 @@ CREATE TABLE `Write` (
     Wno int NOT NULL,
     Uno int NOT NULL,
     State INT DEFAULT 0,
+    Content TEXT,				#新增书写内容
+    Score INT,					#新增打分
     PRIMARY KEY (Wno, Uno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
     FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
@@ -58,6 +61,16 @@ CREATE TABLE `Write` (
 -- 创建索引
 CREATE INDEX idx_write_user ON `Write`(Uno);
 CREATE INDEX idx_write_state ON `Write`(State);
+
+CREATE TABLE Image (			#新增图片表，题目的图片和书写作业的图片都保存在里面
+    Wno int NOT NULL,
+    Uno int NOT NULL,			#如果Uno为-1，则这是题目图片，否则是书写作业的图片
+    image_path VARCHAR(255),
+    PRIMARY KEY (Wno, Uno),
+    FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
+    FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
+);
+
 
 
 DELIMITER $$
