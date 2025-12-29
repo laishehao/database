@@ -10,10 +10,10 @@ CREATE TABLE User (
     Uavatar VARCHAR(200)
 );
 
--- 创建索引
+#创建索引
 CREATE UNIQUE INDEX idx_user_email ON `User`(Uemail);
 CREATE UNIQUE INDEX idx_user_phone ON `User`(Uphone);
-CREATE INDEX idx_user_role ON `User`(Urole);           -- 按角色查询
+CREATE INDEX idx_user_role ON `User`(Urole);           #按角色查询
 
 
 CREATE TABLE Course (
@@ -26,7 +26,7 @@ CREATE TABLE Course (
     FOREIGN KEY (Uno) REFERENCES User(Uno) ON DELETE SET NULL
 );
 
--- 创建索引
+#创建索引
 CREATE INDEX idx_course_name ON Course(Cname);
 CREATE INDEX idx_course_teacher ON Course(Uno);
 
@@ -36,13 +36,13 @@ CREATE TABLE Work (
     Wtitle VARCHAR(200) NOT NULL,
     Cno int,
     Wprogress INT DEFAULT 0,
-    Content TEXT,				#新增题目内容
+    Wcontent TEXT,				#新增题目内容
     Wstart DATETIME,
     Wover DATETIME,
     FOREIGN KEY (Cno) REFERENCES Course(Cno) ON DELETE CASCADE
 );
 
--- 创建索引
+#创建索引
 CREATE INDEX idx_work_course ON Work(Cno);
 CREATE INDEX idx_work_progress ON Work(Wprogress);
 
@@ -51,14 +51,14 @@ CREATE TABLE `Write` (
     Wno int NOT NULL,
     Uno int NOT NULL,
     State INT DEFAULT 0,
-    Content TEXT,				#新增书写内容
+    Wrcontent TEXT,				#新增书写内容
     Score INT,					#新增打分
     PRIMARY KEY (Wno, Uno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
     FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
 );
 
--- 创建索引
+#创建索引
 CREATE INDEX idx_write_user ON `Write`(Uno);
 CREATE INDEX idx_write_state ON `Write`(State);
 
@@ -74,42 +74,41 @@ CREATE TABLE Image (			#新增图片表，题目的图片和书写作业的图�
 
 
 DELIMITER $$
-CREATE PROCEDURE Register(
-    IN p_name VARCHAR(50),
-    IN p_phone VARCHAR(20),
-    IN p_password VARCHAR(100),
-    IN p_email VARCHAR(100),
-    IN p_role VARCHAR(20)
+CREATE PROCEDURE Register(							#注册账户
+    IN p_name VARCHAR(50),							#用户名
+    IN p_phone VARCHAR(20),							#电话
+    IN p_password VARCHAR(100),						#密码
+    IN p_email VARCHAR(100),							#邮箱
+    IN p_role VARCHAR(20)								#角色（学生/老师）
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR 1062  
+    DECLARE EXIT HANDLER FOR 1062  					#违反主键或唯一约束时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
-        
         IF EXISTS (SELECT 1 FROM `User` WHERE Uphone = p_phone) THEN
-            SELECT 'ERROR:PHONE_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;
+            SELECT 'ERROR:PHONE_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;	#要么是电话号码重复了
         ELSE
-            SELECT 'ERROR:EMAIL_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;
+            SELECT 'ERROR:EMAIL_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;	#要么是邮箱重复了
         END IF;
     END;
     
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			#这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
         SELECT 'ERROR:SYSTEM_ERROR' AS result_type, NULL AS user_id, NULL AS user_role;
     END;
     
-    START TRANSACTION;
+    START TRANSACTION;								#开始事务
     
    
     INSERT INTO `User` (
         Uname, Upassword, Uemail, Urole,Uphone
     ) VALUES (
-        p_name, SHA2(p_password, 256), 
+        p_name, SHA2(p_password, 256), 					#SHA2是对密码加密
         p_email, p_role,p_phone
     );
     
-    COMMIT;
+    COMMIT;											#提交事务
     SELECT 'SUCCESS' AS result_type,  (select Uno from User where Uphone =  p_phone) AS user_id, p_role AS user_role;
 END
 $$
@@ -122,7 +121,7 @@ CREATE PROCEDURE Login(
     IN p_password VARCHAR(100)
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			#这是通用错误处理函数
     BEGIN
         ROLLBACK;
         SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
@@ -130,15 +129,15 @@ BEGIN
 
     START TRANSACTION;
 
-    if EXISTS (select 1 from `User` where Uphone = p_phone and Upassword = p_password) THEN
+    if EXISTS (select 1 from `User` where Uphone = p_phone and Upassword = p_password) THEN		#判断电话号码和密码的组合是否在表中存在
         COMMIT;
         SELECT 'SUCCESS' AS result_type, (select Uno from User where Uphone = p_phone) AS user_id, (select Urole from User where Uphone =  p_phone) AS user_role;
-    elseif EXISTS (select 1 from `User` where Uphone = p_phone) THEN
+    elseif EXISTS (select 1 from `User` where Uphone = p_phone) THEN								#登录失败，判断电话号码是否正确
         ROLLBACK;
-        SELECT 'ERROR:PASSWORD_ERROR' AS result_type, NULL AS user_id, NULL AS user_role;
+        SELECT 'ERROR:PASSWORD_ERROR' AS result_type, NULL AS user_id, NULL AS user_role;		#如果电话号码正确，那就是密码错误
     else
         ROLLBACK;
-        SELECT 'ERROR:PHONE_ERROR' AS result_type, NULL AS user_id, NULL AS user_role;
+        SELECT 'ERROR:PHONE_ERROR' AS result_type, NULL AS user_id, NULL AS user_role;			#否则电话号码不正确
     end if;
 END
 $$
@@ -150,31 +149,32 @@ DELIMITER $$
 CREATE PROCEDURE Push_homework(
     IN p_role VARCHAR(20),
     IN p_title VARCHAR(200),
-    IN p_cname VARCHAR(100)
+    IN p_cname VARCHAR(100),
+    IN p_content TEXT
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    DECLARE p_cno int;									#临时变量，保存课程号，注意变量的声明必须放在一开始
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			#这是通用错误处理函数
     BEGIN
         ROLLBACK;
         SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
     END;
 
-    DECLARE p_cno int;
-
-    START TRANSACTION;
+    START TRANSACTION;								#开始事务
 
     if p_role = 'student' THEN
         ROLLBACK;
-        SELECT 'ERROR:ROLE_ERROR' AS result_type;
-    elseif NOT EXISTS (select 1 from course where Cname = p_cname) THEN
+        SELECT 'ERROR:ROLE_ERROR' AS result_type;							#如果请求角色是学生，禁止发布作业
+    elseif NOT EXISTS (select 1 from course where Cname = p_cname) THEN	#还要判断指定的课程是否存在
         ROLLBACK;
         SELECT 'ERROR:CNAME_NOTEXISTS' AS result_type;
     else
-        select Cno into p_cno from course where Cname = p_cname;
+        select Cno into p_cno from course where Cname = p_cname;			#通过课程名查询得到的课程号并保存在临时变量中
         INSERT INTO Work (
-            Wtitle, Cno
+            Wtitle, Cno, Wcontent
         ) VALUES (
-            p_title, p_cno
+            p_title, p_cno, p_content
         );
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
