@@ -31,19 +31,19 @@ TUKI
 |   Umail   |          VARCHAR          |   UNIQUE    |  邮箱   |
 |  Uphone   |          VARCHAR          |   UNIQUE    |  电话   |
 |  Uavatar  |          VARCHAR          |             | 头像URL |
-|  Ugender  |      ENUM('男','女')      |             |  性别   |
+|  Ugender  |           CHAR            |             |  性别   |
 |  Umajor   |          VARCHAR          |             |  专业   |
 |   Urole   | ENUM('student','teacher') |  NOT NULL   |  角色   |
 
 #### 2. Course 课程表
-| 字段名  |        类型         |    约束     |   描述   |
-| :-----: | :-----------------: | :---------: | :------: |
-|   Cno   |         INT         | PRIMARY KEY |  课程ID  |
-|  Cname  |       VARCHAR       |  NOT NULL   | 课程名称 |
-|   Uno   |         INT         | FOREIGN KEY |  教师ID  |
-| Cmajor  |       VARCHAR       |             | 所属学院 |
-| Ccredit |         INT         |             |   学分   |
-|  Ctype  | ENUM('必修','选修') |             | 课程类型 |
+| 字段名  |  类型   |    约束     |   描述   |
+| :-----: | :-----: | :---------: | :------: |
+|   Cno   |   INT   | PRIMARY KEY |  课程ID  |
+|  Cname  | VARCHAR |  NOT NULL   | 课程名称 |
+|   Uno   |   INT   | FOREIGN KEY |  教师ID  |
+| Cmajor  | VARCHAR |             | 所属学院 |
+| Ccredit |   INT   |             |   学分   |
+|  Ctype  | VARCHAR |             | 课程类型 |
 
 #### 3. Work 作业表
 |  字段名   |   类型   |    约束     |   描述   |
@@ -53,18 +53,17 @@ TUKI
 |  Wtitle   | VARCHAR  |  NOT NULL   | 作业标题 |
 | Wprogress |   INT    |  DEFAULT 0  | 完成人数 |
 |  Wstart   | DATETIME |             | 开始时间 |
-|   Wend    | DATETIME |             | 结束时间 |
-|  Content  |   TEXT   |             | 作业内容 |
+|   Wover   | DATETIME |             | 结束时间 |
+| Wcontent  |   TEXT   |             | 作业内容 |
 
 #### 4. Write 作业提交表
-|     字段名     |                   类型                   |           约束           |   描述   |
-| :------------: | :--------------------------------------: | :----------------------: | :------: |
-|      Wno       |                   INT                    | PRIMARY KEY, FOREIGN KEY |  作业ID  |
-|      Uno       |                   INT                    | PRIMARY KEY, FOREIGN KEY |  用户ID  |
-|     Wstate     | ENUM('unsubmitted','submitted','graded') |  DEFAULT 'unsubmitted'   | 提交状态 |
-|    Content     |                   TEXT                   |                          | 提交内容 |
-|     Score      |                   INT                    |                          |   成绩   |
-| TeacherComment |                   TEXT                   |                          | 教师评语 |
+|     字段名     | 类型 |           约束           |   描述   |
+| :------------: | :--: | :----------------------: | :------: |
+|      Wno       | INT  | PRIMARY KEY, FOREIGN KEY |  作业ID  |
+|      Uno       | INT  | PRIMARY KEY, FOREIGN KEY |  用户ID  |
+|     State      | INT  |        DEFAULT 0         | 提交状态 |
+|   WrContent    | TEXT |                          | 提交内容 |
+|     Score      | INT  |                          |   成绩   |
 
 
 # 依赖关系
