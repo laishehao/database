@@ -32,7 +32,7 @@ CREATE TABLE Course (
 CREATE INDEX idx_course_name ON Course(Cname);
 CREATE INDEX idx_course_teacher ON Course(Uno);
 
-
+-- 作业表定义
 CREATE TABLE Work (
     Wno int AUTO_INCREMENT PRIMARY KEY,
     Wtitle VARCHAR(200) NOT NULL,
@@ -64,6 +64,7 @@ CREATE TABLE `Write` (
 CREATE INDEX idx_write_user ON `Write`(Uno);
 CREATE INDEX idx_write_state ON `Write`(State);
 
+-- 图片表定义
 CREATE TABLE Image (			-- 新增图片表，题目的图片和书写作业的图片都保存在里面
     Wno int NOT NULL,
     Uno int NOT NULL,			-- 如果Uno为-1，则这是题目图片，否则是书写作业的图片
