@@ -1,3 +1,4 @@
+-- 用户表定义
 CREATE TABLE User (
     Uno int AUTO_INCREMENT PRIMARY KEY,
     Uname VARCHAR(50) NOT NULL,
@@ -15,7 +16,7 @@ CREATE UNIQUE INDEX idx_user_email ON `User`(Uemail);
 CREATE UNIQUE INDEX idx_user_phone ON `User`(Uphone);
 CREATE INDEX idx_user_role ON `User`(Urole);           -- 按角色查询
 
-
+-- 课程表定义
 CREATE TABLE Course (
     Cno int AUTO_INCREMENT PRIMARY KEY,
     Cname VARCHAR(100) NOT NULL UNIQUE,
@@ -27,7 +28,7 @@ CREATE TABLE Course (
     CONSTRAINT chk_ctype CHECK (Ctype IN ('必修', '选修'))				-- Ctype只能是必修或选修
 );
 
-#创建索引
+-- 创建索引
 CREATE INDEX idx_course_name ON Course(Cname);
 CREATE INDEX idx_course_teacher ON Course(Uno);
 
@@ -43,11 +44,11 @@ CREATE TABLE Work (
     FOREIGN KEY (Cno) REFERENCES Course(Cno) ON DELETE CASCADE
 );
 
-#创建索引
+-- 创建索引
 CREATE INDEX idx_work_course ON Work(Cno);
 CREATE INDEX idx_work_progress ON Work(Wprogress);
 
-
+-- 学生 - 作业对应关系定义
 CREATE TABLE `Write` (
     Wno int NOT NULL,
     Uno int NOT NULL,
@@ -59,7 +60,7 @@ CREATE TABLE `Write` (
     FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
 );
 
-#创建索引
+-- 创建索引
 CREATE INDEX idx_write_user ON `Write`(Uno);
 CREATE INDEX idx_write_state ON `Write`(State);
 
@@ -73,7 +74,7 @@ CREATE TABLE Image (			-- 新增图片表，题目的图片和书写作业的图
 );
 
 
-
+-- 存储过程：用户注册
 DELIMITER $$
 CREATE PROCEDURE Register(							    -- 注册账户，返回用户id
     IN p_name VARCHAR(50),							    -- 用户名
@@ -115,7 +116,7 @@ END
 $$
 DELIMITER ;
 
-
+-- 存储过程：用户登录
 DELIMITER $$
 CREATE PROCEDURE Login(							        -- 登录，返回用户uno和电话号码
     IN p_phone VARCHAR(20),
@@ -145,7 +146,7 @@ $$
 DELIMITER ;
 
 
-
+-- 存储过程：作业发布
 DELIMITER $$
 CREATE PROCEDURE Push_homework(					        -- 发布作业
     IN p_role VARCHAR(20),
@@ -185,7 +186,7 @@ $$
 DELIMITER ;
 
 
-
+-- 存储过程：查看作业
 DELIMITER $$
 CREATE PROCEDURE View_homework(	                                -- 查看学生写的作业的内容（包括作业题目的文本，写的内容文本，分数）
     IN p_uno int,						                        -- 指名角色
