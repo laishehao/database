@@ -4,13 +4,6 @@ CREATE TRIGGER trg_after_work_insert
 AFTER INSERT ON Work
 FOR EACH ROW
 BEGIN
-    -- 异常处理：如果触发器执行失败，记录错误信息但不阻止插入操作
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
-    BEGIN
-        -- 如果触发器出错，记录错误但继续执行
-        INSERT INTO Error_Log (error_time, message) VALUES (NOW(), '触发器执行失败');
-    END;
-    
     -- 直接插入，不需要先检查（如果SC表中没有数据，INSERT会创建0条记录）
     INSERT INTO `Write` (Wno, Sno, State, Wrcontent, Score)
     SELECT 
@@ -33,13 +26,6 @@ CREATE TRIGGER trg_after_sc_insert
 AFTER INSERT ON SC
 FOR EACH ROW
 BEGIN
-    -- 异常处理：如果触发器执行失败，记录错误信息但不阻止插入操作
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
-    BEGIN
-        -- 如果触发器出错，记录错误但继续执行
-        INSERT INTO Error_Log (error_time, message) VALUES (NOW(), '触发器执行失败');
-    END;
-    
     -- 插入该课程已发布的所有作业的write记录，如果出错，也不会插入无效数据
     INSERT INTO `Write` (Wno, Sno, State, Wrcontent, Score)
     SELECT 
@@ -51,10 +37,11 @@ BEGIN
     FROM Work W
     WHERE W.Cno = NEW.Cno AND W.Wprogress > 0;  -- 只为已发布的作业创建记录
 END$$
+DELIMITER ;
 
 -- 触发器：处理作业完成数量，例如write中产生变化，则更新Work表中的Wprogress字段
 DELIMITER $$
-CREATER TRIGGER trg_after_write_update
+CREATE TRIGGER trg_after_write_update
 AFTER UPDATE ON `Write`
 FOR EACH ROW
 BEGIN
