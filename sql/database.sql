@@ -151,7 +151,7 @@ CREATE PROCEDURE T_Register(							-- 注册账户，返回用户id
     IN p_email VARCHAR(100),							-- 邮箱
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR 1062                          -- 违反主键或唯一约束时，进入到下面的代码执行
+    DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
         IF EXISTS (SELECT 1 FROM Teacher_Info WHERE Tphone = p_phone) THEN
@@ -161,19 +161,19 @@ BEGIN
         END IF;
     END;
     
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION                -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
         SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
     END;
     
-    START TRANSACTION;                                    -- 开始事务
+    START TRANSACTION;								    -- 开始事务
     
    
     INSERT INTO Teacher_Info (
         Tname, Tpassword, Temail, Tphone
     ) VALUES (
-        p_name, SHA2(p_password, 256),                     -- SHA2是对密码加密
+        p_name, SHA2(p_password, 256), 					-- SHA2是对密码加密
         p_email, p_role,p_phone
     );
     
@@ -260,7 +260,7 @@ CREATE PROCEDURE T_Login(							        -- 登录，返回用户uno和电话号�
     IN p_password VARCHAR(100)
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION                -- 这是通用错误处理函数
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数
     BEGIN
         ROLLBACK;
         SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
@@ -285,7 +285,7 @@ DELIMITER ;
 
 -- 存储过程：发布题目
 DELIMITER $$
-CREATE PROCEDURE Push_homework(                            -- 发布题目
+CREATE PROCEDURE Push_homework(					        -- 发布题目
     IN p_title VARCHAR(200),
     IN p_cname VARCHAR(100),
     IN p_start DATETIME,
@@ -405,7 +405,7 @@ BEGIN
         SELECT 'SUCCESS' AS result_type, (select Wcontent from Work where Wno = p_wno) AS title, (select Wrcontent from `write` where Sno = p_sno and Wno = p_wno) AS write_content;
     else
         ROLLBACK;
-        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type, NULL AS title, NULL AS write_content;            -- 否则该作业不存在
+        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type, NULL AS title, NULL AS write_content;			-- 否则该作业不存在
     end if;
 END
 $$
@@ -414,7 +414,7 @@ DELIMITER ;
 
 -- 存储过程：创建课程
 DELIMITER $$
-CREATE PROCEDURE Create_Course(                                -- 增加课程，返回课程id
+CREATE PROCEDURE Create_Course(		                        -- 增加课程，返回课程id
     p_cname VARCHAR(100),
     p_major VARCHAR(50),
     p_credit INT,
@@ -423,19 +423,19 @@ CREATE PROCEDURE Create_Course(                                -- 增加课程�
 )
 BEGIN
 
-    DECLARE EXIT HANDLER FOR 1062                              -- 违反主键或唯一约束时，进入到下面的代码执行
+    DECLARE EXIT HANDLER FOR 1062  					        -- 违反主键或唯一约束时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
-        SELECT 'ERROR:CNAME_EXISTS' AS result_type;            -- 课程名重复
+        SELECT 'ERROR:CNAME_EXISTS' AS result_type;		    -- 课程名重复
     END;
 
-    DECLARE EXIT HANDLER FOR 3819                              -- 违反check约束时，进入到下面的代码执行
+    DECLARE EXIT HANDLER FOR 3819  					        -- 违反check约束时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
-        SELECT 'ERROR:CTYPE_ERROR' AS result_type;            -- 课程类型只能是必修或选修
+        SELECT 'ERROR:CTYPE_ERROR' AS result_type;			-- 课程类型只能是必修或选修
     END;
 
-    DECLARE EXIT HANDLER FOR 1452                            -- 违反外键约束
+    DECLARE EXIT HANDLER FOR 1452					        -- 违反外键约束
     BEGIN
         ROLLBACK;
         SELECT 'ERROR:TEACHER_NOT_EXIST' AS result_type;
@@ -466,7 +466,7 @@ DELIMITER ;
 
 -- 存储过程：编辑课程
 DELIMITER $$
-CREATE PROCEDURE Edit_Course(                                -- 返回是否修改成功
+CREATE PROCEDURE Edit_Course(		                        -- 返回是否修改成功
     p_cno INT,
     p_cname VARCHAR(100),
     p_major VARCHAR(50),
@@ -476,19 +476,19 @@ CREATE PROCEDURE Edit_Course(                                -- 返回是否修�
 )
 BEGIN
 
-    DECLARE EXIT HANDLER FOR 1062                              -- 违反主键或唯一约束时，进入到下面的代码执行
+    DECLARE EXIT HANDLER FOR 1062  					        -- 违反主键或唯一约束时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
-        SELECT 'ERROR:CNAME_EXISTS' AS result_type;            -- 课程名重复
+        SELECT 'ERROR:CNAME_EXISTS' AS result_type;		    -- 课程名重复
     END;
 
-    DECLARE EXIT HANDLER FOR 3819                              -- 违反check约束时，进入到下面的代码执行
+    DECLARE EXIT HANDLER FOR 3819  					        -- 违反check约束时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
-        SELECT 'ERROR:CTYPE_ERROR' AS result_type;            -- 课程类型只能是必修或选修
+        SELECT 'ERROR:CTYPE_ERROR' AS result_type;			-- 课程类型只能是必修或选修
     END;
 
-    DECLARE EXIT HANDLER FOR 1452                            -- 违反外键约束
+    DECLARE EXIT HANDLER FOR 1452					        -- 违反外键约束
     BEGIN
         ROLLBACK;
         SELECT 'ERROR:TEACHER_NOT_EXIST' AS result_type;
@@ -520,7 +520,7 @@ DELIMITER ;
 
 -- 存储过程：删除课程，会连锁到图片url的删除，因此删除前python层要记得把关联的图片从服务器上删除
 DELIMITER $$
-CREATE PROCEDURE Delete_Course(                                -- 返回是否删除成功
+CREATE PROCEDURE Delete_Course(		                        -- 返回是否删除成功
     p_cno INT
 )
 BEGIN
@@ -545,7 +545,7 @@ DELIMITER ;
 
 -- 存储过程：查看课程
 DELIMITER $$
-CREATE PROCEDURE View_Course(                                -- 返回是否删除成功
+CREATE PROCEDURE View_Course(		                        -- 返回是否删除成功
     p_cno INT
 )
 BEGIN
@@ -569,7 +569,7 @@ DELIMITER ;
 
 -- 存储过程：增加题目图片
 DELIMITER $$
-CREATE PROCEDURE Create_Timage(                                -- 增加图片
+CREATE PROCEDURE Create_Timage(						        -- 增加图片
     p_wno int,
     p_cno int,
     p_image_path VARCHAR(255)
@@ -593,48 +593,17 @@ BEGIN
         commit;
         SELECT 'SUCCESS' AS result_type;
     else 
-    ROLLBACK;
-        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;        -- 该题目不存在
+	ROLLBACK;
+        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;		-- 该题目不存在
     end if;
 
 END
 $$
 DELIMITER ;
 
-
--- 存储过程：删除题目图片
-DELIMITER $$
-CREATE PROCEDURE Delete_Timage(
-    p_wno int,
-    p_cno int
-)
-BEGIN
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
-    END;
-
-    START TRANSACTION;
-
-    if not exists (select 1 from Title_Image where Wno = p_wno and Cno = p_cno) then
-        ROLLBACK;
-        SELECT 'ERROR:IMAGE_NOT_EXISTS' AS result_type;
-    else
-        delete from Title_Image where Wno = p_wno and Cno = p_cno;
-        COMMIT;
-        SELECT 'SUCCESS' AS result_type;
-    end if
-
-END
-$$
-DELIMITER ;
-
-
 -- 存储过程：增加答案图片
 DELIMITER $$
-CREATE PROCEDURE Create_Aimage(                                -- 增加图片
+CREATE PROCEDURE Create_Aimage(						        -- 增加图片
     p_wno int,
     p_sno int,
     p_image_path VARCHAR(255)
@@ -658,8 +627,8 @@ BEGIN
         commit;
         SELECT 'SUCCESS' AS result_type;
     else 
-    ROLLBACK;
-        SELECT 'ERROR:WRITE_NOT_EXISTS' AS result_type;        -- 该作业不存在
+	ROLLBACK;
+        SELECT 'ERROR:WRITE_NOT_EXISTS' AS result_type;		-- 该作业不存在
     end if;
 
 END
