@@ -28,6 +28,15 @@ CREATE TABLE Course (
     CONSTRAINT chk_ctype CHECK (Ctype IN ('必修', '选修'))				-- Ctype只能是必修或选修
 );
 
+-- 选课表定义
+CREATE TABLE SC (
+    Cno INT,
+    Uno INT,
+    PRIMARY KEY (Cno, Uno),
+    FOREIGN KEY (Cno) REFERENCES Course(Cno) ON DELETE CASCADE,
+    FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
+);
+
 -- 创建索引
 CREATE INDEX idx_course_name ON Course(Cname);
 CREATE INDEX idx_course_teacher ON Course(Uno);
