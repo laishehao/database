@@ -11,6 +11,16 @@ CREATE TABLE `User` (
     Uavatar VARCHAR(200)
 );
 
+CREATE TABLE `Teacher_Info` (
+    Tno int AUTO_INCREMENT PRIMARY KEY,
+    Tname VARCHAR(50) NOT NULL,
+    Tpassword VARCHAR(100) NOT NULL,
+    Temail VARCHAR(100) NOT NULL UNIQUE,
+    Tgender CHAR(1),
+    Tphone VARCHAR(20) NOT NULL UNIQUE,
+    Tavatar VARCHAR(200)
+);
+
 -- 创建索引
 CREATE UNIQUE INDEX idx_user_email ON `User`(Uemail);
 CREATE UNIQUE INDEX idx_user_phone ON `User`(Uphone);
