@@ -64,12 +64,23 @@ CREATE TABLE `Write` (
 CREATE INDEX idx_write_user ON `Write`(Uno);
 CREATE INDEX idx_write_state ON `Write`(State);
 
--- 图片表定义
-CREATE TABLE Image (			-- 新增图片表，题目的图片和书写作业的图片都保存在里面
+-- 题目图片表定义
+CREATE TABLE Title_Image (			-- 新增图片表，题目的图片和书写作业的图片都保存在里面
     Wno int NOT NULL,
-    Uno int NOT NULL,			-- 如果Uno为-1，则这是题目图片，否则是书写作业的图片
+    Cno int NOT NULL,			-- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
+    image_path VARCHAR(255),
+    PRIMARY KEY (Wno, Cno),
+    FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
+    FOREIGN KEY (Cno) REFERENCES Course(Cno) ON DELETE CASCADE
+);
+
+
+-- 答案图片表定义
+CREATE TABLE Answer_Image (			-- 新增图片表，题目的图片和书写作业的图片都保存在里面
+    Wno int NOT NULL,
+    Uno int NOT NULL,			-- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
     image_path VARCHAR(255),
     PRIMARY KEY (Wno, Uno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
-    FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
+    FOREIGN KEY (Uno) REFERENCES User(Uno) ON DELETE CASCADE
 );
