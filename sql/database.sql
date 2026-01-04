@@ -652,6 +652,7 @@ BEGIN
         );
         update `write` set State = 1 where Wno = p_wno and Sno = p_sno
         COMMIT;
+        call Update_Work_Progress(p_wno);
         SELECT 'SUCCESS' AS result_type;
     else 
 	ROLLBACK;
@@ -686,6 +687,7 @@ BEGIN
         set Wrcontent = p_content, State = 1
         where Wno = p_wno and Sno = p_sno;
         commit;
+        call Update_Work_Progress(p_wno);
         SELECT 'SUCCESS' AS result_type;
     else 
 	ROLLBACK;
