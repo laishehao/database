@@ -1,6 +1,6 @@
 # <<<<<<< Updated upstream
 from flask import Flask, request,jsonify
-from sql import *
+from py_sql import *
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
