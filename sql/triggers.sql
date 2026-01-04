@@ -38,22 +38,3 @@ BEGIN
     WHERE W.Cno = NEW.Cno AND W.Wprogress > 0;  -- 只为已发布的作业创建记录
 END$$
 DELIMITER ;
-
--- 触发器：处理作业完成数量，例如write中产生变化，则更新Work表中的Wprogress字段
-DELIMITER $$
-CREATE TRIGGER trg_after_write_update
-AFTER UPDATE ON `Write`
-FOR EACH ROW
-BEGIN
-    -- 声明变量存储已完成学生数
-    DECLARE completed_count INT;
-
-    -- 计算该作业的已完成学生数
-    SELECT COUNT(*) INTO completed_count FROM `Write` WHERE Wno = NEW.Wno AND State = 1;
-
-    -- 更新work表中的Wprogress字段为已完成学生数
-    UPDATE Work
-    SET Wprogress = completed_count
-    WHERE Wno = NEW.Wno;
-END$$
-DELIMITER ;
