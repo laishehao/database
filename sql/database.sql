@@ -702,3 +702,48 @@ BEGIN
 END
 $$
 DELIMITER ;
+
+-- 存储过程：学生选课，以Student表与SC表为准
+DELIMITER $$
+
+CREATE PROCEDURE Select_Course(
+    p_Cno INT,      -- 课程编号
+    p_Sno INT       -- 学生学号
+)
+BEGIN
+    -- 重复选课
+    DECLARE EXIT HANDLER FOR 1062   
+    BEGIN
+        SELECT 'ERROR:COURSE_ALREADY_SELECTED' AS result_type;
+    END;
+
+    -- 违反外键约束
+    DECLARE EXIT HANDLER FOR 1452   
+    BEGIN
+        SELECT 'ERROR:COURSE_OR_STUDENT_NOT_EXIST' AS result_type;
+    END;
+
+    -- 通用错误处理
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    -- 判断p_Cno和p_Sno是否存在
+    IF NOT EXISTS (SELECT 1 FROM Course WHERE Cno = p_Cno) THEN
+        SELECT 'ERROR:COURSE_NOT_EXIST' AS result_type;
+        LEAVE;
+    END IF;
+    
+    IF NOT EXISTS (SELECT 1 FROM Student_Info WHERE Sno = p_Sno) THEN
+        SELECT 'ERROR:STUDENT_NOT_EXIST' AS result_type;
+        LEAVE;
+    END IF;
+
+    -- 插入选课记录
+    INSERT INTO SC (Cno, Sno) VALUES (p_Cno, p_Sno);
+    
+    SELECT 'SUCCESS' AS result_type;
+END$$
+
+DELIMITER ;
