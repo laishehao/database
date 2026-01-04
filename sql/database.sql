@@ -264,9 +264,67 @@ $$
 DELIMITER ;
 
 
--- 存储过程：增加图片
+-- 存储过程：查看课程
 DELIMITER $$
-CREATE PROCEDURE Create_Image(						        -- 增加图片
+CREATE PROCEDURE View_Course(		                        -- 返回是否删除成功
+    p_cno INT
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    START TRANSACTION;
+    if not exists (select 1 from course where Cno = p_cno) then #检查该课程是否存在
+        ROLLBACK;
+        SELECT 'ERROR:COURSE_NOT_EXIST' AS result_type;
+    else
+        COMMIT;
+        SELECT 'SUCCESS' AS result_type, (select * from course where Cno = p_cno);
+    end if
+END
+$$
+DELIMITER ;
+
+
+-- 存储过程：增加题目图片
+DELIMITER $$
+CREATE PROCEDURE Create_Timage(						        -- 增加图片
+    p_wno int,
+    p_cno int,
+    p_image_path VARCHAR(255)
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    START TRANSACTION;
+
+    if exists (select 1 from work where Wno = p_wno and Cno = p_cno) then
+        INSERT INTO image (
+            Wno, Cno, image_path
+        ) VALUES (
+            p_wno, p_cno, p_image_path
+        );
+        commit;
+        SELECT 'SUCCESS' AS result_type;
+    else 
+	ROLLBACK;
+        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;		-- 该题目不存在
+    end if;
+
+END
+$$
+DELIMITER ;
+
+-- 存储过程：增加答案图片
+DELIMITER $$
+CREATE PROCEDURE Create_Aimage(						        -- 增加图片
     p_wno int,
     p_uno int,
     p_image_path VARCHAR(255)
@@ -281,7 +339,7 @@ BEGIN
 
     START TRANSACTION;
 
-    if (exists (select 1 from `write` where Wno = p_wno and Uno = p_uno)) or (p_uno = -1 and exists (select 1 from work where Wno = p_wno)) then
+    if exists (select 1 from `write` where Wno = p_wno and Uno = p_uno) then
         INSERT INTO image (
             Wno, Uno, image_path
         ) VALUES (
@@ -291,43 +349,10 @@ BEGIN
         SELECT 'SUCCESS' AS result_type;
     else 
 	ROLLBACK;
-        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;		-- 该作业不存在
+        SELECT 'ERROR:WRITE_NOT_EXISTS' AS result_type;		-- 该作业不存在
     end if;
 
 END
 $$
 DELIMITER ;
 
-
-DELIMITER $$
-CREATE PROCEDURE Create_Image(						        -- 增加图片
-    p_wno int,
-    p_uno int,
-    p_image_path VARCHAR(255)
-)
-BEGIN
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
-    END;
-
-    START TRANSACTION;
-
-    if (exists (select 1 from `write` where Wno = p_wno and Uno = p_uno)) or (p_uno = -1 and exists (select 1 from work where Wno = p_wno)) then
-        INSERT INTO image (
-            Wno, Uno, image_path
-        ) VALUES (
-            p_wno, p_uno, p_image_path
-        );
-        commit;
-        SELECT 'SUCCESS' AS result_type;
-    else 
-	ROLLBACK;
-        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;		-- 该作业不存在
-    end if;
-
-END
-$$
-DELIMITER ;
