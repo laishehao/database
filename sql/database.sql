@@ -297,37 +297,3 @@ BEGIN
 END
 $$
 DELIMITER ;
-
-
-DELIMITER $$
-CREATE PROCEDURE Create_Image(						        -- 增加图片
-    p_wno int,
-    p_uno int,
-    p_image_path VARCHAR(255)
-)
-BEGIN
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
-    END;
-
-    START TRANSACTION;
-
-    if (exists (select 1 from `write` where Wno = p_wno and Uno = p_uno)) or (p_uno = -1 and exists (select 1 from work where Wno = p_wno)) then
-        INSERT INTO image (
-            Wno, Uno, image_path
-        ) VALUES (
-            p_wno, p_uno, p_image_path
-        );
-        commit;
-        SELECT 'SUCCESS' AS result_type;
-    else 
-	ROLLBACK;
-        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;		-- 该作业不存在
-    end if;
-
-END
-$$
-DELIMITER ;
