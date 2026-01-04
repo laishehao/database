@@ -357,6 +357,32 @@ DELIMITER ;
 
 
 
+-- 存储过程：查看题目
+DELIMITER $$
+CREATE PROCEDURE View_work(	                                    -- 查看作业题目内容以及完成人数
+    IN p_wno int						                        -- 指名作业
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    START TRANSACTION;
+
+    if EXISTS (select 1 from work where Wno = p_cno) THEN		                    -- 判断这个作业是否存在
+        COMMIT;
+        SELECT 'SUCCESS' AS result_type, (select * from work where Wno = p_wno);
+    else
+        ROLLBACK;
+        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;			-- 否则该作业不存在
+    end if;
+END
+$$
+DELIMITER ;
+
+
 -- 存储过程：删除题目，删除前python层要记得把关联的图片从服务器上删除
 DELIMITER $$
 CREATE PROCEDURE Delete_homework(
@@ -387,7 +413,7 @@ DELIMITER ;
 
 -- 存储过程：查看作业
 DELIMITER $$
-CREATE PROCEDURE View_homework(	                                -- 查看学生写的作业的内容（包括作业题目的文本，写的内容文本，分数）
+CREATE PROCEDURE View_homework(	                                -- 查看学生写的作业的内容和分数
     IN p_sno int,						                        -- 指名角色
     IN p_wno int						                        -- 指名作业
 )
@@ -402,10 +428,10 @@ BEGIN
 
     if EXISTS (select 1 from `write` where Sno = p_sno and Wno = p_wno) THEN		                    -- 判断这个作业是否存在
         COMMIT;
-        SELECT 'SUCCESS' AS result_type, (select Wcontent from Work where Wno = p_wno) AS title, (select Wrcontent from `write` where Sno = p_sno and Wno = p_wno) AS write_content;
+        SELECT 'SUCCESS' AS result_type, (select Wrcontent AS write_content, Score from `write` where Sno = p_sno and Wno = p_wno);
     else
         ROLLBACK;
-        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type, NULL AS title, NULL AS write_content;			-- 否则该作业不存在
+        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;			-- 否则该作业不存在
     end if;
 END
 $$
@@ -585,7 +611,7 @@ BEGIN
     START TRANSACTION;
 
     if exists (select 1 from work where Wno = p_wno and Cno = p_cno) then
-        INSERT INTO image (
+        INSERT INTO Title_Image (
             Wno, Cno, image_path
         ) VALUES (
             p_wno, p_cno, p_image_path
@@ -619,12 +645,13 @@ BEGIN
     START TRANSACTION;
 
     if exists (select 1 from `write` where Wno = p_wno and Sno = p_sno) then
-        INSERT INTO image (
+        INSERT INTO Answer_Image (
             Wno, Sno, image_path
         ) VALUES (
             p_wno, p_sno, p_image_path
         );
-        commit;
+        update `write` set State = 1 where Wno = p_wno and Sno = p_sno
+        COMMIT;
         SELECT 'SUCCESS' AS result_type;
     else 
 	ROLLBACK;
@@ -655,8 +682,8 @@ BEGIN
     START TRANSACTION;
 
     if exists (select 1 from `write` where Wno = p_wno and Sno = p_sno) then
-        update write
-        set Wrcontent = p_content
+        update `write`
+        set Wrcontent = p_content, State = 1
         where Wno = p_wno and Sno = p_sno;
         commit;
         SELECT 'SUCCESS' AS result_type;
@@ -689,7 +716,7 @@ BEGIN
     START TRANSACTION;
 
     if exists (select 1 from `write` where Wno = p_wno and Sno = p_sno) then
-        update write
+        update `write`
         set Score = p_score
         where Wno = p_wno and Sno = p_sno;
         commit;
