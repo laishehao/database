@@ -8,7 +8,7 @@ CREATE TABLE `User` (
     Ugender CHAR(1),
     Umajor VARCHAR(50),
     Uphone VARCHAR(20) NOT NULL UNIQUE,
-    Uavatar VARCHAR(200)
+    Uavatar VARCHAR(200) UNIQUE
 );
 
 CREATE TABLE `Teacher_Info` (
@@ -16,9 +16,10 @@ CREATE TABLE `Teacher_Info` (
     Tname VARCHAR(50) NOT NULL,
     Tpassword VARCHAR(100) NOT NULL,
     Temail VARCHAR(100) NOT NULL UNIQUE,
-    Tgender CHAR(1),
+    Tgender CHAR(1) CHARACTER SET utf8mb4,
     Tphone VARCHAR(20) NOT NULL UNIQUE,
-    Tavatar VARCHAR(200)
+    Tavatar VARCHAR(200) UNIQUE
+    CONSTRAINT chk_tgender CHECK (Ctype IN ('男', '女'))
 );
 
 CREATE TABLE `Student_Info` (
@@ -26,16 +27,13 @@ CREATE TABLE `Student_Info` (
     Sname VARCHAR(50) NOT NULL,
     Spassword VARCHAR(100) NOT NULL,
     Semail VARCHAR(100) NOT NULL UNIQUE,
-    Sgender CHAR(1),
+    Sgender CHAR(1) CHARACTER SET utf8mb4,
     Smajor VARCHAR(50),
     Sphone VARCHAR(20) NOT NULL UNIQUE,
-    Savatar VARCHAR(200)
+    Savatar VARCHAR(200) UNIQUE
+    CONSTRAINT chk_sgender CHECK (Ctype IN ('男', '女'))
 );
 
--- 创建索引
-CREATE UNIQUE INDEX idx_user_email ON `User`(Uemail);
-CREATE UNIQUE INDEX idx_user_phone ON `User`(Uphone);
-CREATE INDEX idx_user_role ON `User`(Urole);           -- 按角色查询
 
 -- 课程表定义
 CREATE TABLE Course (
@@ -44,8 +42,8 @@ CREATE TABLE Course (
     Cmajor VARCHAR(50),
     Ccredit INT,
     Ctype VARCHAR(20),
-    Uno int,
-    FOREIGN KEY (Uno) REFERENCES User(Uno) ON DELETE SET NULL,
+    Tno int,
+    FOREIGN KEY (Tno) REFERENCES Teacher_Info(Tno) ON DELETE SET NULL,
     CONSTRAINT chk_ctype CHECK (Ctype IN ('必修', '选修'))				-- Ctype只能是必修或选修
 );
 
@@ -54,13 +52,13 @@ CREATE TABLE SC (
     Cno INT,
     Sno INT,
     PRIMARY KEY (Cno, Sno),
-    FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE,
-    FOREIGN KEY (Uno) REFERENCES Course(Uno) ON DELETE CASCADE
+    FOREIGN KEY (Cno) REFERENCES Course(Cno) ON DELETE CASCADE,
+    FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
 );
 
 -- 创建索引
 CREATE INDEX idx_course_name ON Course(Cname);
-CREATE INDEX idx_course_teacher ON Course(Uno);
+CREATE INDEX idx_course_teacher ON Course(Sno);
 
 -- 作业表定义
 CREATE TABLE Work (
@@ -81,13 +79,13 @@ CREATE INDEX idx_work_progress ON Work(Wprogress);
 -- 学生 - 作业对应关系定义
 CREATE TABLE `Write` (
     Wno int NOT NULL,
-    Uno int NOT NULL,
+    Sno int NOT NULL,
     State INT DEFAULT 0,
     Wrcontent TEXT,				-- 新增书写内容
     Score INT,					-- 新增打分
     PRIMARY KEY (Wno, Uno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
-    FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
+    FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
 );
 
 -- 创建索引
@@ -108,9 +106,9 @@ CREATE TABLE Title_Image (			-- 新增图片表，题目的图片和书写作业
 -- 答案图片表定义
 CREATE TABLE Answer_Image (			-- 新增图片表，题目的图片和书写作业的图片都保存在里面
     Wno int NOT NULL,
-    Uno int NOT NULL,			-- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
+    Sno int NOT NULL,			-- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
     image_path VARCHAR(255),
-    PRIMARY KEY (Wno, Uno),
+    PRIMARY KEY (Wno, Sno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
-    FOREIGN KEY (Uno) REFERENCES User(Uno) ON DELETE CASCADE
+    FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
 );
