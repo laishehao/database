@@ -4,15 +4,24 @@ CREATE TRIGGER trg_after_work_insert
 AFTER INSERT ON Work
 FOR EACH ROW
 BEGIN
-    -- 为所有选修该课程的学生创建Write记录
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- 如果触发器出错，记录错误但继续执行
+        INSERT INTO Error_Log (error_time, message) VALUES (NOW(), '触发器执行失败');
+    END;
+    
+    -- 直接插入，不需要先检查（如果SC表中没有数据，INSERT会创建0条记录）
     INSERT INTO `Write` (Wno, Sno, State, Wrcontent, Score)
     SELECT 
-        NEW.Wno,      -- 新作业的ID
-        SC.Sno,       -- 选修该课程的学生学号
-        0,            -- 状态：未完成
-        NULL,         -- 内容：空
-        NULL          -- 分数：空
+        NEW.Wno,
+        SC.Sno,
+        0,     -- 未完成
+        NULL,  -- 空内容
+        NULL   -- 空分数
     FROM SC 
-    WHERE SC.Cno = NEW.Cno;  -- 选修了该课程的学生
+    WHERE Cno = NEW.Cno;
+    
+    -- 可选：更新作业进度状态
+    -- UPDATE Work SET Wprogress = 1 WHERE Wno = NEW.Wno;
 END$$
 DELIMITER ;
