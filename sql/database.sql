@@ -774,3 +774,50 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+-- 存储过程：一旦有某张write表对应的记录发生改变，便更新其对应的Work表中的Wprogress字段
+DELIMITER $$
+CREATE PROCEDURE Update_Work_Progress(
+    IN p_wno INT
+)
+BEGIN
+    -- 计算该作业的已完成提交人数
+    DECLARE completed_count INT;
+    -- 定义变量，用于检查对应作业是否存在
+    DECLARE work_exists INT;
+
+    -- 错误处理，出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    -- 检查作业是否存在
+    SELECT COUNT(*) INTO work_exists
+    FROM Work
+    WHERE Wno = p_wno;
+
+    -- 如果作业不存在，返回错误信息并退出存储过程
+    IF work_exists = 0 THEN
+        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;
+        LEAVE;
+    END IF;  
+
+    -- 开始事务：计算作业已完成人数，并更新Work表中对应作业的Wprogress属性
+    START TRANSACTION;
+
+    SELECT COUNT(*) INTO completed_count
+    FROM `Write`
+    WHERE Wno = p_wno AND State = 1;
+
+    -- 更新Work表中的Wprogress字段
+    UPDATE Work
+    SET Wprogress = completed_count
+    WHERE Wno = p_wno;
+
+    COMMIT;
+
+    SELECT 'SUCCESS' AS result_type;
+END$$
+DELIMITER ;
