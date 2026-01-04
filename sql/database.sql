@@ -40,6 +40,108 @@ $$
 DELIMITER ;
 
 
+-- 存储过程：编辑学生信息，注意：不用修改的属性传入空值就好
+DELIMITER $$
+CREATE PROCEDURE Edit_Student(
+    IN p_sno INT,
+    IN p_name VARCHAR(50),							    -- 用户名
+    IN p_password VARCHAR(100),						    -- 密码
+    IN p_email VARCHAR(100),							-- 邮箱
+    IN p_gender CHAR(1),
+    IN p_major VARCHAR(50),
+    IN p_phone VARCHAR(20),							    -- 电话
+    IN p_avatar VARCHAR(200),
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
+    BEGIN
+        ROLLBACK;
+        IF EXISTS (SELECT 1 FROM Student_Info WHERE Sphone = p_phone) THEN
+            SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 电话号码重复了
+        ELSEIF EXISTS (SELECT 1 FROM Student_Info WHERE Semail = p_email) THEN
+            SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 邮箱重复了
+        ELSE
+            SELECT 'ERROR:AVATAR_EXISTS' AS result_type;	-- 头像url重复了
+        END IF;
+    END;
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    
+    START TRANSACTION;								    -- 开始事务
+    
+    if not exists (select 1 from Student_Info where Sno = p_sno) then
+        ROLLBACK;
+        SELECT 'ERROR:STUDENT_NOT_EXISTS' AS result_type;
+    else
+        update Student_Info
+        set Sname = p_name, Spassword = p_password, Semail = p_email, Sgender = p_gender, Smajor = p_major, Sphone = p_phone, Savatar = p_avatar
+        where Sno = p_cno;
+        COMMIT;
+        SELECT 'SUCCESS' AS result_type;
+    end if;
+END
+$$
+DELIMITER ;
+
+
+-- 存储过程：查看学生信息
+DELIMITER $$
+CREATE PROCEDURE View_Student(
+    IN p_sno INT
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    
+    START TRANSACTION;								    -- 开始事务
+    SELECT 'SUCCESS' AS result_type, (select * from Student_Info where Sno =  p_sno);
+    COMMIT;
+    
+END
+$$
+DELIMITER ;
+
+
+
+-- 存储过程：学生登录
+DELIMITER $$
+CREATE PROCEDURE S_Login(							        -- 登录，返回用户uno和电话号码
+    IN p_phone VARCHAR(20),
+    IN p_password VARCHAR(100)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    START TRANSACTION;
+
+    if EXISTS (select 1 from Student_Info where Sphone = p_phone and Spassword = p_password) THEN		    -- 判断电话号码和密码的组合是否在表中存在
+        COMMIT;
+        SELECT 'SUCCESS' AS result_type, (select Sno from Student_Info where Sphone = p_phone) AS user_id;
+    elseif EXISTS (select 1 from Student_Info where Sphone = p_phone) THEN								-- 登录失败，判断电话号码是否正确
+        ROLLBACK;
+        SELECT 'ERROR:PASSWORD_ERROR' AS result_type;		    -- 如果电话号码正确，那就是密码错误
+    else
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_ERROR' AS result_type;			    -- 否则电话号码不正确
+    end if;
+END
+$$
+DELIMITER ;
+
+
+
 -- 存储过程：老师注册
 DELIMITER $$
 CREATE PROCEDURE T_Register(							-- 注册账户，返回用户id
@@ -81,31 +183,71 @@ END
 $$
 DELIMITER ;
 
--- 存储过程：学生登录
+
+-- 存储过程：编辑老师信息
 DELIMITER $$
-CREATE PROCEDURE S_Login(							        -- 登录，返回用户uno和电话号码
-    IN p_phone VARCHAR(20),
-    IN p_password VARCHAR(100)
+CREATE PROCEDURE Edit_Student(
+    IN p_sno INT,
+    IN p_name VARCHAR(50),							    -- 用户名
+    IN p_password VARCHAR(100),						    -- 密码
+    IN p_email VARCHAR(100),							-- 邮箱
+    IN p_gender CHAR(1),
+    IN p_phone VARCHAR(20),							    -- 电话
+    IN p_avatar VARCHAR(200),
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数
+    DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
+    BEGIN
+        ROLLBACK;
+        IF EXISTS (SELECT 1 FROM Teacher_Info WHERE Tphone = p_phone) THEN
+            SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 电话号码重复了
+        ELSEIF EXISTS (SELECT 1 FROM Teacher_Info WHERE Temail = p_email) THEN
+            SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 邮箱重复了
+        ELSE
+            SELECT 'ERROR:AVATAR_EXISTS' AS result_type;	-- 头像url重复了
+        END IF;
+    END;
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
         SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
     END;
-
-    START TRANSACTION;
-
-    if EXISTS (select 1 from Student_Info where Sphone = p_phone and Spassword = p_password) THEN		    -- 判断电话号码和密码的组合是否在表中存在
-        COMMIT;
-        SELECT 'SUCCESS' AS result_type, (select Sno from Student_Info where Sphone = p_phone) AS user_id;
-    elseif EXISTS (select 1 from Student_Info where Sphone = p_phone) THEN								-- 登录失败，判断电话号码是否正确
+    
+    START TRANSACTION;								    -- 开始事务
+    
+    if not exists (select 1 from Teacher_Info where Tno = p_sno) then
         ROLLBACK;
-        SELECT 'ERROR:PASSWORD_ERROR' AS result_type;		    -- 如果电话号码正确，那就是密码错误
+        SELECT 'ERROR:STUDENT_NOT_EXISTS' AS result_type;
     else
-        ROLLBACK;
-        SELECT 'ERROR:PHONE_ERROR' AS result_type;			    -- 否则电话号码不正确
+        update Teacher_Info
+        set Tname = p_name, Tpassword = p_password, Temail = p_email, Tgender = p_gender, Tphone = p_phone, Tavatar = p_avatar
+        where Tno = p_tno;
+        COMMIT;
+        SELECT 'SUCCESS' AS result_type;
     end if;
+END
+$$
+DELIMITER ;
+
+
+-- 存储过程：查看老师信息
+DELIMITER $$
+CREATE PROCEDURE View_Teacher(
+    IN p_tno INT
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    
+    START TRANSACTION;								    -- 开始事务
+    SELECT 'SUCCESS' AS result_type, (select * from Teacher_Info where Tno =  p_tno);
+    COMMIT;
+    
 END
 $$
 DELIMITER ;
@@ -141,11 +283,13 @@ $$
 DELIMITER ;
 
 
--- 存储过程：发布作业
+-- 存储过程：发布题目
 DELIMITER $$
 CREATE PROCEDURE Push_homework(					        -- 发布题目
     IN p_title VARCHAR(200),
     IN p_cname VARCHAR(100),
+    IN p_start DATETIME,
+    In p_over DATETIME,
     IN p_content TEXT
 )
 BEGIN
@@ -161,14 +305,78 @@ BEGIN
 
     if NOT EXISTS (select 1 from course where Cname = p_cname) THEN	    -- 还要判断指定的课程是否存在
         ROLLBACK;
-        SELECT 'ERROR:CNAME_NOTEXISTS' AS result_type;
+        SELECT 'ERROR:CNAME_NOT_EXISTS' AS result_type;
     else
         select Cno into p_cno from course where Cname = p_cname;			-- 通过课程名查询得到的课程号并保存在临时变量中
         INSERT INTO Work (
-            Wtitle, Cno, Wcontent
+            Wtitle, Cno, Wcontent, Wstart, Wover
         ) VALUES (
-            p_title, p_cno, p_content
+            p_title, p_cno, p_content, p_start, p_over
         );
+        COMMIT;
+        SELECT 'SUCCESS' AS result_type, (select Wno from work where Cno = p_cno) AS Work_id;
+    end if;
+END
+$$
+DELIMITER ;
+
+
+-- 存储过程：编辑题目
+DELIMITER $$
+CREATE PROCEDURE Edit_homework(
+    IN p_wno INT,
+    IN p_title VARCHAR(200),
+    IN p_start DATETIME,
+    In p_over DATETIME,
+    IN p_content TEXT
+)
+BEGIN
+    DECLARE p_cno int;									-- 临时变量，保存课程号，注意变量的声明必须放在一开始
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    START TRANSACTION;								    -- 开始事务
+
+    if NOT EXISTS (select 1 from work where Wno = p_wno) THEN	    -- 还要判断指定的课程是否存在
+        ROLLBACK;
+        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;
+    else
+        update Work
+        set Wtitle = p_title, Wstart = p_start, Wover = p p_over, Wcontent = p_content
+        where Wno = p_wno;
+        COMMIT;
+        SELECT 'SUCCESS' AS result_type;
+    end if;
+END
+$$
+DELIMITER ;
+
+
+
+-- 存储过程：删除题目，删除前python层要记得把关联的图片从服务器上删除
+DELIMITER $$
+CREATE PROCEDURE Delete_homework(
+    IN p_wno INT
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    START TRANSACTION;								    -- 开始事务
+
+    if NOT EXISTS (select 1 from work where Wno = p_wno) THEN	    -- 还要判断指定的课程是否存在
+        ROLLBACK;
+        SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;
+    else
+        delete from work where Wno = p_wno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
     end if;
@@ -304,7 +512,7 @@ BEGIN
         where Cno = p_cno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
-    end if
+    end if;
 END
 $$
 DELIMITER ;
@@ -329,7 +537,7 @@ BEGIN
         delete from course where Cno = p_cno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
-    end if
+    end if;
 END
 $$
 DELIMITER ;
@@ -353,7 +561,7 @@ BEGIN
     else
         COMMIT;
         SELECT 'SUCCESS' AS result_type, (select * from course where Cno = p_cno);
-    end if
+    end if;
 END
 $$
 DELIMITER ;
@@ -427,3 +635,70 @@ END
 $$
 DELIMITER ;
 
+
+
+-- 存储过程：提交作业答案
+DELIMITER $$
+CREATE PROCEDURE Submit_Answer(						        -- 增加图片
+    p_wno int,
+    p_sno int,
+    p_content TEXT
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    START TRANSACTION;
+
+    if exists (select 1 from `write` where Wno = p_wno and Sno = p_sno) then
+        update write
+        set Wrcontent = p_content
+        where Wno = p_wno and Sno = p_sno;
+        commit;
+        SELECT 'SUCCESS' AS result_type;
+    else 
+	ROLLBACK;
+        SELECT 'ERROR:WRITE_NOT_EXISTS' AS result_type;		-- 该作业不存在
+    end if;
+
+END
+$$
+DELIMITER ;
+
+
+
+-- 存储过程：打分
+DELIMITER $$
+CREATE PROCEDURE Marking(
+    p_wno int,
+    p_sno int,
+    p_score int
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    START TRANSACTION;
+
+    if exists (select 1 from `write` where Wno = p_wno and Sno = p_sno) then
+        update write
+        set Score = p_score
+        where Wno = p_wno and Sno = p_sno;
+        commit;
+        SELECT 'SUCCESS' AS result_type;
+    else 
+	ROLLBACK;
+        SELECT 'ERROR:WRITE_NOT_EXISTS' AS result_type;		-- 该作业不存在
+    end if;
+
+END
+$$
+DELIMITER ;
