@@ -121,6 +121,7 @@
     </el-card>
 
     <!-- 弹窗组件 -->
+    <!-- 要把modal移出el-card防止被overflow:hidden遮挡或z-index问题 -->
     <homework-modal
       :visible.sync="modalVisible"
       :row-data="currentRow"
@@ -166,6 +167,7 @@ export default {
   methods: {
     openModal(row = null) {
       this.currentRow = row;
+      //this.currentRow = row ? Object.assign({}, row, { workId: row.id }) : null;
       this.modalVisible = true;
     },
     handleEdit(row) {

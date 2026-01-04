@@ -66,30 +66,30 @@ export default {
     return {
       currentDate: new Date(),
       stats: { student: 0, course: 0, homework: 0 },
-      carouselItems: [  //轮播图内容
+      carouselItems: [  //轮播图内容（飞天小女警主题）
         {
           id: 1,
-          title: "构建未来的云基础设施",
-          description: "通过我们的下一代云技术，加速您的数字化转型。",
-          label: "云基础设施",
+          title: "守护城市的少女力量",
+          description: "毛毛泡泡和花花，勇敢无畏地保卫飞天镇，每一天都充满冒险！",
+          label: "飞天小女警",
           image: require("@/assets/img/carousel/bg1.png"),
-          buttonText: "探索解决方案",
+          buttonText: "了解更多",
         },
         {
           id: 2,
-          title: "智能数据分析平台",
-          description: "利用 AI 驱动的分析工具挖掘价值。",
-          label: "数据分析",
+          title: "团队协作，无法阻挡",
+          description: "三位小女警用友情与智慧击退邪恶，为正义而战！",
+          label: "梦想团队",
           image: require("@/assets/img/carousel/bg2.png"),
-          buttonText: "免费试用",
+          buttonText: "加入冒险",
         },
         {
           id: 3,
-          title: "全新开发者生态系统",
-          description: "加入全球数百万开发者的行列。",
-          label: "开发者社区",
+          title: "专属于你的超级时刻",
+          description: "快来体验飞天小女警的精彩瞬间，释放你的超级能量！",
+          label: "超级时刻",
           image: require("@/assets/img/carousel/bg3.png"),
-          buttonText: "立即加入",
+          buttonText: "开始体验",
         },
       ],
       recommendCourses: [ 

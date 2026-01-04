@@ -6,7 +6,7 @@ import pymysql
 # 创建连接
 connection = pymysql.connect(
     host='8.130.144.155',
-    user='testuser',
+    user='lzh',
     password='12345678',
     database='619database',
     port=3306,
@@ -27,12 +27,12 @@ def test():
             # # 提交事务
             # connection.commit()
             
-            sql = "select * from tmp; "
+            sql = "desc testtable;"
             # sql = "desc student;"
             cursor.execute(sql)  # 注意参数必须是元组，单个参数也要加逗号
             result = cursor.fetchall()
-            print(result[1][0])
-            print(type(result[1][0]))
+            # print(result[1][0])
+            # print(type(result[1][0]))
             print(result)
             # for res in result:
             #     print(res[2])
@@ -42,7 +42,7 @@ def test():
     finally:
         connection.close()
     return result
-    pass
+    
 
 def register(username, password, name, email):
     user={
@@ -162,6 +162,7 @@ def submit_work(role,studentId,workId,writecheck):
         "code":200,
         "msg":"提交成功"
     }
+    return ans
 
 if __name__ == '__main__':
     test()
