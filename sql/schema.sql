@@ -47,7 +47,7 @@ CREATE TABLE SC (
 
 -- 创建索引
 CREATE INDEX idx_course_name ON Course(Cname);
-CREATE INDEX idx_course_teacher ON Course(Sno);
+CREATE INDEX idx_course_teacher ON Course(Tno);
 
 -- 作业表定义
 CREATE TABLE Work (
@@ -74,7 +74,7 @@ CREATE TABLE `Write` (
     Score INT,					-- 新增打分
     PRIMARY KEY (Wno, Sno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
-    FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
+    FOREIGN KEY (Sno) REFERENCES `User`(Sno) ON DELETE CASCADE
 );
 
 -- 创建索引
