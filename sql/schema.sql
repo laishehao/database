@@ -32,10 +32,6 @@ CREATE TABLE `Student_Info` (
     Savatar VARCHAR(200)
 );
 
--- 创建索引
-CREATE UNIQUE INDEX idx_user_email ON `User`(Uemail);
-CREATE UNIQUE INDEX idx_user_phone ON `User`(Uphone);
-CREATE INDEX idx_user_role ON `User`(Urole);           -- 按角色查询
 
 -- 课程表定义
 CREATE TABLE Course (
@@ -44,23 +40,23 @@ CREATE TABLE Course (
     Cmajor VARCHAR(50),
     Ccredit INT,
     Ctype VARCHAR(20),
-    Uno int,
-    FOREIGN KEY (Uno) REFERENCES User(Uno) ON DELETE SET NULL,
+    Tno int,
+    FOREIGN KEY (Tno) REFERENCES Teacher_Info(Tno) ON DELETE SET NULL,
     CONSTRAINT chk_ctype CHECK (Ctype IN ('必修', '选修'))				-- Ctype只能是必修或选修
 );
 
 -- 选课表定义
 CREATE TABLE SC (
     Cno INT,
-    Uno INT,
-    PRIMARY KEY (Cno, Uno),
+    Sno INT,
+    PRIMARY KEY (Cno, Sno),
     FOREIGN KEY (Cno) REFERENCES Course(Cno) ON DELETE CASCADE,
-    FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
+    FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
 );
 
 -- 创建索引
 CREATE INDEX idx_course_name ON Course(Cname);
-CREATE INDEX idx_course_teacher ON Course(Uno);
+CREATE INDEX idx_course_teacher ON Course(Sno);
 
 -- 作业表定义
 CREATE TABLE Work (
@@ -81,13 +77,13 @@ CREATE INDEX idx_work_progress ON Work(Wprogress);
 -- 学生 - 作业对应关系定义
 CREATE TABLE `Write` (
     Wno int NOT NULL,
-    Uno int NOT NULL,
+    Sno int NOT NULL,
     State INT DEFAULT 0,
     Wrcontent TEXT,				-- 新增书写内容
     Score INT,					-- 新增打分
     PRIMARY KEY (Wno, Uno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
-    FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
+    FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
 );
 
 -- 创建索引
@@ -108,9 +104,9 @@ CREATE TABLE Title_Image (			-- 新增图片表，题目的图片和书写作业
 -- 答案图片表定义
 CREATE TABLE Answer_Image (			-- 新增图片表，题目的图片和书写作业的图片都保存在里面
     Wno int NOT NULL,
-    Uno int NOT NULL,			-- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
+    Sno int NOT NULL,			-- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
     image_path VARCHAR(255),
-    PRIMARY KEY (Wno, Uno),
+    PRIMARY KEY (Wno, Sno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
-    FOREIGN KEY (Uno) REFERENCES User(Uno) ON DELETE CASCADE
+    FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
 );
