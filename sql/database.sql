@@ -70,9 +70,9 @@ $$
 DELIMITER ;
 
 
--- 存储过程：作业发布
+-- 存储过程：题目发布
 DELIMITER $$
-CREATE PROCEDURE Push_homework(					        -- 发布作业
+CREATE PROCEDURE Push_homework(					        -- 发布题目
     IN p_title VARCHAR(200),
     IN p_cname VARCHAR(100),
     IN p_content TEXT
