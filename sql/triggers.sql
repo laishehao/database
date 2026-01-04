@@ -58,11 +58,10 @@ CREATER TRIGGER trg_after_write_update
 AFTER UPDATE ON `Write`
 FOR EACH ROW
 BEGIN
-    DECLARE total_count INT;
+    -- 声明变量存储已完成学生数
     DECLARE completed_count INT;
 
-    -- 计算该作业的总学生数和已完成学生数
-    SELECT COUNT(*) INTO total_count FROM `Write` WHERE Wno = NEW.Wno;
+    -- 计算该作业的已完成学生数
     SELECT COUNT(*) INTO completed_count FROM `Write` WHERE Wno = NEW.Wno AND State = 1;
 
     -- 更新work表中的Wprogress字段为已完成学生数
