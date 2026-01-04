@@ -52,9 +52,9 @@ CREATE TABLE Course (
 -- 选课表定义
 CREATE TABLE SC (
     Cno INT,
-    Uno INT,
-    PRIMARY KEY (Cno, Uno),
-    FOREIGN KEY (Cno) REFERENCES Course(Cno) ON DELETE CASCADE,
+    Sno INT,
+    PRIMARY KEY (Cno, Sno),
+    FOREIGN KEY (Sno) REFERENCES Course(Sno) ON DELETE CASCADE,
     FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
 );
 
