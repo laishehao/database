@@ -21,6 +21,17 @@ CREATE TABLE `Teacher_Info` (
     Tavatar VARCHAR(200)
 );
 
+CREATE TABLE `Student_Info` (
+    Sno int AUTO_INCREMENT PRIMARY KEY,
+    Sname VARCHAR(50) NOT NULL,
+    Spassword VARCHAR(100) NOT NULL,
+    Semail VARCHAR(100) NOT NULL UNIQUE,
+    Sgender CHAR(1),
+    Smajor VARCHAR(50),
+    Sphone VARCHAR(20) NOT NULL UNIQUE,
+    Savatar VARCHAR(200)
+);
+
 -- 创建索引
 CREATE UNIQUE INDEX idx_user_email ON `User`(Uemail);
 CREATE UNIQUE INDEX idx_user_phone ON `User`(Uphone);
