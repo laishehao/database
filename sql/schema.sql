@@ -74,11 +74,11 @@ CREATE TABLE `Write` (
     Score INT,					-- 新增打分
     PRIMARY KEY (Wno, Sno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
-    FOREIGN KEY (Sno) REFERENCES `User`(Sno) ON DELETE CASCADE
+    FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
 );
 
 -- 创建索引
-CREATE INDEX idx_write_user ON `Write`(Uno);
+CREATE INDEX idx_write_user ON `Write`(Sno);
 CREATE INDEX idx_write_state ON `Write`(State);
 
 -- 题目图片表定义
@@ -95,7 +95,7 @@ CREATE TABLE Title_Image (			-- 新增图片表，题目的图片和书写作业
 -- 答案图片表定义
 CREATE TABLE Answer_Image (			-- 新增图片表，题目的图片和书写作业的图片都保存在里面
     Wno int NOT NULL,
-    Sno int NOT NULL,			-- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
+    Sno int NOT NULL,			    -- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
     image_path VARCHAR(255),
     PRIMARY KEY (Wno, Sno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
