@@ -162,6 +162,7 @@ def submit_work(role,studentId,workId,writecheck):
         "code":200,
         "msg":"提交成功"
     }
+    return ans
 
 if __name__ == '__main__':
     test()
