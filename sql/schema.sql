@@ -1,16 +1,4 @@
--- 用户表定义
-CREATE TABLE `User` (
-    Uno int AUTO_INCREMENT PRIMARY KEY,
-    Uname VARCHAR(50) NOT NULL,
-    Upassword VARCHAR(100) NOT NULL,
-    Uemail VARCHAR(100) NOT NULL UNIQUE,
-    Urole VARCHAR(20),
-    Ugender CHAR(1),
-    Umajor VARCHAR(50),
-    Uphone VARCHAR(20) NOT NULL UNIQUE,
-    Uavatar VARCHAR(200) UNIQUE
-);
-
+-- 教师表定义
 CREATE TABLE `Teacher_Info` (
     Tno int AUTO_INCREMENT PRIMARY KEY,
     Tname VARCHAR(50) NOT NULL,
@@ -22,6 +10,7 @@ CREATE TABLE `Teacher_Info` (
     CONSTRAINT chk_tgender CHECK (Ctype IN ('男', '女'))
 );
 
+-- 学生表定义
 CREATE TABLE `Student_Info` (
     Sno int AUTO_INCREMENT PRIMARY KEY,
     Sname VARCHAR(50) NOT NULL,
@@ -83,9 +72,9 @@ CREATE TABLE `Write` (
     State INT DEFAULT 0,
     Wrcontent TEXT,				-- 新增书写内容
     Score INT,					-- 新增打分
-    PRIMARY KEY (Wno, Uno),
+    PRIMARY KEY (Wno, Sno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
-    FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
+    FOREIGN KEY (Uno) REFERENCES `User`(Uno) ON DELETE CASCADE
 );
 
 -- 创建索引
