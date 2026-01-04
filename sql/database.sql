@@ -1,48 +1,89 @@
--- 存储过程：用户注册
+-- 存储过程：学生注册
 DELIMITER $$
-CREATE PROCEDURE Register(							    -- 注册账户，返回用户id
+CREATE PROCEDURE S_Register(							    -- 注册账户，返回用户id
     IN p_name VARCHAR(50),							    -- 用户名
     IN p_phone VARCHAR(20),							    -- 电话
     IN p_password VARCHAR(100),						    -- 密码
     IN p_email VARCHAR(100),							-- 邮箱
-    IN p_role VARCHAR(20)								-- 角色（学生/老师）
 )
 BEGIN
     DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
-        IF EXISTS (SELECT 1 FROM `User` WHERE Uphone = p_phone) THEN
-            SELECT 'ERROR:PHONE_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;	    -- 要么是电话号码重复了
+        IF EXISTS (SELECT 1 FROM Student_Info WHERE Sphone = p_phone) THEN
+            SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
         ELSE
-            SELECT 'ERROR:EMAIL_EXISTS' AS result_type, NULL AS user_id, NULL AS user_role;	    -- 要么是邮箱重复了
+            SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
         END IF;
     END;
     
     DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
-        SELECT 'ERROR:SYSTEM_ERROR' AS result_type, NULL AS user_id, NULL AS user_role;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
     END;
     
     START TRANSACTION;								    -- 开始事务
     
    
-    INSERT INTO `User` (
-        Uname, Upassword, Uemail, Urole,Uphone
+    INSERT INTO Student_Info (
+        Sname, Spassword, Semail, Sphone
     ) VALUES (
         p_name, SHA2(p_password, 256), 					-- SHA2是对密码加密
         p_email, p_role,p_phone
     );
     
     COMMIT;											    -- 提交事务
-    SELECT 'SUCCESS' AS result_type,  (select Uno from User where Uphone =  p_phone) AS user_id, p_role AS user_role;
+    SELECT 'SUCCESS' AS result_type,  (select Sno from Student_Info where Sphone =  p_phone) AS user_id;
 END
 $$
 DELIMITER ;
 
--- 存储过程：用户登录
+
+-- 存储过程：老师注册
 DELIMITER $$
-CREATE PROCEDURE Login(							        -- 登录，返回用户uno和电话号码
+CREATE PROCEDURE T_Register(							-- 注册账户，返回用户id
+    IN p_name VARCHAR(50),							    -- 用户名
+    IN p_phone VARCHAR(20),							    -- 电话
+    IN p_password VARCHAR(100),						    -- 密码
+    IN p_email VARCHAR(100),							-- 邮箱
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
+    BEGIN
+        ROLLBACK;
+        IF EXISTS (SELECT 1 FROM Teacher_Info WHERE Tphone = p_phone) THEN
+            SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
+        ELSE
+            SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
+        END IF;
+    END;
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    
+    START TRANSACTION;								    -- 开始事务
+    
+   
+    INSERT INTO Teacher_Info (
+        Tname, Tpassword, Temail, Tphone
+    ) VALUES (
+        p_name, SHA2(p_password, 256), 					-- SHA2是对密码加密
+        p_email, p_role,p_phone
+    );
+    
+    COMMIT;											    -- 提交事务
+    SELECT 'SUCCESS' AS result_type,  (select Tno from Teacher_Info where Tphone =  p_phone) AS user_id;
+END
+$$
+DELIMITER ;
+
+-- 存储过程：学生登录
+DELIMITER $$
+CREATE PROCEDURE S_Login(							        -- 登录，返回用户uno和电话号码
     IN p_phone VARCHAR(20),
     IN p_password VARCHAR(100)
 )
@@ -55,15 +96,45 @@ BEGIN
 
     START TRANSACTION;
 
-    if EXISTS (select 1 from `User` where Uphone = p_phone and Upassword = p_password) THEN		    -- 判断电话号码和密码的组合是否在表中存在
+    if EXISTS (select 1 from Student_Info where Sphone = p_phone and Spassword = p_password) THEN		    -- 判断电话号码和密码的组合是否在表中存在
         COMMIT;
-        SELECT 'SUCCESS' AS result_type, (select Uno from User where Uphone = p_phone) AS user_id, (select Urole from User where Uphone =  p_phone) AS user_role;
-    elseif EXISTS (select 1 from `User` where Uphone = p_phone) THEN								-- 登录失败，判断电话号码是否正确
+        SELECT 'SUCCESS' AS result_type, (select Sno from Student_Info where Sphone = p_phone) AS user_id;
+    elseif EXISTS (select 1 from Student_Info where Sphone = p_phone) THEN								-- 登录失败，判断电话号码是否正确
         ROLLBACK;
-        SELECT 'ERROR:PASSWORD_ERROR' AS result_type, NULL AS user_id, NULL AS user_role;		    -- 如果电话号码正确，那就是密码错误
+        SELECT 'ERROR:PASSWORD_ERROR' AS result_type;		    -- 如果电话号码正确，那就是密码错误
     else
         ROLLBACK;
-        SELECT 'ERROR:PHONE_ERROR' AS result_type, NULL AS user_id, NULL AS user_role;			    -- 否则电话号码不正确
+        SELECT 'ERROR:PHONE_ERROR' AS result_type;			    -- 否则电话号码不正确
+    end if;
+END
+$$
+DELIMITER ;
+
+
+-- 存储过程：老师登录
+DELIMITER $$
+CREATE PROCEDURE T_Login(							        -- 登录，返回用户uno和电话号码
+    IN p_phone VARCHAR(20),
+    IN p_password VARCHAR(100)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    START TRANSACTION;
+
+    if EXISTS (select 1 from Teacher_Info where Tphone = p_phone and Tpassword = p_password) THEN		    -- 判断电话号码和密码的组合是否在表中存在
+        COMMIT;
+        SELECT 'SUCCESS' AS result_type, (select Tno from Teacher_Info where Tphone = p_phone) AS user_id;
+    elseif EXISTS (select 1 from Teacher_Info where Tphone = p_phone) THEN								-- 登录失败，判断电话号码是否正确
+        ROLLBACK;
+        SELECT 'ERROR:PASSWORD_ERROR' AS result_type;		    -- 如果电话号码正确，那就是密码错误
+    else
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_ERROR' AS result_type;			    -- 否则电话号码不正确
     end if;
 END
 $$
@@ -109,7 +180,7 @@ DELIMITER ;
 -- 存储过程：查看作业
 DELIMITER $$
 CREATE PROCEDURE View_homework(	                                -- 查看学生写的作业的内容（包括作业题目的文本，写的内容文本，分数）
-    IN p_uno int,						                        -- 指名角色
+    IN p_sno int,						                        -- 指名角色
     IN p_wno int						                        -- 指名作业
 )
 BEGIN
@@ -121,9 +192,9 @@ BEGIN
 
     START TRANSACTION;
 
-    if EXISTS (select 1 from `write` where Uno = p_uno and Wno = p_wno) THEN		                    -- 判断这个作业是否存在
+    if EXISTS (select 1 from `write` where Sno = p_sno and Wno = p_wno) THEN		                    -- 判断这个作业是否存在
         COMMIT;
-        SELECT 'SUCCESS' AS result_type, (select Wcontent from Work where Wno = p_wno) AS title, (select Wrcontent from `write` where Uno = p_uno and Wno = p_wno) AS write_content;
+        SELECT 'SUCCESS' AS result_type, (select Wcontent from Work where Wno = p_wno) AS title, (select Wrcontent from `write` where Sno = p_sno and Wno = p_wno) AS write_content;
     else
         ROLLBACK;
         SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type, NULL AS title, NULL AS write_content;			-- 否则该作业不存在
@@ -140,7 +211,7 @@ CREATE PROCEDURE Create_Course(		                        -- 增加课程，返�
     p_major VARCHAR(50),
     p_credit INT,
     p_type VARCHAR(20),
-    p_uno int							                    -- 指名教学老师
+    p_tno int							                    -- 指名教学老师
 )
 BEGIN
 
@@ -172,10 +243,10 @@ BEGIN
     START TRANSACTION;
 
     INSERT INTO course (
-        Cname, Cmajor, Ccredit, Ctype, Uno
+        Cname, Cmajor, Ccredit, Ctype, Tno
     ) VALUES (
         p_cname, p_major,
-        p_credit, p_type, p_uno
+        p_credit, p_type, p_tno
     );
     
     COMMIT;
@@ -193,7 +264,7 @@ CREATE PROCEDURE Edit_Course(		                        -- 返回是否修改成�
     p_major VARCHAR(50),
     p_credit INT,
     p_type VARCHAR(20),
-    p_uno INT							                    -- 指名教学老师
+    p_tno INT							                    -- 指名教学老师
 )
 BEGIN
 
@@ -229,7 +300,7 @@ BEGIN
         SELECT 'ERROR:COURSE_NOT_EXIST' AS result_type;
     else
         update Course
-        set Cname = p_cname, Cmajor = p_major, Ccredit = p_credit, Ctype = p_type, Uno = p_uno
+        set Cname = p_cname, Cmajor = p_major, Ccredit = p_credit, Ctype = p_type, Tno = p_tno
         where Cno = p_cno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
@@ -326,7 +397,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE Create_Aimage(						        -- 增加图片
     p_wno int,
-    p_uno int,
+    p_sno int,
     p_image_path VARCHAR(255)
 )
 BEGIN
@@ -339,11 +410,11 @@ BEGIN
 
     START TRANSACTION;
 
-    if exists (select 1 from `write` where Wno = p_wno and Uno = p_uno) then
+    if exists (select 1 from `write` where Wno = p_wno and Sno = p_sno) then
         INSERT INTO image (
-            Wno, Uno, image_path
+            Wno, Sno, image_path
         ) VALUES (
-            p_wno, p_uno, p_image_path
+            p_wno, p_sno, p_image_path
         );
         commit;
         SELECT 'SUCCESS' AS result_type;
