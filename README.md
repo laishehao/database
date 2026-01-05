@@ -15,25 +15,28 @@ TUKI
 
 |  表名  |    主键    |         描述         |
 | :----: | :--------: | :------------------: |
-|  User  |    Uno     | 用户表：存储用户信息 |
+|  Teacher_Info  |    Tno     | 老师表：存储老师信息 |
+|  Student_Info  |    Sno     | 老师表：存储老师信息 |
 | Course |    Cno     | 课程表：存储课程信息 |
-|  Work  |    Wno     | 作业表：存储作业信息 |
+|  Work  |    Wno     | 作业题目表：存储作业信息 |
 | Write  | (Wno, Uno) | 提交表：记录完成情况 |
+| SC  | (Cno, Sno) | 选课表：记录学生选课情况 |
+| Title_Image  | (Wno, Cno) | 题目图片表：记录作业题目的图片 |
+| Answer_Image  | (Wno, Sno) | 选课表：记录学生作业的作答图片 |
 
 ### 详细表结构
 
-#### 1. User 用户表
+#### 1. Teacher_Info 用户表
 |  字段名   |           类型            |    约束     |  描述   |
 | :-------: | :-----------------------: | :---------: | :-----: |
-|    Uno    |            INT            | PRIMARY KEY | 用户ID  |
-|   Uname   |          VARCHAR          |  NOT NULL   | 用户名  |
-| Upassword |          VARCHAR          |  NOT NULL   |  密码   |
-|   Umail   |          VARCHAR          |   UNIQUE    |  邮箱   |
-|  Uphone   |          VARCHAR          |   UNIQUE    |  电话   |
-|  Uavatar  |          VARCHAR          |             | 头像URL |
-|  Ugender  |           CHAR            |             |  性别   |
-|  Umajor   |          VARCHAR          |             |  专业   |
-|   Urole   | ENUM('student','teacher') |  NOT NULL   |  角色   |
+|    Tno    |            INT            | PRIMARY KEY | 用户ID  |
+|   Tname   |          VARCHAR          |  NOT NULL   | 用户名  |
+| Tpassword |          VARCHAR          |  NOT NULL   |  密码   |
+|   Tmail   |          VARCHAR          |   UNIQUE    |  邮箱   |
+|  Tphone   |          VARCHAR          |NOT NULL UNIQUE |  电话   |
+|  Tavatar  |          VARCHAR          |  UNIQUE     | 头像URL |
+|  Tgender  |           CHAR            |             |  性别   |
+|  Tmajor   |          VARCHAR          |             |  专业   |
 
 #### 2. Course 课程表
 | 字段名  |  类型   |    约束     |   描述   |
@@ -113,12 +116,149 @@ Write：(Wno, Uno) → State
 - 开课
 >>>>>>> cb52239a17450c05a958f377275d206633d550ad
 
-# database数据库设计
-- 创建 User, Course, Work 和 Write 四张表。
-- 设置主键和外键约束。
-- 为每个表设置合适的索引以提高查询效率。
+# database数据库存储过程
+- S_Register
 
-- 根据需求为某些字段添加默认值或非空约束。
+功能：注册学生账户
+
+输入：
+p_name VARCHAR(50)
+p_phone VARCHAR(20)
+p_password VARCHAR(100)
+p_email VARCHAR(100)
+
+正常输出：
+
+|result_type|  user_id |
+| :-------: | :------: |
+|  SUCCESS  |   Sno    |
+错误输出：
+
+|result_type|
+| :-------: |
+|  ERROR:PHONE_EXISTS  |
+
+|result_type|
+| :-------: |
+| ERROR:EMAIL_EXISTS |
+
+|result_type|
+| :-------: |
+| ERROR:SYSTEM_ERROR |
+
+- Edit_Student
+
+功能编辑学生信息
+
+输入：
+p_sno INT
+p_name VARCHAR(50)
+p_password VARCHAR(100)
+p_email VARCHAR(100)
+p_gender CHAR(1)
+p_major VARCHAR(50)
+p_phone VARCHAR(20)
+p_avatar VARCHAR(200)
+
+正常输出：
+
+|result_type|
+| :-------: |
+|  SUCCESS  |
+错误输出：
+
+|result_type|
+| :-------: |
+|  ERROR:PHONE_EXISTS  |
+
+|result_type|
+| :-------: |
+| ERROR:EMAIL_EXISTS |
+
+|result_type|
+| :-------: |
+| ERROR:AVATAR_EXISTS |
+
+|result_type|
+| :-------: |
+| ERROR:STUDENT_NOT_EXISTS |
+
+|result_type|
+| :-------: |
+| ERROR:SYSTEM_ERROR |
+
+- View_Student
+
+功能：查看学生信息
+
+输入：
+p_sno INT
+
+正常输出：
+
+|result_type|Tno|Tname|Tpassword|Temail|Tgender|Tphone|Tavatar|
+| :-------: |:-:|:---:|:-------:|:----:|:-----:|:----:|:-----:|
+|  SUCCESS  |Tno|Tname|Tpassword|Temail|Tgender|Tphone|Tavatar|
+错误输出：
+
+|result_type|
+| :-------: |
+| ERROR:SYSTEM_ERROR |
+
+- S_Login
+
+功能：登录学生账户
+
+输入：
+p_phone VARCHAR(20)
+p_password VARCHAR(100)
+
+正常输出：
+
+|result_type|  user_id |
+| :-------: | :------: |
+|  SUCCESS  |   Sno    |
+错误输出：
+
+|result_type|
+| :-------: |
+| ERROR:PASSWORD_ERROR |
+
+|result_type|
+| :-------: |
+| ERROR:PHONE_ERROR |
+
+|result_type|
+| :-------: |
+| ERROR:SYSTEM_ERROR |
+
+- T_Register
+输入：
+p_name VARCHAR(50)
+p_phone VARCHAR(20)
+p_password VARCHAR(100)
+p_email VARCHAR(100)
+
+正常输出：
+
+|result_type|  user_id |
+| :-------: | :------: |
+|  SUCCESS  |   Tno    |
+错误输出：
+
+|result_type|
+| :-------: |
+|  ERROR:PHONE_EXISTS  |
+
+|result_type|
+| :-------: |
+| ERROR:EMAIL_EXISTS |
+
+|result_type|
+| :-------: |
+| ERROR:SYSTEM_ERROR |
+
+
 
 # 前后端对应表
 |  角色   |       需求       |              请求数据格式 (Object Structure)              |            返回数据            |         url         |  方法  |
