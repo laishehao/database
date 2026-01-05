@@ -79,7 +79,7 @@ BEGIN
     else
         update Student_Info
         set Sname = p_name, Spassword = p_password, Semail = p_email, Sgender = p_gender, Smajor = p_major, Sphone = p_phone, Savatar = p_avatar
-        where Sno = p_cno;
+        where Sno = p_sno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
     end if;
