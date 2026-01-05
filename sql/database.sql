@@ -346,7 +346,7 @@ BEGIN
         SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;
     else
         update Work
-        set Wtitle = p_title, Wstart = p_start, Wover = p p_over, Wcontent = p_content
+        set Wtitle = p_title, Wstart = p_start, Wover = p_over, Wcontent = p_content
         where Wno = p_wno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
