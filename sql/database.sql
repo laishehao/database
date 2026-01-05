@@ -371,7 +371,7 @@ BEGIN
 
     START TRANSACTION;
 
-    if EXISTS (select 1 from work where Wno = p_cno) THEN		                    -- 判断这个作业是否存在
+    if EXISTS (select 1 from work where Wno = p_wno) THEN		                    -- 判断这个作业是否存在
         COMMIT;
         SELECT 'SUCCESS' AS result_type, (select * from work where Wno = p_wno);
     else
