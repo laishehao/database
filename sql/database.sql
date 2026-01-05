@@ -30,7 +30,7 @@ BEGIN
         Sname, Spassword, Semail, Sphone
     ) VALUES (
         p_name, SHA2(p_password, 256), 					-- SHA2是对密码加密
-        p_email, p_role,p_phone
+        p_email, p_phone
     );
     
     COMMIT;											    -- 提交事务
@@ -174,7 +174,7 @@ BEGIN
         Tname, Tpassword, Temail, Tphone
     ) VALUES (
         p_name, SHA2(p_password, 256), 					-- SHA2是对密码加密
-        p_email, p_role,p_phone
+        p_email, p_phone
     );
     
     COMMIT;											    -- 提交事务
