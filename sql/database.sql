@@ -186,8 +186,8 @@ DELIMITER ;
 
 -- 存储过程：编辑老师信息
 DELIMITER $$
-CREATE PROCEDURE Edit_Student(
-    IN p_sno INT,
+CREATE PROCEDURE Edit_Teacher(
+    IN p_tno INT,
     IN p_name VARCHAR(50),							    -- 用户名
     IN p_password VARCHAR(100),						    -- 密码
     IN p_email VARCHAR(100),							-- 邮箱
@@ -216,9 +216,9 @@ BEGIN
     
     START TRANSACTION;								    -- 开始事务
     
-    if not exists (select 1 from Teacher_Info where Tno = p_sno) then
+    if not exists (select 1 from Teacher_Info where Tno = p_tno) then
         ROLLBACK;
-        SELECT 'ERROR:STUDENT_NOT_EXISTS' AS result_type;
+        SELECT 'ERROR:TEACHER_NOT_EXISTS' AS result_type;
     else
         update Teacher_Info
         set Tname = p_name, Tpassword = p_password, Temail = p_email, Tgender = p_gender, Tphone = p_phone, Tavatar = p_avatar
