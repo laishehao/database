@@ -1,5 +1,5 @@
 import pymysql
-
+import logging
 # from flask import jsonify
 
 
@@ -27,8 +27,8 @@ def test():
             # # 提交事务
             # connection.commit()
             
-            sql = "desc testtable;"
-            # sql = "desc student;"
+            # sql = "desc testtable;"
+            sql = "show tables;"
             cursor.execute(sql)  # 注意参数必须是元组，单个参数也要加逗号
             result = cursor.fetchall()
             # print(result[1][0])
@@ -44,32 +44,51 @@ def test():
     return result
     
 
-def register(username, password, name, email):
+def register(role,name, password, phone, email):
     user={
+        "id":0,
         "username":"testuser_datacheck",
-        "name":"testname",
-        "role":"teacher",
+        "name":name,
+        "role":role,
+        "phone":phone,
         "avatar":"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
     }
     ans={
         "msg":"注册成功",
+        "user" :user,
+        # "code":200
+    }
+    return ans
+def login(phone, password):
+    user={
+        "username":"testuser_datacheck",
+        "name":"testname",
+        "role":"student",
+        "avatar":"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+    }
+    ans={
+        "msg":"登录成功",
         "user" :user
     }
     return ans
-def login(username, password):
+def userinfo(phone, name, email):
     user={
-        "username":"testuser_datacheck",
+        "email":"example@example.com",
         "name":"testname",
         "role":"teacher",
+        "phone":1234567890,
         "avatar":"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
     }
     ans={
-        "msg":"注册成功",
+        "msg":"修改成功",
+        "code":404,
         "user" :user
     }
     return ans
 def select_student(query, page, page_size):
+    
     students=[]
+    # test 王小明
     student= {
           "studentId": "2023001",
           "name": "王小明",
@@ -81,13 +100,14 @@ def select_student(query, page, page_size):
         }
     # role_check=True
     students.append(student)
-    # ans={
-    #     "role_chech":role_check,
-    #     "data":students
-    # }
-    # test
-    # print(students)
-    return students
+    
+    list=students
+    total=list.__len__()
+    ans={
+        "total":total,
+        "list":list
+    }
+    return ans
 
 def add_student (studentId, name, major, gender,phone):
     ans={
@@ -134,9 +154,21 @@ def delete_course(courseId):
     return ans
     
 def select_work(query,page,pageSize):
+    homwork={
+            'workId':'1',
+            'title':'test',
+            'course':'test',
+            'content':'test',
+            'active':True,
+            'progerss':50,
+            'completed':False
+        }
+    homworks=[]
+    homworks.append(homwork)
+    total=homworks.__len__()
     ans={
-        "total":10,
-        # "list":[{"id":1},{"id":2}] #格式未知
+        "total":total,
+        "list":homworks
     }
     return ans
 def add_work(title,course,content,progress):
@@ -161,6 +193,12 @@ def submit_work(role,studentId,workId,writecheck):
     ans={
         "code":200,
         "msg":"提交成功"
+    }
+    return ans
+def watch_work(workId,UserId):
+    ans={
+        "code":200,
+        "msg":"查看成功"
     }
     return ans
 
