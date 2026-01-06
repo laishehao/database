@@ -3,6 +3,7 @@ from flask import Flask, request,jsonify
 from py_sql import *
 from flask_cors import CORS
 import logging
+from flask import abort
 def setup_logger():
     """配置日志记录器"""
     logger = logging.getLogger(__name__)
@@ -73,9 +74,8 @@ def app_register():
 
 @app.route('/api/user',methods=['POST'])
 def app_userinfo():
-    """ 注册用户，需要传入用户名、密码、姓名和邮箱
-        成功：返回True
-        失败：返回错误原因
+    """ 
+    用户信息修改，需要传入用户名、密码、姓名和邮箱
     """
     logger.info('访问了用户界面')
     phone = request.form.get('phone')
@@ -105,9 +105,8 @@ def app_login():
 
 @app.route('/student',methods=['GET'])
 def app_select_student():
-    """查询学生信息
-        成功：返回学生信息列表
-        失败：返回错误原因
+    """
+    查看学生列表
     """
     # print(request.args)
     # print(request.form)
@@ -124,9 +123,8 @@ def app_select_student():
 
 @app.route('/student',methods=['POST'])
 def app_add_student():
-    """添加学生信息
-        成功：返回True
-        失败：返回错误原因
+    """
+    增加学生信息
     """
     logger.info('访问了学生添加界面')
 
@@ -206,9 +204,8 @@ def app_select_course():
 
 @app.route('/course',methods=['POST'])
 def app_add_course():
-    """添加学生信息
-        成功：返回True
-        失败：返回错误原因
+    """
+    增加课程
     """
     logger.info('访问了课程添加界面')
     courseId = request.args.get('courseId')
@@ -226,9 +223,8 @@ def app_add_course():
 
 @app.route('/course/<int:courseId>',methods=['PUT'])
 def app_update_course(courseId):
-    """更新课程信息
-        成功：返回True
-        失败：返回错误原因
+    """
+    更新课程信息，编辑课程
     """
     logger.info('访问了课程更新界面')
     # courseId = request.args.get('courseId')
@@ -268,10 +264,10 @@ def app_delete_course(courseId):
 @app.route('/homework',methods=['GET'])
 def app_select_work():
     """查询课程信息
-        成功：返回学生信息列表
-        失败：返回错误原因
+        
     """
     logger.info('访问了作业查看界面')
+    # abort(500)
     query=request.args.get('query')
     page = request.args.get('page')
     pageSize=request.args.get('pageSize')
@@ -284,22 +280,21 @@ def app_select_work():
 
 @app.route('/homework/submissions',methods=['GET'])
 def app_check_work():
-    """查询课程信息
-        成功：返回学生信息列表
-        失败：返回错误原因
+    """查询具体作业提交情况
     """
     logger.info('访问了作业批改界面')
     work = request.args.get('workId')
+    logger.info(f'work={work}')
     ans = check_work(work)
+    
+    logger.info(f'work[0]={ans["data"]["list"][0]}')
     # logger.info(f'work[0]={work["list"][0]}')
     
     return ans
 
 @app.route('/homework',methods=['POST'])
 def app_add_work():
-    """添加学生信息
-        成功：返回True
-        失败：返回错误原因
+    """添加作业，发布作业
     """
     logger.info('访问了作业添加界面')
     data=request.get_json()
@@ -316,9 +311,8 @@ def app_add_work():
 
 @app.route('/homework/<int:workId>',methods=['DELETE'])
 def app_delete_work(workId):
-    """删除学生信息
-        成功：返回True
-        失败：返回错误原因
+    """
+    删除作业
     """
     logger.info('访问了作业删除界面')
     if_ok= delete_work (workId)
@@ -326,9 +320,8 @@ def app_delete_work(workId):
     return if_ok
 @app.route('/homework/<int:workId>',methods=['PUT'])
 def app_update_work(workId):
-    """更新学生信息
-        成功：返回True
-        失败：返回错误原因
+    """
+    编辑作业信息
     """
     logger.info('访问了作业更新界面')
     # workId = request.args.get('workId')
@@ -353,14 +346,39 @@ def app_submit_work(workId):
     if_ok= submit_work (role,syudentId,workId,writecheck)
     return if_ok
 @app.route('/homework/<int:workId>',methods=['GET'])
-def app_watch_work(UserId):
+def app_watch_work(workId):
     """
-    查看某一项作业
+    学生查看某一项作业
     """
-    workId=request.args.get('workId')
+    logger.info('访问了作业查看界面')
+    # data=request.get_json()
+    # UserId = data.get('UserId')
+    UserId = request.form.get('UserId')
+    logger.info(f'workId={workId},UserId={UserId}')
+    
     if_ok= watch_work (workId,UserId)
+    logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
+@app.route('/homework/grade',methods=['POST'])
+def app_deal_work():
+    """
+    提交一个作业的批改情况
+    """
+    logger.info('访问了作业批改界面')
+    data = request.get_json()
+    # 检查必要参数
+    if not data:
+        return jsonify({"error": "没有收到数据"}), 400
+    user_id = data.get('userId')
+    work_id = data.get('workId')
+    score = data.get('score')
+    comment = data.get('teacherComment')
+    logger.info(f'workId={work_id},UserId={user_id},score={score},teacherComment={comment}')
+    if_ok= deal_work (work_id,user_id,comment,score)
+    
+    # logger.info(f'if_ok={if_ok["msg"]}')
+    return if_ok
 # 修改这2行
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

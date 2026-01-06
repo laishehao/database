@@ -8,7 +8,7 @@
  */
 //导出一些基础配置
 export default{
-  'BASE_URL': 'http://127.0.0.1:3000',
+  'BASE_URL': 'http://127.0.0.1:5000',
   'BASE_IMG_URL': '@/assets/img',
   'TIMEOUT': 5000,
   'TOKEN_NAME': 'ua_token',

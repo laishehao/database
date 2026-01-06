@@ -4,26 +4,26 @@ import logging
 
 
 # 创建连接
-# connection = pymysql.connect(
-#     host='8.130.144.155',
-#     user='lzh',
-#     password='12345678',
-#     database='619database',
-#     port=3306,
-#     charset='utf8'
-#     # cursorclass=pymysql.cursors.DictCursor
-# )
-
-# 创建连接
 connection = pymysql.connect(
-    host='127.0.0.1',
-    user='root',
-    password='123456',
-    database='laizhehao',
+    host='8.130.144.155',
+    user='lzh',
+    password='12345678',
+    database='619database',
     port=3306,
     charset='utf8'
     # cursorclass=pymysql.cursors.DictCursor
 )
+
+# 创建连接
+# connection = pymysql.connect(
+#     host='127.0.0.1',
+#     user='root',
+#     password='123456',
+#     database='laizhehao',
+#     port=3306,
+#     charset='utf8'
+#     # cursorclass=pymysql.cursors.DictCursor
+# )
 
 def test():
     """用于测试数据库连接是否成功
@@ -75,7 +75,7 @@ def login(phone, password):
     user={
         "username":"testuser_datacheck",
         "name":"testname",
-        "role":"teacher",
+        "role":"student",
         "avatar":"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
     }
     # 创建登录响应对象
@@ -229,46 +229,60 @@ def watch_work(workId,UserId):
     }
     return ans
 def check_work(workId):
-    ans= {
-    "title": "2023-2024学年第一学期作业汇总",
-    "list": [
-        {
+    data= {
+        "title": "2023-2024学年第一学期作业汇总",
+        "list": [
+            {
+            "workId": "HW001",
+            "userId": "202301001",
+            "name": "张三",
+            "status": "submitted",
+            "score": 85,
+            "content": "这是我的第一次作业，主要完成了前两章的基础练习...",
+            "teacherComment": "完成得不错，但第三题可以更详细些"
+            },
+            {
+            "workId": "HW001",
+            "userId": "202301002", 
+            "name": "李四",
+            "status": "graded",
+            "score": 92,
+            "content": "作业已完成，包括所有附加题...",
+            "teacherComment": "思路清晰，答案正确，继续保持！"
+            },
+            {
+            "workId": "HW001",
+            "userId": "202301003",
+            "name": "王五",
+            "status": "unsubmitted",
+            "score": 0,
+            "content": "",
+            "teacherComment": "尚未提交"
+            },
+            {
+            "workId": "HW002",
+            "userId": "202301001",
+            "name": "张三",
+            "status": "unsubmitted",
+            "score": 0,
+            "content": "",
+            "teacherComment": "还未提交"
+            }
+        ]
+    }
+    ans={
+        "code":404,
+        "data":data
+    }
+    return ans
+def deal_work (workId,UserId,teacherComment,score):
+    ans={
+        "msg": "批改成功",
+        "userId": "202301002",
         "workId": "HW001",
-        "userId": "202301001",
-        "name": "张三",
-        "status": "submitted",
-        "score": 85,
-        "content": "这是我的第一次作业，主要完成了前两章的基础练习...",
-        "teacherComment": "完成得不错，但第三题可以更详细些"
-        },
-        {
-        "workId": "HW001",
-        "userId": "202301002", 
-        "name": "李四",
         "status": "graded",
-        "score": 92,
-        "content": "作业已完成，包括所有附加题...",
+        "score": "92",
         "teacherComment": "思路清晰，答案正确，继续保持！"
-        },
-        {
-        "workId": "HW001",
-        "userId": "202301003",
-        "name": "王五",
-        "status": "unsubmitted",
-        "score": 0,
-        "content": "",
-        "teacherComment": "尚未提交"
-        },
-        {
-        "workId": "HW002",
-        "userId": "202301001",
-        "name": "张三",
-        "status": "unsubmitted",
-        "score": 0,
-        "content": "",
-        "teacherComment": "还未提交"
-        }
-    ]
     }
     return ans
 if __name__ == '__main__':
