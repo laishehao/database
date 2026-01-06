@@ -601,3 +601,19 @@
 2026-01-06 21:49:06 [INFO] if_ok=查看成功
 2026-01-06 21:50:04 [INFO] 访问了主界面
 2026-01-06 21:50:15 [INFO] 访问了测试界面
+2026-01-06 22:01:54 [INFO] 日志记录器已配置
+2026-01-06 22:01:56 [INFO] 日志记录器已配置
+2026-01-06 22:07:48 [INFO] 日志记录器已配置
+2026-01-06 22:08:27 [INFO] 访问了登录界面
+2026-01-06 22:08:27 [INFO] phone=None,password=None
+2026-01-06 22:08:27 [INFO] if_ok=登录成功
+2026-01-06 22:08:29 [INFO] 访问了作业查看界面
+2026-01-06 22:08:29 [INFO] query=,page=1,pageSize=10
+2026-01-06 22:08:29 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 22:08:34 [INFO] 访问了作业批改界面
+2026-01-06 22:08:34 [INFO] work=1
+2026-01-06 22:08:34 [INFO] work[0]={'workId': 'HW001', 'userId': '202301001', 'name': '张三', 'status': 'submitted', 'score': 85, 'content': '这是我的第一次作业，主要完成了前两章的基础练习...', 'teacherComment': '完成得不错，但第三题可以更详细些'}
+2026-01-06 22:08:37 [INFO] 访问了作业批改界面
+2026-01-06 22:08:37 [INFO] workId=1,UserId=202301001,score=85,teacherComment=完成得不错，但第三题可以更详细些
+2026-01-06 22:08:46 [INFO] 访问了作业批改界面
+2026-01-06 22:08:46 [INFO] workId=1,UserId=202301002,score=92,teacherComment=思路清晰，答案正确，继续保持！

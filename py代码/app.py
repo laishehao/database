@@ -36,7 +36,10 @@ logger = setup_logger()
 
 
 app = Flask(__name__)
-CORS(app)
+# # CORS(app)
+# CORS(app, resources={r"/homework/*": {"origins": "http://localhost:8080"}})
+# 配置1：最宽松的配置（推荐学习阶段用）
+CORS(app, supports_credentials=True)  # 允许所有来源，包括携带凭证
 @app.route('/')
 def welcome():
     """主界面
