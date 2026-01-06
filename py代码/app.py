@@ -128,31 +128,52 @@ def app_add_student():
         成功：返回True
         失败：返回错误原因
     """
-    studentId = request.args.get('studentId')
-    name = request.args.get('name')
-    gender = request.args.get('gender')
-    major = request.args.get('major')
-    phone = request.args.get('phone')
+    logger.info('访问了学生添加界面')
+
+    # studentId = request.form.get('studentId')
+    # name = request.args.get('name')
+    # gender = request.args.get('gender')
+    # major = request.args.get('major')
+    # phone = request.args.get('phone')
+    data = request.get_json()
+    studentId = data.get('studentId')
+    name=data.get('name')
+    gender=data.get('gender')
+    major=data.get('major')
+    phone = data.get('phone')   
+    
+    logger.info(f'studentId={studentId},name={name},gender={gender},major={major},phone={phone}')
+
     # avatar = request.args.get('avatar')
     # age = request.form.get('age')
     
     if_ok= add_student (studentId,name,gender,major,phone)
+    logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
-@app.route('/student',methods=['PUT'])
-def app_update_student():
+@app.route('/student/<int:studentId>',methods=['PUT'])
+def app_update_student(studentId):
     """更新学生信息
         成功：返回True
         失败：返回错误原因
     """
-    studentId = request.args.get('studentId')
-    name = request.args.get('name')
-    gender = request.args.get('gender')
-    major = request.args.get('major')
-    phone = request.args.get('phone')
+    logger.info('访问了学生更新界面')
+    # studentId = request.args.get('studentId')
+    # name = request.args.get('name')
+    # gender = request.args.get('gender')
+    # major = request.args.get('major')
+    # phone = request.args.get('phone')
     # avatar = request.args.get('avatar')
+    data = request.get_json()
+    studentId = data.get('studentId')
+    name=data.get('name')
+    gender=data.get('gender')
+    major=data.get('major')
+    phone = data.get('phone')  
+    logger.info(f'studentId={studentId},name={name},gender={gender},major={major},phone={phone}')
     
     if_ok= update_student (studentId,name,gender,major,phone)
+    logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
 # DELETE 请求处理
@@ -172,18 +193,24 @@ def app_select_course():
         成功：返回学生信息列表
         失败：返回错误原因
     """
+    logger.info('访问了课程查看界面')
+    
     query=request.args.get('query')
     page=request.args.get('page')
     pageSize=request.args.get('pageSize')
-    students = select_course (query, page, pageSize)
-    return students
+    logger.info(f'query={query},page={page},pageSize={pageSize}')
+    
+    ans = select_course (query, page, pageSize)
+    
+    return ans
 
-@app.route('/student',methods=['POST'])
+@app.route('/course',methods=['POST'])
 def app_add_course():
     """添加学生信息
         成功：返回True
         失败：返回错误原因
     """
+    logger.info('访问了课程添加界面')
     courseId = request.args.get('courseId')
     CourseName = request.args.get('CourseName')
     major = request.args.get('major')
@@ -191,40 +218,56 @@ def app_add_course():
     type = request.args.get('type')
     teacher = request.args.get('teacher')
     # age = request.form.get('age')
+    logger.info(f'courseId={courseId},CourseName={CourseName},major={major},credits={credits},type={type},teacher={teacher}')
     
     if_ok= add_course (courseId,CourseName,major,credits,type,teacher)
+    logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
-@app.route('/student',methods=['PUT'])
-def app_update_course():
-    """更新学生信息
+@app.route('/course/<int:courseId>',methods=['PUT'])
+def app_update_course(courseId):
+    """更新课程信息
         成功：返回True
         失败：返回错误原因
     """
-    courseId = request.args.get('courseId')
-    CourseName = request.args.get('CourseName')
-    major = request.args.get('major')
-    credits = request.args.get('credits')
-    type = request.args.get('type')
-    teacher = request.args.get('teacher')
+    logger.info('访问了课程更新界面')
+    # courseId = request.args.get('courseId')
+    # CourseName = request.form.get('CourseName')
+    # major = request.form.get('major')
+    # credits = request.form.get('credits')
+    # type = request.form.get('type')
+    # teacher = request.form.get('teacher')
+    data = request.get_json()
+    # logger.info(f'data={data}')
+    CourseName = data.get('courseName')
+    major = data.get('major')
+    credits = data.get('credits')
+    type = data.get('type')
+    teacher = data.get('teacher')
+    
+    logger.info(f'courseId={courseId},CourseName={CourseName},major={major},credits={credits},type={type},teacher={teacher}')
     
     if_ok= update_course (courseId,CourseName,major,credits,type,teacher)
+    logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
 # DELETE 请求处理
-@app.route('/student/<int:courseId>', methods=['DELETE'])
-def app_delete_course(id):
-    """删除学生信息
+@app.route('/course/<int:courseId>', methods=['DELETE'])
+def app_delete_course(courseId):
+    """删除课程信息
         成功：返回True
         失败：返回错误原因
     """
-    if_ok= delete_student (id)
+    logger.info('访问了课程删除界面')
+    logger.info(f'courseId={courseId}')
+    if_ok= delete_student (courseId)
+    logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
 # 作业处理
 @app.route('/homework',methods=['GET'])
 def app_select_work():
-    """查询学生信息
+    """查询课程信息
         成功：返回学生信息列表
         失败：返回错误原因
     """
@@ -239,19 +282,36 @@ def app_select_work():
     
     return work
 
+@app.route('/homework/submissions',methods=['GET'])
+def app_check_work():
+    """查询课程信息
+        成功：返回学生信息列表
+        失败：返回错误原因
+    """
+    logger.info('访问了作业批改界面')
+    work = request.args.get('workId')
+    ans = check_work(work)
+    # logger.info(f'work[0]={work["list"][0]}')
+    
+    return ans
+
 @app.route('/homework',methods=['POST'])
 def app_add_work():
     """添加学生信息
         成功：返回True
         失败：返回错误原因
     """
-    title = request.form.get('title')
-    content = request.form.get('content')
-    progress = request.form.get('progress')
-    course = request.form.get('course')
+    logger.info('访问了作业添加界面')
+    data=request.get_json()
+    title = data.get('title')
+    content = data.get('content')
+    progress = data.get('progress')
+    course = data.get('course')
+    logger.info(f'title={title},content={content},progress={progress},course={course}')
     # age = request.form.get('age')
     
     if_ok= add_work (title,course,content,progress)
+    logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
 @app.route('/homework/<int:workId>',methods=['DELETE'])
@@ -260,19 +320,25 @@ def app_delete_work(workId):
         成功：返回True
         失败：返回错误原因
     """
+    logger.info('访问了作业删除界面')
     if_ok= delete_work (workId)
+    logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-@app.route('/homework',methods=['PUT'])
-def app_update_work():
+@app.route('/homework/<int:workId>',methods=['PUT'])
+def app_update_work(workId):
     """更新学生信息
         成功：返回True
         失败：返回错误原因
     """
-    workId = request.args.get('workId')
-    title = request.args.get('title')
-    content = request.args.get('content')
+    logger.info('访问了作业更新界面')
+    # workId = request.args.get('workId')
+    data=request.get_json()
+    title = data.get('title')
+    content = data.get('content')
     
+    logger.info(f'workId={workId},title={title},content={content}')
     if_ok= update_work (workId,title,content)
+    logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
 @app.route('/homework/submit/<int:workId>',methods=['POST'])

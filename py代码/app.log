@@ -1,213 +1,267 @@
-2026-01-05 21:05:35 [INFO] 日志记录器已配置
-2026-01-05 21:05:55 [INFO] 日志记录器已配置
-2026-01-05 21:06:27 [INFO] 日志记录器已配置
-2026-01-05 21:06:30 [INFO] 访问了学生界面
-2026-01-05 21:06:30 [INFO] query=,page=1,page_size=10
-2026-01-05 21:06:52 [INFO] 访问了学生界面
-2026-01-05 21:06:52 [INFO] query=nihao,page=1,page_size=10
-2026-01-05 21:07:40 [INFO] 访问了学生界面
-2026-01-05 21:07:40 [INFO] query=,page=1,page_size=10
-2026-01-05 21:10:48 [INFO] 日志记录器已配置
-2026-01-05 21:11:04 [INFO] 日志记录器已配置
-2026-01-05 21:11:33 [INFO] 日志记录器已配置
-2026-01-05 21:11:42 [INFO] 日志记录器已配置
-2026-01-05 21:11:55 [INFO] 访问了学生界面
-2026-01-05 21:11:55 [INFO] query=,page=1,page_size=10
-2026-01-05 21:12:16 [INFO] 访问了学生界面
-2026-01-05 21:12:16 [INFO] query=,page=1,page_size=10
-2026-01-05 21:14:05 [INFO] 日志记录器已配置
-2026-01-05 21:14:11 [INFO] 日志记录器已配置
-2026-01-05 21:14:34 [INFO] 日志记录器已配置
-2026-01-05 21:14:47 [INFO] 日志记录器已配置
-2026-01-05 21:14:49 [INFO] 访问了学生界面
-2026-01-05 21:14:49 [INFO] query=,page=1,page_size=10
-2026-01-05 21:14:49 [INFO] students={'total': 1, 'list': [{'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}]}
-2026-01-05 21:15:09 [INFO] 日志记录器已配置
-2026-01-05 21:16:36 [INFO] 日志记录器已配置
-2026-01-05 21:17:03 [INFO] 日志记录器已配置
-2026-01-05 21:18:11 [INFO] 日志记录器已配置
-2026-01-05 21:18:33 [INFO] 访问了注册界面
-2026-01-05 21:18:33 [INFO] username=None,password=None,name=None,email=None
-2026-01-05 21:18:33 [INFO] if_ok={'msg': '注册成功', 'user': {'username': 'testuser_datacheck', 'name': 'testname', 'role': 'teacher', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
-2026-01-05 21:22:36 [INFO] 日志记录器已配置
-2026-01-05 21:23:03 [INFO] 日志记录器已配置
-2026-01-05 21:23:33 [INFO] 日志记录器已配置
-2026-01-05 21:24:01 [INFO] 日志记录器已配置
-2026-01-05 21:25:04 [INFO] 日志记录器已配置
-2026-01-05 21:25:05 [INFO] 日志记录器已配置
-2026-01-05 21:25:09 [INFO] 访问了学生界面
-2026-01-05 21:25:09 [INFO] query=,page=1,page_size=10
-2026-01-05 21:25:26 [INFO] 访问了学生界面
-2026-01-05 21:25:26 [INFO] query=,page=1,page_size=10
-2026-01-05 21:27:16 [INFO] 日志记录器已配置
-2026-01-05 21:27:23 [INFO] 访问了学生界面
-2026-01-05 21:27:23 [INFO] query=,page=1,page_size=10
-2026-01-05 21:27:23 [INFO] students[0]={'total': 1, 'list': [{'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}]}
-2026-01-05 21:28:05 [INFO] 日志记录器已配置
-2026-01-05 21:29:55 [INFO] 日志记录器已配置
-2026-01-05 21:29:57 [INFO] 日志记录器已配置
-2026-01-05 21:30:01 [INFO] 访问了学生界面
-2026-01-05 21:30:01 [INFO] query=,page=1,page_size=10
-2026-01-05 21:30:01 [INFO] students[0]=[{'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}]
-2026-01-05 21:30:13 [INFO] 日志记录器已配置
-2026-01-05 21:30:17 [INFO] 访问了学生界面
-2026-01-05 21:30:17 [INFO] query=,page=1,page_size=10
-2026-01-05 21:30:17 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
-2026-01-05 21:33:22 [INFO] 日志记录器已配置
-2026-01-05 21:43:12 [INFO] 日志记录器已配置
-2026-01-05 21:43:13 [INFO] 日志记录器已配置
-2026-01-05 21:43:16 [INFO] 访问了主界面
-2026-01-05 21:43:24 [INFO] 访问了测试界面
-2026-01-05 22:00:53 [INFO] 日志记录器已配置
-2026-01-06 00:06:05 [INFO] 日志记录器已配置
-2026-01-06 00:06:07 [INFO] 日志记录器已配置
-2026-01-06 00:06:28 [INFO] 日志记录器已配置
-2026-01-06 00:06:39 [INFO] 访问了学生界面
-2026-01-06 00:06:39 [INFO] query=,page=1,page_size=10
-2026-01-06 00:06:39 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
-2026-01-06 00:11:06 [INFO] 日志记录器已配置
-2026-01-06 00:11:11 [INFO] 日志记录器已配置
-2026-01-06 00:11:18 [INFO] 日志记录器已配置
-2026-01-06 00:11:23 [INFO] 日志记录器已配置
-2026-01-06 00:18:07 [INFO] 日志记录器已配置
-2026-01-06 00:18:09 [INFO] 日志记录器已配置
-2026-01-06 00:18:12 [INFO] 访问了用户界面
-2026-01-06 00:18:12 [INFO] phone=None,name=None,email=None
-2026-01-06 00:18:12 [INFO] if_ok=修改成功
-2026-01-06 00:19:40 [INFO] 日志记录器已配置
-2026-01-06 00:19:59 [INFO] 日志记录器已配置
-2026-01-06 00:20:25 [INFO] 日志记录器已配置
-2026-01-06 00:20:37 [INFO] 访问了学生界面
-2026-01-06 00:20:37 [INFO] query=,page=1,pageSize=10
-2026-01-06 00:20:37 [INFO] work[0]={'id': 1}
-2026-01-06 00:22:21 [INFO] 日志记录器已配置
-2026-01-06 00:22:34 [INFO] 访问了用户界面
-2026-01-06 00:22:34 [INFO] phone=None,name=None,email=None
-2026-01-06 00:22:34 [INFO] if_ok=修改成功
-2026-01-06 00:23:02 [INFO] 访问了注册界面
-2026-01-06 00:23:02 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:23:02 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 0, 'username': 'testuser_datacheck', 'name': 'testname', 'role': 'teacher', 'phone': 1234567890, 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
-2026-01-06 00:23:50 [INFO] 访问了注册界面
-2026-01-06 00:23:50 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:23:50 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 0, 'username': 'testuser_datacheck', 'name': 'testname', 'role': 'teacher', 'phone': 1234567890, 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
-2026-01-06 00:24:31 [INFO] 日志记录器已配置
-2026-01-06 00:25:55 [INFO] 日志记录器已配置
-2026-01-06 00:27:18 [INFO] 日志记录器已配置
-2026-01-06 00:27:20 [INFO] 日志记录器已配置
-2026-01-06 00:27:23 [INFO] 访问了登录界面
-2026-01-06 00:27:23 [INFO] phone=None,password=None
-2026-01-06 00:27:23 [INFO] if_ok=登录成功
-2026-01-06 00:27:25 [INFO] 访问了学生界面
-2026-01-06 00:27:25 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:27:25 [INFO] work[0]={'id': 1}
-2026-01-06 00:28:54 [INFO] 访问了学生界面
-2026-01-06 00:28:54 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:28:54 [INFO] work[0]={'id': 1}
-2026-01-06 00:30:25 [INFO] 日志记录器已配置
-2026-01-06 00:32:08 [INFO] 日志记录器已配置
-2026-01-06 00:32:10 [INFO] 日志记录器已配置
-2026-01-06 00:33:09 [INFO] 日志记录器已配置
-2026-01-06 00:33:14 [INFO] 访问了学生界面
-2026-01-06 00:33:14 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:33:14 [INFO] work[0]={'id': 1}
-2026-01-06 00:33:43 [INFO] 日志记录器已配置
-2026-01-06 00:33:49 [INFO] 日志记录器已配置
-2026-01-06 00:33:51 [INFO] 访问了学生界面
-2026-01-06 00:33:51 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:33:51 [INFO] work[0]={'id': 1}
-2026-01-06 00:34:16 [INFO] 访问了学生界面
-2026-01-06 00:34:16 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:34:16 [INFO] work[0]={'id': 1}
-2026-01-06 00:36:03 [INFO] 访问了学生界面
-2026-01-06 00:36:03 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:36:03 [INFO] work[0]={'id': 1}
-2026-01-06 00:36:26 [INFO] 访问了学生界面
-2026-01-06 00:36:26 [INFO] query=nihao1,page=None,pageSize=None
-2026-01-06 00:36:26 [INFO] work[0]={'id': 1}
-2026-01-06 00:36:59 [INFO] 日志记录器已配置
-2026-01-06 00:37:04 [INFO] 访问了作业查看界面
-2026-01-06 00:37:04 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:37:04 [INFO] work[0]={'id': 1}
-2026-01-06 00:37:18 [INFO] 访问了作业查看界面
-2026-01-06 00:37:18 [INFO] query=nihao1,page=None,pageSize=None
-2026-01-06 00:37:18 [INFO] work[0]={'id': 1}
-2026-01-06 00:38:14 [INFO] 日志记录器已配置
-2026-01-06 00:39:29 [INFO] 日志记录器已配置
-2026-01-06 00:41:29 [INFO] 日志记录器已配置
-2026-01-06 00:41:47 [INFO] 日志记录器已配置
-2026-01-06 00:41:52 [INFO] 日志记录器已配置
-2026-01-06 00:42:00 [INFO] 访问了作业查看界面
-2026-01-06 00:42:00 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:42:32 [INFO] 日志记录器已配置
-2026-01-06 00:42:39 [INFO] 访问了作业查看界面
-2026-01-06 00:42:39 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:42:39 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:43:50 [INFO] 访问了作业查看界面
-2026-01-06 00:43:50 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:43:50 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:44:26 [INFO] 日志记录器已配置
-2026-01-06 00:44:31 [INFO] 访问了作业查看界面
-2026-01-06 00:44:31 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:44:31 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:44:58 [INFO] 日志记录器已配置
-2026-01-06 00:45:06 [INFO] 日志记录器已配置
-2026-01-06 00:45:10 [INFO] 访问了作业查看界面
-2026-01-06 00:45:10 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:45:10 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:45:42 [INFO] 访问了作业查看界面
-2026-01-06 00:45:42 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:45:42 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:46:21 [INFO] 日志记录器已配置
-2026-01-06 00:46:22 [INFO] 日志记录器已配置
-2026-01-06 00:46:27 [INFO] 访问了作业查看界面
-2026-01-06 00:46:27 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:46:27 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:47:24 [INFO] 访问了登录界面
-2026-01-06 00:47:24 [INFO] phone=None,password=None
-2026-01-06 00:47:24 [INFO] if_ok=登录成功
-2026-01-06 00:47:26 [INFO] 访问了作业查看界面
-2026-01-06 00:47:26 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:47:26 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:47:32 [INFO] 访问了作业查看界面
-2026-01-06 00:47:32 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:47:32 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:49:39 [INFO] 日志记录器已配置
-2026-01-06 00:49:47 [INFO] 访问了作业查看界面
-2026-01-06 00:49:47 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:49:47 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:50:51 [INFO] 日志记录器已配置
-2026-01-06 00:50:52 [INFO] 访问了作业查看界面
-2026-01-06 00:50:52 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:50:52 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:50:54 [INFO] 访问了作业查看界面
-2026-01-06 00:50:54 [INFO] query=,page=None,pageSize=None
-2026-01-06 00:50:54 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
-2026-01-06 00:52:00 [INFO] 日志记录器已配置
-2026-01-06 00:52:17 [INFO] 访问了注册界面
-2026-01-06 00:52:17 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:52:18 [INFO] 访问了注册界面
-2026-01-06 00:52:18 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:52:24 [INFO] 访问了注册界面
-2026-01-06 00:52:24 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:52:34 [INFO] 访问了注册界面
-2026-01-06 00:52:34 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:52:39 [INFO] 日志记录器已配置
-2026-01-06 00:52:46 [INFO] 访问了注册界面
-2026-01-06 00:52:46 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:52:56 [INFO] 日志记录器已配置
-2026-01-06 00:52:58 [INFO] 访问了注册界面
-2026-01-06 00:52:58 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:53:08 [INFO] 访问了注册界面
-2026-01-06 00:53:08 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:53:09 [INFO] 访问了注册界面
-2026-01-06 00:53:09 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:54:05 [INFO] 日志记录器已配置
-2026-01-06 00:54:07 [INFO] 访问了注册界面
-2026-01-06 00:54:07 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:54:34 [INFO] 日志记录器已配置
-2026-01-06 00:54:36 [INFO] 访问了注册界面
-2026-01-06 00:54:36 [INFO] role=None,password=None,name=None,email=None
-2026-01-06 00:54:42 [INFO] 访问了登录界面
-2026-01-06 00:54:42 [INFO] phone=None,password=None
-2026-01-06 00:54:42 [INFO] if_ok=登录成功
-2026-01-06 00:55:05 [INFO] 日志记录器已配置
+2026-01-06 11:05:59 [INFO] 日志记录器已配置
+2026-01-06 11:06:01 [INFO] 日志记录器已配置
+2026-01-06 11:06:14 [INFO] 访问了作业查看界面
+2026-01-06 11:06:14 [INFO] query=,page=None,pageSize=None
+2026-01-06 11:06:14 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:08:54 [INFO] 日志记录器已配置
+2026-01-06 11:08:56 [INFO] 访问了作业查看界面
+2026-01-06 11:08:56 [INFO] query=,page=None,pageSize=None
+2026-01-06 11:08:56 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:09:47 [INFO] 日志记录器已配置
+2026-01-06 11:10:00 [INFO] 日志记录器已配置
+2026-01-06 11:10:08 [INFO] 访问了登录界面
+2026-01-06 11:10:08 [INFO] phone=None,password=None
+2026-01-06 11:10:08 [INFO] if_ok=登录成功
+2026-01-06 11:10:15 [INFO] 日志记录器已配置
+2026-01-06 11:10:37 [INFO] 访问了登录界面
+2026-01-06 11:10:37 [INFO] phone=None,password=None
+2026-01-06 11:10:37 [INFO] if_ok=登录成功
+2026-01-06 11:11:50 [INFO] 访问了作业查看界面
+2026-01-06 11:11:50 [INFO] query=,page=None,pageSize=None
+2026-01-06 11:11:50 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:13:14 [INFO] 日志记录器已配置
+2026-01-06 11:13:26 [INFO] 访问了登录界面
+2026-01-06 11:13:26 [INFO] phone=None,password=None
+2026-01-06 11:13:26 [INFO] if_ok=登录成功
+2026-01-06 11:13:36 [INFO] 日志记录器已配置
+2026-01-06 11:14:11 [INFO] 日志记录器已配置
+2026-01-06 11:14:50 [INFO] 日志记录器已配置
+2026-01-06 11:20:00 [INFO] 日志记录器已配置
+2026-01-06 11:20:01 [INFO] 日志记录器已配置
+2026-01-06 11:20:07 [INFO] 访问了学生界面
+2026-01-06 11:20:07 [INFO] query=,page=1,page_size=10
+2026-01-06 11:20:07 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:20:08 [INFO] 访问了课程查看界面
+2026-01-06 11:20:08 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:20:10 [INFO] 访问了学生界面
+2026-01-06 11:20:10 [INFO] query=,page=1,page_size=10
+2026-01-06 11:20:10 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:20:11 [INFO] 访问了课程查看界面
+2026-01-06 11:20:11 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:20:33 [INFO] 日志记录器已配置
+2026-01-06 11:20:58 [INFO] 日志记录器已配置
+2026-01-06 11:21:01 [INFO] 访问了课程查看界面
+2026-01-06 11:21:01 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:21:28 [INFO] 访问了学生界面
+2026-01-06 11:21:28 [INFO] query=,page=1,page_size=10
+2026-01-06 11:21:28 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:21:55 [INFO] 日志记录器已配置
+2026-01-06 11:22:03 [INFO] 日志记录器已配置
+2026-01-06 11:22:15 [INFO] 日志记录器已配置
+2026-01-06 11:22:32 [INFO] 访问了学生界面
+2026-01-06 11:22:32 [INFO] query=,page=1,page_size=10
+2026-01-06 11:22:32 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:23:13 [INFO] 访问了课程查看界面
+2026-01-06 11:23:13 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:24:06 [INFO] 日志记录器已配置
+2026-01-06 11:24:20 [INFO] 访问了课程添加界面
+2026-01-06 11:24:20 [INFO] courseId=None,CourseName=None,major=None,credits=None,type=None,teacher=None
+2026-01-06 11:24:20 [INFO] if_ok=添加成功
+2026-01-06 11:24:20 [INFO] 访问了课程查看界面
+2026-01-06 11:24:20 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:25:03 [INFO] 日志记录器已配置
+2026-01-06 11:25:42 [INFO] 日志记录器已配置
+2026-01-06 11:26:16 [INFO] 日志记录器已配置
+2026-01-06 11:26:24 [INFO] 日志记录器已配置
+2026-01-06 11:26:34 [INFO] 访问了课程更新界面
+2026-01-06 11:26:34 [INFO] courseId=1,CourseName=None,major=None,credits=None,type=None,teacher=None
+2026-01-06 11:26:34 [INFO] if_ok=更新成功
+2026-01-06 11:26:34 [INFO] 访问了课程查看界面
+2026-01-06 11:26:34 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:27:08 [INFO] 日志记录器已配置
+2026-01-06 11:27:22 [INFO] 日志记录器已配置
+2026-01-06 11:27:27 [INFO] 访问了课程更新界面
+2026-01-06 11:27:27 [INFO] courseId=1,CourseName=None,major=None,credits=None,type=None,teacher=None
+2026-01-06 11:27:27 [INFO] if_ok=更新成功
+2026-01-06 11:27:27 [INFO] 访问了课程查看界面
+2026-01-06 11:27:27 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:30:57 [INFO] 日志记录器已配置
+2026-01-06 11:31:02 [INFO] 日志记录器已配置
+2026-01-06 11:31:17 [INFO] 访问了课程更新界面
+2026-01-06 11:31:17 [INFO] data={'role': 'teacher', 'courseId': '1', 'courseName': '高等数', 'credits': 4, 'major': '计算机科学与技术', 'place': '教室A101', 'selected': False, 'teacher': '张三', 'time': '周一、二、四、五 第1-2节', 'type': '必修'}
+2026-01-06 11:31:17 [INFO] courseId=1,CourseName=None,major=None,credits=None,type=None,teacher=None
+2026-01-06 11:31:17 [INFO] if_ok=更新成功
+2026-01-06 11:31:17 [INFO] 访问了课程查看界面
+2026-01-06 11:31:17 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:31:34 [INFO] 访问了学生界面
+2026-01-06 11:31:34 [INFO] query=,page=1,page_size=10
+2026-01-06 11:31:34 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:32:00 [INFO] 访问了课程查看界面
+2026-01-06 11:32:00 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:32:04 [INFO] 访问了课程更新界面
+2026-01-06 11:32:04 [INFO] data={'role': 'teacher', 'courseId': '1', 'courseName': '高等数', 'credits': 4, 'major': '计算机科学与技术', 'place': '教室A101', 'selected': False, 'teacher': '张三', 'time': '周一、二、四、五 第1-2节', 'type': '必修'}
+2026-01-06 11:32:04 [INFO] courseId=1,CourseName=None,major=None,credits=None,type=None,teacher=None
+2026-01-06 11:32:04 [INFO] if_ok=更新成功
+2026-01-06 11:32:04 [INFO] 访问了课程查看界面
+2026-01-06 11:32:04 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:32:36 [INFO] 日志记录器已配置
+2026-01-06 11:32:44 [INFO] 访问了课程更新界面
+2026-01-06 11:32:44 [INFO] data={'role': 'teacher', 'courseId': '1', 'courseName': '高等', 'credits': 4, 'major': '计算机科学与技术', 'place': '教室A101', 'selected': False, 'teacher': '张三', 'time': '周一、二、四、五 第1-2节', 'type': '必修'}
+2026-01-06 11:32:44 [INFO] courseId=1,CourseName=None,major=None,credits=None,type=None,teacher=None
+2026-01-06 11:32:44 [INFO] if_ok=更新成功
+2026-01-06 11:32:44 [INFO] 访问了课程查看界面
+2026-01-06 11:32:44 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:33:29 [INFO] 日志记录器已配置
+2026-01-06 11:33:51 [INFO] 日志记录器已配置
+2026-01-06 11:34:03 [INFO] 日志记录器已配置
+2026-01-06 11:34:11 [INFO] 访问了课程更新界面
+2026-01-06 11:34:11 [INFO] data={'role': 'teacher', 'courseId': '1', 'courseName': '高等数', 'credits': 4, 'major': '计算机科学与技术', 'place': '教室A101', 'selected': False, 'teacher': '张三', 'time': '周一、二、四、五 第1-2节', 'type': '必修'}
+2026-01-06 11:34:11 [INFO] courseId=None,CourseName=None,major=计算机科学与技术,credits=4,type=必修,teacher=张三
+2026-01-06 11:34:11 [INFO] if_ok=更新成功
+2026-01-06 11:34:11 [INFO] 访问了课程查看界面
+2026-01-06 11:34:11 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:34:28 [INFO] 日志记录器已配置
+2026-01-06 11:34:35 [INFO] 访问了课程更新界面
+2026-01-06 11:34:35 [INFO] courseId=None,CourseName=None,major=计算机科学与技术,credits=4,type=必修,teacher=张三
+2026-01-06 11:34:35 [INFO] if_ok=更新成功
+2026-01-06 11:34:35 [INFO] 访问了课程查看界面
+2026-01-06 11:34:35 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:34:59 [INFO] 日志记录器已配置
+2026-01-06 11:35:14 [INFO] 日志记录器已配置
+2026-01-06 11:35:20 [INFO] 访问了课程更新界面
+2026-01-06 11:35:20 [INFO] courseId=1,CourseName=高等数,major=计算机科学与技术,credits=4,type=必修,teacher=张三
+2026-01-06 11:35:20 [INFO] if_ok=更新成功
+2026-01-06 11:35:20 [INFO] 访问了课程查看界面
+2026-01-06 11:35:20 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:36:22 [INFO] 访问了学生界面
+2026-01-06 11:36:22 [INFO] query=,page=1,page_size=10
+2026-01-06 11:36:22 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:37:18 [INFO] 日志记录器已配置
+2026-01-06 11:37:39 [INFO] 访问了学生界面
+2026-01-06 11:37:39 [INFO] query=,page=1,page_size=10
+2026-01-06 11:37:39 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:38:24 [INFO] 日志记录器已配置
+2026-01-06 11:38:45 [INFO] 访问了学生添加界面
+2026-01-06 11:38:45 [INFO] studentId=None,name=None,gender=None,major=None,phone=None
+2026-01-06 11:38:45 [INFO] if_ok=添加成功
+2026-01-06 11:38:45 [INFO] 访问了学生界面
+2026-01-06 11:38:45 [INFO] query=,page=1,page_size=10
+2026-01-06 11:38:45 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:39:05 [INFO] 日志记录器已配置
+2026-01-06 11:39:23 [INFO] 访问了学生添加界面
+2026-01-06 11:39:23 [INFO] studentId=None,name=None,gender=None,major=None,phone=None
+2026-01-06 11:39:23 [INFO] if_ok=添加成功
+2026-01-06 11:39:23 [INFO] 访问了学生界面
+2026-01-06 11:39:23 [INFO] query=,page=1,page_size=10
+2026-01-06 11:39:23 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:40:11 [INFO] 日志记录器已配置
+2026-01-06 11:40:31 [INFO] 访问了学生添加界面
+2026-01-06 11:40:31 [INFO] data={'role': 'teacher', 'studentId': '1', 'name': '1', 'gender': '男', 'major': '计算机科学', 'phone': '15882805970', 'avatar': ''}
+2026-01-06 11:40:31 [INFO] studentId=None,name=None,gender=None,major=None,phone=None
+2026-01-06 11:40:31 [INFO] if_ok=添加成功
+2026-01-06 11:40:31 [INFO] 访问了学生界面
+2026-01-06 11:40:31 [INFO] query=,page=1,page_size=10
+2026-01-06 11:40:31 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:40:54 [INFO] 日志记录器已配置
+2026-01-06 11:41:12 [INFO] 日志记录器已配置
+2026-01-06 11:41:39 [INFO] 日志记录器已配置
+2026-01-06 11:41:52 [INFO] 访问了学生添加界面
+2026-01-06 11:41:52 [INFO] studentId=11,name=1,gender=男,major=计算机科学,phone=15882805907
+2026-01-06 11:41:52 [INFO] if_ok=添加成功
+2026-01-06 11:41:52 [INFO] 访问了学生界面
+2026-01-06 11:41:52 [INFO] query=,page=1,page_size=10
+2026-01-06 11:41:52 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:42:27 [INFO] 日志记录器已配置
+2026-01-06 11:42:53 [INFO] 日志记录器已配置
+2026-01-06 11:43:38 [INFO] 日志记录器已配置
+2026-01-06 11:43:58 [INFO] 日志记录器已配置
+2026-01-06 11:44:00 [INFO] 访问了学生更新界面
+2026-01-06 11:44:00 [INFO] studentId=2023001,name=王小明,gender=男,major=计算机科学,phone=13812345678
+2026-01-06 11:44:00 [INFO] if_ok=更新成功
+2026-01-06 11:44:00 [INFO] 访问了学生界面
+2026-01-06 11:44:00 [INFO] query=,page=1,page_size=10
+2026-01-06 11:44:00 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:44:21 [INFO] 访问了课程查看界面
+2026-01-06 11:44:21 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:44:42 [INFO] 访问了作业查看界面
+2026-01-06 11:44:42 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:44:42 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:46:38 [INFO] 访问了课程查看界面
+2026-01-06 11:46:38 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:46:40 [INFO] 访问了作业查看界面
+2026-01-06 11:46:40 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:46:40 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:48:24 [INFO] 日志记录器已配置
+2026-01-06 11:52:15 [INFO] 日志记录器已配置
+2026-01-06 11:52:16 [INFO] 日志记录器已配置
+2026-01-06 11:52:20 [INFO] 访问了作业查看界面
+2026-01-06 11:52:20 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:52:20 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:52:22 [INFO] 访问了学生界面
+2026-01-06 11:52:22 [INFO] query=,page=1,page_size=10
+2026-01-06 11:52:22 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-06 11:52:23 [INFO] 访问了作业查看界面
+2026-01-06 11:52:23 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:52:23 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:53:25 [INFO] 日志记录器已配置
+2026-01-06 11:53:37 [INFO] 日志记录器已配置
+2026-01-06 11:53:50 [INFO] 访问了作业查看界面
+2026-01-06 11:53:50 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:53:50 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:54:15 [INFO] 日志记录器已配置
+2026-01-06 11:54:19 [INFO] 访问了作业查看界面
+2026-01-06 11:54:19 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:54:19 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:54:23 [INFO] 访问了作业批改界面
+2026-01-06 11:54:37 [INFO] 日志记录器已配置
+2026-01-06 11:54:40 [INFO] 访问了作业查看界面
+2026-01-06 11:54:40 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:54:40 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:54:42 [INFO] 访问了作业批改界面
+2026-01-06 11:55:05 [INFO] 日志记录器已配置
+2026-01-06 11:55:07 [INFO] 访问了作业查看界面
+2026-01-06 11:55:07 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:55:07 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:55:09 [INFO] 访问了作业批改界面
+2026-01-06 11:56:16 [INFO] 日志记录器已配置
+2026-01-06 11:56:28 [INFO] 访问了作业查看界面
+2026-01-06 11:56:28 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:56:28 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:56:30 [INFO] 访问了作业批改界面
+2026-01-06 11:59:22 [INFO] 日志记录器已配置
+2026-01-06 11:59:27 [INFO] 日志记录器已配置
+2026-01-06 11:59:31 [INFO] 访问了作业查看界面
+2026-01-06 11:59:31 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:59:31 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 11:59:39 [INFO] 访问了作业添加界面
+2026-01-06 11:59:39 [INFO] title=None,content=None,progress=None,course=None
+2026-01-06 11:59:39 [INFO] if_ok=添加成功
+2026-01-06 11:59:39 [INFO] 访问了作业查看界面
+2026-01-06 11:59:39 [INFO] query=,page=1,pageSize=10
+2026-01-06 11:59:39 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 12:00:03 [INFO] 日志记录器已配置
+2026-01-06 12:00:18 [INFO] 日志记录器已配置
+2026-01-06 12:00:29 [INFO] 访问了作业添加界面
+2026-01-06 12:00:29 [INFO] title=1,content=1,progress=0,course=高等数学
+2026-01-06 12:00:29 [INFO] if_ok=添加成功
+2026-01-06 12:00:29 [INFO] 访问了作业查看界面
+2026-01-06 12:00:29 [INFO] query=,page=1,pageSize=10
+2026-01-06 12:00:29 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 12:00:52 [INFO] 日志记录器已配置
+2026-01-06 12:01:06 [INFO] 日志记录器已配置
+2026-01-06 12:01:46 [INFO] 日志记录器已配置
+2026-01-06 12:04:46 [INFO] 日志记录器已配置
+2026-01-06 12:04:52 [INFO] 日志记录器已配置
+2026-01-06 12:05:04 [INFO] 访问了作业查看界面
+2026-01-06 12:05:04 [INFO] query=,page=1,pageSize=10
+2026-01-06 12:05:04 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 12:05:27 [INFO] 日志记录器已配置
+2026-01-06 12:05:35 [INFO] 访问了作业更新界面
+2026-01-06 12:05:35 [INFO] workId=1,title=None,content=None
+2026-01-06 12:05:35 [INFO] 访问了作业查看界面
+2026-01-06 12:05:35 [INFO] query=,page=1,pageSize=10
+2026-01-06 12:05:35 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 12:05:56 [INFO] 日志记录器已配置
+2026-01-06 12:05:59 [INFO] 访问了作业更新界面
+2026-01-06 12:05:59 [INFO] workId=1,title=None,content=None
+2026-01-06 12:05:59 [INFO] if_ok=更新成功
+2026-01-06 12:05:59 [INFO] 访问了作业查看界面
+2026-01-06 12:05:59 [INFO] query=,page=1,pageSize=10
+2026-01-06 12:05:59 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-06 12:06:17 [INFO] 日志记录器已配置
+2026-01-06 12:06:21 [INFO] 访问了作业更新界面
+2026-01-06 12:06:21 [INFO] workId=1,title=test,content=test
+2026-01-06 12:06:21 [INFO] if_ok=更新成功
+2026-01-06 12:06:21 [INFO] 访问了作业查看界面
+2026-01-06 12:06:21 [INFO] query=,page=1,pageSize=10
+2026-01-06 12:06:21 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}

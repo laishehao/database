@@ -4,11 +4,22 @@ import logging
 
 
 # 创建连接
+# connection = pymysql.connect(
+#     host='8.130.144.155',
+#     user='lzh',
+#     password='12345678',
+#     database='619database',
+#     port=3306,
+#     charset='utf8'
+#     # cursorclass=pymysql.cursors.DictCursor
+# )
+
+# 创建连接
 connection = pymysql.connect(
-    host='8.130.144.155',
-    user='lzh',
-    password='12345678',
-    database='619database',
+    host='127.0.0.1',
+    user='root',
+    password='123456',
+    database='laizhehao',
     port=3306,
     charset='utf8'
     # cursorclass=pymysql.cursors.DictCursor
@@ -56,16 +67,18 @@ def register(role,name, password, phone, email):
     ans={
         "msg":"注册成功",
         "user" :user,
-        # "code":200
+        "code":400
     }
     return ans
 def login(phone, password):
+    # 创建用户信息对象
     user={
         "username":"testuser_datacheck",
         "name":"testname",
-        "role":"student",
+        "role":"teacher",
         "avatar":"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
     }
+    # 创建登录响应对象
     ans={
         "msg":"登录成功",
         "user" :user
@@ -130,7 +143,20 @@ def delete_student(studentId):
 def select_course(query,page,pageSize):
     ans={
         "total":10,
-        # "list":[{"id":1},{"id":2}] #格式未知
+        "list":[
+            {
+                "courseId": "1",
+                "courseName": "高等数学",
+                "major": "计算机科学与技术",
+                "credits": 4,
+                "type": "必修",
+                "teacher": "张三",
+                "time": "周一、二、四、五 第1-2节",
+                "place": "教室A101",
+                "selected": False
+           
+            }
+        ]
     }
     return ans
 def add_course(courseId,CourseName,major,credits,type,teacher):
@@ -167,6 +193,7 @@ def select_work(query,page,pageSize):
     homworks.append(homwork)
     total=homworks.__len__()
     ans={
+        # "code":400,
         "total":total,
         "list":homworks
     }
@@ -201,7 +228,49 @@ def watch_work(workId,UserId):
         "msg":"查看成功"
     }
     return ans
-
+def check_work(workId):
+    ans= {
+    "title": "2023-2024学年第一学期作业汇总",
+    "list": [
+        {
+        "workId": "HW001",
+        "userId": "202301001",
+        "name": "张三",
+        "status": "submitted",
+        "score": 85,
+        "content": "这是我的第一次作业，主要完成了前两章的基础练习...",
+        "teacherComment": "完成得不错，但第三题可以更详细些"
+        },
+        {
+        "workId": "HW001",
+        "userId": "202301002", 
+        "name": "李四",
+        "status": "graded",
+        "score": 92,
+        "content": "作业已完成，包括所有附加题...",
+        "teacherComment": "思路清晰，答案正确，继续保持！"
+        },
+        {
+        "workId": "HW001",
+        "userId": "202301003",
+        "name": "王五",
+        "status": "unsubmitted",
+        "score": 0,
+        "content": "",
+        "teacherComment": "尚未提交"
+        },
+        {
+        "workId": "HW002",
+        "userId": "202301001",
+        "name": "张三",
+        "status": "unsubmitted",
+        "score": 0,
+        "content": "",
+        "teacherComment": "还未提交"
+        }
+    ]
+    }
+    return ans
 if __name__ == '__main__':
     test()
 
