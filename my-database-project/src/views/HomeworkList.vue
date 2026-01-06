@@ -183,7 +183,7 @@ export default {
     handleGrade(row) {
       this.$router.push({
         name:'homeworkGrading',
-        params: { id: row.id }
+        params: { id: row.workId }
       })
     },
     getHomework() {
@@ -218,7 +218,7 @@ export default {
         // 用户点击“狠心删除”
         this.$api({
           apiType: "homeworkDelete",
-          data: { workId: row.id }, 
+          data: { workId: row.workId }, 
         }).then(() => {
           this.$message.success("虽然不舍，但已经删掉啦~");
           if (this.tableData.length === 1 && this.currentPage > 1) {

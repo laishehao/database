@@ -180,7 +180,13 @@ export default {
     },
   },
   created() {
-    this.workId = String(this.$route.params.id);
+    const routeId =
+      this.$route.params.id ||
+      this.$route.params.workId ||
+      this.$route.query.id ||
+      this.$route.query.workId ||
+      "";
+    this.workId = routeId ? String(routeId) : null;
     // 优先使用路由 query 中的 title
     if (this.$route.query.title) {
       this.homeworkTitle = this.$route.query.title;
@@ -210,9 +216,24 @@ export default {
 
     fetchSubmissions() {
       this.loading = true;
+      // 归一化 workId，优先使用 data 字段 this.workId，再回退到路由参数
+      const workId =
+        this.workId ||
+        this.$route.params.id ||
+        this.$route.params.workId ||
+        this.$route.query.id ||
+        this.$route.query.workId ||
+        null;
+      if (!workId) {
+        console.warn("fetchSubmissions: missing workId, aborting fetchSubmissions");
+        this.$message.error("无法确定作业 ID，无法获取提交列表");
+        this.loading = false;
+        return;
+      }
+
       this.$api({
         apiType: "homeworkSubmissions",
-        data: { workId: this.workId },
+        data: { workId },
       })
         .then((res) => {
           // 根据后端返回结构：{ code: 200, msg: "获取成功", data: { title: "...", list: [...] } }

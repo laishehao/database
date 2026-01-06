@@ -129,29 +129,26 @@ export default {
     // 获取作业详情 
     fetchDetail() {
       this.loading = true;
-      const id = String(this.$route.params.id); // 获取路由参数中的 ID，确保是字符串类型
-      
-      this.$api({
-        apiType: 'homeworkDetail', // 对应 api.config.js 中的配置
-        data: { workId: id, userId: this.userInfo.id }               // restful 替换 :id
-      }).then(res => {
-        /* this.detail = {
-          id: res.id ? String(res.id) : id,
-          title: res.title,
-          course: res.course,
-          completed: res.completed,
-          content: res.content || '', // 确保有内容字段
-          score: res.score !== undefined && res.score !== null ? res.score : null, // 成绩
-          teacherComment: res.teacherComment || res.comment || '' // 教师评语
-        }; */
-        this.detail = res.detail;
+      const id = String(this.$route.params.id || '');
 
-        // 如果后端支持保存草稿或返回已提交的内容，可以回显
-        if (res.studentAnswer) {
+      this.$api({
+        apiType: 'homeworkDetail',
+        data: { workId: id, userId: this.userInfo && this.userInfo.id } // restful 替换 :id
+      }).then(res => {
+        // 兼容后端返回不同字段名，优先使用 res.detail，如果没有则使用 res 本身
+        const returned = (res && res.detail) ? res.detail : (res || {});
+        // 归一化 id 字段：确保有 workId 和 id，优先级：returned.workId -> returned.id -> route id
+        const normalizedWorkId = returned.workId || returned.id || id || (res && (res.workId || res.id)) || '';
+        returned.workId = String(normalizedWorkId);
+        returned.id = returned.id || returned.workId;
+
+        this.detail = returned;
+
+        // 回显学生已保存的答案（如果存在）
+        if (res && res.studentAnswer) {
           this.submissionContent = res.studentAnswer;
-        } // 如果已完成且后端没有单独字段存答案，视情况回显
-        else if (res.content && res.completed) {  
-          // this.submissionContent = res.studentContent; 
+        } else if (returned.content && returned.completed) {
+          // 若已完成且后端返回了 content，可选择回显 studentContent 等字段
         }
       }).catch(err => {
         console.error(err);
@@ -178,25 +175,38 @@ export default {
         type: 'success' 
       }).then(() => {
         this.submitting = true;
+        // 归一化并校验 workId 与 userId，避免 undefined
+        const workId = String(this.detail && (this.detail.workId || this.detail.id || this.$route.params.id || ''));
+        const userId = this.userInfo && this.userInfo.id ? this.userInfo.id : null;
+        if (!workId) {
+          this.$message.error('无法确定作业 ID，无法提交');
+          this.submitting = false;
+          return;
+        }
+        if (!userId) {
+          this.$message.error('未检测到当前用户，无法提交');
+          this.submitting = false;
+          return;
+        }
 
         this.$api({
-          apiType: "homeworkSubmit", 
-          data: { 
+          apiType: "homeworkSubmit",
+          data: {
             role: 'student',
-            workId: String(this.detail.id), // 确保 workId 是字符串类型
-            userId: this.userInfo.id,
+            workId,
+            userId,
             writeCheck: true,
-            content: this.submissionContent // 将富文本 HTML 内容传给后端
+            content: this.submissionContent
           },
         }).then(() => {
           this.$message.success('提交成功');
           this.detail.completed = true;
-          // 同步 Vuex 状态 (可选)
-          this.$store.dispatch('completeHomework', this.detail.id);
+          // 同步 Vuex 状态 (可选)，确保传入的是 id（回退到 workId）
+          this.$store.dispatch('completeHomework', this.detail.id || workId);
         }).catch((err) => {
-           console.error(err);
+          console.error(err);
         }).finally(() => {
-           this.submitting = false;
+          this.submitting = false;
         });
       }).catch(() => {
         // 取消提交

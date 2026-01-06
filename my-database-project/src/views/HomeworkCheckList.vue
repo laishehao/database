@@ -171,13 +171,19 @@ export default {
     },
     //查看具体的作业内容
     handleView(row) {
-      //改变path, route-view会自动渲染
+      // 兼容后端返回的 id 字段名（可能是 id 或 workId）
+      const id = row.id || row.workId || row.work_id;
+      if (!id) {
+        console.warn('handleView: missing id/workId in row', row);
+        return;
+      }
+      // 改变 path, route-view 会自动渲染
       this.$router.push({
         name: 'homeworkDetail',
         params: {
-          id: row.id
+          id
         }
-      })
+      });
     },
     //确认完成 / 取消完成
     handleComplete(row) {
@@ -195,7 +201,7 @@ export default {
             apiType: "homeworkSubmit", 
             data: { 
               role: 'student',
-              workId: row.id,
+              workId: row.workId,
               userId: this.userInfo.id,
               writeCheck: !isUndo 
             },
