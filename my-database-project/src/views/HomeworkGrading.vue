@@ -225,7 +225,9 @@ export default {
         this.$route.query.workId ||
         null;
       if (!workId) {
-        console.warn("fetchSubmissions: missing workId, aborting fetchSubmissions");
+        console.warn(
+          "fetchSubmissions: missing workId, aborting fetchSubmissions"
+        );
         this.$message.error("无法确定作业 ID，无法获取提交列表");
         this.loading = false;
         return;
@@ -238,12 +240,20 @@ export default {
         .then((res) => {
           // 根据后端返回结构：{ code: 200, msg: "获取成功", data: { title: "...", list: [...] } }
           // 获取提交列表
-          const list = res.data.list || [];
-          this.submissions = Array.isArray(list) ? list : [];
+          const list = res?.data?.list || [];
+
+          // 字段映射：后端返回 userId/name，前端使用 studentId/studentName
+          this.submissions = Array.isArray(list)
+            ? list.map((item) => ({
+                ...item,
+                studentId: item.studentId || item.userId,
+                studentName: item.studentName || item.name,
+              }))
+            : [];
 
           // 如果后端返回了作业标题，更新 homeworkTitle
           // 优先使用路由 query 的 title，如果没有则使用后端返回的
-          if (!this.$route.query.title && res.data.title) {
+          if (!this.$route.query.title && res?.data?.title) {
             this.homeworkTitle = res.data.title;
           }
         })
