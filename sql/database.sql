@@ -737,6 +737,12 @@ BEGIN
     START TRANSACTION;
 
     if exists (select 1 from `Write` where Wno = p_wno and Sno = p_sno) then
+        if p_score < 0 or p_score > 100 then
+            ROLLBACK;
+            SELECT 'ERROR:SCORE_OUT_OF_RANGE' AS result_type;	-- 分数不在0-100范围内
+            LEAVE proc_end;
+        end if;
+        
         update `Write`
         set Score = p_score
         where Wno = p_wno and Sno = p_sno;
