@@ -351,43 +351,19 @@ Work[x]_Student[y]_z.[jpg/png/jpeg]
 /database_src
 └───/photos
 |	├───/avatar
-|	|	├───/Teacher_avatar
-|	|	|	├───Teacher_1.jpg
-|	|	|	├───Teacher_2.jpg
-|	|	|	...
-|	|	|	└───Teacher_n.jpg
-|	|	└───/Student_avatar
-|	|		├───Student_1.jpg
-|	|		├───Student_2.jpg
-|	|		...
-|	|		└───Student_n.jpg
+|	|	├───Teacher_1.jpg
+|	|	...
+|	|	├───Teacher_n.jpg
+|	|	├───Student_1.jpg
+|	|	...
+|	|	└───Student_n.jpg
 |	└───/homeworks
-|		├───/Work_1
-|		|	├───/Problems
-|		|	|	├───1.jpg
-|		|	|	├───2.jpg
-|		|	|	...
-|		|	|	└───n.jpg
-|		|	└───/Answers
-|		|		├───/Student_1
-|		|		|	├───1.jpg
-|		|		|	├───2.jpg
-|		|		|	...
-|		|		|	└───n.jpg
-|		|		├───/Student_2
-|		|		|	├───1.jpg
-|		|		|	├───2.jpg
-|		|		|	...
-|		|		|	└───n.jpg
-|		|		...
-|		|		└───/Student_n
-|		|			├───1.jpg
-|		|			├───2.jpg
-|		|			...
-|		|			└───n.jpg
-|		├───/Work_2
+|		├───Work1_problem1.jpg
 |		...
-|		└───/Work_n
+|		├───Work[m]_problem[n].jpg
+|		├───Work1_Student1_1.jpg
+|		...
+|		└───Work[m]_Student[x]_1.jpg
 |
 └───/database_code
 	├───init.sql
