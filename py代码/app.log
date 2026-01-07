@@ -1758,3 +1758,16 @@
 2026-01-08 02:12:07 [INFO] 访问了作业查看界面
 2026-01-08 02:12:07 [INFO] workId=1,UserId=None
 2026-01-08 02:12:07 [INFO] if_ok=查看成功
+2026-01-08 02:26:24 [INFO] 日志记录器已配置
+2026-01-08 02:26:24 [INFO] 日志记录器已配置
+2026-01-08 02:26:26 [INFO] 日志记录器已配置
+2026-01-08 02:26:26 [INFO] 日志记录器已配置
+2026-01-08 02:26:30 [INFO] 访问了作业查看界面
+2026-01-08 02:26:30 [INFO] query=,page=None,pageSize=None
+2026-01-08 02:26:30 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-08 02:26:32 [INFO] 访问了作业查看界面
+2026-01-08 02:26:32 [INFO] workId=1,UserId=None
+2026-01-08 02:26:32 [INFO] if_ok=查看成功
+2026-01-08 02:26:33 [INFO] 访问了作业查看界面
+2026-01-08 02:26:33 [INFO] query=,page=None,pageSize=None
+2026-01-08 02:26:33 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
