@@ -324,7 +324,7 @@ Student_x.[jpg/png/jpeg]
 
 #### 作业文件命名
 
-问题图片：`Wno` 为 $x$ 的作业所对应的第 $y$ 张图片
+问题图片：`Wno` 为 $x$ 的作业所对应的第 $y$ 张问题图片
 
 ```text
 Work[x]_problem[y].[jpg/png/jpeg]		# [x]表示序号为x，这里为了方便表示，故添加括号
