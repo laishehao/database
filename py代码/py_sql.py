@@ -5,7 +5,7 @@ import logging
 
 # 创建连接
 connection = pymysql.connect(
-    host=,
+    host='127.0.0.1',
     user='lzh',
     password='12345678',
     database='619database',
