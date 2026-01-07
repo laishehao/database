@@ -617,3 +617,84 @@
 2026-01-06 22:08:37 [INFO] workId=1,UserId=202301001,score=85,teacherComment=完成得不错，但第三题可以更详细些
 2026-01-06 22:08:46 [INFO] 访问了作业批改界面
 2026-01-06 22:08:46 [INFO] workId=1,UserId=202301002,score=92,teacherComment=思路清晰，答案正确，继续保持！
+2026-01-07 13:27:14 [INFO] 日志记录器已配置
+2026-01-07 13:27:15 [INFO] 日志记录器已配置
+2026-01-07 13:27:45 [INFO] 日志记录器已配置
+2026-01-07 13:27:49 [INFO] 访问了登录界面
+2026-01-07 13:27:49 [INFO] phone=None,password=None
+2026-01-07 13:27:49 [INFO] if_ok=登录成功
+2026-01-07 13:27:50 [INFO] 访问了作业查看界面
+2026-01-07 13:27:50 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:27:50 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:27:52 [INFO] 访问了作业查看界面
+2026-01-07 13:27:52 [INFO] workId=1,UserId=None
+2026-01-07 13:27:52 [INFO] if_ok=查看成功
+2026-01-07 13:28:38 [INFO] 日志记录器已配置
+2026-01-07 13:28:41 [INFO] 访问了作业查看界面
+2026-01-07 13:28:41 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:28:41 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:28:43 [INFO] 访问了作业查看界面
+2026-01-07 13:28:43 [INFO] workId=1,UserId=None
+2026-01-07 13:28:43 [INFO] if_ok=查看成功
+2026-01-07 13:29:27 [INFO] 日志记录器已配置
+2026-01-07 13:29:47 [INFO] 日志记录器已配置
+2026-01-07 13:29:56 [INFO] 日志记录器已配置
+2026-01-07 13:30:05 [INFO] 日志记录器已配置
+2026-01-07 13:30:11 [INFO] 访问了作业查看界面
+2026-01-07 13:30:11 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:30:11 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:30:12 [INFO] 访问了作业查看界面
+2026-01-07 13:30:59 [INFO] 日志记录器已配置
+2026-01-07 13:31:07 [INFO] 日志记录器已配置
+2026-01-07 13:31:09 [INFO] 访问了作业查看界面
+2026-01-07 13:31:09 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:31:09 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:31:10 [INFO] 访问了作业查看界面
+2026-01-07 13:31:10 [INFO] workId=1,UserId=1
+2026-01-07 13:31:10 [INFO] if_ok=查看成功
+2026-01-07 13:31:23 [INFO] 访问了作业查看界面
+2026-01-07 13:31:23 [INFO] workId=1,UserId=1
+2026-01-07 13:31:23 [INFO] if_ok=查看成功
+2026-01-07 13:33:17 [INFO] 日志记录器已配置
+2026-01-07 13:33:43 [INFO] 日志记录器已配置
+2026-01-07 13:35:05 [INFO] 访问了作业查看界面
+2026-01-07 13:35:05 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:35:05 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:35:06 [INFO] 访问了作业查看界面
+2026-01-07 13:35:06 [INFO] workId=1,UserId=1
+2026-01-07 13:35:06 [INFO] if_ok=查看成功
+2026-01-07 13:35:08 [INFO] 访问了作业查看界面
+2026-01-07 13:35:08 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:35:08 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:35:13 [INFO] 访问了作业查看界面
+2026-01-07 13:35:13 [INFO] workId=1,UserId=1
+2026-01-07 13:35:13 [INFO] if_ok=查看成功
+2026-01-07 13:35:37 [INFO] 日志记录器已配置
+2026-01-07 13:35:46 [INFO] 日志记录器已配置
+2026-01-07 13:35:50 [INFO] 访问了作业查看界面
+2026-01-07 13:35:50 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:35:50 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:35:51 [INFO] 访问了作业查看界面
+2026-01-07 13:35:51 [INFO] workId=1,UserId=1
+2026-01-07 13:35:51 [INFO] if_ok=获取作业详情成功
+2026-01-07 13:36:36 [INFO] 访问了作业查看界面
+2026-01-07 13:36:36 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:36:36 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:36:41 [INFO] 访问了作业查看界面
+2026-01-07 13:36:41 [INFO] workId=1,UserId=1
+2026-01-07 13:36:41 [INFO] if_ok=获取作业详情成功
+2026-01-07 13:37:08 [INFO] 访问了作业查看界面
+2026-01-07 13:37:08 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:37:08 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:37:20 [INFO] 访问了作业查看界面
+2026-01-07 13:37:20 [INFO] workId=1,UserId=1
+2026-01-07 13:37:20 [INFO] if_ok=获取作业详情成功
+2026-01-07 13:37:23 [INFO] 访问了作业查看界面
+2026-01-07 13:37:23 [INFO] query=,page=None,pageSize=None
+2026-01-07 13:37:23 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-07 13:37:45 [INFO] 日志记录器已配置
+2026-01-07 21:17:48 [INFO] 日志记录器已配置
+2026-01-07 21:17:50 [INFO] 日志记录器已配置
+2026-01-07 21:17:54 [INFO] 访问了主界面
+2026-01-07 21:18:04 [INFO] 访问了测试界面
+2026-01-07 21:22:16 [INFO] 日志记录器已配置
