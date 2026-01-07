@@ -40,7 +40,7 @@ $$
 DELIMITER ;
 
 
--- 存储过程：编辑学生信息，注意：不用修改的属性传入空值就好
+-- 存储过程：编辑学生信息
 DELIMITER $$
 CREATE PROCEDURE Edit_Student(
     IN p_sno INT,
@@ -78,7 +78,7 @@ BEGIN
         SELECT 'ERROR:STUDENT_NOT_EXISTS' AS result_type;
     else
         update Student_Info
-        set Sname = p_name, Spassword = p_password, Semail = p_email, Sgender = p_gender, Smajor = p_major, Sphone = p_phone, Savatar = p_avatar
+        set Sname = p_name, Spassword = SHA2(p_password, 256), Semail = p_email, Sgender = p_gender, Smajor = p_major, Sphone = p_phone, Savatar = p_avatar
         where Sno = p_sno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
@@ -126,7 +126,7 @@ BEGIN
 
     START TRANSACTION;
 
-    if EXISTS (select 1 from Student_Info where Sphone = p_phone and Spassword = p_password) THEN		    -- 判断电话号码和密码的组合是否在表中存在
+    if EXISTS (select 1 from Student_Info where Sphone = p_phone and Spassword = SHA2(p_password, 256)) THEN		    -- 判断电话号码和密码的组合是否在表中存在
         COMMIT;
         SELECT 'SUCCESS' AS result_type, (select Sno from Student_Info where Sphone = p_phone) AS user_id;
     elseif EXISTS (select 1 from Student_Info where Sphone = p_phone) THEN								-- 登录失败，判断电话号码是否正确
@@ -221,7 +221,7 @@ BEGIN
         SELECT 'ERROR:TEACHER_NOT_EXISTS' AS result_type;
     else
         update Teacher_Info
-        set Tname = p_name, Tpassword = p_password, Temail = p_email, Tgender = p_gender, Tphone = p_phone, Tavatar = p_avatar
+        set Tname = p_name, Tpassword = SHA2(p_password, 256), Temail = p_email, Tgender = p_gender, Tphone = p_phone, Tavatar = p_avatar
         where Tno = p_tno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
@@ -268,7 +268,7 @@ BEGIN
 
     START TRANSACTION;
 
-    if EXISTS (select 1 from Teacher_Info where Tphone = p_phone and Tpassword = p_password) THEN		    -- 判断电话号码和密码的组合是否在表中存在
+    if EXISTS (select 1 from Teacher_Info where Tphone = p_phone and Tpassword = SHA2(p_password, 256)) THEN		    -- 判断电话号码和密码的组合是否在表中存在
         COMMIT;
         SELECT 'SUCCESS' AS result_type, (select Tno from Teacher_Info where Tphone = p_phone) AS user_id;
     elseif EXISTS (select 1 from Teacher_Info where Tphone = p_phone) THEN								-- 登录失败，判断电话号码是否正确
