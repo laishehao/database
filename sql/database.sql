@@ -740,14 +740,13 @@ BEGIN
         if p_score < 0 or p_score > 100 then
             ROLLBACK;
             SELECT 'ERROR:SCORE_OUT_OF_RANGE' AS result_type;	-- 分数不在0-100范围内
-            LEAVE proc_end;
+        else
+            update `Write`
+            set Score = p_score
+            where Wno = p_wno and Sno = p_sno;
+            commit;
+            SELECT 'SUCCESS' AS result_type;
         end if;
-        
-        update `Write`
-        set Score = p_score
-        where Wno = p_wno and Sno = p_sno;
-        commit;
-        SELECT 'SUCCESS' AS result_type;
     else 
         ROLLBACK;
         SELECT 'ERROR:WRITE_NOT_EXISTS' AS result_type;		-- 该作业不存在
