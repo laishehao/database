@@ -35,6 +35,6 @@ BEGIN
         NULL,  -- 空内容
         NULL   -- 空分数
     FROM Work W
-    WHERE W.Cno = NEW.Cno AND W.Wprogress > 0;  -- 只为已发布的作业创建记录
+    WHERE W.Cno = NEW.Cno AND W.Wprogress >= 0;  -- 只为已发布的作业创建记录
 END$$
 DELIMITER ;
