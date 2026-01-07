@@ -4,6 +4,36 @@ from py_sql import *
 from flask_cors import CORS
 import logging
 from flask import abort
+def setup_logger_py():
+    """配置日志记录器"""
+    logger = logging.getLogger(__name__)
+    
+    if not logger.handlers:  # 避免重复添加处理器
+        logger.setLevel(logging.DEBUG)
+        
+        # 控制台输出
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.INFO)
+        
+        # 文件输出
+        fh = logging.FileHandler('sql_py.log', encoding='utf-8')
+        fh.setLevel(logging.DEBUG)
+        
+        # 格式
+        formatter = logging.Formatter(
+            '%(asctime)s [%(levelname)s] %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S'
+        )
+        
+        ch.setFormatter(formatter)
+        fh.setFormatter(formatter)
+        
+        logger.addHandler(ch)
+        logger.addHandler(fh)
+        logger.info('日志记录器已配置')
+    return logger
+
+
 def setup_logger():
     """配置日志记录器"""
     logger = logging.getLogger(__name__)
@@ -33,7 +63,7 @@ def setup_logger():
         logger.info('日志记录器已配置')
     return logger
 logger = setup_logger()
-
+logger_py = setup_logger_py()
 
 app = Flask(__name__)
 # # CORS(app)
@@ -61,16 +91,18 @@ def app_register():
         成功：返回True
         失败：返回错误原因
     """
-    role = request.form.get('role')
-    password = request.form.get('password')
-    name = request.form.get('name')
-    email = request.form.get('email')
-    phone = request.form.get('phone')
+    data = request.get_json()
+    
+    role=data.get('role')
+    password = data.get('password')
+    name = data.get('name')
+    e_mail = data.get('email')   
+    phone=data.get('phone')   
     
     logger.info('访问了注册界面')
-    logger.info(f'role={role},password={password},name={name},email={email}')
+    logger.info(f'role={role},password={password},name={name},email={e_mail}')
         
-    if_ok= register (role, password, name, email)
+    if_ok= register (role, name, password,phone, e_mail)
     
     logger.info(f'if_ok={if_ok}')
     return if_ok
@@ -98,8 +130,9 @@ def app_login():
         失败：返回错误原因
     """
     logger.info('访问了登录界面')
-    phone = request.form.get('phone')
-    password = request.form.get('password')
+    data=request.get_json()
+    phone=data.get('phone')
+    password = data.get('password')
     logger.info(f'phone={phone},password={password}')
     
     if_ok= login (phone, password)

@@ -1,11 +1,11 @@
 import pymysql
 import logging
 # from flask import jsonify
-
+from my_app import logger_py
 
 # 创建连接
 connection = pymysql.connect(
-    host='127.0.0.1',
+    host='8.130.144.155',
     user='lzh',
     password='12345678',
     database='619database',
@@ -55,10 +55,10 @@ def test():
     return result
     
 
-def register(role,name, password, phone, email):
+def register(role,name, password, phone,email):
     user={
         "id":0,
-        "username":"testuser_datacheck",
+        "username":name,
         "name":name,
         "role":role,
         "phone":phone,
@@ -69,13 +69,74 @@ def register(role,name, password, phone, email):
         "user" :user,
         "code":400
     }
+    if role == "student":
+        try:
+            with connection.cursor() as cursor:
+                params = (name,phone,password, email)
+                logger_py.info('数据库开始调用学生注册储存过程')
+                cursor.callproc('S_Register', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+        except:
+            connection.rollback()  # 异常时回滚
+            raise
+    if role=="teacher":
+        try:
+            with connection.cursor() as cursor:
+                params = (name,phone,password, email)
+                logger_py.info('数据库开始调用老师注册储存过程')
+                cursor.callproc('T_Register', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+        except:
+            connection.rollback()  # 异常时回滚
+
     return ans
 def login(phone, password):
+    
+    result=""
+    try:
+        with connection.cursor() as cursor:
+            params = ( phone,password)
+            logger_py.info('数据库开始调用"学生登录"储存过程')
+            cursor.callproc('S_Login', params)
+            result = cursor.fetchall()
+            logger_py.info(result)
+            if "ERROR" in result[0][0]:
+                logger_py.info('数据库开始调用"老师登录"储存过程')
+                cursor.callproc('T_Login', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+                if "ERROR" in result[0][0]:
+                    ans={
+                        "msg":"账号或密码错误",
+                        "code":404
+                    }
+                    return ans
+                else:
+                    role="teacher"
+                    cursor.callproc('View_Teacher',(result[0][1],) )
+                    
+                    result = cursor.fetchall()
+                    result=result[0]
+                    logger_py.info(result)
+                    
+            else:
+                role="student"
+                cursor.callproc('View_Student',(result[0][1],) )
+                
+                result = cursor.fetchall()
+                result=result[0]
+                logger_py.info(result)
+                
+    except:
+        connection.rollback()  # 异常时回滚
+        raise
     # 创建用户信息对象
     user={
-        "username":"testuser_datacheck",
-        "name":"testname",
-        "role":"teacher",
+        "username":result[1],
+        "name":result[2],
+        "role":role,
         "avatar":"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
     }
     # 创建登录响应对象
