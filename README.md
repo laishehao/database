@@ -1,4 +1,5 @@
 # database
+
 这个是正儿八经的数据库大作业！
 
 TUKI
@@ -9,7 +10,7 @@ TUKI
 
 <<<<<<< HEAD
 
-# 数据库设计
+## 数据库设计
 
 ### 表结构总览
 
@@ -69,7 +70,7 @@ TUKI
 |     Score      | INT  |                          |   成绩   |
 
 
-# 依赖关系
+## 依赖关系
 User：Uno → { Uname, Upassword, Uemail, Urole, Ugender, Umajor, Uphone, Uavatar }
 
 Course：Cno → { Cname, Cmajor, Ccredit, Ctype, Uno }
@@ -78,13 +79,13 @@ Work：Wno → { Wtitle, Cno, Wprogress, Wstart, Wover }
 
 Write：(Wno, Uno) → State
 
-# database功能
-## 游客
+## database功能
+### 游客
 - 登录
 
 - 注册
 
-## 学生
+### 学生
 - 查看作业
 
 - 写作业（文本）
@@ -93,7 +94,7 @@ Write：(Wno, Uno) → State
 
 - 提交作业（更改Wstate）
 
-## 教师
+### 教师
 - 发布作业
 
 - 修改作业信息
@@ -107,16 +108,13 @@ Write：(Wno, Uno) → State
 - 编辑课程 - 已完成 ✅
 - 删除课程 - 已完成 ✅
 - 开课 - 已完成 ✅
-=======
 
 - 修改课程信息
 
 - 删除课程
 
 - 开课
->>>>>>> cb52239a17450c05a958f377275d206633d550ad
-
-# database数据库存储过程
+## database数据库存储过程
 - S_Register
 
 功能：注册学生账户
@@ -260,7 +258,7 @@ p_email VARCHAR(100)
 
 
 
-# 前后端对应表
+## 前后端对应表
 |  角色   |       需求       |              请求数据格式 (Object Structure)              |            返回数据            |         url         |  方法  |
 | :-----: | :--------------: | :-------------------------------------------------------: | :----------------------------: | :-----------------: | :----: |
 |  游客   |       登录       |                    username，password                     |            role, id            |       /login        |  post  |
@@ -311,11 +309,11 @@ p_email VARCHAR(100)
 
 =======
 🦌
-# 前后端数据对应表
+## 前后端数据对应表
 
 
 
-# 服务器资源说明
+## 服务器资源说明
 
 ### **资源文件命名**
 
@@ -399,6 +397,6 @@ Work[x]_Student[y]_z.[jpg/png/jpeg]
 ```
 
 
-# 修改意见
+## 修改意见
 
 球球各位大跌，文件尽量用英文命名，要不然我的git会出问题😭😭😭
