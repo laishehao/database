@@ -264,7 +264,7 @@ p_password VARCHAR(100)
 |   游客    |    登录    |            username，password             |     role, id      |       /login        |  post  |
 |         |    注册    |    role，username，password，name，email     |     role, id      |      /register      |  post  |
 |   学生    |   查看作业   |           role，studentId，query           |    total,list     |      /homework      |  get   |
-|         |   提交作业   |        role，studentId，writecheck         | 成功信息(比如"提交成功"这样的) |  /homework/submit   |  post  |
+|         |   提交作业   |        role，studentId，writecheck         | 成功信息 (比如"提交成功"这样的) |  /homework/submit   |  post  |
 |         | 个人信息（待定） |                   role                   |                   |                     |        |
 |   老师    |   查看课程   |                role，query                |    total,list     |       /course       |  get   |
 |         |   增加课程   | role，courseId，courseName，major，credits，type，teacher | 成功信息(比如"创建成功"这样的) |       /course       |  post  |
