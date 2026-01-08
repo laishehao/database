@@ -2,7 +2,7 @@
  * @Author: Garyonit 3253975221@qq.com
  * @Date: 2025-12-11 00:16:43
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-21 21:53:04
+ * @LastEditTime: 2026-01-08 02:31:10
  * @FilePath: \my-database-project\src\config\api.config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -62,13 +62,13 @@ export default {
     method: 'POST'
   },
   'courseDelete': {
-    url: '/course/:courseId', 
+    url: '/course/:courseId',
     method: 'DELETE',
     rest: true
   },
-  'courseEdit':   { 
-    url: '/course/:courseId', 
-    method: 'PUT' ,
+  'courseEdit': {
+    url: '/course/:courseId',
+    method: 'PUT',
     rest: true
   },
 
@@ -76,7 +76,7 @@ export default {
   // 作业模块 (Homework)
   // RESTful: /homework
   // ==========================
-  'homework': {
+  'homework': { 
     url: '/homework',
     method: 'GET'
   },
@@ -94,7 +94,7 @@ export default {
     method: 'DELETE',
     rest: true
   },
-  'homeworkDetail':{
+  'homeworkDetail': {
     url: '/homework/:workId',
     method: 'GET',
     rest: true

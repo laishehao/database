@@ -1,21 +1,26 @@
 <template>
-  <el-dialog 
+  <el-dialog
     append-to-body
-    :title="titleWithIcon" 
-    :visible.sync="modalVisible" 
+    :title="titleWithIcon"
+    :visible.sync="modalVisible"
     width="550px"
     :before-close="handleClose"
     :close-on-click-modal="false"
     custom-class="cute-dialog-wrapper"
   >
-    <el-form :model="form" :rules="rules" ref="formRef" label-width="90px" class="cute-form">
-      
+    <el-form
+      :model="form"
+      :rules="rules"
+      ref="formRef"
+      label-width="90px"
+      class="cute-form"
+    >
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="🎓 学号" prop="studentId">
-            <el-input 
-              v-model="form.studentId" 
-              placeholder="请输入学号" 
+            <el-input
+              v-model="form.studentId"
+              placeholder="请输入学号"
               :disabled="isEdit"
               class="cute-input"
             >
@@ -25,7 +30,11 @@
         </el-col>
         <el-col :span="12">
           <el-form-item label="🌸 姓名" prop="name">
-            <el-input v-model="form.name" placeholder="请输入姓名" class="cute-input">
+            <el-input
+              v-model="form.name"
+              placeholder="请输入姓名"
+              class="cute-input"
+            >
               <i slot="prefix" class="el-icon-user"></i>
             </el-input>
           </el-form-item>
@@ -34,15 +43,19 @@
 
       <el-form-item label="🌈 性别" prop="gender">
         <el-radio-group v-model="form.gender" class="cute-radio-group">
-          <el-radio label="男" border class="cute-radio blue-radio">👦 男生</el-radio>
-          <el-radio label="女" border class="cute-radio pink-radio">👧 女生</el-radio>
+          <el-radio label="男" border class="cute-radio blue-radio"
+            >👦 男生</el-radio
+          >
+          <el-radio label="女" border class="cute-radio pink-radio"
+            >👧 女生</el-radio
+          >
         </el-radio-group>
       </el-form-item>
 
       <el-form-item label="📚 专业" prop="major">
-        <el-select 
-          v-model="form.major" 
-          placeholder="请选择修习专业" 
+        <el-select
+          v-model="form.major"
+          placeholder="请选择修习专业"
           style="width: 100%"
           popper-class="cute-select-dropdown"
         >
@@ -53,17 +66,30 @@
       </el-form-item>
 
       <el-form-item label="📞 电话" prop="phone">
-        <el-input v-model="form.phone" placeholder="用于接收魔法信件" maxlength="11" class="cute-input">
+        <el-input
+          v-model="form.phone"
+          placeholder="用于接收魔法信件"
+          maxlength="11"
+          class="cute-input"
+        >
           <i slot="prefix" class="el-icon-mobile-phone"></i>
         </el-input>
       </el-form-item>
-
     </el-form>
 
     <span slot="footer" class="dialog-footer">
-      <el-button @click="handleClose" class="cute-btn-cancel" round>暂不召唤</el-button>
-      <el-button type="primary" :loading="loading" @click="handleSubmit" class="cute-btn-submit" round icon="el-icon-magic-stick">
-        {{ isEdit ? '保存档案' : '立即召唤' }}
+      <el-button @click="handleClose" class="cute-btn-cancel" round
+        >暂不召唤</el-button
+      >
+      <el-button
+        type="primary"
+        :loading="loading"
+        @click="handleSubmit"
+        class="cute-btn-submit"
+        round
+        icon="el-icon-magic-stick"
+      >
+        {{ isEdit ? "保存档案" : "立即召唤" }}
       </el-button>
     </span>
   </el-dialog>
@@ -71,22 +97,26 @@
 
 <script>
 export default {
-  name: 'StudentModal',
+  name: "StudentModal",
   props: {
     visible: { type: Boolean, default: false },
-    rowData: { type: Object, default: null }
+    rowData: { type: Object, default: null },
   },
   computed: {
     modalVisible: {
-      get() { return this.visible; },
-      set(val) { this.$emit('update:visible', val); }
+      get() {
+        return this.visible;
+      },
+      set(val) {
+        this.$emit("update:visible", val);
+      },
     },
     isEdit() {
       return !!this.rowData;
     },
     titleWithIcon() {
-      return this.isEdit ? '✨ 编辑同学档案' : '🦄 召唤新同学';
-    }
+      return this.isEdit ? "✨ 编辑同学档案" : "🦄 召唤新同学";
+    },
   },
   watch: {
     visible(val) {
@@ -95,34 +125,51 @@ export default {
           // 深拷贝数据到 form (防止直接修改表格数据)
           this.form = JSON.parse(JSON.stringify(this.rowData));
         } else {
-          this.form = { studentId: '', name: '', gender: '男', major: '', phone: '', avatar: '' };
+          this.form = {
+            studentId: "",
+            name: "",
+            gender: "男",
+            major: "",
+            phone: "",
+            avatar: "",
+          };
         }
         this.$nextTick(() => {
           this.$refs.formRef && this.$refs.formRef.clearValidate();
         });
       }
-    }
+    },
   },
   data() {
     return {
       loading: false,
-      form: { 
-        studentId: '',
-        name: '',
-        gender: '男',
-        major: '',
-        phone: '',
-        avatar: '' 
+      form: {
+        studentId: "",
+        name: "",
+        gender: "男",
+        major: "",
+        phone: "",
+        avatar: "",
       },
-      rules: { 
-        studentId: [{ required: true, message: '不可以没有学号哦', trigger: 'blur' }],
-        name: [{ required: true, message: '同学叫什么名字呢?', trigger: 'blur' }],
-        major: [{ required: true, message: '请选择修习专业', trigger: 'change' }],
+      rules: {
+        studentId: [
+          { required: true, message: "不可以没有学号哦", trigger: "blur" },
+        ],
+        name: [
+          { required: true, message: "同学叫什么名字呢?", trigger: "blur" },
+        ],
+        major: [
+          { required: true, message: "请选择修习专业", trigger: "change" },
+        ],
         phone: [
-          { required: true, message: '请留下联系方式', trigger: 'blur' },
-          { pattern: /^1[3-9]\d{9}$/, message: '好像不是正确的手机号呢', trigger: 'blur' }
-        ] 
-      }
+          { required: true, message: "请留下联系方式", trigger: "blur" },
+          {
+            pattern: /^1[3-9]\d{9}$/,
+            message: "好像不是正确的手机号呢",
+            trigger: "blur",
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -133,28 +180,35 @@ export default {
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           this.loading = true;
-          const apiType = this.isEdit ? 'studentEdit' : 'studentAdd';
-          
-          this.$api({ 
-            apiType, 
+          const apiType = this.isEdit ? "studentEdit" : "studentAdd";
+
+          this.$api({
+            apiType,
             data: {
-              role: 'teacher', ...this.form
-            } 
-          }).then(() => {
-              this.$message.success(this.isEdit ? '档案修改成功~' : '新同学召唤成功~');
-              this.$emit('success');
-            }).catch(err => {
-              console.error(err)
-              const errMsg = this.isEdit ? '修改失败了QAQ' : '召唤失败了QAQ'
-              this.$message.error(errMsg)
-            }).finally(() => { 
-              this.loading = false; 
+              role: 'teacher',
+              Cno: this.$route.params.courseId,
+              ...this.form,
+            },
+          })
+            .then(() => {
+              this.$message.success(
+                this.isEdit ? "档案修改成功~" : "新同学召唤成功~"
+              );
+              this.$emit("success");
+            })
+            .catch((err) => {
+              console.error(err);
+              const errMsg = this.isEdit ? "修改失败了QAQ" : "召唤失败了QAQ";
+              this.$message.error(errMsg);
+            })
+            .finally(() => {
+              this.loading = false;
               this.handleClose();
-          });
+            });
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -173,7 +227,7 @@ export default {
 
 /* 标题栏 */
 .cute-dialog-wrapper .el-dialog__header {
-  background: linear-gradient(135deg, #FFB7C5 0%, #FF69B4 100%);
+  background: linear-gradient(135deg, #ffb7c5 0%, #ff69b4 100%);
   padding: 15px 20px;
 }
 
@@ -181,7 +235,7 @@ export default {
   color: white;
   font-weight: bold;
   letter-spacing: 1px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .cute-dialog-wrapper .el-dialog__headerbtn .el-dialog__close {
@@ -189,7 +243,7 @@ export default {
   font-weight: bold;
 }
 .cute-dialog-wrapper .el-dialog__headerbtn:hover .el-dialog__close {
-  color: #FFF0F5;
+  color: #fff0f5;
   transform: rotate(90deg);
   transition: transform 0.3s;
 }
@@ -197,48 +251,48 @@ export default {
 /* 内容区域 */
 .cute-dialog-wrapper .el-dialog__body {
   padding: 30px 40px;
-  background-color: #FFFDFE;
+  background-color: #fffdfe;
 }
 
 /* 表单 Label */
 .cute-form .el-form-item__label {
-  color: #6B4C56;
+  color: #6b4c56;
   font-weight: bold;
 }
 
 /* 输入框美化 */
 .cute-input .el-input__inner {
   border-radius: 20px;
-  border: 2px solid #FFE4E1;
-  color: #6B4C56;
+  border: 2px solid #ffe4e1;
+  color: #6b4c56;
   padding-left: 35px;
   transition: all 0.3s;
 }
 .cute-input .el-input__inner:focus {
-  border-color: #FF69B4;
+  border-color: #ff69b4;
   box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.1);
 }
 .cute-input .el-input__prefix {
   left: 10px;
-  color: #FFB7C5;
+  color: #ffb7c5;
 }
 .cute-input.is-disabled .el-input__inner {
-  background-color: #F8F8F8;
-  border-color: #EEE;
-  color: #AAA;
+  background-color: #f8f8f8;
+  border-color: #eee;
+  color: #aaa;
 }
 
 /* 下拉框样式 */
 .cute-select-dropdown {
   border-radius: 15px !important;
-  border: 1px solid #FFE4E1 !important;
+  border: 1px solid #ffe4e1 !important;
 }
 .cute-select-dropdown .el-select-dropdown__item.selected {
-  color: #FF69B4 !important;
+  color: #ff69b4 !important;
   font-weight: bold;
 }
 .cute-select-dropdown .el-select-dropdown__item:hover {
-  background-color: #FFF0F5 !important;
+  background-color: #fff0f5 !important;
 }
 
 /* 单选框美化 */
@@ -251,21 +305,39 @@ export default {
   border-width: 2px;
   height: 40px;
   line-height: 40px;
-  padding: 0 20px 0 10px;
+  padding: 0 20px 0 10px !important;
 }
 .cute-radio .el-radio__label {
   font-weight: bold;
 }
 
 /* 男生单选样式 */
-.blue-radio.is-bordered { border-color: #B2EBF2; color: #5D4037; }
-.blue-radio.is-bordered.is-checked { background-color: #E0F7FA; border-color: #4DD0E1; }
-.blue-radio .el-radio__input.is-checked .el-radio__inner { border-color: #4DD0E1; background: #4DD0E1; }
+.blue-radio.is-bordered {
+  border-color: #b2ebf2;
+  color: #5d4037;
+}
+.blue-radio.is-bordered.is-checked {
+  background-color: #e0f7fa;
+  border-color: #4dd0e1;
+}
+.blue-radio .el-radio__input.is-checked .el-radio__inner {
+  border-color: #4dd0e1;
+  background: #4dd0e1;
+}
 
 /* 女生单选样式 */
-.pink-radio.is-bordered { border-color: #FFC0CB; color: #5D4037; }
-.pink-radio.is-bordered.is-checked { background-color: #FFF0F5; border-color: #FF69B4; }
-.pink-radio .el-radio__input.is-checked .el-radio__inner { border-color: #FF69B4; background: #FF69B4; }
+.pink-radio.is-bordered {
+  border-color: #ffc0cb;
+  color: #5d4037;
+}
+.pink-radio.is-bordered.is-checked {
+  background-color: #fff0f5;
+  border-color: #ff69b4;
+}
+.pink-radio .el-radio__input.is-checked .el-radio__inner {
+  border-color: #ff69b4;
+  background: #ff69b4;
+}
 
 /* 底部按钮栏 */
 .cute-dialog-wrapper .el-dialog__footer {
@@ -274,18 +346,18 @@ export default {
 }
 
 .cute-btn-cancel {
-  border: 2px solid #FFE4E1;
+  border: 2px solid #ffe4e1;
   color: #888;
   padding: 10px 25px;
 }
 .cute-btn-cancel:hover {
-  background-color: #FFF0F5;
-  color: #6B4C56;
-  border-color: #FFB7C5;
+  background-color: #fff0f5;
+  color: #6b4c56;
+  border-color: #ffb7c5;
 }
 
 .cute-btn-submit {
-  background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
+  background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
   border: none;
   padding: 10px 30px;
   box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);

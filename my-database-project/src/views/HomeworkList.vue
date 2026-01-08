@@ -131,6 +131,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import HomeworkModal from "@/components/modals/HomeworkModal.vue";
 import ExpandableSearch from "@/components/features/ExpandableSearch.vue"; 
 
@@ -163,6 +164,7 @@ export default {
     hasHomework() {
       return this.tableData && this.tableData.length > 0;
     },
+    ...mapGetters(['userInfo'])
   },
   methods: {
     openModal(row = null) {
@@ -192,6 +194,7 @@ export default {
         apiType: "homework",
         data: { 
           role: 'teacher', 
+          userId: this.userInfo.id,
           query: this.searchKey, 
           page: this.currentPage, 
           pageSize: this.pageSize

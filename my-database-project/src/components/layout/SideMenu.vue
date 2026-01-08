@@ -30,10 +30,10 @@
       </el-menu-item>
 
       <!-- 3. 学生管理：仅老师可见 -->
-      <el-menu-item index="/student" v-if="userRole === 'teacher'">
+      <!-- <el-menu-item index="/student" v-if="userRole === 'teacher'">
         <i class="el-icon-user"></i>
         <span slot="title">学生管理</span>
-      </el-menu-item>
+      </el-menu-item> -->
 
       <!-- 4. 课程管理：仅老师可见 -->
       <el-menu-item index="/course" v-if="userRole === 'teacher'">

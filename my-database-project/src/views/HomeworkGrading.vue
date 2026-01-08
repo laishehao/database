@@ -240,7 +240,7 @@ export default {
         .then((res) => {
           // 根据后端返回结构：{ code: 200, msg: "获取成功", data: { title: "...", list: [...] } }
           // 获取提交列表
-          const list = res?.data?.list || [];
+          const list = res?.data?.list || res?.list || [];
 
           // 字段映射：后端返回 userId/name，前端使用 studentId/studentName
           this.submissions = Array.isArray(list)
