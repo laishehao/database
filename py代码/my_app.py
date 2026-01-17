@@ -106,16 +106,20 @@ def app_register():
     
     logger.info(f'if_ok={if_ok}')
     return if_ok
-
+# TODO：用户信息修改
 @app.route('/api/user',methods=['POST'])
 def app_userinfo():
     """ 
     用户信息修改，需要传入用户名、密码、姓名和邮箱
     """
     logger.info('访问了用户界面')
-    phone = request.form.get('phone')
-    name = request.form.get('name')
-    email = request.form.get('email')
+    # phone = request.form.get('phone')
+    # name = request.form.get('name')
+    # email = request.form.get('email')
+    data = request.get_json()
+    phone = data.get('phone')
+    name = data.get('name')
+    email = data.get('email')
     logger.info(f'phone={phone},name={name},email={email}')
     
     if_ok= userinfo (phone, name, email)
@@ -156,7 +160,7 @@ def app_select_student():
     ans = select_student (query, page, page_size)
     logger.info(f'students[0]={ans["list"][0]}')
     return ans
-
+# TODO：添加学生
 @app.route('/student',methods=['POST'])
 def app_add_student():
     """
@@ -184,7 +188,7 @@ def app_add_student():
     if_ok= add_student (studentId,name,gender,major,phone)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-
+# TODO: myapp更新学生信息
 @app.route('/student/<int:studentId>',methods=['PUT'])
 def app_update_student(studentId):
     """更新学生信息
@@ -237,20 +241,27 @@ def app_select_course():
     ans = select_course (query, page, pageSize)
     
     return ans
-
+# TODO：新建课程
 @app.route('/course',methods=['POST'])
 def app_add_course():
     """
     增加课程
     """
     logger.info('访问了课程添加界面')
-    courseId = request.args.get('courseId')
-    CourseName = request.args.get('CourseName')
-    major = request.args.get('major')
-    credits = request.args.get('credits')
-    type = request.args.get('type')
-    teacher = request.args.get('teacher')
+    # courseId = request.args.get('courseId')
+    # CourseName = request.args.get('CourseName')
+    # major = request.args.get('major')
+    # credits = request.args.get('credits')
+    # type = request.args.get('type')
+    # teacher = request.args.get('teacher')
     # age = request.form.get('age')
+    data = request.get_json()
+    courseId = data.get('courseId')
+    CourseName = data.get('courseName')
+    major = data.get('major')
+    credits = data.get('credits')
+    type = data.get('type')
+    teacher = data.get('teacher')
     logger.info(f'courseId={courseId},CourseName={CourseName},major={major},credits={credits},type={type},teacher={teacher}')
     
     if_ok= add_course (courseId,CourseName,major,credits,type,teacher)
@@ -284,6 +295,7 @@ def app_update_course(courseId):
     return if_ok
 
 # DELETE 请求处理
+# TODO：删除课程
 @app.route('/course/<int:courseId>', methods=['DELETE'])
 def app_delete_course(courseId):
     """删除课程信息
@@ -297,23 +309,27 @@ def app_delete_course(courseId):
     return if_ok
 
 # 作业处理
+# TODO：查看作业
 @app.route('/homework',methods=['GET'])
 def app_select_work():
-    """查询课程信息
+    """查询作业信息
         
     """
     logger.info('访问了作业查看界面')
     # abort(500)
+    # data=request.get_json()
     query=request.args.get('query')
-    page = request.args.get('page')
-    pageSize=request.args.get('pageSize')
+    page = request.form.get('page')
+    pageSize=request.form.get('pageSize')
+    # page = data.get("page")
+    # pageSize = data.get("pageSize")
     logger.info(f'query={query},page={page},pageSize={pageSize}')
     
     work = select_work (query,page,pageSize)
     logger.info(f'work[0]={work["list"][0]}')
     
     return work
-
+# TODO：看作业做的怎么样
 @app.route('/homework/submissions',methods=['GET'])
 def app_check_work():
     """查询具体作业提交情况
@@ -327,7 +343,7 @@ def app_check_work():
     # logger.info(f'work[0]={work["list"][0]}')
     
     return ans
-
+# TODO：发布作业
 @app.route('/homework',methods=['POST'])
 def app_add_work():
     """添加作业，发布作业
@@ -344,7 +360,7 @@ def app_add_work():
     if_ok= add_work (title,course,content,progress)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-
+# TODO: myapp作业删除
 @app.route('/homework/<int:workId>',methods=['DELETE'])
 def app_delete_work(workId):
     """
@@ -354,6 +370,7 @@ def app_delete_work(workId):
     if_ok= delete_work (workId)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
+# TODO: 作业更新
 @app.route('/homework/<int:workId>',methods=['PUT'])
 def app_update_work(workId):
     """
@@ -369,27 +386,33 @@ def app_update_work(workId):
     if_ok= update_work (workId,title,content)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-
+# TODO: 学生提交作业
 @app.route('/homework/submit/<int:workId>',methods=['POST'])
 def app_submit_work(workId):
     """
     提交作业
     """
-    role=request.args.get('role')
+    role=request.form.get('role')
     syudentId=request.args.get('studentId')
     workId=request.args.get('workId')
     writecheck=request.args.get('writecheck')
+    # data = request.get_json()
+    # role = data.get('role')
+    # syudentId = data.get('studentId')
+    # writecheck = data.get('writecheck')
+    logger.info(f'role={role},syudentId={syudentId},workId={workId},writecheck={writecheck}')
     if_ok= submit_work (role,syudentId,workId,writecheck)
     return if_ok
-@app.route('/homework/<int:workId>',methods=['GET'])
-def app_watch_work(workId):
+# TODO: 学生做作业界面
+@app.route('/homework/<int:UserId>',methods=['GET'])
+def app_watch_work(UserId):
     """
-    学生查看某一项作业
+    学生查看某一项作业bianji
     """
     logger.info('访问了作业查看界面')
     # data=request.get_json()
     # UserId = data.get('UserId')
-    UserId = request.form.get('UserId')
+    workId = request.args.get('workId')
     logger.info(f'workId={workId},UserId={UserId}')
     
     if_ok= watch_work (workId,UserId)
