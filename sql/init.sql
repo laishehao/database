@@ -62,7 +62,7 @@ SHOW TRIGGERS;
 -- ============================================
 
 SOURCE /database_src/database_code/schema.sql
-SOURCE /database_src/database_code/database.sql
+SOURCE /database_src/database_code/procedures.sql
 SOURCE /database_src/database_code/triggers.sql
 
 -- ============================================
