@@ -16,14 +16,9 @@
       class="cute-form"
     >
       <el-row :gutter="20">
-        <el-col :span="12">
-          <el-form-item label="📝 代码" prop="courseId">
-            <el-input
-              v-model="form.courseId"
-              placeholder="例如: CS-101"
-              :disabled="isEdit"
-              class="cute-input"
-            >
+        <el-col :span="12" v-if="isEdit">
+          <el-form-item label="📝 代码">
+            <el-input v-model="form.courseId" readonly class="cute-input">
               <i slot="prefix" class="el-icon-tickets"></i>
             </el-input>
           </el-form-item>
@@ -59,7 +54,7 @@
           v-model="form.credits"
           :min="0.5"
           :step="0.5"
-          style="width: 220px;"
+          style="width: 220px"
           class="cute-input-number"
           controls-position="right"
         ></el-input-number>
@@ -72,12 +67,8 @@
         </el-radio-group>
       </el-form-item>
 
-      <el-form-item label="🧙‍♂️ 导师" prop="teacher">
-        <el-input
-          v-model="form.teacher"
-          placeholder="是哪位导师呢?"
-          class="cute-input"
-        >
+      <el-form-item label="🧙‍♂️ 导师" v-if="isEdit">
+        <el-input v-model="form.teacher" readonly class="cute-input">
           <i slot="prefix" class="el-icon-user"></i>
         </el-input>
       </el-form-item>
@@ -287,6 +278,14 @@ export default {
   color: #aaa;
 }
 
+/* 只读状态 */
+.cute-input .el-input__inner[readonly] {
+  background-color: #fff5f7;
+  border: 2px dashed #ffe4e1;
+  color: #888;
+  cursor: not-allowed;
+}
+
 /* 下拉框 */
 .cute-select-dropdown {
   border-radius: 15px !important;
@@ -310,7 +309,7 @@ export default {
 .cute-input-number .el-input-number__decrease,
 .cute-input-number .el-input-number__increase {
   background: transparent;
-  border-left: none; /* 移除分割线 */
+  border: none !important; /* 移除所有分割线 */
   color: #ff69b4;
 }
 

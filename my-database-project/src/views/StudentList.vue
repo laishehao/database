@@ -11,6 +11,16 @@
     <el-card shadow="never" class="cute-card">
       <div slot="header" class="clearfix header-actions cute-header">
         <div class="filter-left">
+          <!-- 返回按钮 -->
+          <el-button
+            class="back-btn"
+            icon="el-icon-arrow-left"
+            circle
+            size="small"
+            @click="goBack"
+            title="返回课程列表"
+          ></el-button>
+
           <!-- 标题装饰 -->
           <div class="cute-title">
             <span class="title-icon">🦄</span>
@@ -108,10 +118,10 @@
               <el-button
                 size="mini"
                 class="action-btn btn-edit"
-                icon="el-icon-edit"
+                icon="el-icon-view"
                 @click="openModal(scope.row)"
               >
-                编辑
+                查看
               </el-button>
               <el-button
                 size="mini"
@@ -195,6 +205,10 @@ export default {
     },
   },
   methods: {
+    // 返回上一页
+    goBack() {
+      this.$router.go(-1);
+    },
     //打开学生窗口
     openModal(row = null) {
       this.currentRow = row;
@@ -246,7 +260,10 @@ export default {
         .then(() => {
           this.$api({
             apiType: "studentDelete",
-            data: { studentId: row.studentId, Cno: this.$route.params.courseId},
+            data: {
+              studentId: row.studentId,
+              Cno: this.$route.params.courseId,
+            },
           }).then(() => {
             this.$message.success("删除成功~");
             if (this.tableData.length === 1 && this.currentPage > 1) {
@@ -429,6 +446,21 @@ export default {
   75% {
     transform: rotate(10deg);
   }
+}
+
+/* 返回按钮 */
+.back-btn {
+  margin-right: 15px;
+  border: 2px solid var(--cute-border);
+  color: var(--cute-dark-pink);
+  font-weight: bold;
+  background: white;
+  transition: all 0.3s;
+}
+.back-btn:hover {
+  background-color: #fff0f5;
+  border-color: var(--cute-dark-pink);
+  transform: scale(1.1);
 }
 
 /* 搜索框 */

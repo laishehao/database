@@ -16,12 +16,12 @@
       class="cute-form"
     >
       <el-row :gutter="20">
-        <el-col :span="12">
+        <el-col :span="12" v-if="isView">
           <el-form-item label="🎓 学号" prop="studentId">
             <el-input
               v-model="form.studentId"
               placeholder="请输入学号"
-              :disabled="isEdit"
+              :readonly="isView"
               class="cute-input"
             >
               <i slot="prefix" class="el-icon-postcard"></i>
@@ -33,6 +33,7 @@
             <el-input
               v-model="form.name"
               placeholder="请输入姓名"
+              :readonly="isView"
               class="cute-input"
             >
               <i slot="prefix" class="el-icon-user"></i>
@@ -42,7 +43,11 @@
       </el-row>
 
       <el-form-item label="🌈 性别" prop="gender">
-        <el-radio-group v-model="form.gender" class="cute-radio-group">
+        <el-radio-group
+          v-model="form.gender"
+          class="cute-radio-group"
+          :disabled="isView"
+        >
           <el-radio label="男" border class="cute-radio blue-radio"
             >👦 男生</el-radio
           >
@@ -57,6 +62,7 @@
           v-model="form.major"
           placeholder="请选择修习专业"
           style="width: 100%"
+          :disabled="isView"
           popper-class="cute-select-dropdown"
         >
           <el-option label="💻 计算机科学" value="计算机科学"></el-option>
@@ -70,6 +76,7 @@
           v-model="form.phone"
           placeholder="用于接收魔法信件"
           maxlength="11"
+          :readonly="isView"
           class="cute-input"
         >
           <i slot="prefix" class="el-icon-mobile-phone"></i>
@@ -78,10 +85,11 @@
     </el-form>
 
     <span slot="footer" class="dialog-footer">
-      <el-button @click="handleClose" class="cute-btn-cancel" round
-        >暂不召唤</el-button
-      >
+      <el-button @click="handleClose" class="cute-btn-cancel" round>{{
+        isView ? "关闭" : "暂不召唤"
+      }}</el-button>
       <el-button
+        v-if="!isView"
         type="primary"
         :loading="loading"
         @click="handleSubmit"
@@ -89,7 +97,7 @@
         round
         icon="el-icon-magic-stick"
       >
-        {{ isEdit ? "保存档案" : "立即召唤" }}
+        立即召唤
       </el-button>
     </span>
   </el-dialog>
@@ -111,11 +119,11 @@ export default {
         this.$emit("update:visible", val);
       },
     },
-    isEdit() {
+    isView() {
       return !!this.rowData;
     },
     titleWithIcon() {
-      return this.isEdit ? "✨ 编辑同学档案" : "🦄 召唤新同学";
+      return this.isView ? "✨ 查看同学档案" : "🦄 召唤新同学";
     },
   },
   watch: {
@@ -180,26 +188,24 @@ export default {
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           this.loading = true;
-          const apiType = this.isEdit ? "studentEdit" : "studentAdd";
+          // isView 模式下不应该调用此方法，但为了逻辑完整保留 Add
+          const apiType = "studentAdd";
 
           this.$api({
             apiType,
             data: {
-              role: 'teacher',
+              role: "teacher",
               Cno: this.$route.params.courseId,
               ...this.form,
             },
           })
             .then(() => {
-              this.$message.success(
-                this.isEdit ? "档案修改成功~" : "新同学召唤成功~"
-              );
+              this.$message.success("新同学召唤成功~");
               this.$emit("success");
             })
             .catch((err) => {
               console.error(err);
-              const errMsg = this.isEdit ? "修改失败了QAQ" : "召唤失败了QAQ";
-              this.$message.error(errMsg);
+              this.$message.error("召唤失败了QAQ");
             })
             .finally(() => {
               this.loading = false;

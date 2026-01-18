@@ -2,7 +2,7 @@
  * @Author: kusachan 3253975221@qq.com
  * @Date: 2025-12-15 00:57:59
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-21 16:45:08
+ * @LastEditTime: 2026-01-18 16:03:32
  * @Description: 学生作业查看列表 - 古代典籍风格版
 -->
 <template>
@@ -18,20 +18,20 @@
             <span>课业</span>
             <span>名录</span>
           </div>
-          <expandable-search 
-            v-model="searchKey" 
+          <expandable-search
+            v-model="searchKey"
             placeholder="寻觅课业..."
-            @search="getHomework"
+            @search="handleSearch"
             class="ancient-search"
           ></expandable-search>
         </div>
       </div>
-      
+
       <!-- 有作业时渲染 -->
       <div v-if="hasHomework" class="ancient-table-wrapper">
-        <el-table 
-          :data="tableData" 
-          style="width: 100%" 
+        <el-table
+          :data="tableData"
+          style="width: 100%"
           class="ancient-table"
           :header-cell-style="headerCellStyle"
           :row-class-name="tableRowClassName"
@@ -42,93 +42,119 @@
               <span class="ink-text title-font">{{ scope.row.title }}</span>
             </template>
           </el-table-column>
-          
+
           <!-- 作业所属课程 -->
           <el-table-column prop="course" label="所属经籍">
             <template slot-scope="scope">
               <span class="course-text">《{{ scope.row.course }}》</span>
             </template>
           </el-table-column>
-          
+
           <!-- 作业状态 -->
           <el-table-column label="批阅状态" width="140" align="center">
             <template slot-scope="scope">
               <!-- 将Tag改为印章风格 -->
-              <div :class="['seal-box', scope.row.completed ? 'seal-red' : 'seal-ink']">
+              <div
+                :class="[
+                  'seal-box',
+                  scope.row.completed ? 'seal-red' : 'seal-ink',
+                ]"
+              >
                 <span class="seal-inner">
-                  {{ scope.row.completed ? '已 阅' : '未 呈' }}
+                  {{ scope.row.completed ? "已 阅" : "未 呈" }}
                 </span>
               </div>
             </template>
           </el-table-column>
-          
+
           <!-- 操作栏 -->
-          <el-table-column label="裁决" width="200" fixed="right" align="center">
+          <el-table-column
+            label="裁决"
+            width="200"
+            fixed="right"
+            align="center"
+          >
             <template slot-scope="scope">
-              <el-button 
-                type="text" 
-                size="small" 
+              <el-button
+                type="text"
+                size="small"
                 class="ancient-btn"
                 @click="handleView(scope.row)"
               >
                 <i class="el-icon-view"></i> 展卷
               </el-button>
-              
-              <el-button 
-                type="text" 
-                size="small" 
-                :class="['ancient-btn', scope.row.completed ? 'btn-undo' : 'btn-do']"
+
+              <el-button
+                type="text"
+                size="small"
+                :class="[
+                  'ancient-btn',
+                  scope.row.completed ? 'btn-undo' : 'btn-do',
+                ]"
                 @click="handleComplete(scope.row)"
               >
-                <i :class="scope.row.completed ? 'el-icon-refresh-left' : 'el-icon-check'"></i>
-                {{ scope.row.completed ? '撤销朱批' : '朱笔圈阅' }}
+                <i
+                  :class="
+                    scope.row.completed
+                      ? 'el-icon-refresh-left'
+                      : 'el-icon-check'
+                  "
+                ></i>
+                {{ scope.row.completed ? "撤销朱批" : "朱笔圈阅" }}
               </el-button>
             </template>
           </el-table-column>
         </el-table>
-        
+
         <!-- 分页 -->
-        <div style="margin-top: 30px; text-align: center" class="ancient-pagination">
+        <div
+          style="margin-top: 30px; text-align: center"
+          class="ancient-pagination"
+        >
           <el-pagination
             background
             layout="prev, pager, next, total"
             :total="total"
+            :current-page.sync="currentPage"
+            :page-size="pageSize"
             prev-text="上一卷"
             next-text="下一卷"
+            @current-change="handleCurrentChange"
           ></el-pagination>
         </div>
       </div>
-      
+
       <!-- 没有作业时渲染 -->
       <div v-else class="empty-state-ancient">
         <div class="empty-text">暂无课业记录</div>
         <div class="empty-seal">空</div>
       </div>
-
     </el-card>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 import ExpandableSearch from "@/components/features/ExpandableSearch.vue";
 
 export default {
   name: "HomeworkCheckList",
   data() {
     return {
-      searchKey: "",    
-      total: 0,       //符合条件的作业总数
-      tableData: [],    //作业数据
+      searchKey: "",
+      total: 0, //符合条件的作业总数
+      currentPage: 1, // 当前页码
+      pageSize: 10, // 每页显示条数
+      tableData: [], //作业数据
       // 样式辅助
       headerCellStyle: {
-        background: '#eaddcf',
-        color: '#5d4037',
-        fontWeight: 'bold',
-        borderBottom: '2px solid #8b7d6b',
+        background: "#eaddcf",
+        color: "#5d4037",
+        fontWeight: "bold",
+        borderBottom: "2px solid #8b7d6b",
         fontFamily: '"KaiTi", "STKaiti", serif',
-        fontSize: '18px' // [已修改] 表头字体增大到 18px
-      }
+        fontSize: "18px", // [已修改] 表头字体增大到 18px
+      },
     };
   },
   components: {
@@ -138,34 +164,51 @@ export default {
     hasHomework() {
       return this.tableData && this.tableData.length > 0;
     },
-    ...mapGetters(['userInfo']),
+    ...mapGetters(["userInfo"]),
   },
   methods: {
     // 辅助方法：隔行变色样式
-    tableRowClassName({rowIndex}) {
+    tableRowClassName({ rowIndex }) {
       if (rowIndex % 2 === 1) {
-        return 'ancient-row-stripe';
+        return "ancient-row-stripe";
       }
-      return '';
+      return "";
+    },
+    // 搜索处理：重置页码
+    handleSearch() {
+      this.currentPage = 1;
+      this.getHomework();
+    },
+    // 处理页码改变
+    handleCurrentChange(val) {
+      this.currentPage = val;
+      this.getHomework();
     },
     //获取作业列表
     getHomework() {
       this.$api({
         apiType: "homework",
-        data: { query: this.searchKey },
-      }).then((result) => {
+        data: {
+          query: this.searchKey,
+          page: this.currentPage,
+          pageSize: this.pageSize,
+        },
+      })
+        .then((result) => {
           // 获取列表数据 (兼容不同的返回结构)
           const list = result.list || (result.data && result.data.list) || [];
           this.tableData = list;
-          this.total = result.total || (result.data && result.data.total) || list.length;
+          this.total =
+            result.total || (result.data && result.data.total) || list.length;
 
           // 自动同步 checkHomework 到 Vuex
-          list.forEach(item => {
+          list.forEach((item) => {
             if (item.completed) {
-              this.$store.dispatch('completeHomework', item.id);
+              this.$store.dispatch("completeHomework", item.id);
             }
           });
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.error(err);
         });
     },
@@ -174,15 +217,15 @@ export default {
       // 兼容后端返回的 id 字段名（可能是 id 或 workId）
       const id = row.id || row.workId || row.work_id;
       if (!id) {
-        console.warn('handleView: missing id/workId in row', row);
+        console.warn("handleView: missing id/workId in row", row);
         return;
       }
       // 改变 path, route-view 会自动渲染
       this.$router.push({
-        name: 'homeworkDetail',
+        name: "homeworkDetail",
         params: {
-          id
-        }
+          id,
+        },
       });
     },
     //确认完成 / 取消完成
@@ -195,15 +238,16 @@ export default {
         confirmButtonText: "准",
         cancelButtonText: "止",
         type: confirmType,
-        customClass: 'ancient-confirm-box' // 既然要古风，弹窗也可以自定义样式
-      }).then(() => {
+        customClass: "ancient-confirm-box", // 既然要古风，弹窗也可以自定义样式
+      })
+        .then(() => {
           this.$api({
-            apiType: "homeworkSubmit", 
-            data: { 
-              role: 'student',
+            apiType: "homeworkSubmit",
+            data: {
+              role: "student",
               workId: row.workId,
               userId: this.userInfo.id,
-              writeCheck: !isUndo 
+              writeCheck: !isUndo,
             },
           }).then(() => {
             this.$message.success(`${actionText}已毕`);
@@ -211,13 +255,14 @@ export default {
             row.completed = !isUndo;
             // 更新 Vuex Store, 同步修改localStorage中的checkHomework
             if (row.completed) {
-              this.$store.dispatch('completeHomework', row.id);
+              this.$store.dispatch("completeHomework", row.id);
             } else {
-              this.$store.dispatch('undoHomework', row.id);
+              this.$store.dispatch("undoHomework", row.id);
             }
           });
-        }).catch((err) => {
-          if (err !== 'cancel') console.error(err);
+        })
+        .catch((err) => {
+          if (err !== "cancel") console.error(err);
         });
     },
   },
@@ -235,9 +280,9 @@ export default {
   --ink-color: #2c2c2c;
   --border-color: #8b7d6b;
   --cinnabar: #9e2a2b; /* 朱砂红 */
-  --jade: #567e76;    /* 玉石绿 */
+  --jade: #567e76; /* 玉石绿 */
   --font-serif: "KaiTi", "STKaiti", "SimSun", "Songti SC", serif;
-  
+
   font-family: var(--font-serif);
   background-color: var(--paper-bg);
   padding: 20px;
@@ -259,13 +304,19 @@ export default {
   z-index: 0;
 }
 .book-binding::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 30px;
   left: -6px;
   width: 14px;
   height: 100%;
-  background-image: repeating-linear-gradient(0deg, var(--border-color), var(--border-color) 2px, transparent 2px, transparent 40px);
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--border-color),
+    var(--border-color) 2px,
+    transparent 2px,
+    transparent 40px
+  );
   z-index: 1;
 }
 
@@ -324,8 +375,8 @@ export default {
   border-bottom: 1px dashed #d1c7b7;
   border-right: 1px solid rgba(139, 125, 107, 0.2);
 }
-::v-deep .el-table--border::after, 
-::v-deep .el-table--group::after, 
+::v-deep .el-table--border::after,
+::v-deep .el-table--group::after,
 ::v-deep .el-table::before {
   background-color: var(--border-color);
 }
@@ -354,10 +405,10 @@ export default {
   display: inline-block;
   width: 56px; /* [已修改] 稍微加大印章尺寸以适应字体 */
   height: 56px;
-  line-height: 50px; 
+  line-height: 50px;
   border-radius: 4px;
   text-align: center;
-  transform: rotate(-5deg); 
+  transform: rotate(-5deg);
   font-weight: bold;
   font-size: 16px; /* [已修改] 印章字体增大 */
   position: relative;
@@ -405,7 +456,11 @@ export default {
 }
 
 /* 分页组件样式覆盖 */
-::v-deep .ancient-pagination .el-pagination.is-background .el-pager li:not(.disabled).active {
+::v-deep
+  .ancient-pagination
+  .el-pagination.is-background
+  .el-pager
+  li:not(.disabled).active {
   background-color: var(--cinnabar);
   color: #fff;
   border-color: var(--cinnabar);

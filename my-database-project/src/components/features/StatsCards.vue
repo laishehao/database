@@ -61,7 +61,7 @@
         <div class="card-content">
           <div class="card-left">
             <div class="card-num">3</div>
-            <div class="card-text">预警课程</div>
+            <div class="card-text">名言警句</div>
           </div>
           <i class="el-icon-warning-outline card-icon"></i>
         </div>
