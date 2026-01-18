@@ -73,13 +73,6 @@
           >
             <el-descriptions-item>
               <template slot="label"
-                ><i class="el-icon-user-solid"></i> 用户账号</template
-              >
-              {{ userInfo.username }}
-            </el-descriptions-item>
-
-            <el-descriptions-item>
-              <template slot="label"
                 ><i class="el-icon-postcard"></i> 真实姓名</template
               >
               {{ userInfo.name || "未设置" }}
@@ -105,7 +98,7 @@
                 <template slot="label"
                   ><i class="el-icon-school"></i> 学号</template
                 >
-                {{ userInfo.studentId || userInfo.username }}
+                {{ userInfo.studentId || userInfo.id }}
               </el-descriptions-item>
               <el-descriptions-item>
                 <template slot="label"

@@ -1,11 +1,7 @@
 <template>
   <div class="dashboard-container">
     <!-- 统计卡片 -->
-    <StatsCards
-      v-if="isLoggedIn"
-      :stats="stats"
-      :user-role="userRole"
-    />
+    <StatsCards v-if="isLoggedIn" :stats="stats" :user-role="userRole" />
 
     <!-- 轮播图 -->
     <div v-else class="welcome-carousel">
@@ -31,10 +27,7 @@
     <RecommendCourses :courses="recommendCourses" />
 
     <!-- 板块 2: 常见问题 FAQ -->
-    <FaqSection
-      :faq-list="faqList"
-      :active-faq.sync="activeFaq"
-    />
+    <FaqSection :faq-list="faqList" :active-faq.sync="activeFaq" />
 
     <!-- 板块 3: 优秀作业 -->
     <ExcellentWorks :works="excellentWorks" />
@@ -65,12 +58,19 @@ export default {
   data() {
     return {
       currentDate: new Date(),
-      stats: { student: 0, course: 0, homework: 0 },
-      carouselItems: [  //轮播图内容（飞天小女警主题）
+      stats: {
+        studentCount: 0,
+        courseCount: 0,
+        ongoingHomework: 0,
+        pendingGrade: 0,
+      },
+      carouselItems: [
+        //轮播图内容（飞天小女警主题）
         {
           id: 1,
           title: "守护城市的少女力量",
-          description: "毛毛泡泡和花花，勇敢无畏地保卫飞天镇，每一天都充满冒险！",
+          description:
+            "毛毛泡泡和花花，勇敢无畏地保卫飞天镇，每一天都充满冒险！",
           label: "飞天小女警",
           image: require("@/assets/img/carousel/bg1.png"),
           buttonText: "了解更多",
@@ -92,7 +92,7 @@ export default {
           buttonText: "开始体验",
         },
       ],
-      recommendCourses: [ 
+      recommendCourses: [
         {
           id: 1,
           title: "Pro",
@@ -119,7 +119,8 @@ export default {
           color: "#fad0c4",
         },
       ],
-      excellentWorks: [   //优秀作业
+      excellentWorks: [
+        //优秀作业
         {
           id: 1,
           title: "图书馆管理系统",
@@ -176,7 +177,8 @@ export default {
         },
       ],
       activeFaq: ["1"],
-      faqList: [      //FAQ列表
+      faqList: [
+        //FAQ列表
         {
           id: "1",
           question: "如何修改我的个人信息？",
@@ -242,18 +244,18 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["userRole", "isLoggedIn"]),
+    ...mapGetters(["userRole", "isLoggedIn", "userInfo"]),
   },
   watch: {
     isLoggedIn(newVal) {
       if (newVal) {
-        //this.fetchDashboardData();
+        this.fetchDashboardData();
       }
     },
   },
   mounted() {
     if (this.isLoggedIn) {
-      //this.fetchDashboardData();
+      this.fetchDashboardData();
     }
     this.initScrollObserver();
   },
@@ -302,18 +304,20 @@ export default {
         return { background: fallbackColor, color: "white", border: "none" };
       }
     },
-    //  发起请求获得所需的三个total
+    //  发起请求获取所需统计数据
     fetchDashboardData() {
-      if (!this.isLoggedIn) return;
-      Promise.all([
-        this.$api({ apiType: "student", data: { page: 1, pageSize: 1 } }),
-        this.$api({ apiType: "course", data: { page: 1, pageSize: 1 } }),
-        this.$api({ apiType: "homework", data: { page: 1, pageSize: 1 } }),
-      ])
-        .then(([s, c, h]) => {
-          this.stats.student = s.total || 0;
-          this.stats.course = c.total || 0;
-          this.stats.homework = h.total || 0;
+      if (!this.isLoggedIn || !this.userInfo) return;
+
+      this.$api({
+        apiType: "dashboardStats",
+        data: {
+          id: this.userInfo.id,
+          role: this.userInfo.role,
+        },
+      })
+        .then((res) => {
+          // 直接使用后端返回的统计数据
+          this.stats = res;
         })
         .catch((err) => {
           console.error("获取看板数据失败:", err);
