@@ -189,6 +189,8 @@ export default {
       this.$api({
         apiType: "homework",
         data: {
+          role: this.userInfo.role,
+          id: this.userInfo.id,
           query: this.searchKey,
           page: this.currentPage,
           pageSize: this.pageSize,

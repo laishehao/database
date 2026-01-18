@@ -225,7 +225,7 @@ export default {
             data: {
               role: "student",
               workId,
-              userId,
+              studentId: userId,
               writeCheck: true,
               content: this.submissionContent,
             },

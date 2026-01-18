@@ -178,6 +178,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import StudentModal from "@/components/modals/StudentModal.vue";
 import ExpandableSearch from "@/components/features/ExpandableSearch.vue";
 
@@ -203,6 +204,7 @@ export default {
     hasStudent() {
       return (this.tableData && this.tableData.length > 0) || this.loading;
     },
+    ...mapGetters(["userInfo"]),
   },
   methods: {
     // 返回上一页
@@ -229,7 +231,8 @@ export default {
       this.$api({
         apiType: "student",
         data: {
-          role: "teacher",
+          role: this.userInfo.role,
+          id: this.userInfo.id,
           Cno: this.$route.params.courseId,
           query: this.searchKey,
           page: this.currentPage,

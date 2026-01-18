@@ -16,7 +16,7 @@
       class="cute-form"
     >
       <el-row :gutter="20">
-        <el-col :span="12" v-if="isView">
+        <el-col :span="12">
           <el-form-item label="🎓 学号" prop="studentId">
             <el-input
               v-model="form.studentId"
@@ -196,6 +196,7 @@ export default {
             data: {
               role: "teacher",
               Cno: this.$route.params.courseId,
+              Sno: this.form.studentId,
               ...this.form,
             },
           })

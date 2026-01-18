@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "ProfileEditModal",
   props: {
@@ -67,6 +69,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({ storeUserInfo: "userInfo" }),
     // 使用计算属性处理 sync，避免直接修改 prop
     modalVisible: {
       get() {
@@ -108,7 +111,7 @@ export default {
           // 2. 调用 API
           this.$api({
             apiType: "profileSubmit",
-            data: { ...submitData, role: this.userInfo.role },
+            data: { ...submitData, role: this.storeUserInfo.role },
           })
             .then((res) => {
               this.$message.success("资料更新成功");
