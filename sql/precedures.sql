@@ -874,3 +874,245 @@ BEGIN
     END IF;
 END;
 DELIMITER ;
+
+-- 存储过程：学生查询自己的作业列表
+-- 关键词：作业标题、作业编号、作业所属课程等
+DELIMITER $$
+CREATE PROCEDURE Student_View_Work_List(
+    IN p_sno INT,
+    IN p_keyword VARCHAR(200)    -- 可选关键词，模糊匹配作业标题
+)
+BEGIN
+    -- 错误处理，出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    -- 查询作业列表及提交状态和分数
+    SELECT
+        W.Wno,
+        W.Wtitle,
+        W.Cno,
+        W.Wcontent,
+        W.Wstart,
+        W.Wover,
+        W.Wprogress,
+        IFNULL(WR.State, 0) AS Submission_State,
+        IFNULL(WR.Score, NULL) AS Score
+    FROM
+        Work W
+    LEFT JOIN
+        `Write` WR ON W.Wno = WR.Wno AND WR.Sno = p_sno
+    WHERE
+        W.Wtitle LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配作业标题
+        OR W.Wno LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配作业编号
+        OR W.Cno LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配课程编号
+    ORDER BY
+        W.Wstart DESC;  -- 按作业开始时间降序排列
+END$$
+DELIMITER ;
+
+-- 存储过程：教师查询学生信息
+-- 关键词：学生姓名、学号、邮箱等
+DELIMITER $$
+CREATE PROCEDURE Teacher_View_Student_List(
+    IN p_keyword VARCHAR(100)    -- 可选关键词，模糊匹配学生姓名、学号或邮箱
+)
+BEGIN
+    -- 错误处理：出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    -- 查询学生信息
+    SELECT
+        S.Sno,
+        S.Sname,
+        S.Semail,
+        S.Sgender,
+        S.Smajor,
+        S.Sphone,
+        S.Savatar
+    FROM
+        Student_Info S
+    WHERE
+        S.Sname LIKE CONCAT('%', p_keyword, '%')            -- 模糊匹配学生姓名
+        OR S.Sno LIKE CONCAT('%', p_keyword, '%')           -- 模糊匹配学号
+        OR S.Semail LIKE CONCAT('%', p_keyword, '%')        -- 模糊匹配邮箱
+    ORDER BY
+        S.Sno ASC;  -- 按学号升序排列
+END$$
+
+-- 存储过程：教师查询课程信息
+-- 关键词：课程名称、课程编号等
+DELIMITER $$
+CREATE PROCEDURE Teacher_View_Course_List(
+    IN p_keyword VARCHAR(100)    -- 可选关键词，模糊匹配课程名称或课程编号
+)
+BEGIN
+    -- 错误处理：出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    -- 查询课程信息
+    SELECT
+        C.Cno,
+        C.Cname,
+        C.Cmajor,
+        C.Ccredit,
+        C.Ctype,
+        C.Tno
+    FROM
+        Course C
+    WHERE
+        C.Cname LIKE CONCAT('%', p_keyword, '%')            -- 模糊匹配课程名称
+        OR C.Cno LIKE CONCAT('%', p_keyword, '%')           -- 模糊匹配课程编号
+    ORDER BY
+        C.Cno ASC;  -- 按课程编号升序排列
+END$$
+
+-- 存储过程：教师查询作业列表
+-- 关键词：作业标题、作业编号、所属课程等
+-- 来自所有课程的作业都在一起，按照关键词过滤
+DELIMITER $$
+CREATE PROCEDURE Teacher_View_Work_List(
+    IN p_keyword VARCHAR(200)    -- 可选关键词，模糊匹配作业标题、作业编号或所属课程
+)
+BEGIN
+    -- 错误处理，出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    -- 查询课程信息
+    SELECT
+        W.Wno,
+        W.Wtitle,
+        W.Cno,
+        W.Wcontent,
+        W.Wstart,
+        W.Wover,
+        W.Wprogress
+    FROM
+        Work W
+    WHERE
+        W.Wtitle LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配作业标题
+        OR W.Wno LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配作业编号
+        OR W.Cno LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配所属课程
+    ORDER BY
+        W.Wstart DESC;  -- 按作业开始时间降序排列
+END$$
+
+-- 存储过程：通过Tno精确查询教师所教的所有课程
+DELIMITER $$
+CREATE PROCEDURE Teacher_View_Courses_By_Tno(
+    IN p_tno INT
+)
+BEGIN
+    -- 错误处理：出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    -- 查询课程信息
+    SELECT
+        C.Cno,
+        C.Cname,
+        C.Cmajor,
+        C.Ccredit,
+        C.Ctype,
+        C.Tno
+    FROM
+        Course C
+    WHERE
+        C.Tno = p_tno;
+END$$
+
+-- 存储过程：通过Cno精确查询课程下的所有作业
+DELIMITER $$
+CREATE PROCEDURE Teacher_View_Works_By_Cno(
+    IN p_cno INT
+)
+BEGIN
+    -- 错误处理：出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    -- 查询作业信息
+    SELECT
+        W.Wno,
+        W.Wtitle,
+        W.Cno,
+        W.Wcontent,
+        W.Wstart,
+        W.Wover,
+        W.Wprogress
+    FROM
+        Work W
+    WHERE
+        W.Cno = p_cno;
+END$$
+
+-- 存储过程：通过Wno精确查询作业下的所有学生提交记录
+DELIMITER $$
+CREATE PROCEDURE Teacher_View_Writes_By_Wno(
+    IN p_wno INT
+)
+BEGIN
+    -- 错误处理：出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    -- 查询作业提交记录
+    SELECT
+        WR.Sno,
+        WR.Wno,
+        WR.Wrcontent,
+        WR.Score,
+        WR.State
+    FROM
+        `Write` WR
+    WHERE
+        WR.Wno = p_wno;
+END$$
+
+-- 存储过程：通过Sno精确查询该学生的所有提交记录
+DELIMITER $$
+CREATE PROCEDURE Teacher_View_Writes_By_Sno(
+    IN p_sno INT
+)
+BEGIN
+    -- 错误处理：出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    -- 查询作业提交记录
+    SELECT
+        WR.Sno,
+        WR.Wno,
+        WR.Wrcontent,
+        WR.Score,
+        WR.State
+    FROM
+        `Write` WR
+    WHERE
+        WR.Sno = p_sno;
+END$$
