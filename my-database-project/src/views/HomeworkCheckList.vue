@@ -70,7 +70,7 @@
           <!-- 操作栏 -->
           <el-table-column
             label="裁决"
-            width="200"
+            width="120"
             fixed="right"
             align="center"
           >
@@ -82,25 +82,6 @@
                 @click="handleView(scope.row)"
               >
                 <i class="el-icon-view"></i> 展卷
-              </el-button>
-
-              <el-button
-                type="text"
-                size="small"
-                :class="[
-                  'ancient-btn',
-                  scope.row.completed ? 'btn-undo' : 'btn-do',
-                ]"
-                @click="handleComplete(scope.row)"
-              >
-                <i
-                  :class="
-                    scope.row.completed
-                      ? 'el-icon-refresh-left'
-                      : 'el-icon-check'
-                  "
-                ></i>
-                {{ scope.row.completed ? "撤销朱批" : "朱笔圈阅" }}
               </el-button>
             </template>
           </el-table-column>
@@ -229,43 +210,6 @@ export default {
           id,
         },
       });
-    },
-    //确认完成 / 取消完成
-    handleComplete(row) {
-      const isUndo = row.completed;
-      const actionText = isUndo ? "撤销" : "圈阅";
-      const confirmType = isUndo ? "warning" : "success";
-
-      this.$confirm(`欲对《${row.title}》行${actionText}之事，可乎？`, "呈批", {
-        confirmButtonText: "准",
-        cancelButtonText: "止",
-        type: confirmType,
-        customClass: "ancient-confirm-box", // 既然要古风，弹窗也可以自定义样式
-      })
-        .then(() => {
-          this.$api({
-            apiType: "homeworkSubmit",
-            data: {
-              role: "student",
-              workId: row.workId,
-              userId: this.userInfo.id,
-              writeCheck: !isUndo,
-            },
-          }).then(() => {
-            this.$message.success(`${actionText}已毕`);
-            // 更新本地数据
-            row.completed = !isUndo;
-            // 更新 Vuex Store, 同步修改localStorage中的checkHomework
-            if (row.completed) {
-              this.$store.dispatch("completeHomework", row.id);
-            } else {
-              this.$store.dispatch("undoHomework", row.id);
-            }
-          });
-        })
-        .catch((err) => {
-          if (err !== "cancel") console.error(err);
-        });
     },
   },
   created() {

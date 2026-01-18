@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS Course;
 DROP TABLE IF EXISTS Student_Info;
 DROP TABLE IF EXISTS Teacher_Info;
 
--- 删除所有存储过程（从 procedures.sql 文件中列出的）
+删除所有存储过程
 DROP PROCEDURE IF EXISTS S_Register;
 DROP PROCEDURE IF EXISTS Edit_Student;
 DROP PROCEDURE IF EXISTS View_Student;
@@ -56,6 +56,9 @@ DROP PROCEDURE IF EXISTS Teacher_View_Writes_By_Sno;
 DROP PROCEDURE IF EXISTS TcntCourse;
 DROP PROCEDURE IF EXISTS ScntCourse;
 DROP PROCEDURE IF EXISTS ScntWriting;
+DROP PROCEDURE IF EXISTS TcntCorrect;
+DROP PROCEDURE IF EXISTS TcntWriting;
+DROP PROCEDURE IF EXISTS View_Course_Student;
 
 -- 删除所有触发器
 DROP TRIGGER IF EXISTS trg_after_work_insert;
@@ -116,6 +119,7 @@ CALL T_Register('李华', '13800138002', 'teacher456', 'lihua@univ.edu');
 CALL T_Register('王伟', '13800138003', 'teacher789', 'wangwei@univ.edu');
 CALL T_Register('刘芳', '13800138004', 'teacher101', 'liufang@univ.edu');
 CALL T_Register('陈强', '13800138005', 'teacher202', 'chenqiang@univ.edu');
+CALL T_register('lzh', '15882805907', 'Lzhjy050612', '1399219872@qq.com');
 
 -- 通过Edit_Teacher更新完整信息
 CALL Edit_Teacher(1, '张明', 'teacher123', 'zhangming@univ.edu', '男', '13800138001', '/avatars/teacher1.jpg');
@@ -137,6 +141,7 @@ CALL S_Register('周九', '13900139007', 'student404', 'zhoujiu@stu.univ.edu');
 CALL S_Register('吴十', '13900139008', 'student505', 'wushi@stu.univ.edu');
 CALL S_Register('郑十一', '13900139009', 'student606', 'zhengshiyi@stu.univ.edu');
 CALL S_Register('王十二', '13900139010', 'student707', 'wangshier@stu.univ.edu');
+CALL S_Register('lzh66', '13812341234', 'Lzhjy050612', '123@qq.com');
 
 -- 通过Edit_Student更新完整信息
 CALL Edit_Student(1, '张三', 'student123', 'zhangsan@stu.univ.edu', '男', '计算机科学', '13900139001', '/avatars/student1.jpg');
@@ -404,14 +409,14 @@ CALL Teacher_View_Student_List('张');
 CALL Teacher_View_Student_List('1');
 
 -- 教师查询课程信息
-CALL Teacher_View_Course_List('系统');
+CALL Teacher_View_Course_List(2, '系统');
 
-CALL Teacher_View_Course_List('2');
+CALL Teacher_View_Course_List(2, '2');
 
 -- 教师查询作业列表
-CALL Teacher_View_Work_List('2');
+CALL Teacher_View_Work_List(1, '2');
 
-CALL Teacher_View_Work_List('试作');
+CALL Teacher_View_Work_List(3, '试作');
 
 -- 通过Tno精确查找教师所授课程
 CALL Teacher_View_Courses_By_Tno(1);
@@ -441,3 +446,15 @@ CALL ScntCourse(1);
 
 -- 根据Sno查看学生当前未截止的作业数量
 CALL ScntWriting(2);
+
+-- 通过Tno查看老师的课程中的作业数量
+CALL TcntWriting(1);
+SELECT "TcntWriting..." AS Message;
+
+-- 根据Tno查看老师待批改的作业数量
+CALL TcntCorrect(1);
+SELECT "TcntCorrect.." AS Message;
+
+-- 根据Cno查看课程下的学生信息表
+CALL View_Course_Student(1);
+SELECT "View_Course_Student..." AS Message;

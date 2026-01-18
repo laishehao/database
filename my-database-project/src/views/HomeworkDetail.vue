@@ -57,8 +57,8 @@
       <div class="submission-section" style="margin-top: 20px">
         <h3>✏️ 我的作答</h3>
 
-        <!-- 情况 A: 未完成状态，显示可编辑的富文本编辑器 -->
-        <div v-if="!detail.completed" class="editor-container">
+        <!-- 情况 A: 可提交状态(score为null且completed为false)，显示可编辑的富文本编辑器 -->
+        <div v-if="canSubmit" class="editor-container">
           <wang-editor
             v-model="submissionContent"
             placeholder="在此处输入您的作业答案..."
@@ -67,7 +67,7 @@
           />
         </div>
 
-        <!-- 情况 B: 已完成状态，显示只读的 HTML 内容 -->
+        <!-- 情况 B: 已批阅状态(completed为true)，显示只读的 HTML 内容 -->
         <div v-else class="content-box submission-display">
           <div
             v-if="submissionContent"
@@ -82,10 +82,7 @@
       </div>
 
       <!-- 4. 底部操作区 -->
-      <div
-        style="margin-top: 50px; text-align: center"
-        v-if="!detail.completed"
-      >
+      <div style="margin-top: 50px; text-align: center" v-if="canSubmit">
         <el-button
           type="primary"
           icon="el-icon-check"
@@ -132,6 +129,10 @@ export default {
     uploadServerUrl() {
       return process.env.VUE_APP_FILE_UPLOAD_PATH || "/api/upload/image";
     },
+    // 判断是否可以提交：score 为 null 且 completed 为 false 时可以提交
+    canSubmit() {
+      return this.detail.score === null && this.detail.completed === false;
+    },
   },
   created() {
     this.fetchDetail();
@@ -166,10 +167,13 @@ export default {
           this.detail = returned;
 
           // 回显学生已保存的答案（如果存在）
-          if (res && res.studentAnswer) {
+          // 优先使用 context（学生过往作答），其次是 studentAnswer
+          if (returned.context) {
+            this.submissionContent = returned.context;
+          } else if (res && res.context) {
+            this.submissionContent = res.context;
+          } else if (res && res.studentAnswer) {
             this.submissionContent = res.studentAnswer;
-          } else if (returned.content && returned.completed) {
-            // 若已完成且后端返回了 content，可选择回显 studentContent 等字段
           }
         })
         .catch((err) => {
@@ -192,7 +196,7 @@ export default {
         return;
       }
 
-      this.$confirm("确认提交该作业吗? 提交后不可修改", "提示", {
+      this.$confirm("确认提交该作业吗? 在老师批阅前您可以重新提交", "提示", {
         confirmButtonText: "确定提交",
         cancelButtonText: "取消",
         type: "success",
@@ -232,12 +236,8 @@ export default {
           })
             .then(() => {
               this.$message.success("提交成功");
-              this.detail.completed = true;
-              // 同步 Vuex 状态 (可选)，确保传入的是 id（回退到 workId）
-              this.$store.dispatch(
-                "completeHomework",
-                this.detail.id || workId
-              );
+              // 返回作业列表页面
+              this.$router.push({ name: "homework" });
             })
             .catch((err) => {
               console.error(err);
