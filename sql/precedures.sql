@@ -455,7 +455,8 @@ BEGIN
         SELECT 
             'SUCCESS' AS result_type,
             Wrcontent AS write_content, 
-            Score
+            Score,
+            State
         FROM `Write` 
         WHERE Sno = p_sno AND Wno = p_wno;
     END IF;
@@ -1360,6 +1361,33 @@ BEGIN
             p_tno AS teacher_id,
             v_work_count AS correct_count;
     END IF;
+END$$
+
+DELIMITER ;
+
+
+
+-- 存储过程：根据Cno查看课程下的学生
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS View_Course_Student$$
+
+CREATE PROCEDURE View_Course_Student(
+    p_cno INT
+)
+BEGIN
+    select 
+        Sno,
+        Sname,
+        Semail,
+        Sgender,
+        Smajor,
+        Sphone,
+        Savatar
+    from
+        SC 
+    join Student_Info SI ON SC.Sno = SI.Sno
+    where Cno = p_cno;
 END$$
 
 DELIMITER ;
