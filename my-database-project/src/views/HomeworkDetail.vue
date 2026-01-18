@@ -167,10 +167,13 @@ export default {
           this.detail = returned;
 
           // 回显学生已保存的答案（如果存在）
-          if (res && res.studentAnswer) {
+          // 优先使用 context（学生过往作答），其次是 studentAnswer
+          if (returned.context) {
+            this.submissionContent = returned.context;
+          } else if (res && res.context) {
+            this.submissionContent = res.context;
+          } else if (res && res.studentAnswer) {
             this.submissionContent = res.studentAnswer;
-          } else if (returned.content && returned.completed) {
-            // 若已完成且后端返回了 content，可选择回显 studentContent 等字段
           }
         })
         .catch((err) => {
