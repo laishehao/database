@@ -725,7 +725,8 @@ DELIMITER $$
 CREATE PROCEDURE Marking(
     p_wno int,
     p_sno int,
-    p_score int
+    p_score int,
+    p_comment text --新增评语修改
 )
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -742,7 +743,7 @@ BEGIN
             SELECT 'ERROR:SCORE_OUT_OF_RANGE' AS result_type;	-- 分数不在0-100范围内
         else
             update `Write`
-            set Score = p_score
+            set Score = p_score, Comment = p_comment;
             where Wno = p_wno and Sno = p_sno;
             commit;
             SELECT 'SUCCESS' AS result_type;
@@ -1116,3 +1117,79 @@ BEGIN
     WHERE
         WR.Sno = p_sno;
 END$$
+
+
+-- 存储过程：根据Tno查看老师管理的课程总数
+DELIMITER $$
+CREATE PROCEDURE TcntCourse(
+    p_tno INT
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    START TRANSACTION;
+    if not exists (select 1 from Teacher_Info where Tno = p_tno) then --检查老师是否存在
+        ROLLBACK;
+        SELECT 'ERROR:TEACHER_NOT_EXIST' AS result_type;
+    else
+        SELECT 'SUCCESS' AS result_type, (SELECT Tno, count(*) FROM course GROUP BY Tno HAVING Tno = p_tno);
+        COMMIT;
+    end if;
+END
+$$
+DELIMITER ;
+
+
+-- 存储过程：根据Sno查看学生选的课程总数
+DELIMITER $$
+CREATE PROCEDURE ScntCourse(
+    p_sno INT
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    START TRANSACTION;
+    if not exists (select 1 from Teacher_Info where Tno = p_tno) then --检查学生是否存在
+        ROLLBACK;
+        SELECT 'ERROR:STUDENT_NOT_EXIST' AS result_type;
+    else
+        SELECT 'SUCCESS' AS result_type, (SELECT Sno, count(*) FROM SC GROUP BY Sno HAVING Sno = p_sno);
+        COMMIT;
+    end if;
+END
+$$
+DELIMITER ;
+
+
+
+-- 存储过程：根据Sno查看学生当前未截止的作业数量
+DELIMITER $$
+CREATE PROCEDURE ScntWriting(
+    p_sno INT
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+    START TRANSACTION;
+    if not exists (select 1 from Teacher_Info where Tno = p_tno) then --检查学生是否存在
+        ROLLBACK;
+        SELECT 'ERROR:STUDENT_NOT_EXIST' AS result_type;
+    else
+        SELECT 'SUCCESS' AS result_type, (
+            SELECT Sno, count(*) FROM `Write` as A, Work as B where A.Wno = B.Wno 
+            GROUP BY Sno HAVING Sno = p_sno and now() < B.Wover and now() >= B.Wstart
+        );
+        COMMIT;
+    end if;
+END
+$$
+DELIMITER ;
