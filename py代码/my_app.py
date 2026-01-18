@@ -126,7 +126,7 @@ def app_userinfo():
     logger.info(f'if_ok={if_ok["msg"]}')
 
     return if_ok
-
+# TODO:登录
 @app.route('/login',methods=['POST'])
 def app_login():
     """登录用户，需要传入用户名和密码
@@ -142,7 +142,7 @@ def app_login():
     if_ok= login (phone, password)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-
+# TODO:老师查看学生列表
 @app.route('/student',methods=['GET'])
 def app_select_student():
     """
@@ -225,6 +225,7 @@ def app_delete_student(studentId):
     return if_ok
 
 # 课程处理
+# TODO：老师查询课程
 @app.route('/course',methods=['GET'])
 def app_select_course():
     """查询课程信息
@@ -329,7 +330,7 @@ def app_select_work():
     logger.info(f'work[0]={work["list"][0]}')
     
     return work
-# TODO：看作业做的怎么样
+# TODO：老师·看作业做的怎么样
 @app.route('/homework/submissions',methods=['GET'])
 def app_check_work():
     """查询具体作业提交情况
@@ -343,7 +344,7 @@ def app_check_work():
     # logger.info(f'work[0]={work["list"][0]}')
     
     return ans
-# TODO：发布作业
+# TODO：老师发布作业
 @app.route('/homework',methods=['POST'])
 def app_add_work():
     """添加作业，发布作业
@@ -360,7 +361,7 @@ def app_add_work():
     if_ok= add_work (title,course,content,progress)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-# TODO: myapp作业删除
+# TODO: 老师作业删除
 @app.route('/homework/<int:workId>',methods=['DELETE'])
 def app_delete_work(workId):
     """
@@ -370,7 +371,7 @@ def app_delete_work(workId):
     if_ok= delete_work (workId)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-# TODO: 作业更新
+# TODO: 老师作业更新
 @app.route('/homework/<int:workId>',methods=['PUT'])
 def app_update_work(workId):
     """
@@ -418,7 +419,7 @@ def app_watch_work(UserId):
     if_ok= watch_work (workId,UserId)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-
+# TODO:  老师批改作业界面
 @app.route('/homework/grade',methods=['POST'])
 def app_deal_work():
     """

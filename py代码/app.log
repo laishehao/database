@@ -2249,3 +2249,454 @@
 2026-01-18 01:14:07 [INFO] 日志记录器已配置
 2026-01-18 01:14:42 [INFO] 日志记录器已配置
 2026-01-18 01:14:42 [INFO] 日志记录器已配置
+2026-01-18 13:30:34 [INFO] 日志记录器已配置
+2026-01-18 13:30:34 [INFO] 日志记录器已配置
+2026-01-18 13:30:35 [INFO] 日志记录器已配置
+2026-01-18 13:30:36 [INFO] 日志记录器已配置
+2026-01-18 13:36:03 [INFO] 访问了登录界面
+2026-01-18 13:36:03 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-18 13:36:03 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 13:36:03 [INFO] (('ERROR:PHONE_ERROR',),)
+2026-01-18 13:36:03 [INFO] 数据库开始调用"老师登录"储存过程
+2026-01-18 13:36:03 [INFO] (('SUCCESS', 3),)
+2026-01-18 13:36:03 [INFO] ('SUCCESS', 3, 'lzh', '062d9fdc76a514b4c4475321645cc20c59100710122c191c91fe7bc5f2ea1459', '1399219872@qq.com', None, '15882805907', None)
+2026-01-18 13:36:03 [INFO] if_ok=登录成功
+2026-01-18 13:36:37 [INFO] 访问了登录界面
+2026-01-18 13:36:37 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-18 13:36:37 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 13:36:38 [INFO] (('SUCCESS', 14),)
+2026-01-18 13:36:38 [INFO] ('SUCCESS', 14, 'lzh666', '062d9fdc76a514b4c4475321645cc20c59100710122c191c91fe7bc5f2ea1459', '123@qq.com', None, None, '13812341234', None)
+2026-01-18 13:36:38 [INFO] if_ok=登录成功
+2026-01-18 14:31:53 [INFO] 访问了登录界面
+2026-01-18 14:31:53 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-18 14:31:53 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 14:32:05 [INFO] 访问了登录界面
+2026-01-18 14:32:05 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-18 14:32:05 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 14:32:21 [INFO] 访问了登录界面
+2026-01-18 14:32:21 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-18 14:32:21 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 14:32:35 [INFO] 日志记录器已配置
+2026-01-18 14:32:36 [INFO] 日志记录器已配置
+2026-01-18 14:32:37 [INFO] 日志记录器已配置
+2026-01-18 14:32:37 [INFO] 日志记录器已配置
+2026-01-18 14:32:39 [INFO] 访问了登录界面
+2026-01-18 14:32:39 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-18 14:32:39 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 14:32:39 [INFO] (('SUCCESS', 14),)
+2026-01-18 14:32:39 [INFO] ('SUCCESS', 14, 'lzh666', '062d9fdc76a514b4c4475321645cc20c59100710122c191c91fe7bc5f2ea1459', '123@qq.com', None, None, '13812341234', None)
+2026-01-18 14:32:39 [INFO] if_ok=登录成功
+2026-01-18 14:33:10 [INFO] 日志记录器已配置
+2026-01-18 14:33:10 [INFO] 日志记录器已配置
+2026-01-18 14:37:40 [INFO] 访问了登录界面
+2026-01-18 14:37:40 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-18 14:37:40 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 14:37:40 [INFO] (('ERROR:PHONE_ERROR',),)
+2026-01-18 14:37:40 [INFO] 数据库开始调用"老师登录"储存过程
+2026-01-18 14:37:40 [INFO] (('SUCCESS', 3),)
+2026-01-18 14:37:40 [INFO] ('SUCCESS', 3, 'lzh', '062d9fdc76a514b4c4475321645cc20c59100710122c191c91fe7bc5f2ea1459', '1399219872@qq.com', None, '15882805907', None)
+2026-01-18 14:37:40 [INFO] if_ok=登录成功
+2026-01-18 14:40:00 [INFO] 访问了登录界面
+2026-01-18 14:40:00 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-18 14:40:00 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 14:40:00 [INFO] (('SUCCESS', 14),)
+2026-01-18 14:40:00 [INFO] ('SUCCESS', 14, 'lzh666', '062d9fdc76a514b4c4475321645cc20c59100710122c191c91fe7bc5f2ea1459', '123@qq.com', None, None, '13812341234', None)
+2026-01-18 14:40:00 [INFO] if_ok=登录成功
+2026-01-18 14:45:13 [INFO] 访问了作业查看界面
+2026-01-18 14:45:13 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:45:13 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:46:23 [INFO] 访问了作业查看界面
+2026-01-18 14:46:23 [INFO] workId=1,UserId=1
+2026-01-18 14:46:23 [INFO] if_ok=查看成功
+2026-01-18 14:46:34 [INFO] 访问了作业查看界面
+2026-01-18 14:46:34 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:46:34 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:46:37 [INFO] role=None,syudentId=None,workId=None,writecheck=None
+2026-01-18 14:46:45 [INFO] role=None,syudentId=None,workId=None,writecheck=None
+2026-01-18 14:46:48 [INFO] 访问了作业查看界面
+2026-01-18 14:46:48 [INFO] workId=1,UserId=1
+2026-01-18 14:46:48 [INFO] if_ok=查看成功
+2026-01-18 14:47:03 [INFO] 访问了作业查看界面
+2026-01-18 14:47:03 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:47:03 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:47:06 [INFO] 访问了作业查看界面
+2026-01-18 14:47:06 [INFO] workId=1,UserId=1
+2026-01-18 14:47:06 [INFO] if_ok=查看成功
+2026-01-18 14:47:18 [INFO] 访问了作业查看界面
+2026-01-18 14:47:18 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:47:18 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:47:25 [INFO] 访问了作业查看界面
+2026-01-18 14:47:25 [INFO] workId=1,UserId=1
+2026-01-18 14:47:25 [INFO] if_ok=查看成功
+2026-01-18 14:47:44 [INFO] 访问了作业查看界面
+2026-01-18 14:47:44 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:47:44 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:47:46 [INFO] 访问了作业查看界面
+2026-01-18 14:47:46 [INFO] workId=1,UserId=1
+2026-01-18 14:47:46 [INFO] if_ok=查看成功
+2026-01-18 14:47:55 [INFO] 访问了作业查看界面
+2026-01-18 14:47:55 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:47:55 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:48:00 [INFO] 访问了作业查看界面
+2026-01-18 14:48:00 [INFO] workId=1,UserId=1
+2026-01-18 14:48:00 [INFO] if_ok=查看成功
+2026-01-18 14:48:03 [INFO] 访问了作业查看界面
+2026-01-18 14:48:03 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:48:03 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:49:30 [INFO] role=None,syudentId=None,workId=None,writecheck=None
+2026-01-18 14:53:31 [INFO] 访问了作业查看界面
+2026-01-18 14:53:31 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:53:31 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:55:08 [INFO] 访问了用户界面
+2026-01-18 14:55:08 [INFO] phone=15882805907,name=lzh666,email=1399219872@qq.com
+2026-01-18 14:55:08 [INFO] if_ok=修改成功
+2026-01-18 14:58:08 [INFO] 访问了作业查看界面
+2026-01-18 14:58:08 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:58:08 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:58:14 [INFO] 访问了作业批改界面
+2026-01-18 14:58:14 [INFO] work=1
+2026-01-18 14:58:14 [INFO] work[0]={'workId': 'HW001', 'userId': '202301001', 'name': '张三', 'status': 'submitted', 'score': 85, 'content': '这是我的第一次作业，主要完成了前两章的基础练习...', 'teacherComment': '完成得不错，但第三题可以更详细些'}
+2026-01-18 14:58:16 [INFO] 访问了作业查看界面
+2026-01-18 14:58:16 [INFO] query=,page=None,pageSize=None
+2026-01-18 14:58:16 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 14:58:27 [INFO] 访问了作业批改界面
+2026-01-18 14:58:27 [INFO] work=1
+2026-01-18 14:58:27 [INFO] work[0]={'workId': 'HW001', 'userId': '202301001', 'name': '张三', 'status': 'submitted', 'score': 85, 'content': '这是我的第一次作业，主要完成了前两章的基础练习...', 'teacherComment': '完成得不错，但第三题可以更详细些'}
+2026-01-18 15:00:00 [INFO] 访问了作业查看界面
+2026-01-18 15:00:00 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:00:00 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:00:07 [INFO] 访问了作业查看界面
+2026-01-18 15:00:07 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:00:07 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:00:19 [INFO] 访问了作业批改界面
+2026-01-18 15:00:19 [INFO] work=1
+2026-01-18 15:00:19 [INFO] work[0]={'workId': 'HW001', 'userId': '202301001', 'name': '张三', 'status': 'submitted', 'score': 85, 'content': '这是我的第一次作业，主要完成了前两章的基础练习...', 'teacherComment': '完成得不错，但第三题可以更详细些'}
+2026-01-18 15:00:39 [INFO] 访问了作业查看界面
+2026-01-18 15:00:39 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:00:39 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:00:41 [INFO] 访问了作业批改界面
+2026-01-18 15:00:41 [INFO] work=1
+2026-01-18 15:00:41 [INFO] work[0]={'workId': 'HW001', 'userId': '202301001', 'name': '张三', 'status': 'submitted', 'score': 85, 'content': '这是我的第一次作业，主要完成了前两章的基础练习...', 'teacherComment': '完成得不错，但第三题可以更详细些'}
+2026-01-18 15:01:16 [INFO] 访问了作业批改界面
+2026-01-18 15:01:16 [INFO] workId=1,UserId=202301001,score=88,teacherComment=完成得不错，但第三题可以更详细些
+2026-01-18 15:02:08 [INFO] 日志记录器已配置
+2026-01-18 15:02:08 [INFO] 日志记录器已配置
+2026-01-18 15:02:09 [INFO] 访问了作业查看界面
+2026-01-18 15:02:09 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:02:09 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:02:17 [INFO] 访问了作业更新界面
+2026-01-18 15:02:17 [INFO] workId=1,title=test,content=test
+2026-01-18 15:02:17 [INFO] if_ok=更新成功
+2026-01-18 15:02:17 [INFO] 访问了作业查看界面
+2026-01-18 15:02:17 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:02:17 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:02:39 [INFO] 访问了作业删除界面
+2026-01-18 15:02:39 [INFO] if_ok=删除成功
+2026-01-18 15:02:39 [INFO] 访问了作业查看界面
+2026-01-18 15:02:39 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:02:39 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:02:57 [INFO] 访问了作业添加界面
+2026-01-18 15:02:57 [INFO] title=1,content=1,progress=0,course=高等数学
+2026-01-18 15:02:57 [INFO] if_ok=添加成功
+2026-01-18 15:02:57 [INFO] 访问了作业查看界面
+2026-01-18 15:02:57 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:02:57 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:03:33 [INFO] 访问了课程查看界面
+2026-01-18 15:03:33 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:05:15 [INFO] 访问了学生界面
+2026-01-18 15:05:15 [INFO] query=,page=1,page_size=10
+2026-01-18 15:05:15 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 15:05:29 [INFO] 访问了课程查看界面
+2026-01-18 15:05:29 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:05:30 [INFO] 访问了作业查看界面
+2026-01-18 15:05:30 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:05:30 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:05:31 [INFO] 访问了课程查看界面
+2026-01-18 15:05:31 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:05:42 [INFO] 访问了课程更新界面
+2026-01-18 15:05:42 [INFO] courseId=1,CourseName=高等数学,major=计算机科学与技术,credits=4,type=必修,teacher=张三
+2026-01-18 15:05:42 [INFO] if_ok=更新成功
+2026-01-18 15:05:42 [INFO] 访问了课程查看界面
+2026-01-18 15:05:42 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:05:59 [INFO] 访问了课程更新界面
+2026-01-18 15:05:59 [INFO] courseId=1,CourseName=高等数学,major=计算机科学与技术,credits=4,type=必修,teacher=张三
+2026-01-18 15:05:59 [INFO] if_ok=更新成功
+2026-01-18 15:05:59 [INFO] 访问了课程查看界面
+2026-01-18 15:05:59 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:08:06 [INFO] 访问了课程更新界面
+2026-01-18 15:08:06 [INFO] courseId=1,CourseName=高等数学,major=计算机科学与技术,credits=4,type=必修,teacher=张三
+2026-01-18 15:08:06 [INFO] if_ok=更新成功
+2026-01-18 15:08:06 [INFO] 访问了课程查看界面
+2026-01-18 15:08:06 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:08:14 [INFO] 访问了学生界面
+2026-01-18 15:08:14 [INFO] query=,page=1,page_size=10
+2026-01-18 15:08:14 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 15:08:51 [INFO] 访问了作业查看界面
+2026-01-18 15:08:51 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:08:51 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:08:52 [INFO] 访问了课程查看界面
+2026-01-18 15:08:52 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:08:55 [INFO] 访问了学生界面
+2026-01-18 15:08:55 [INFO] query=,page=1,page_size=10
+2026-01-18 15:08:55 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 15:10:02 [INFO] 访问了学生界面
+2026-01-18 15:10:02 [INFO] query=,page=1,page_size=10
+2026-01-18 15:10:02 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 15:11:13 [INFO] 访问了课程查看界面
+2026-01-18 15:11:13 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:12:02 [INFO] 访问了课程查看界面
+2026-01-18 15:12:02 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:12:11 [INFO] 访问了课程删除界面
+2026-01-18 15:12:11 [INFO] courseId=1
+2026-01-18 15:12:11 [INFO] if_ok=删除成功
+2026-01-18 15:12:11 [INFO] 访问了课程查看界面
+2026-01-18 15:12:11 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:12:41 [INFO] 访问了作业查看界面
+2026-01-18 15:12:41 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:12:41 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:18:56 [INFO] 访问了登录界面
+2026-01-18 15:18:56 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-18 15:18:56 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 15:18:56 [INFO] (('SUCCESS', 14),)
+2026-01-18 15:18:56 [INFO] ('SUCCESS', 14, 'lzh666', '062d9fdc76a514b4c4475321645cc20c59100710122c191c91fe7bc5f2ea1459', '123@qq.com', None, None, '13812341234', None)
+2026-01-18 15:18:56 [INFO] if_ok=登录成功
+2026-01-18 15:20:32 [INFO] 访问了作业查看界面
+2026-01-18 15:20:32 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:20:32 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:23:07 [INFO] 访问了作业查看界面
+2026-01-18 15:23:07 [INFO] workId=1,UserId=1
+2026-01-18 15:23:07 [INFO] if_ok=查看成功
+2026-01-18 15:24:14 [INFO] 访问了作业查看界面
+2026-01-18 15:24:14 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:24:14 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:24:15 [INFO] 访问了作业查看界面
+2026-01-18 15:24:15 [INFO] workId=1,UserId=1
+2026-01-18 15:24:15 [INFO] if_ok=查看成功
+2026-01-18 15:24:19 [INFO] 访问了作业查看界面
+2026-01-18 15:24:19 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:24:19 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:24:20 [INFO] 访问了作业查看界面
+2026-01-18 15:24:20 [INFO] workId=1,UserId=1
+2026-01-18 15:24:20 [INFO] if_ok=查看成功
+2026-01-18 15:24:33 [INFO] 访问了作业查看界面
+2026-01-18 15:24:33 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:24:33 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:27:24 [INFO] 访问了作业查看界面
+2026-01-18 15:27:24 [INFO] workId=1,UserId=1
+2026-01-18 15:27:24 [INFO] if_ok=查看成功
+2026-01-18 15:28:15 [INFO] 访问了作业查看界面
+2026-01-18 15:28:15 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:28:15 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:28:16 [INFO] 访问了作业查看界面
+2026-01-18 15:28:16 [INFO] workId=1,UserId=1
+2026-01-18 15:28:16 [INFO] if_ok=查看成功
+2026-01-18 15:30:50 [INFO] 访问了作业查看界面
+2026-01-18 15:30:50 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:30:50 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:32:14 [INFO] role=None,syudentId=None,workId=None,writecheck=None
+2026-01-18 15:32:21 [INFO] role=None,syudentId=None,workId=None,writecheck=None
+2026-01-18 15:32:23 [INFO] role=None,syudentId=None,workId=None,writecheck=None
+2026-01-18 15:33:21 [INFO] 访问了用户界面
+2026-01-18 15:33:21 [INFO] phone=15882805907,name=lzh666,email=1399219872@qq.com
+2026-01-18 15:33:21 [INFO] if_ok=修改成功
+2026-01-18 15:35:55 [INFO] 访问了作业查看界面
+2026-01-18 15:35:55 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:35:55 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:36:06 [INFO] 访问了作业批改界面
+2026-01-18 15:36:06 [INFO] work=1
+2026-01-18 15:36:06 [INFO] work[0]={'workId': 'HW001', 'userId': '202301001', 'name': '张三', 'status': 'submitted', 'score': 85, 'content': '这是我的第一次作业，主要完成了前两章的基础练习...', 'teacherComment': '完成得不错，但第三题可以更详细些'}
+2026-01-18 15:36:43 [INFO] 日志记录器已配置
+2026-01-18 15:36:44 [INFO] 日志记录器已配置
+2026-01-18 15:38:37 [INFO] 日志记录器已配置
+2026-01-18 15:38:37 [INFO] 日志记录器已配置
+2026-01-18 15:38:50 [INFO] 日志记录器已配置
+2026-01-18 15:38:50 [INFO] 日志记录器已配置
+2026-01-18 15:39:32 [INFO] 日志记录器已配置
+2026-01-18 15:39:32 [INFO] 日志记录器已配置
+2026-01-18 15:39:47 [INFO] 访问了作业批改界面
+2026-01-18 15:39:47 [INFO] workId=1,UserId=202301001,score=85,teacherComment=完成得不错，但第三题可以更详细些
+2026-01-18 15:41:28 [INFO] 访问了作业批改界面
+2026-01-18 15:41:28 [INFO] workId=1,UserId=202301002,score=92,teacherComment=思路清晰，答案正确，继续保持！
+2026-01-18 15:41:35 [INFO] 日志记录器已配置
+2026-01-18 15:41:35 [INFO] 日志记录器已配置
+2026-01-18 15:41:36 [INFO] 访问了作业批改界面
+2026-01-18 15:41:36 [INFO] workId=1,UserId=202301002,score=92,teacherComment=思路清晰，答案正确，继续保持！
+2026-01-18 15:41:52 [INFO] 访问了作业查看界面
+2026-01-18 15:41:52 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:41:52 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:42:05 [INFO] 访问了作业更新界面
+2026-01-18 15:42:05 [INFO] workId=1,title=test,content=test
+2026-01-18 15:42:05 [INFO] if_ok=更新成功
+2026-01-18 15:42:05 [INFO] 访问了作业查看界面
+2026-01-18 15:42:05 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:42:05 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:42:56 [INFO] 日志记录器已配置
+2026-01-18 15:42:56 [INFO] 日志记录器已配置
+2026-01-18 15:45:32 [INFO] 访问了作业删除界面
+2026-01-18 15:45:32 [INFO] if_ok=删除成功
+2026-01-18 15:45:32 [INFO] 访问了作业查看界面
+2026-01-18 15:45:32 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:45:32 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:45:57 [INFO] 日志记录器已配置
+2026-01-18 15:45:57 [INFO] 日志记录器已配置
+2026-01-18 15:46:58 [INFO] 访问了作业批改界面
+2026-01-18 15:46:58 [INFO] work=1
+2026-01-18 15:46:58 [INFO] work[0]={'workId': 'HW001', 'userId': '202301001', 'name': '张三', 'status': 'submitted', 'score': 85, 'content': '这是我的第一次作业，主要完成了前两章的基础练习...', 'teacherComment': '完成得不错，但第三题可以更详细些'}
+2026-01-18 15:47:11 [INFO] 访问了作业查看界面
+2026-01-18 15:47:11 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:47:11 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:48:03 [INFO] 访问了登录界面
+2026-01-18 15:48:03 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-18 15:48:03 [INFO] 数据库开始调用"学生登录"储存过程
+2026-01-18 15:48:03 [INFO] (('SUCCESS', 14),)
+2026-01-18 15:48:03 [INFO] ('SUCCESS', 14, 'lzh666', '062d9fdc76a514b4c4475321645cc20c59100710122c191c91fe7bc5f2ea1459', '123@qq.com', None, None, '13812341234', None)
+2026-01-18 15:48:03 [INFO] if_ok=登录成功
+2026-01-18 15:48:04 [INFO] 访问了作业查看界面
+2026-01-18 15:48:04 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:48:04 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:48:23 [INFO] 访问了作业查看界面
+2026-01-18 15:48:23 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:48:23 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:49:25 [INFO] 访问了作业查看界面
+2026-01-18 15:49:25 [INFO] workId=1,UserId=1
+2026-01-18 15:49:25 [INFO] if_ok=查看成功
+2026-01-18 15:53:48 [INFO] 访问了作业查看界面
+2026-01-18 15:53:48 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:53:48 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:53:49 [INFO] 访问了作业查看界面
+2026-01-18 15:53:49 [INFO] workId=1,UserId=1
+2026-01-18 15:53:49 [INFO] if_ok=查看成功
+2026-01-18 15:56:35 [INFO] 访问了用户界面
+2026-01-18 15:56:35 [INFO] phone=15882805907,name=lzh666,email=1399219872@qq.com
+2026-01-18 15:56:35 [INFO] if_ok=修改成功
+2026-01-18 15:56:38 [INFO] 访问了作业查看界面
+2026-01-18 15:56:38 [INFO] query=,page=None,pageSize=None
+2026-01-18 15:56:38 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 15:57:09 [INFO] 访问了课程查看界面
+2026-01-18 15:57:09 [INFO] query=,page=1,pageSize=10
+2026-01-18 15:57:52 [INFO] 日志记录器已配置
+2026-01-18 15:57:52 [INFO] 日志记录器已配置
+2026-01-18 15:58:19 [INFO] 日志记录器已配置
+2026-01-18 15:58:19 [INFO] 日志记录器已配置
+2026-01-18 15:58:43 [INFO] 日志记录器已配置
+2026-01-18 15:58:43 [INFO] 日志记录器已配置
+2026-01-18 15:58:57 [INFO] 访问了学生界面
+2026-01-18 15:58:57 [INFO] query=,page=1,page_size=10
+2026-01-18 15:58:57 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 15:59:11 [INFO] 日志记录器已配置
+2026-01-18 15:59:11 [INFO] 日志记录器已配置
+2026-01-18 16:01:14 [INFO] 访问了作业查看界面
+2026-01-18 16:01:14 [INFO] query=,page=None,pageSize=None
+2026-01-18 16:01:14 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 16:01:19 [INFO] 访问了作业添加界面
+2026-01-18 16:01:19 [INFO] title=1,content=1,progress=0,course=高等数学
+2026-01-18 16:01:19 [INFO] if_ok=添加成功
+2026-01-18 16:01:19 [INFO] 访问了作业查看界面
+2026-01-18 16:01:19 [INFO] query=,page=None,pageSize=None
+2026-01-18 16:01:19 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 16:02:21 [INFO] 访问了课程查看界面
+2026-01-18 16:02:21 [INFO] query=,page=1,pageSize=10
+2026-01-18 16:02:41 [INFO] 访问了课程添加界面
+2026-01-18 16:02:41 [INFO] courseId=1,CourseName=1,major=计算机科学,credits=2,type=必修,teacher=1
+2026-01-18 16:02:41 [INFO] if_ok=添加成功
+2026-01-18 16:02:41 [INFO] 访问了课程查看界面
+2026-01-18 16:02:41 [INFO] query=,page=1,pageSize=10
+2026-01-18 16:15:28 [INFO] 访问了作业查看界面
+2026-01-18 16:15:28 [INFO] query=,page=None,pageSize=None
+2026-01-18 16:15:28 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 16:15:30 [INFO] 访问了作业查看界面
+2026-01-18 16:15:30 [INFO] query=,page=None,pageSize=None
+2026-01-18 16:15:30 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 16:15:30 [INFO] 访问了课程查看界面
+2026-01-18 16:15:30 [INFO] query=,page=1,pageSize=10
+2026-01-18 16:15:31 [INFO] 访问了作业查看界面
+2026-01-18 16:15:31 [INFO] query=,page=None,pageSize=None
+2026-01-18 16:15:31 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 16:15:34 [INFO] 访问了作业批改界面
+2026-01-18 16:15:34 [INFO] work=1
+2026-01-18 16:15:34 [INFO] work[0]={'workId': 'HW001', 'userId': '202301001', 'name': '张三', 'status': 'submitted', 'score': 85, 'content': '这是我的第一次作业，主要完成了前两章的基础练习...', 'teacherComment': '完成得不错，但第三题可以更详细些'}
+2026-01-18 16:15:38 [INFO] 访问了作业查看界面
+2026-01-18 16:15:38 [INFO] query=,page=None,pageSize=None
+2026-01-18 16:15:38 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 16:15:43 [INFO] 访问了课程查看界面
+2026-01-18 16:15:43 [INFO] query=,page=1,pageSize=10
+2026-01-18 16:15:47 [INFO] 访问了学生界面
+2026-01-18 16:15:47 [INFO] query=,page=1,page_size=10
+2026-01-18 16:15:47 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:31 [INFO] 日志记录器已配置
+2026-01-18 16:16:31 [INFO] 日志记录器已配置
+2026-01-18 16:16:32 [INFO] 访问了课程查看界面
+2026-01-18 16:16:32 [INFO] query=,page=1,pageSize=10
+2026-01-18 16:16:33 [INFO] 访问了作业查看界面
+2026-01-18 16:16:33 [INFO] query=,page=None,pageSize=None
+2026-01-18 16:16:33 [INFO] work[0]={'workId': '1', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': False}
+2026-01-18 16:16:34 [INFO] 访问了课程查看界面
+2026-01-18 16:16:34 [INFO] query=,page=1,pageSize=10
+2026-01-18 16:16:36 [INFO] 访问了学生界面
+2026-01-18 16:16:36 [INFO] query=,page=1,page_size=10
+2026-01-18 16:16:36 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:38 [INFO] 访问了学生界面
+2026-01-18 16:16:38 [INFO] query=,page=2,page_size=10
+2026-01-18 16:16:38 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:39 [INFO] 访问了学生界面
+2026-01-18 16:16:39 [INFO] query=,page=1,page_size=10
+2026-01-18 16:16:39 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:40 [INFO] 访问了学生界面
+2026-01-18 16:16:40 [INFO] query=,page=2,page_size=10
+2026-01-18 16:16:40 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:41 [INFO] 访问了学生界面
+2026-01-18 16:16:41 [INFO] query=,page=1,page_size=10
+2026-01-18 16:16:41 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:44 [INFO] 访问了学生界面
+2026-01-18 16:16:44 [INFO] query=,page=2,page_size=10
+2026-01-18 16:16:44 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:44 [INFO] 访问了学生界面
+2026-01-18 16:16:44 [INFO] query=,page=1,page_size=10
+2026-01-18 16:16:44 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:54 [INFO] 访问了学生界面
+2026-01-18 16:16:54 [INFO] query=,page=2,page_size=10
+2026-01-18 16:16:54 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:55 [INFO] 访问了学生界面
+2026-01-18 16:16:55 [INFO] query=,page=1,page_size=10
+2026-01-18 16:16:55 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:55 [INFO] 访问了学生界面
+2026-01-18 16:16:55 [INFO] query=,page=2,page_size=10
+2026-01-18 16:16:55 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:56 [INFO] 访问了学生界面
+2026-01-18 16:16:56 [INFO] query=,page=1,page_size=10
+2026-01-18 16:16:56 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:57 [INFO] 访问了学生界面
+2026-01-18 16:16:57 [INFO] query=,page=2,page_size=10
+2026-01-18 16:16:57 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:16:57 [INFO] 访问了学生界面
+2026-01-18 16:16:57 [INFO] query=,page=1,page_size=10
+2026-01-18 16:16:57 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:17:09 [INFO] 访问了课程查看界面
+2026-01-18 16:17:09 [INFO] query=,page=1,pageSize=10
+2026-01-18 16:17:11 [INFO] 访问了学生界面
+2026-01-18 16:17:11 [INFO] query=,page=1,page_size=10
+2026-01-18 16:17:11 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:17:25 [INFO] 访问了学生界面
+2026-01-18 16:17:25 [INFO] query=,page=2,page_size=10
+2026-01-18 16:17:25 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:17:25 [INFO] 访问了学生界面
+2026-01-18 16:17:25 [INFO] query=,page=1,page_size=10
+2026-01-18 16:17:25 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:17:58 [INFO] 访问了学生界面
+2026-01-18 16:17:58 [INFO] query=,page=2,page_size=10
+2026-01-18 16:17:58 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:18:05 [INFO] 访问了学生界面
+2026-01-18 16:18:05 [INFO] query=,page=1,page_size=10
+2026-01-18 16:18:05 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:18:20 [INFO] 访问了学生界面
+2026-01-18 16:18:20 [INFO] query=,page=2,page_size=10
+2026-01-18 16:18:20 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:18:21 [INFO] 访问了学生界面
+2026-01-18 16:18:21 [INFO] query=,page=1,page_size=10
+2026-01-18 16:18:21 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:18:23 [INFO] 访问了学生界面
+2026-01-18 16:18:23 [INFO] query=,page=2,page_size=10
+2026-01-18 16:18:23 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-18 16:18:24 [INFO] 访问了学生界面
+2026-01-18 16:18:24 [INFO] query=,page=1,page_size=10
+2026-01-18 16:18:24 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}

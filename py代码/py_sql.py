@@ -173,7 +173,7 @@ def select_student(query, page, page_size):
             "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
         }
     # role_check=True
-    students.append(student)
+    students=[student]*20
     
     list=students
     total=list.__len__()
@@ -339,11 +339,11 @@ def check_work(workId):
 def deal_work (workId,UserId,teacherComment,score):
     ans={
         "msg": "批改成功",
-        "userId": "202301002",
-        "workId": "HW001",
-        "status": "graded",
-        "score": "92",
-        "teacherComment": "思路清晰，答案正确，继续保持！"
+        # "userId": "202301002",
+        # "workId": "HW001",
+        # "status": "graded",
+        # "score": "92",
+        # "teacherComment": "思路清晰，答案正确，继续保持！"
     }
     return ans
 if __name__ == '__main__':
