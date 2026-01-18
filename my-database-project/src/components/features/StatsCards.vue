@@ -9,7 +9,7 @@
       >
         <div class="card-content">
           <div class="card-left">
-            <div class="card-num">{{ stats.student }}</div>
+            <div class="card-num">{{ stats.studentCount || 0 }}</div>
             <div class="card-text">学生总数</div>
           </div>
           <i class="el-icon-user-solid card-icon"></i>
@@ -26,7 +26,7 @@
       >
         <div class="card-content">
           <div class="card-left">
-            <div class="card-num">{{ stats.course }}</div>
+            <div class="card-num">{{ stats.courseCount || 0 }}</div>
             <div class="card-text">课程总数</div>
           </div>
           <i class="el-icon-reading card-icon"></i>
@@ -43,7 +43,7 @@
       >
         <div class="card-content">
           <div class="card-left">
-            <div class="card-num">{{ stats.homework }}</div>
+            <div class="card-num">{{ stats.ongoingHomework || 0 }}</div>
             <div class="card-text">进行中的作业</div>
           </div>
           <i class="el-icon-notebook-1 card-icon"></i>
@@ -77,7 +77,7 @@
       >
         <div class="card-content">
           <div class="card-left">
-            <div class="card-num">8</div>
+            <div class="card-num">{{ stats.pendingGrade || 0 }}</div>
             <div class="card-text">待批改</div>
           </div>
           <i class="el-icon-edit-outline card-icon"></i>
@@ -89,16 +89,21 @@
 
 <script>
 export default {
-  name: 'StatsCards',
+  name: "StatsCards",
   props: {
     stats: {
       type: Object,
-      default: () => ({ student: 0, course: 0, homework: 0 })
+      default: () => ({
+        studentCount: 0,
+        courseCount: 0,
+        ongoingHomework: 0,
+        pendingGrade: 0,
+      }),
     },
     userRole: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     getCardStyle(imageName, fallbackColor) {
@@ -115,8 +120,8 @@ export default {
       } catch (e) {
         return { background: fallbackColor, color: "white", border: "none" };
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

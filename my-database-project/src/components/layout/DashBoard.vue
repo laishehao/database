@@ -58,7 +58,12 @@ export default {
   data() {
     return {
       currentDate: new Date(),
-      stats: { student: 0, course: 0, homework: 0 },
+      stats: {
+        studentCount: 0,
+        courseCount: 0,
+        ongoingHomework: 0,
+        pendingGrade: 0,
+      },
       carouselItems: [
         //轮播图内容（飞天小女警主题）
         {
