@@ -843,3 +843,34 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+
+-- 存储过程：删除学生
+-- 老师可以将某个学生从课程中删除
+CREATE PROCEDURE Delete_Student_From_Course(
+    IN p_cno INT,
+    IN p_sno INT
+)
+BEGIN
+    -- 错误处理，出现异常时回滚并返回错误信息
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
+    END;
+
+    -- 开始事务
+    START TRANSACTION;
+    -- 检查学生是否选修该课程
+    IF NOT EXISTS (SELECT 1 FROM SC WHERE Cno = p_cno AND Sno = p_sno) THEN
+    BEGIN
+        ROLLBACK;
+        SELECT 'ERROR:STUDENT_NOT_ENROLLED' AS result_type;
+    END;
+    -- 学生选择了该课程，正常删除记录即可
+    ELSE
+        DELETE FROM SC WHERE Cno = p_cno AND Sno = p_sno;
+        COMMIT;
+        SELECT 'SUCCESS' AS result_type;
+    END IF;
+END;
+DELIMITER ;
