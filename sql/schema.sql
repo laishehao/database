@@ -63,9 +63,9 @@ CREATE TABLE `Write` (
     Wno int NOT NULL,
     Sno int NOT NULL,
     State INT DEFAULT 0,
-    Wrcontent TEXT,				-- 新增书写内容
-    Score INT,					-- 新增打分
-    Comment TEXT,				-- 新增教师评语
+    Wrcontent TEXT,				            -- 新增书写内容
+    Score INT DEFAULT NULL,					-- 新增打分
+    Comment TEXT DEFAULT NULL,				-- 新增教师评语
     PRIMARY KEY (Wno, Sno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
     FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
@@ -74,7 +74,7 @@ CREATE TABLE `Write` (
 -- 题目图片表定义
 CREATE TABLE Title_Image (			-- 新增图片表，题目的图片和书写作业的图片都保存在里面
     Wno int NOT NULL,
-    Cno int NOT NULL,			-- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
+    Cno int NOT NULL,			    -- 如果Uno为老师，则这是题目图片，否则是书写作业的图片
     image_path VARCHAR(255),
     PRIMARY KEY (Wno, Cno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
