@@ -19,7 +19,7 @@ BEGIN
         END IF;
     END;
     
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION			        -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
         SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
@@ -983,8 +983,8 @@ SELECT "Teacher_View_Course_List procedure created." AS Message;
 -- 关键词：课程名称、课程编号等
 DELIMITER $$
 CREATE PROCEDURE Teacher_View_Course_List(
-    IN p_tno,
-    IN p_keyword VARCHAR(100)    -- 可选关键词，模糊匹配课程名称或课程编号
+    IN p_tno INT,
+    IN p_keyword VARCHAR(100)
 )
 BEGIN
     -- 错误处理：出现异常时回滚并返回错误信息
@@ -1022,7 +1022,7 @@ SELECT "Teacher_View_Work_List procedure created." AS Message;
 DELIMITER $$
 CREATE PROCEDURE Teacher_View_Work_List(
     IN p_tno INT,
-    IN p_keyword VARCHAR(200)    -- 可选关键词，模糊匹配作业标题、作业编号或所属课程
+    IN p_keyword VARCHAR(200)
 )
 BEGIN
     -- 错误处理，出现异常时回滚并返回错误信息
@@ -1278,7 +1278,7 @@ BEGIN
         JOIN SC ON W.Cno = SC.Cno
         LEFT JOIN `Write` WR ON W.Wno = WR.Wno AND WR.Sno = p_sno
         WHERE SC.Sno = p_sno 
-          AND NOW() < W.Wover  -- 作业未截止
+          AND NOW() < W.Wover
           AND (WR.State IS NULL OR WR.State = 0);  -- 未提交或未完成
         
         -- 返回成功结果，包含作业数量
@@ -1291,7 +1291,7 @@ END$$
 
 DELIMITER ;
 
---新存储过程
+SELECT "TcntWriting procedure created." AS Message;
 
 -- 存储过程：根据Tno查看老师管理的正在进行的作业
 DELIMITER $$
@@ -1305,7 +1305,7 @@ BEGIN
     DECLARE v_work_count INT DEFAULT 0;
     DECLARE v_teacher_exists INT DEFAULT 0;
     
-    -- 检查学生是否存在
+    -- 检查教师是否存在
     SELECT COUNT(*) INTO v_teacher_exists
     FROM Teacher_Info 
     WHERE Tno = p_tno;
@@ -1315,8 +1315,9 @@ BEGIN
     ELSE
         -- 查询老师管理的当前未截止的题目数量
         SELECT COUNT(DISTINCT Wno) INTO v_work_count
-        FROM Work
-        WHERE Tno = p_tno AND NOW() < Wover  -- 作业未截止
+        FROM Work W
+        JOIN Course C ON W.Cno = C.Cno
+        WHERE Tno = p_tno AND NOW() < Wover;
         
         -- 返回成功结果，包含作业数量
         SELECT 
@@ -1328,7 +1329,7 @@ END$$
 
 DELIMITER ;
 
-
+SELECT "TcntCorrect procedure created." AS Message;
 -- 存储过程：根据Tno查看老师待批改的作业
 DELIMITER $$
 
@@ -1353,8 +1354,9 @@ BEGIN
         SELECT COUNT(DISTINCT W.Wno) INTO v_work_count
         FROM Work W
         JOIN `Write` WR ON W.Wno = WR.Wno
+        JOIN Course C ON C.Cno = W.Cno
         WHERE Tno = p_tno
-          AND NOW() > W.Wover  -- 作业已截止
+          AND NOW() > W.Wover;
         
         -- 返回成功结果，包含作业数量
         SELECT 
@@ -1367,7 +1369,7 @@ END$$
 DELIMITER ;
 
 
-
+SELECT "View_Course_Student procedure created." AS Message;
 -- 存储过程：根据Cno查看课程下的学生
 DELIMITER $$
 
@@ -1378,7 +1380,7 @@ CREATE PROCEDURE View_Course_Student(
 )
 BEGIN
     select 
-        Sno,
+        SC.Sno,
         Sname,
         Semail,
         Sgender,
@@ -1386,7 +1388,7 @@ BEGIN
         Sphone,
         Savatar
     from
-        SC 
+        SC
     join Student_Info SI ON SC.Sno = SI.Sno
     where Cno = p_cno;
 END$$
