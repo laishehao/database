@@ -1281,3 +1281,78 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+--新存储过程
+
+-- 存储过程：根据Tno查看老师管理的正在进行的作业
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS TcntWriting$$
+
+CREATE PROCEDURE TcntWriting(
+    p_tno INT
+)
+BEGIN
+    DECLARE v_work_count INT DEFAULT 0;
+    DECLARE v_teacher_exists INT DEFAULT 0;
+    
+    -- 检查学生是否存在
+    SELECT COUNT(*) INTO v_teacher_exists
+    FROM Teacher_Info 
+    WHERE Tno = p_tno;
+    
+    IF v_teacher_exists = 0 THEN
+        SELECT 'ERROR:TEACHER_NOT_EXIST' AS result_type;
+    ELSE
+        -- 查询老师管理的当前未截止的题目数量
+        SELECT COUNT(DISTINCT Wno) INTO v_work_count
+        FROM Work
+        WHERE Tno = p_tno AND NOW() < Wover  -- 作业未截止
+        
+        -- 返回成功结果，包含作业数量
+        SELECT 
+            'SUCCESS' AS result_type,
+            p_tno AS teacher_id,
+            v_work_count AS writing_count;
+    END IF;
+END$$
+
+DELIMITER ;
+
+
+-- 存储过程：根据Tno查看老师待批改的作业
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS TcntCorrect$$
+
+CREATE PROCEDURE TcntCorrect(
+    p_tno INT
+)
+BEGIN
+    DECLARE v_work_count INT DEFAULT 0;
+    DECLARE v_teacher_exists INT DEFAULT 0;
+    
+    -- 检查学生是否存在
+    SELECT COUNT(*) INTO v_teacher_exists
+    FROM Teacher_Info 
+    WHERE Tno = p_tno;
+    
+    IF v_teacher_exists = 0 THEN
+        SELECT 'ERROR:TEACHER_NOT_EXIST' AS result_type;
+    ELSE
+
+        SELECT COUNT(DISTINCT W.Wno) INTO v_work_count
+        FROM Work W
+        LEFT JOIN `Write` WR ON W.Wno = WR.Wno
+        WHERE Tno = p_tno
+          AND NOW() > W.Wover  -- 作业已截止
+        
+        -- 返回成功结果，包含作业数量
+        SELECT 
+            'SUCCESS' AS result_type,
+            p_tno AS teacher_id,
+            v_work_count AS writing_count;
+    END IF;
+END$$
+
+DELIMITER ;
