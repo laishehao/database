@@ -456,7 +456,8 @@ BEGIN
             'SUCCESS' AS result_type,
             Wrcontent AS write_content, 
             Score,
-            State
+            State,
+            Comment
         FROM `Write` 
         WHERE Sno = p_sno AND Wno = p_wno;
     END IF;
