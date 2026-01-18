@@ -1,3 +1,5 @@
+SELECT "S_Register procedure created." AS Message;
+
 -- 存储过程：学生注册
 DELIMITER $$
 CREATE PROCEDURE S_Register(							    -- 注册账户，返回用户id
@@ -39,6 +41,7 @@ END
 $$
 DELIMITER ;
 
+SELECT "Edit_Student procedure created." AS Message;
 
 -- 存储过程：编辑学生信息
 DELIMITER $$
@@ -87,6 +90,7 @@ END
 $$
 DELIMITER ;
 
+SELECT "View_Student procedure created." AS Message;
 
 -- 存储过程：查看学生信息
 DELIMITER $$
@@ -119,7 +123,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-
+SELECT "S_Login procedure created." AS Message;
 
 -- 存储过程：学生登录
 DELIMITER $$
@@ -149,7 +153,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-
+SELECT "T_Register procedure created." AS Message;
 
 -- 存储过程：老师注册
 DELIMITER $$
@@ -192,6 +196,7 @@ END
 $$
 DELIMITER ;
 
+SELECT "Edit_Teacher procedure created." AS Message;
 
 -- 存储过程：编辑老师信息
 DELIMITER $$
@@ -239,6 +244,7 @@ END
 $$
 DELIMITER ;
 
+SELECT "View_Teacher procedure created." AS Message;
 
 -- 存储过程：查看老师信息（修复版）
 DELIMITER $$
@@ -270,6 +276,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+SELECT "T_Login procedure created." AS Message;
 
 -- 存储过程：老师登录
 DELIMITER $$
@@ -299,6 +306,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+SELECT "Push_homework procedure created." AS Message;
 
 -- 存储过程：发布题目
 DELIMITER $$
@@ -330,6 +338,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+SELECT "Edit_homework procedure created." AS Message;
 
 -- 存储过程：编辑题目
 DELIMITER $$
@@ -365,7 +374,7 @@ END
 $$
 DELIMITER ;
 
-
+SELECT "View_work procedure created." AS Message;
 
 -- 存储过程：查看题目
 DELIMITER $$
@@ -397,6 +406,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+SELECT "Delete_homework procedure created." AS Message;
 
 -- 存储过程：删除题目，删除前python层要记得把关联的图片从服务器上删除
 DELIMITER $$
@@ -424,6 +434,7 @@ END
 $$
 DELIMITER ;
 
+SELECT "View_homework procedure created." AS Message;
 
 -- 存储过程：查看作业
 DELIMITER $$
@@ -451,7 +462,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-
+SELECT "Create_Course procedure created." AS Message;
 
 -- 存储过程：创建课程
 DELIMITER $$
@@ -509,6 +520,7 @@ END
 $$
 DELIMITER ;
 
+SELECT "Edit_Course procedure created." AS Message;
 
 -- 存储过程：编辑课程
 DELIMITER $$
@@ -562,6 +574,7 @@ END
 $$
 DELIMITER ;
 
+SELECT "Delete_Course procedure created." AS Message;
 
 -- 存储过程：删除课程，会连锁到图片url的删除，因此删除前python层要记得把关联的图片从服务器上删除
 DELIMITER $$
@@ -587,6 +600,7 @@ END
 $$
 DELIMITER ;
 
+SELECT "View_Course procedure created." AS Message;
 
 -- 存储过程：查看课程
 DELIMITER $$
@@ -618,6 +632,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+SELECT "Create_Timage procedure created." AS Message;
 
 -- 存储过程：增加题目图片
 DELIMITER $$
@@ -650,6 +665,8 @@ BEGIN
 END
 $$
 DELIMITER ;
+
+SELECT "Create_Aimage procedure created." AS Message;
 
 -- 存储过程：增加答案图片
 DELIMITER $$
@@ -685,7 +702,7 @@ END
 $$
 DELIMITER ;
 
-
+SELECT "Submit_Answer procedure created." AS Message;
 
 -- 存储过程：提交作业答案
 DELIMITER $$
@@ -718,7 +735,7 @@ END
 $$
 DELIMITER ;
 
-
+SELECT "Marking procedure created." AS Message;
 
 -- 存储过程：打分
 DELIMITER $$
@@ -726,7 +743,7 @@ CREATE PROCEDURE Marking(
     p_wno int,
     p_sno int,
     p_score int,
-    p_comment text --新增评语修改
+    p_comment text
 )
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -743,7 +760,7 @@ BEGIN
             SELECT 'ERROR:SCORE_OUT_OF_RANGE' AS result_type;	-- 分数不在0-100范围内
         else
             update `Write`
-            set Score = p_score, Comment = p_comment;
+            set Score = p_score, Comment = p_comment
             where Wno = p_wno and Sno = p_sno;
             commit;
             SELECT 'SUCCESS' AS result_type;
@@ -755,6 +772,8 @@ BEGIN
 END
 $$
 DELIMITER ;
+
+SELECT "Select_Course procedure created." AS Message;
 
 -- 存储过程：学生选课，以Student表与SC表为准
 DELIMITER $$
@@ -798,6 +817,8 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+SELECT "Update_Work_Progress procedure created." AS Message;
 
 -- 存储过程：一旦有某张Write表对应的记录发生改变，便更新其对应的Work表中的Wprogress字段
 DELIMITER $$
@@ -845,8 +866,11 @@ BEGIN
 END$$
 DELIMITER ;
 
+SELECT "Delete_Student_From_Course procedure created." AS Message;
+
 -- 存储过程：删除学生
 -- 老师可以将某个学生从课程中删除
+DELIMITER $$
 CREATE PROCEDURE Delete_Student_From_Course(
     IN p_cno INT,
     IN p_sno INT
@@ -873,8 +897,10 @@ BEGIN
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
     END IF;
-END;
+END$$
 DELIMITER ;
+
+SELECT "Student_View_Course_List procedure created." AS Message;
 
 -- 存储过程：学生查询自己的作业列表
 -- 关键词：作业标题、作业编号、作业所属课程等
@@ -906,13 +932,15 @@ BEGIN
     LEFT JOIN
         `Write` WR ON W.Wno = WR.Wno AND WR.Sno = p_sno
     WHERE
-        W.Wtitle LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配作业标题
-        OR W.Wno LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配作业编号
-        OR W.Cno LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配课程编号
+        W.Wtitle LIKE CONCAT('%', p_keyword, '%')
+        OR W.Wno LIKE CONCAT('%', p_keyword, '%')
+        OR W.Cno LIKE CONCAT('%', p_keyword, '%')
     ORDER BY
         W.Wstart DESC;  -- 按作业开始时间降序排列
 END$$
 DELIMITER ;
+
+SELECT "Teacher_View_Student_List procedure created." AS Message;
 
 -- 存储过程：教师查询学生信息
 -- 关键词：学生姓名、学号、邮箱等
@@ -939,12 +967,15 @@ BEGIN
     FROM
         Student_Info S
     WHERE
-        S.Sname LIKE CONCAT('%', p_keyword, '%')            -- 模糊匹配学生姓名
-        OR S.Sno LIKE CONCAT('%', p_keyword, '%')           -- 模糊匹配学号
-        OR S.Semail LIKE CONCAT('%', p_keyword, '%')        -- 模糊匹配邮箱
+        S.Sname LIKE CONCAT('%', p_keyword, '%')
+        OR S.Sno LIKE CONCAT('%', p_keyword, '%')
+        OR S.Semail LIKE CONCAT('%', p_keyword, '%')
     ORDER BY
         S.Sno ASC;  -- 按学号升序排列
 END$$
+DELIMITER ;
+
+SELECT "Teacher_View_Course_List procedure created." AS Message;
 
 -- 存储过程：教师查询课程信息
 -- 关键词：课程名称、课程编号等
@@ -971,11 +1002,14 @@ BEGIN
     FROM
         Course C
     WHERE
-        C.Cname LIKE CONCAT('%', p_keyword, '%')            -- 模糊匹配课程名称
-        OR C.Cno LIKE CONCAT('%', p_keyword, '%')           -- 模糊匹配课程编号
+        C.Cname LIKE CONCAT('%', p_keyword, '%')
+        OR C.Cno LIKE CONCAT('%', p_keyword, '%')
     ORDER BY
         C.Cno ASC;  -- 按课程编号升序排列
 END$$
+DELIMITER ;
+
+SELECT "Teacher_View_Work_List procedure created." AS Message;
 
 -- 存储过程：教师查询作业列表
 -- 关键词：作业标题、作业编号、所属课程等
@@ -1004,12 +1038,15 @@ BEGIN
     FROM
         Work W
     WHERE
-        W.Wtitle LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配作业标题
-        OR W.Wno LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配作业编号
-        OR W.Cno LIKE CONCAT('%', p_keyword, '%')  -- 模糊匹配所属课程
+        W.Wtitle LIKE CONCAT('%', p_keyword, '%')
+        OR W.Wno LIKE CONCAT('%', p_keyword, '%')
+        OR W.Cno LIKE CONCAT('%', p_keyword, '%')
     ORDER BY
         W.Wstart DESC;  -- 按作业开始时间降序排列
 END$$
+DELIMITER ;
+
+SELECT "Teacher_View_Courses_By_Tno procedure created." AS Message;
 
 -- 存储过程：通过Tno精确查询教师所教的所有课程
 DELIMITER $$
@@ -1037,6 +1074,9 @@ BEGIN
     WHERE
         C.Tno = p_tno;
 END$$
+DELIMITER ;
+
+SELECT "Teacher_View_Works_By_Cno procedure created." AS Message;
 
 -- 存储过程：通过Cno精确查询课程下的所有作业
 DELIMITER $$
@@ -1065,6 +1105,9 @@ BEGIN
     WHERE
         W.Cno = p_cno;
 END$$
+DELIMITER ;
+
+SELECT "Teacher_View_Writes_By_Wno procedure created." AS Message;
 
 -- 存储过程：通过Wno精确查询作业下的所有学生提交记录
 DELIMITER $$
@@ -1091,6 +1134,9 @@ BEGIN
     WHERE
         WR.Wno = p_wno;
 END$$
+DELIMITER ;
+
+SELECT "Teacher_View_Writes_By_Sno procedure created." AS Message;
 
 -- 存储过程：通过Sno精确查询该学生的所有提交记录
 DELIMITER $$
@@ -1117,79 +1163,121 @@ BEGIN
     WHERE
         WR.Sno = p_sno;
 END$$
+DELIMITER ;
 
+SELECT "TcntCourse procedure created." AS Message;
 
 -- 存储过程：根据Tno查看老师管理的课程总数
 DELIMITER $$
+
+DROP PROCEDURE IF EXISTS TcntCourse$$
+
 CREATE PROCEDURE TcntCourse(
     p_tno INT
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
-    END;
-    START TRANSACTION;
-    if not exists (select 1 from Teacher_Info where Tno = p_tno) then --检查老师是否存在
-        ROLLBACK;
+    DECLARE v_course_count INT DEFAULT 0;
+    DECLARE v_teacher_exists INT DEFAULT 0;
+    
+    -- 检查教师是否存在
+    SELECT COUNT(*) INTO v_teacher_exists
+    FROM Teacher_Info 
+    WHERE Tno = p_tno;
+    
+    IF v_teacher_exists = 0 THEN
         SELECT 'ERROR:TEACHER_NOT_EXIST' AS result_type;
-    else
-        SELECT 'SUCCESS' AS result_type, (SELECT Tno, count(*) FROM course GROUP BY Tno HAVING Tno = p_tno);
-        COMMIT;
-    end if;
-END
-$$
+    ELSE
+        -- 查询教师管理的课程数量
+        SELECT COUNT(*) INTO v_course_count
+        FROM Course 
+        WHERE Tno = p_tno;
+        
+        -- 返回成功结果，包含课程数量
+        SELECT 
+            'SUCCESS' AS result_type,
+            p_tno AS teacher_id,
+            v_course_count AS course_count;
+    END IF;
+END$$
+
 DELIMITER ;
+
+SELECT "ScntCourse procedure created." AS Message;
 
 
 -- 存储过程：根据Sno查看学生选的课程总数
 DELIMITER $$
+
+DROP PROCEDURE IF EXISTS ScntCourse$$
+
 CREATE PROCEDURE ScntCourse(
     p_sno INT
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
-    END;
-    START TRANSACTION;
-    if not exists (select 1 from Teacher_Info where Tno = p_tno) then --检查学生是否存在
-        ROLLBACK;
+    DECLARE v_course_count INT DEFAULT 0;
+    DECLARE v_student_exists INT DEFAULT 0;
+    
+    -- 检查学生是否存在
+    SELECT COUNT(*) INTO v_student_exists
+    FROM Student_Info 
+    WHERE Sno = p_sno;
+    
+    IF v_student_exists = 0 THEN
         SELECT 'ERROR:STUDENT_NOT_EXIST' AS result_type;
-    else
-        SELECT 'SUCCESS' AS result_type, (SELECT Sno, count(*) FROM SC GROUP BY Sno HAVING Sno = p_sno);
-        COMMIT;
-    end if;
-END
-$$
+    ELSE
+        -- 查询学生选修的课程数量
+        SELECT COUNT(*) INTO v_course_count
+        FROM SC 
+        WHERE Sno = p_sno;
+        
+        -- 返回成功结果，包含课程数量
+        SELECT 
+            'SUCCESS' AS result_type,
+            p_sno AS student_id,
+            v_course_count AS course_count;
+    END IF;
+END$$
+
 DELIMITER ;
 
-
+SELECT "ScntWriting procedure created." AS Message;
 
 -- 存储过程：根据Sno查看学生当前未截止的作业数量
 DELIMITER $$
+
+DROP PROCEDURE IF EXISTS ScntWriting$$
+
 CREATE PROCEDURE ScntWriting(
     p_sno INT
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
-    END;
-    START TRANSACTION;
-    if not exists (select 1 from Teacher_Info where Tno = p_tno) then --检查学生是否存在
-        ROLLBACK;
+    DECLARE v_work_count INT DEFAULT 0;
+    DECLARE v_student_exists INT DEFAULT 0;
+    
+    -- 检查学生是否存在
+    SELECT COUNT(*) INTO v_student_exists
+    FROM Student_Info 
+    WHERE Sno = p_sno;
+    
+    IF v_student_exists = 0 THEN
         SELECT 'ERROR:STUDENT_NOT_EXIST' AS result_type;
-    else
-        SELECT 'SUCCESS' AS result_type, (
-            SELECT Sno, count(*) FROM `Write` as A, Work as B where A.Wno = B.Wno 
-            GROUP BY Sno HAVING Sno = p_sno and now() < B.Wover and now() >= B.Wstart
-        );
-        COMMIT;
-    end if;
-END
-$$
+    ELSE
+        -- 查询学生当前未截止的作业数量
+        -- 注意：这里需要检查学生是否选了该课程
+        SELECT COUNT(DISTINCT W.Wno) INTO v_work_count
+        FROM Work W
+        JOIN SC ON W.Cno = SC.Cno
+        LEFT JOIN `Write` WR ON W.Wno = WR.Wno AND WR.Sno = p_sno
+        WHERE SC.Sno = p_sno 
+          AND NOW() < W.Wover  -- 作业未截止
+          AND (WR.State IS NULL OR WR.State = 0);  -- 未提交或未完成
+        
+        -- 返回成功结果，包含作业数量
+        SELECT 
+            'SUCCESS' AS result_type,
+            p_sno AS student_id,
+            v_work_count AS writing_count;
+    END IF;
+END$$
+
 DELIMITER ;
