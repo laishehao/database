@@ -981,6 +981,7 @@ SELECT "Teacher_View_Course_List procedure created." AS Message;
 -- 关键词：课程名称、课程编号等
 DELIMITER $$
 CREATE PROCEDURE Teacher_View_Course_List(
+    IN p_tno,
     IN p_keyword VARCHAR(100)    -- 可选关键词，模糊匹配课程名称或课程编号
 )
 BEGIN
@@ -1002,8 +1003,10 @@ BEGIN
     FROM
         Course C
     WHERE
+        C.Tno = p_tno and (
         C.Cname LIKE CONCAT('%', p_keyword, '%')
         OR C.Cno LIKE CONCAT('%', p_keyword, '%')
+        )
     ORDER BY
         C.Cno ASC;  -- 按课程编号升序排列
 END$$
@@ -1016,6 +1019,7 @@ SELECT "Teacher_View_Work_List procedure created." AS Message;
 -- 来自所有课程的作业都在一起，按照关键词过滤
 DELIMITER $$
 CREATE PROCEDURE Teacher_View_Work_List(
+    IN p_tno INT,
     IN p_keyword VARCHAR(200)    -- 可选关键词，模糊匹配作业标题、作业编号或所属课程
 )
 BEGIN
@@ -1037,10 +1041,13 @@ BEGIN
         W.Wprogress
     FROM
         Work W
+    JOIN Course C ON C.Cno = W.Cno
     WHERE
+        C.Tno = p_tno and (
         W.Wtitle LIKE CONCAT('%', p_keyword, '%')
         OR W.Wno LIKE CONCAT('%', p_keyword, '%')
         OR W.Cno LIKE CONCAT('%', p_keyword, '%')
+        )
     ORDER BY
         W.Wstart DESC;  -- 按作业开始时间降序排列
 END$$
@@ -1343,7 +1350,7 @@ BEGIN
 
         SELECT COUNT(DISTINCT W.Wno) INTO v_work_count
         FROM Work W
-        LEFT JOIN `Write` WR ON W.Wno = WR.Wno
+        JOIN `Write` WR ON W.Wno = WR.Wno
         WHERE Tno = p_tno
           AND NOW() > W.Wover  -- 作业已截止
         
@@ -1351,7 +1358,7 @@ BEGIN
         SELECT 
             'SUCCESS' AS result_type,
             p_tno AS teacher_id,
-            v_work_count AS writing_count;
+            v_work_count AS correct_count;
     END IF;
 END$$
 
