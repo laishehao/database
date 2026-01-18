@@ -65,6 +65,7 @@ CREATE TABLE `Write` (
     State INT DEFAULT 0,
     Wrcontent TEXT,				-- 新增书写内容
     Score INT,					-- 新增打分
+    Comment TEXT,				-- 新增教师评语
     PRIMARY KEY (Wno, Sno),
     FOREIGN KEY (Wno) REFERENCES Work(Wno) ON DELETE CASCADE,
     FOREIGN KEY (Sno) REFERENCES Student_Info(Sno) ON DELETE CASCADE
