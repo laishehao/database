@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS Teacher_Info;
 DROP TABLE IF EXISTS Title_Image;
 DROP TABLE IF EXISTS Answer_Image;
 
-删除所有存储过程
+-- 删除所有存储过程
 DROP PROCEDURE IF EXISTS S_Register;
 DROP PROCEDURE IF EXISTS Edit_Student;
 DROP PROCEDURE IF EXISTS View_Student;
