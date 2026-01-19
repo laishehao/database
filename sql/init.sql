@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS Teacher_Info;
 DROP TABLE IF EXISTS Title_Image;
 DROP TABLE IF EXISTS Answer_Image;
 
--- 删除所有存储过程
+删除所有存储过程
 DROP PROCEDURE IF EXISTS S_Register;
 DROP PROCEDURE IF EXISTS Edit_Student;
 DROP PROCEDURE IF EXISTS View_Student;
@@ -124,11 +124,17 @@ CALL T_Register('陈强', '13800138005', 'teacher202', 'chenqiang@univ.edu');
 CALL T_register('lzh', '15882805907', 'Lzhjy050612', '1399219872@qq.com');
 
 -- 通过Edit_Teacher更新完整信息
-CALL Edit_Teacher(1, '张明', 'teacher123', 'zhangming@univ.edu', '男', '13800138001', '/avatars/teacher1.jpg');
-CALL Edit_Teacher(2, '李华', 'teacher456', 'lihua@univ.edu', '女', '13800138002', '/avatars/teacher2.jpg');
-CALL Edit_Teacher(3, '王伟', 'teacher789', 'wangwei@univ.edu', '男', '13800138003', '/avatars/teacher3.jpg');
-CALL Edit_Teacher(4, '刘芳', 'teacher101', 'liufang@univ.edu', '女', '13800138004', '/avatars/teacher4.jpg');
-CALL Edit_Teacher(5, '陈强', 'teacher202', 'chenqiang@univ.edu', '男', '13800138005', '/avatars/teacher5.jpg');
+-- CALL Edit_Teacher(1, '张明', 'teacher123', 'zhangming@univ.edu', '男', '13800138001', '/avatars/teacher1.jpg');
+-- CALL Edit_Teacher(2, '李华', 'teacher456', 'lihua@univ.edu', '女', '13800138002', '/avatars/teacher2.jpg');
+-- CALL Edit_Teacher(3, '王伟', 'teacher789', 'wangwei@univ.edu', '男', '13800138003', '/avatars/teacher3.jpg');
+-- CALL Edit_Teacher(4, '刘芳', 'teacher101', 'liufang@univ.edu', '女', '13800138004', '/avatars/teacher4.jpg');
+-- CALL Edit_Teacher(5, '陈强', 'teacher202', 'chenqiang@univ.edu', '男', '13800138005', '/avatars/teacher5.jpg');
+
+CALL Edit_Teacher(1, '张明', 'zhangming@univ.edu', '13800138001');
+CALL Edit_Teacher(2, '李华', 'lihua@univ.edu', '13800138002');
+CALL Edit_Teacher(3, '王伟', 'wangwei@univ.edu', '13800138003');
+CALL Edit_Teacher(4, '刘芳', 'liufang@univ.edu', '13800138004');
+CALL Edit_Teacher(5, '陈强', 'chenqiang@univ.edu', '13800138005');
 
 SELECT '教师数据创建完成' AS Status;
 
@@ -146,16 +152,27 @@ CALL S_Register('王十二', '13900139010', 'student707', 'wangshier@stu.univ.ed
 CALL S_Register('lzh66', '13812341234', 'Lzhjy050612', '123@qq.com');
 
 -- 通过Edit_Student更新完整信息
-CALL Edit_Student(1, '张三', 'student123', 'zhangsan@stu.univ.edu', '男', '计算机科学', '13900139001', '/avatars/student1.jpg');
-CALL Edit_Student(2, '李四', 'student456', 'lisi@stu.univ.edu', '女', '计算机科学', '13900139002', '/avatars/student2.jpg');
-CALL Edit_Student(3, '王五', 'student789', 'wangwu@stu.univ.edu', '男', '软件工程', '13900139003', '/avatars/student3.jpg');
-CALL Edit_Student(4, '赵六', 'student101', 'zhaoliu@stu.univ.edu', '女', '软件工程', '13900139004', '/avatars/student4.jpg');
-CALL Edit_Student(5, '钱七', 'student202', 'qianqi@stu.univ.edu', '男', '人工智能', '13900139005', '/avatars/student5.jpg');
-CALL Edit_Student(6, '孙八', 'student303', 'sunba@stu.univ.edu', '女', '人工智能', '13900139006', '/avatars/student6.jpg');
-CALL Edit_Student(7, '周九', 'student404', 'zhoujiu@stu.univ.edu', '男', '计算机科学', '13900139007', '/avatars/student7.jpg');
-CALL Edit_Student(8, '吴十', 'student505', 'wushi@stu.univ.edu', '女', '软件工程', '13900139008', '/avatars/student8.jpg');
-CALL Edit_Student(9, '郑十一', 'student606', 'zhengshiyi@stu.univ.edu', '男', '人工智能', '13900139009', '/avatars/student9.jpg');
-CALL Edit_Student(10, '王十二', 'student707', 'wangshier@stu.univ.edu', '女', '计算机科学', '13900139010', '/avatars/student10.jpg');
+-- CALL Edit_Student(1, '张三', 'student123', 'zhangsan@stu.univ.edu', '男', '计算机科学', '13900139001', '/avatars/student1.jpg');
+-- CALL Edit_Student(2, '李四', 'student456', 'lisi@stu.univ.edu', '女', '计算机科学', '13900139002', '/avatars/student2.jpg');
+-- CALL Edit_Student(3, '王五', 'student789', 'wangwu@stu.univ.edu', '男', '软件工程', '13900139003', '/avatars/student3.jpg');
+-- CALL Edit_Student(4, '赵六', 'student101', 'zhaoliu@stu.univ.edu', '女', '软件工程', '13900139004', '/avatars/student4.jpg');
+-- CALL Edit_Student(5, '钱七', 'student202', 'qianqi@stu.univ.edu', '男', '人工智能', '13900139005', '/avatars/student5.jpg');
+-- CALL Edit_Student(6, '孙八', 'student303', 'sunba@stu.univ.edu', '女', '人工智能', '13900139006', '/avatars/student6.jpg');
+-- CALL Edit_Student(7, '周九', 'student404', 'zhoujiu@stu.univ.edu', '男', '计算机科学', '13900139007', '/avatars/student7.jpg');
+-- CALL Edit_Student(8, '吴十', 'student505', 'wushi@stu.univ.edu', '女', '软件工程', '13900139008', '/avatars/student8.jpg');
+-- CALL Edit_Student(9, '郑十一', 'student606', 'zhengshiyi@stu.univ.edu', '男', '人工智能', '13900139009', '/avatars/student9.jpg');
+-- CALL Edit_Student(10, '王十二', 'student707', 'wangshier@stu.univ.edu', '女', '计算机科学', '13900139010', '/avatars/student10.jpg');
+
+CALL Edit_Student(1, '张三', 'zhangsan@stu.univ.edu', '13900139001');
+CALL Edit_Student(2, '李四', 'lisi@stu.univ.edu', '13900139002');
+CALL Edit_Student(3, '王五', 'wangwu@stu.univ.edu', '13900139003');
+CALL Edit_Student(4, '赵六', 'zhaoliu@stu.univ.edu', '13900139004');
+CALL Edit_Student(5, '钱七', 'qianqi@stu.univ.edu', '13900139005');
+CALL Edit_Student(6, '孙八', 'sunba@stu.univ.edu', '13900139006');
+CALL Edit_Student(7, '周九', 'zhoujiu@stu.univ.edu', '13900139007');
+CALL Edit_Student(8, '吴十', 'wushi@stu.univ.edu', '13900139008');
+CALL Edit_Student(9, '郑十一', 'zhengshiyi@stu.univ.edu', '13900139009');
+CALL Edit_Student(10, '王十二', 'wangshier@stu.univ.edu', '13900139010');
 
 SELECT '学生数据创建完成' AS Status;
 
@@ -168,6 +185,15 @@ CALL Create_Course('人工智能基础', '人工智能', 3, '必修', 5);
 CALL Create_Course('机器学习', '人工智能', 3, '选修', 1);
 CALL Create_Course('计算机网络', '计算机科学', 4, '必修', 2);
 CALL Create_Course('算法设计与分析', '计算机科学', 3, '选修', 3);
+
+CALL Create_Course('数据库原理', '计算机科学', 4, '必修', 6);
+CALL Create_Course('数据结构', '计算机科学', 4, '必修', 6);
+CALL Create_Course('操作系统', '计算机科学', 4, '必修', 6);
+CALL Create_Course('软件工程导论', '软件工程', 3, '必修', 6);
+CALL Create_Course('人工智能基础', '人工智能', 3, '必修', 6);
+CALL Create_Course('机器学习', '人工智能', 3, '选修', 6);
+CALL Create_Course('计算机网络', '计算机科学', 4, '必修', 6);
+CALL Create_Course('算法设计与分析', '计算机科学', 3, '选修', 6);
 
 SELECT '课程数据创建完成' AS Status;
 
@@ -224,37 +250,37 @@ SELECT '选课关系数据创建完成' AS Status;
 
 -- 创建作业测试数据
 
-CALL Push_homework('数据库设计作业1', '数据库原理', '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
-CALL Push_homework('数据库设计作业2', '数据库原理', '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
-CALL Push_homework('数据库设计作业3', '数据库原理', '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
+CALL Push_homework('数据库设计作业1', '数据库原理', 6, '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
+CALL Push_homework('数据库设计作业2', '数据库原理', 6, '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
+CALL Push_homework('数据库设计作业3', '数据库原理', 6, '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
 
-CALL Push_homework('数据结构设计作业1', '数据结构', '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
-CALL Push_homework('数据结构设计作业2', '数据结构', '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
-CALL Push_homework('数据结构设计作业3', '数据结构', '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
+CALL Push_homework('数据结构设计作业1', '数据结构', 6, '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
+CALL Push_homework('数据结构设计作业2', '数据结构', 6, '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
+CALL Push_homework('数据结构设计作业3', '数据结构', 6, '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
 
-CALL Push_homework('操作系统作业1', '操作系统', '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
-CALL Push_homework('操作系统作业2', '操作系统', '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
-CALL Push_homework('操作系统3', '操作系统', '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
+CALL Push_homework('操作系统作业1', '操作系统', 6, '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
+CALL Push_homework('操作系统作业2', '操作系统', 6, '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
+CALL Push_homework('操作系统3', '操作系统', 6, '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
 
-CALL Push_homework('软件工程导论作业1', '软件工程导论', '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
-CALL Push_homework('软件工程导论作业2', '软件工程导论', '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
-CALL Push_homework('软件工程导论作业3', '软件工程导论', '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
+CALL Push_homework('软件工程导论作业1', '软件工程导论', 6, '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
+CALL Push_homework('软件工程导论作业2', '软件工程导论', 6, '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
+CALL Push_homework('软件工程导论作业3', '软件工程导论', 6, '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
 
-CALL Push_homework('人工智能基础作业1', '人工智能基础', '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
-CALL Push_homework('人工智能基础作业2', '人工智能基础', '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
-CALL Push_homework('人工智能基础作业3', '人工智能基础', '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
+CALL Push_homework('人工智能基础作业1', '人工智能基础', 6, '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
+CALL Push_homework('人工智能基础作业2', '人工智能基础', 6, '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
+CALL Push_homework('人工智能基础作业3', '人工智能基础', 6, '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
 
-CALL Push_homework('机器学习作业1', '机器学习', '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
-CALL Push_homework('机器学习作业2', '机器学习', '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
-CALL Push_homework('机器学习作业3', '机器学习', '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
+CALL Push_homework('机器学习作业1', '机器学习', 6, '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
+CALL Push_homework('机器学习作业2', '机器学习', 6, '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
+CALL Push_homework('机器学习作业3', '机器学习', 6, '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
 
-CALL Push_homework('计算机网络作业1', '计算机网络', '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
-CALL Push_homework('计算机网络作业2', '计算机网络', '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
-CALL Push_homework('计算机网络作业3', '计算机网络', '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
+CALL Push_homework('计算机网络作业1', '计算机网络', 6, '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
+CALL Push_homework('计算机网络作业2', '计算机网络', 6, '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
+CALL Push_homework('计算机网络作业3', '计算机网络', 6, '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
 
-CALL Push_homework('算法设计与分析作业1', '算法设计与分析', '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
-CALL Push_homework('算法设计与分析作业2', '算法设计与分析', '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
-CALL Push_homework('算法设计与分析作业3', '算法设计与分析', '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
+CALL Push_homework('算法设计与分析作业1', '算法设计与分析', 6, '2026-1-18 00:00:00', '2026-1-20 00:00:00', 'TESTWORK...');
+CALL Push_homework('算法设计与分析作业2', '算法设计与分析', 6, '2026-1-21 00:00:00', '2026-1-23 00:00:00', 'TESTWORK...');
+CALL Push_homework('算法设计与分析作业3', '算法设计与分析', 6, '2026-1-24 00:00:00', '2026-1-27 00:00:00', 'TESTWORK...');
 
 SELECT '作业数据创建完成' AS Status;
 
