@@ -5,7 +5,7 @@ from my_app import logger_py
 
 # 创建连接
 connection = pymysql.connect(
-    host='8.130.144.155',
+    host='',
     user='lzh',
     password='12345678',
     database='619database',
@@ -285,26 +285,36 @@ def delete_student(studentId,cno):
     }
     return ans
 def select_course(query,page,pageSize,Tno):
-    # if query==None:
-        # try:
-        #     with connection.cursor() as cursor:
-        #         params = (Tno)
-        #         logger_py.info('数据库开始修改用户信息')
-        #         cursor.callproc('Teacher_View_Courses_By_Tno', params)
-        #         result = cursor.fetchall()
-        #         logger_py.info(result)
-        # except:
-        #     connection.rollback()  # 异常时回滚
-    #else 
-        # try:
-        #     with connection.cursor() as cursor:
-        #         params = (query)
-        #         logger_py.info('数据库开始修改用户信息')
-        #         cursor.callproc('Teacher_View_Course_List', params)
-        #         result = cursor.fetchall()
-        #         logger_py.info(result)
-        # except:
-        #     connection.rollback()  # 异常时回滚
+    try:
+        with connection.cursor() as cursor:
+            params = (Tno,query)
+            logger_py.info('数据库开始修改用户信息')
+            cursor.callproc('Teacher_View_Course_List', params)
+            result = cursor.fetchall()
+            logger_py.info(result)
+            corses=[]
+            for row in result:
+                # 确保元组长度至少为5
+                if len(row) < 5:
+                    continue
+                    
+                # 创建课程字典
+                course = {
+                    "courseId": str(row[0]),  # 转换为字符串
+                    "courseName": str(row[1]),
+                    "major": str(row[2]),
+                    "credits": int(row[3]),
+                    "type": str(row[4]),
+                    "teacher": "",  # 原始数据中不包含，设为空字符串
+                    "time": "",    # 原始数据中不包含，设为空字符串
+                    "place": "",   # 原始数据中不包含，设为空字符串
+                    "selected": False
+                }
+                corses.append(course)
+                logger_py.info(f"course={course}")
+    except:
+        logger_py.info('查询失败')
+        connection.rollback()  # 异常时回滚
     ans={
         "total":10,
         "list":[
@@ -320,7 +330,7 @@ def select_course(query,page,pageSize,Tno):
                 "selected": False
            
             }
-        ]
+        ]+corses
     }
     return ans
 def add_course(courseId,CourseName,major,credits,type,teacher):
@@ -328,7 +338,7 @@ def add_course(courseId,CourseName,major,credits,type,teacher):
     #     with connection.cursor() as cursor:
     #         params = (CourseName,major,credits,type,teacher)
     #         logger_py.info('数据库开始修改用户信息')
-    #         cursor.callproc('Push_homework', params)
+    #         cursor.callproc('Create_Course', params)
     #         result = cursor.fetchall()
     #         logger_py.info(result)
     # except:
@@ -339,10 +349,10 @@ def add_course(courseId,CourseName,major,credits,type,teacher):
     }
     return ans
 
-def update_course(courseId,CourseName,major,credits,type,teacher):
+def update_course(courseId,CourseName,major,credits,type1,userId):
     try:
         with connection.cursor() as cursor:
-            params = (courseId,CourseName,major,credits,type,teacher)
+            params = (courseId,CourseName,major,credits,type1,userId)
             logger_py.info('老师编辑课程')
             cursor.callproc('Edit_Course', params)
             result = cursor.fetchall()
@@ -374,7 +384,7 @@ def delete_course(courseId):
 def select_work(query,page,pageSize,role,id):
     
     result=""
-    logger_py.info('query is None')
+    # logger_py.info('query is None')
     if role == "teacher":
         
         try:
@@ -385,6 +395,7 @@ def select_work(query,page,pageSize,role,id):
                 result = cursor.fetchall()
                 logger_py.info(result)
         except:
+            logger_py.info('老师查询作业信息')
             connection.rollback()  # 异常时回滚
     else:
         try:

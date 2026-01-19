@@ -239,10 +239,10 @@ def app_update_course(courseId):
     credits = data.get('credits')
     type = data.get('type')
     teacher = data.get('teacher')
+    userId=data.get('userId')
+    logger.info(f'courseId={courseId},CourseName={CourseName},major={major},credits={credits},type={type},userId={userId}')
     
-    logger.info(f'courseId={courseId},CourseName={CourseName},major={major},credits={credits},type={type},teacher={teacher}')
-    
-    if_ok= update_course (courseId,CourseName,major,credits,type,teacher)
+    if_ok= update_course (courseId,CourseName,major,credits,type,userId)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
