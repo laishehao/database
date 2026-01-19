@@ -1036,7 +1036,8 @@ BEGIN
         W.Wcontent,
         W.Wstart,
         W.Wover,
-        W.Wprogress
+        W.Wprogress,
+        C.Cname
     FROM
         Work W
     JOIN Course C ON C.Cno = W.Cno
@@ -1364,7 +1365,7 @@ END$$
 
 DELIMITER ;
 
-
+SELECT "TcntStudent procedure created." AS Message;
 
 -- 存储过程：根据Tno查看老师管理的所有学生数量
 DELIMITER $$
@@ -1389,8 +1390,7 @@ BEGIN
 
         SELECT COUNT(DISTINCT SC.Sno) INTO v_student_count
         FROM Course C
-        JOIN SC ON C.Cno = SC.Cno AND C.Tno = p_tno
-        
+        JOIN SC ON C.Cno = SC.Cno AND C.Tno = p_tno;
         -- 返回成功结果，包含作业数量
         SELECT 
             'SUCCESS' AS result_type,
