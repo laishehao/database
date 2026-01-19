@@ -2,7 +2,7 @@
  * @Author: Garyonit 3253975221@qq.com
  * @Date: 2025-12-11 00:05:32
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2025-12-16 00:22:54
+ * @LastEditTime: 2026-01-19 15:21:14
  * @FilePath: \my-database-project\src\api\http.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -24,13 +24,13 @@ export default async function Http({ apiType, data }) {
 
   // 获取接口配置信息
   // noMessage: 是否屏蔽错误提示 (默认 false，即显示错误)
-  let { url, method, rest = false} = apiConfig[apiType]
+  let { url, method, rest = false } = apiConfig[apiType]
 
   try {
     method = method.toLowerCase() // 统一转换为小写，防止配置写成 'POST' 导致 axios 无法识别
 
     //替换RESTFUL风格的url
-    if(rest){
+    if (rest) {
       let restSymbol = url.match(/:(.*)$/)[1]
       url = url.replace(/:(.*)$/, data[restSymbol])
     }
@@ -44,10 +44,10 @@ export default async function Http({ apiType, data }) {
     return result
   } catch (error) {
     if (error.response) {
-      console.log('捕捉到response',error.response)
-      let message = error.response.data?.msg || '' 
+      console.log('捕捉到response')
+      let message = error.response.data?.msg || ''
       this.$notify.error({ title: '错误', message })
-    } 
+    }
     return Promise.reject(error);
   }
 }

@@ -31,11 +31,14 @@
           placeholder="属于哪门魔法专业呢?"
           style="width: 100%"
           popper-class="cute-select-dropdown"
+          @change="handleCourseChange"
         >
-          <el-option label="高等数学" value="高等数学"></el-option>
-          <el-option label="计算机科学" value="计算机科学"></el-option>
-          <el-option label="大学英语" value="大学英语"></el-option>
-          <el-option label="数据库系统原理" value="数据库系统原理"></el-option>
+          <el-option
+            v-for="item in courseList"
+            :key="item.courseId"
+            :label="item.courseName"
+            :value="item.courseName"
+          ></el-option>
         </el-select>
       </el-form-item>
 
@@ -126,12 +129,14 @@ export default {
   watch: {
     visible(val) {
       if (val) {
+        this.fetchCourseList(); // 打开弹窗时获取课程列表
         if (this.rowData) {
           this.form = JSON.parse(JSON.stringify(this.rowData));
         } else {
           this.form = {
             title: "",
             course: "",
+            courseId: "",
             content: "",
             starttime: "",
             overtime: "",
@@ -146,9 +151,11 @@ export default {
   data() {
     return {
       loading: false,
+      courseList: [], // 课程列表
       form: {
         title: "",
         course: "",
+        courseId: "",
         content: "",
         starttime: "",
         overtime: "",
@@ -201,6 +208,27 @@ export default {
     };
   },
   methods: {
+    // 获取课程列表
+    fetchCourseList() {
+      this.$api({ apiType: "course", data: {} })
+        .then((res) => {
+          // 兼容处理：支持 res.data.list 或 res.list
+          const resData = res.data || res;
+          this.courseList = resData.list || [];
+        })
+        .catch((err) => {
+          console.error("获取课程列表失败:", err);
+        });
+    },
+    // 课程选择变化时，同步更新courseId
+    handleCourseChange(selectedCourseName) {
+      const selected = this.courseList.find(
+        (item) => item.courseName === selectedCourseName
+      );
+      if (selected) {
+        this.form.courseId = selected.courseId;
+      }
+    },
     //关闭窗口
     handleClose() {
       this.modalVisible = false;
