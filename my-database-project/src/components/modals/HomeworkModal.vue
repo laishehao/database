@@ -210,7 +210,14 @@ export default {
   methods: {
     // 获取课程列表
     fetchCourseList() {
-      this.$api({ apiType: "course", data: {} })
+      this.$api({
+        apiType: "course",
+        data: {
+          role: this.userInfo.role,
+          id: this.userInfo.id,
+          query: '',
+        },
+      })
         .then((res) => {
           // 兼容处理：支持 res.data.list 或 res.list
           const resData = res.data || res;
