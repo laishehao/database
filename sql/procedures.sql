@@ -308,6 +308,7 @@ DELIMITER $$
 CREATE PROCEDURE Push_homework(
     IN p_title VARCHAR(200),
     IN p_cname VARCHAR(100),
+    IN p_tno INT,
     IN p_start DATETIME,
     IN p_over DATETIME,
     IN p_content TEXT
@@ -318,7 +319,7 @@ BEGIN
     
     -- 检查课程是否存在
     SELECT Cno INTO p_cno 
-    FROM Course WHERE Cname = p_cname;
+    FROM Course WHERE Cname = p_cname and Tno = p_tno;
     
     IF p_cno IS NULL THEN
         SELECT 'ERROR:CNAME_NOT_EXISTS' AS result_type;
