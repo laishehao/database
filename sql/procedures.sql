@@ -792,29 +792,37 @@ BEGIN
     -- 重复选课
     DECLARE EXIT HANDLER FOR 1062   
     BEGIN
+        ROLLBACK;
         SELECT 'ERROR:COURSE_ALREADY_SELECTED' AS result_type;
     END;
 
     -- 违反外键约束
     DECLARE EXIT HANDLER FOR 1452   
     BEGIN
+        ROLLBACK;
         SELECT 'ERROR:COURSE_OR_STUDENT_NOT_EXIST' AS result_type;
     END;
 
     -- 通用错误处理
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
+        ROLLBACK;
         SELECT 'ERROR:SYSTEM_ERROR' AS result_type;
     END;
 
+    START TRANSACTION;
+
     -- 判断p_Cno和p_Sno是否存在
     IF NOT EXISTS (SELECT 1 FROM Course WHERE Cno = p_Cno) THEN
+        ROLLBACK;
         SELECT 'ERROR:COURSE_NOT_EXIST' AS result_type;
     ELSEIF NOT EXISTS (SELECT 1 FROM Student_Info WHERE Sno = p_Sno) THEN
+        ROLLBACK;
         SELECT 'ERROR:STUDENT_NOT_EXIST' AS result_type;
     ELSE
         -- 插入选课记录
         INSERT INTO SC (Cno, Sno) VALUES (p_Cno, p_Sno);
+        COMMIT;
         SELECT 'SUCCESS' AS result_type;
     END IF;
 END$$
