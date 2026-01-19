@@ -15,71 +15,14 @@
       label-width="90px"
       class="cute-form"
     >
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <el-form-item label="🎓 学号" prop="studentId">
-            <el-input
-              v-model="form.studentId"
-              placeholder="请输入学号"
-              :readonly="isView"
-              class="cute-input"
-            >
-              <i slot="prefix" class="el-icon-postcard"></i>
-            </el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="🌸 姓名" prop="name">
-            <el-input
-              v-model="form.name"
-              placeholder="请输入姓名"
-              :readonly="isView"
-              class="cute-input"
-            >
-              <i slot="prefix" class="el-icon-user"></i>
-            </el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-
-      <el-form-item label="🌈 性别" prop="gender">
-        <el-radio-group
-          v-model="form.gender"
-          class="cute-radio-group"
-          :disabled="isView"
-        >
-          <el-radio label="男" border class="cute-radio blue-radio"
-            >👦 男生</el-radio
-          >
-          <el-radio label="女" border class="cute-radio pink-radio"
-            >👧 女生</el-radio
-          >
-        </el-radio-group>
-      </el-form-item>
-
-      <el-form-item label="📚 专业" prop="major">
-        <el-select
-          v-model="form.major"
-          placeholder="请选择修习专业"
-          style="width: 100%"
-          :disabled="isView"
-          popper-class="cute-select-dropdown"
-        >
-          <el-option label="💻 计算机科学" value="计算机科学"></el-option>
-          <el-option label="⚙️ 软件工程" value="软件工程"></el-option>
-          <el-option label="📊 信息管理" value="信息管理"></el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="📞 电话" prop="phone">
+      <el-form-item label="🎓 学号" prop="studentId">
         <el-input
-          v-model="form.phone"
-          placeholder="用于接收魔法信件"
-          maxlength="11"
+          v-model="form.studentId"
+          placeholder="请输入学号"
           :readonly="isView"
           class="cute-input"
         >
-          <i slot="prefix" class="el-icon-mobile-phone"></i>
+          <i slot="prefix" class="el-icon-postcard"></i>
         </el-input>
       </el-form-item>
     </el-form>
@@ -138,11 +81,6 @@ export default {
         } else {
           this.form = {
             studentId: "",
-            name: "",
-            gender: "男",
-            major: "",
-            phone: "",
-            avatar: "",
           };
         }
         this.$nextTick(() => {
@@ -156,29 +94,10 @@ export default {
       loading: false,
       form: {
         studentId: "",
-        name: "",
-        gender: "男",
-        major: "",
-        phone: "",
-        avatar: "",
       },
       rules: {
         studentId: [
           { required: true, message: "不可以没有学号哦", trigger: "blur" },
-        ],
-        name: [
-          { required: true, message: "同学叫什么名字呢?", trigger: "blur" },
-        ],
-        major: [
-          { required: true, message: "请选择修习专业", trigger: "change" },
-        ],
-        phone: [
-          { required: true, message: "请留下联系方式", trigger: "blur" },
-          {
-            pattern: /^1[3-9]\d{9}$/,
-            message: "好像不是正确的手机号呢",
-            trigger: "blur",
-          },
         ],
       },
     };
@@ -290,63 +209,6 @@ export default {
   background-color: #f8f8f8;
   border-color: #eee;
   color: #aaa;
-}
-
-/* 下拉框样式 */
-.cute-select-dropdown {
-  border-radius: 15px !important;
-  border: 1px solid #ffe4e1 !important;
-}
-.cute-select-dropdown .el-select-dropdown__item.selected {
-  color: #ff69b4 !important;
-  font-weight: bold;
-}
-.cute-select-dropdown .el-select-dropdown__item:hover {
-  background-color: #fff0f5 !important;
-}
-
-/* 单选框美化 */
-.cute-radio-group {
-  display: flex;
-  gap: 15px;
-}
-.cute-radio.is-bordered {
-  border-radius: 20px;
-  border-width: 2px;
-  height: 40px;
-  line-height: 40px;
-  padding: 0 20px 0 10px !important;
-}
-.cute-radio .el-radio__label {
-  font-weight: bold;
-}
-
-/* 男生单选样式 */
-.blue-radio.is-bordered {
-  border-color: #b2ebf2;
-  color: #5d4037;
-}
-.blue-radio.is-bordered.is-checked {
-  background-color: #e0f7fa;
-  border-color: #4dd0e1;
-}
-.blue-radio .el-radio__input.is-checked .el-radio__inner {
-  border-color: #4dd0e1;
-  background: #4dd0e1;
-}
-
-/* 女生单选样式 */
-.pink-radio.is-bordered {
-  border-color: #ffc0cb;
-  color: #5d4037;
-}
-.pink-radio.is-bordered.is-checked {
-  background-color: #fff0f5;
-  border-color: #ff69b4;
-}
-.pink-radio .el-radio__input.is-checked .el-radio__inner {
-  border-color: #ff69b4;
-  background: #ff69b4;
 }
 
 /* 底部按钮栏 */
