@@ -477,7 +477,7 @@ BEGIN
     DECLARE EXIT HANDLER FOR 1062  					        -- 违反主键或唯一约束时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
-        SELECT 'ERROR:CNAME_EXISTS' AS result_type;		    -- 课程名重复
+        SELECT 'ERROR:COURSE_EXISTS' AS result_type;		-- 课程重复
     END;
 
     DECLARE EXIT HANDLER FOR 3819  					        -- 违反check约束时，进入到下面的代码执行
