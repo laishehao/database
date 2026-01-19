@@ -27,13 +27,14 @@ CREATE TABLE `Student_Info` (
 -- 课程表定义
 CREATE TABLE Course (
     Cno int AUTO_INCREMENT PRIMARY KEY,
-    Cname VARCHAR(100) NOT NULL UNIQUE,
+    Cname VARCHAR(100) NOT NULL,
     Cmajor VARCHAR(50),
     Ccredit INT,
     Ctype VARCHAR(20),
     Tno int,
     FOREIGN KEY (Tno) REFERENCES Teacher_Info(Tno) ON DELETE SET NULL,
-    CONSTRAINT chk_ctype CHECK (Ctype IN ('必修', '选修'))				-- Ctype只能是必修或选修
+    CONSTRAINT chk_ctype CHECK (Ctype IN ('必修', '选修')),
+    CONSTRAINT uk_course_name_teacher UNIQUE (Cname, Tno)
 );
 
 -- 选课表定义
