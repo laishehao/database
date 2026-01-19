@@ -86,23 +86,6 @@
             </template>
           </el-table-column>
         </el-table>
-
-        <!-- 分页 -->
-        <div
-          style="margin-top: 30px; text-align: center"
-          class="ancient-pagination"
-        >
-          <el-pagination
-            background
-            layout="prev, pager, next, total"
-            :total="total"
-            :current-page.sync="currentPage"
-            :page-size="pageSize"
-            prev-text="上一卷"
-            next-text="下一卷"
-            @current-change="handleCurrentChange"
-          ></el-pagination>
-        </div>
       </div>
 
       <!-- 没有作业时渲染 -->
@@ -123,9 +106,6 @@ export default {
   data() {
     return {
       searchKey: "",
-      total: 0, //符合条件的作业总数
-      currentPage: 1, // 当前页码
-      pageSize: 10, // 每页显示条数
       tableData: [], //作业数据
       // 样式辅助
       headerCellStyle: {
@@ -155,14 +135,8 @@ export default {
       }
       return "";
     },
-    // 搜索处理：重置页码
+    // 搜索处理
     handleSearch() {
-      this.currentPage = 1;
-      this.getHomework();
-    },
-    // 处理页码改变
-    handleCurrentChange(val) {
-      this.currentPage = val;
       this.getHomework();
     },
     //获取作业列表
@@ -173,16 +147,12 @@ export default {
           role: this.userInfo.role,
           id: this.userInfo.id,
           query: this.searchKey,
-          page: this.currentPage,
-          pageSize: this.pageSize,
         },
       })
         .then((result) => {
           // 获取列表数据 (兼容不同的返回结构)
           const list = result.list || (result.data && result.data.list) || [];
           this.tableData = list;
-          this.total =
-            result.total || (result.data && result.data.total) || list.length;
 
           // 自动同步 checkHomework 到 Vuex
           list.forEach((item) => {
@@ -399,31 +369,6 @@ export default {
 }
 .btn-do {
   color: var(--cinnabar) !important;
-}
-
-/* 分页组件样式覆盖 */
-::v-deep
-  .ancient-pagination
-  .el-pagination.is-background
-  .el-pager
-  li:not(.disabled).active {
-  background-color: var(--cinnabar);
-  color: #fff;
-  border-color: var(--cinnabar);
-}
-::v-deep .ancient-pagination .el-pagination.is-background .el-pager li {
-  background-color: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--ink-color);
-  font-family: var(--font-serif);
-  font-size: 14px; /* [已修改] 分页字体微调 */
-}
-::v-deep .ancient-pagination .el-pagination.is-background .btn-prev,
-::v-deep .ancient-pagination .el-pagination.is-background .btn-next {
-  background-color: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--ink-color);
-  padding: 0 10px;
 }
 
 /* 空状态 */

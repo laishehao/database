@@ -19,6 +19,10 @@
         </el-radio-group>
       </el-form-item>
 
+      <el-form-item label="专业" prop="major" v-if="isStudent">
+        <el-input v-model="form.major" placeholder="请输入专业"></el-input>
+      </el-form-item>
+
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="form.email" placeholder="请输入邮箱"></el-input>
       </el-form-item>
@@ -91,6 +95,7 @@ export default {
       form: {
         name: "",
         gender: "",
+        major: "",
         email: "",
         phone: "",
         newPassword: "",
@@ -98,6 +103,7 @@ export default {
       },
       rules: {
         name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
+        major: [{ required: true, message: "请输入专业", trigger: "blur" }],
         email: [
           { required: true, message: "请输入邮箱", trigger: "blur" },
           {
@@ -118,6 +124,9 @@ export default {
   },
   computed: {
     ...mapGetters({ storeUserInfo: "userInfo" }),
+    isStudent() {
+      return this.storeUserInfo.role === "student";
+    },
     // 使用计算属性处理 sync，避免直接修改 prop
     modalVisible: {
       get() {
@@ -135,6 +144,7 @@ export default {
         this.form = {
           name: this.userInfo.name || "",
           gender: this.userInfo.gender || "",
+          major: this.userInfo.major || "",
           email: this.userInfo.email || "",
           phone: this.userInfo.phone || "",
           newPassword: "",

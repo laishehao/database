@@ -134,19 +134,6 @@
             </template>
           </el-table-column>
         </el-table>
-
-        <!-- 分页组件 -->
-        <div class="cute-pagination-wrapper">
-          <el-pagination
-            background
-            layout="prev, pager, next"
-            :current-page="currentPage"
-            :page-size="pageSize"
-            :total="total"
-            @current-change="handleCurrentChange"
-            class="cute-pagination"
-          ></el-pagination>
-        </div>
       </div>
 
       <!-- 空状态 -->
@@ -195,9 +182,6 @@ export default {
       currentRow: null,
       tableData: [],
       loading: false,
-      currentPage: 1,
-      pageSize: 10,
-      total: 0,
     };
   },
   computed: {
@@ -220,9 +204,8 @@ export default {
     handleSuccess() {
       this.getStudents();
     },
-    // handleSearch 仅保留作为重置页码的逻辑，供组件 @search 调用
+    // handleSearch 供组件 @search 调用
     handleSearch() {
-      this.currentPage = 1;
       this.getStudents();
     },
     //获取学生列表
@@ -235,14 +218,11 @@ export default {
           id: this.userInfo.id,
           Cno: this.$route.params.courseId,
           query: this.searchKey,
-          page: this.currentPage,
-          pageSize: this.pageSize,
         },
       })
         .then((result) => {
           const resData = result.data || result;
           this.tableData = resData.list || [];
-          this.total = resData.total || 0;
         })
         .catch((err) => {
           console.error(err);
@@ -269,25 +249,12 @@ export default {
             },
           }).then(() => {
             this.$message.success("删除成功~");
-            if (this.tableData.length === 1 && this.currentPage > 1) {
-              this.currentPage--;
-            }
             this.getStudents();
           });
         })
         .catch((error) => {
           if (error !== "cancel") console.error(error);
         });
-    },
-    //以下两个函数用于分页组件
-    handleSizeChange(val) {
-      this.pageSize = val;
-      this.currentPage = 1;
-      this.getStudents();
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val;
-      this.getStudents();
     },
   },
   created() {
@@ -565,35 +532,6 @@ export default {
 .btn-delete {
   color: #ffb7c5;
   background: transparent;
-}
-
-/* 分页 */
-.cute-pagination-wrapper {
-  margin-top: 25px;
-  text-align: center;
-}
-::v-deep .cute-pagination .el-pager li {
-  background: white;
-  border: 2px solid var(--cute-border);
-  border-radius: 50% !important;
-  color: var(--cute-text);
-  font-weight: bold;
-  min-width: 32px;
-  height: 32px;
-  line-height: 28px;
-  margin: 0 3px;
-}
-::v-deep .cute-pagination .el-pager li.active {
-  background-color: var(--cute-pink);
-  border-color: var(--cute-pink);
-  color: white;
-}
-::v-deep .cute-pagination .btn-prev,
-::v-deep .cute-pagination .btn-next {
-  background: white;
-  border-radius: 50%;
-  border: 2px solid var(--cute-border);
-  color: var(--cute-pink);
 }
 
 /* 空状态 */

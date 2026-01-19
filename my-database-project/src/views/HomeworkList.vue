@@ -119,19 +119,6 @@
             </template>
           </el-table-column>
         </el-table>
-
-        <!-- 分页组件 -->
-        <div class="cute-pagination-wrapper">
-          <el-pagination
-            background
-            layout="prev, pager, next"
-            :current-page="currentPage"
-            :page-size="pageSize"
-            :total="total"
-            @current-change="handleCurrentChange"
-            class="cute-pagination"
-          ></el-pagination>
-        </div>
       </div>
 
       <!-- 暂无作业 -->
@@ -178,9 +165,6 @@ export default {
       loading: false,
       tableData: [],
       currentRow: null,
-      currentPage: 1,
-      pageSize: 10,
-      total: 0,
       customColors: [
         { color: "#FFB6C1", percentage: 20 },
         { color: "#FFC0CB", percentage: 40 },
@@ -209,7 +193,6 @@ export default {
       this.getHomework();
     },
     handleSearch() {
-      this.currentPage = 1;
       this.getHomework();
     },
     handleGrade(row) {
@@ -227,16 +210,11 @@ export default {
           role: this.userInfo.role,
           id: this.userInfo.id,
           query: this.searchKey,
-          page: this.currentPage,
-          pageSize: this.pageSize,
         },
       })
         .then((result) => {
           const list = result.list || (result.data && result.data.list) || [];
-          const total =
-            result.total || (result.data && result.data.total) || list.length;
           this.tableData = list;
-          this.total = total;
         })
         .catch((err) => {
           console.error(err);
@@ -265,9 +243,6 @@ export default {
           })
             .then(() => {
               this.$message.success("虽然不舍，但已经删掉啦~");
-              if (this.tableData.length === 1 && this.currentPage > 1) {
-                this.currentPage--;
-              }
               this.getHomework();
             })
             .catch(() => {
@@ -277,15 +252,6 @@ export default {
         .catch(() => {
           // 【修复】捕获用户点击“留着吧”或“叉号”的操作，防止抛出未捕获异常
         });
-    },
-    handleSizeChange(val) {
-      this.pageSize = val;
-      this.currentPage = 1;
-      this.getHomework();
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val;
-      this.getHomework();
     },
   },
   created() {
@@ -561,34 +527,6 @@ export default {
 }
 .btn-delete {
   color: #ffb7c5;
-}
-
-.cute-pagination-wrapper {
-  margin-top: 25px;
-  text-align: center;
-}
-::v-deep .cute-pagination .el-pager li {
-  background: white;
-  border: 2px solid var(--cute-border);
-  border-radius: 50% !important;
-  color: var(--cute-text);
-  font-weight: bold;
-  min-width: 32px;
-  height: 32px;
-  line-height: 28px;
-  margin: 0 3px;
-}
-::v-deep .cute-pagination .el-pager li.active {
-  background-color: var(--cute-pink);
-  border-color: var(--cute-pink);
-  color: white;
-}
-::v-deep .cute-pagination .btn-prev,
-::v-deep .cute-pagination .btn-next {
-  background: white;
-  border-radius: 50%;
-  border: 2px solid var(--cute-border);
-  color: var(--cute-pink);
 }
 
 .cute-empty {

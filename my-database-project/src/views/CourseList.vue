@@ -150,21 +150,6 @@
             </template>
           </el-table-column>
         </el-table>
-
-        <!-- 分页组件 -->
-        <div class="cute-pagination-wrapper">
-          <el-pagination
-            background
-            layout="prev, pager, next"
-            :current-page="currentPage"
-            :page-sizes="[10, 20, 50]"
-            :page-size="pageSize"
-            :total="total"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            class="cute-pagination"
-          ></el-pagination>
-        </div>
       </div>
 
       <!-- 空状态 -->
@@ -212,10 +197,6 @@ export default {
       currentRow: null,
       loading: false, // 加载状态
       tableData: [], // 初始化为空，由 API 获取
-      // 分页配置
-      currentPage: 1,
-      pageSize: 10,
-      total: 0,
     };
   },
   computed: {
@@ -233,9 +214,8 @@ export default {
     handleSuccess() {
       this.getCourses();
     },
-    // 搜索处理：重置到第一页
+    // 搜索处理
     handleSearch() {
-      this.currentPage = 1;
       this.getCourses();
     },
     // 获取课程列表
@@ -247,15 +227,12 @@ export default {
           role: this.userInfo.role,
           id: this.userInfo.id,
           query: this.searchKey,
-          page: this.currentPage,
-          pageSize: this.pageSize,
         },
       })
         .then((result) => {
           // 兼容处理：支持直接返回 list 或 { data: { list... } }
           const resData = result.data || result;
           this.tableData = resData.list || [];
-          this.total = resData.total || 0;
         })
         .catch((err) => {
           console.error(err);
@@ -264,17 +241,7 @@ export default {
           this.loading = false;
         });
     },
-    // 处理每页条数变化
-    handleSizeChange(val) {
-      this.pageSize = val;
-      this.currentPage = 1;
-      this.getCourses();
-    },
-    // 处理页码变化
-    handleCurrentChange(val) {
-      this.currentPage = val;
-      this.getCourses();
-    },
+
     // 查看学生
     handleCheck(row) {
       console.log("handleCheck row:", row);
@@ -308,10 +275,6 @@ export default {
           })
             .then(() => {
               this.$message.success("封印成功~");
-              // 如果删除的是当前页最后一条数据，且不是第一页，自动前翻
-              if (this.tableData.length === 1 && this.currentPage > 1) {
-                this.currentPage--;
-              }
               this.getCourses();
             })
             .catch((err) => {
@@ -602,35 +565,6 @@ export default {
 .btn-stop {
   color: #ffb7c5;
   background: transparent;
-}
-
-/* 分页 */
-.cute-pagination-wrapper {
-  margin-top: 25px;
-  text-align: center;
-}
-::v-deep .cute-pagination .el-pager li {
-  background: white;
-  border: 2px solid var(--cute-border);
-  border-radius: 50% !important;
-  color: var(--cute-text);
-  font-weight: bold;
-  min-width: 32px;
-  height: 32px;
-  line-height: 28px;
-  margin: 0 3px;
-}
-::v-deep .cute-pagination .el-pager li.active {
-  background-color: var(--cute-pink);
-  border-color: var(--cute-pink);
-  color: white;
-}
-::v-deep .cute-pagination .btn-prev,
-::v-deep .cute-pagination .btn-next {
-  background: white;
-  border-radius: 50%;
-  border: 2px solid var(--cute-border);
-  color: var(--cute-pink);
 }
 
 /* 空状态 */
