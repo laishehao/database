@@ -2,7 +2,7 @@
  * @Author: kusachan 3253975221@qq.com
  * @Date: 2025-12-15 00:57:59
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2026-01-19 11:53:20
+ * @LastEditTime: 2026-01-19 18:02:41
  * @Description: 个人信息页
 -->
 <template>
@@ -71,11 +71,28 @@
             border
             size="medium"
           >
+            <!-- 编号：根据角色显示学生编号或教师编号 -->
+            <el-descriptions-item>
+              <template slot="label">
+                <i class="el-icon-s-order"></i>
+                {{ userInfo.role === "teacher" ? "教师编号" : "学生编号" }}
+              </template>
+              {{ userInfo.id || "未设置" }}
+            </el-descriptions-item>
+
             <el-descriptions-item>
               <template slot="label"
                 ><i class="el-icon-postcard"></i> 真实姓名</template
               >
               {{ userInfo.name || "未设置" }}
+            </el-descriptions-item>
+
+            <!-- 性别展示 -->
+            <el-descriptions-item>
+              <template slot="label">
+                <i class="el-icon-user"></i> 性别
+              </template>
+              {{ genderText }}
             </el-descriptions-item>
 
             <el-descriptions-item>
@@ -94,12 +111,6 @@
 
             <!-- 针对学生角色的额外展示 -->
             <template v-if="userInfo.role === 'student'">
-              <el-descriptions-item>
-                <template slot="label"
-                  ><i class="el-icon-school"></i> 学号</template
-                >
-                {{ userInfo.studentId || userInfo.id }}
-              </el-descriptions-item>
               <el-descriptions-item>
                 <template slot="label"
                   ><i class="el-icon-reading"></i> 所属专业</template
@@ -171,6 +182,12 @@ export default {
       return {
         Authorization: `Bearer ${this.token}`,
       };
+    },
+    genderText() {
+      const gender = this.userInfo?.gender;
+      if (gender === "male") return "男";
+      if (gender === "female") return "女";
+      return "未设置";
     },
     userAvatar() {
       const avatar = this.userInfo.avatar;
