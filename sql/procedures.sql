@@ -1365,6 +1365,43 @@ END$$
 DELIMITER ;
 
 
+
+-- 存储过程：根据Tno查看老师管理的所有学生数量
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS TcntStudent$$
+
+CREATE PROCEDURE TcntStudent(
+    p_tno INT
+)
+BEGIN
+    DECLARE v_student_count INT DEFAULT 0;
+    DECLARE v_teacher_exists INT DEFAULT 0;
+    
+    -- 检查学生是否存在
+    SELECT COUNT(*) INTO v_teacher_exists
+    FROM Teacher_Info 
+    WHERE Tno = p_tno;
+    
+    IF v_teacher_exists = 0 THEN
+        SELECT 'ERROR:TEACHER_NOT_EXIST' AS result_type;
+    ELSE
+
+        SELECT COUNT(DISTINCT SC.Sno) INTO v_student_count
+        FROM Course C
+        JOIN SC ON C.Cno = SC.Cno AND C.Tno = p_tno
+        
+        -- 返回成功结果，包含作业数量
+        SELECT 
+            'SUCCESS' AS result_type,
+            p_tno AS teacher_id,
+            v_student_count AS student_count;
+    END IF;
+END$$
+
+DELIMITER ;
+
+
 SELECT "View_Course_Student procedure created." AS Message;
 -- 存储过程：根据Cno查看课程下的学生
 DELIMITER $$
