@@ -131,14 +131,15 @@
 
 - 传入参数：
 
-  | 参数名   | 数据类型     |
-  | -------- | ------------ |
-  | p_sno    | INT          |
-  | p_name   | VARCHAR(50)  |
-  | p_email  | VARCHAR(100) |
-  | p_phone  | VARCHAR(20)  |
-  | p_gender | CHAR(1)      |
-  | p_major  | VARCHAR(50)  |
+  | 参数名     | 数据类型     |
+  | ---------- | ------------ |
+  | p_sno      | INT          |
+  | p_name     | VARCHAR(50)  |
+  | p_email    | VARCHAR(100) |
+  | p_phone    | VARCHAR(20)  |
+  | p_gender   | CHAR(1)      |
+  | p_major    | VARCHAR(50)  |
+  | p_password | VARCHAR(100) |
 
 - 返回值：
 
@@ -216,13 +217,14 @@
 
 - 传入参数：
 
-  | 参数名   | 数据类型     |
-  | -------- | ------------ |
-  | p_sno    | INT          |
-  | p_name   | VARCHAR(50)  |
-  | p_email  | VARCHAR(100) |
-  | p_phone  | VARCHAR(20)  |
-  | p_gender | CHAR(1)      |
+  | 参数名     | 数据类型     |
+  | ---------- | ------------ |
+  | p_sno      | INT          |
+  | p_name     | VARCHAR(50)  |
+  | p_email    | VARCHAR(100) |
+  | p_phone    | VARCHAR(20)  |
+  | p_gender   | CHAR(1)      |
+  | p_password | VARCHAR(100) |
 
 - 返回值：
 
