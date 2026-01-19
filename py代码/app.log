@@ -1521,3 +1521,15 @@
 2026-01-19 05:27:19 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
 2026-01-19 05:27:19 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': True}
 2026-01-19 05:28:22 [INFO] my_app日志记录器已配置
+2026-01-19 10:42:11 [INFO] my_app日志记录器已配置
+2026-01-19 10:42:13 [INFO] my_app日志记录器已配置
+2026-01-19 10:44:20 [INFO] id=6,role=teacher
+2026-01-19 10:44:24 [INFO] 访问了作业查看界面
+2026-01-19 10:44:24 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 10:44:24 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': True}
+2026-01-19 10:44:30 [INFO] 访问了课程查看界面
+2026-01-19 10:44:30 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 10:44:45 [INFO] 访问了登录界面
+2026-01-19 10:44:45 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 10:44:45 [INFO] if_ok=登录成功
+2026-01-19 10:44:45 [INFO] id=11,role=student
