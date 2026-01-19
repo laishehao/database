@@ -48,12 +48,9 @@ DELIMITER $$
 CREATE PROCEDURE Edit_Student(
     IN p_sno INT,
     IN p_name VARCHAR(50),							    -- 用户名
-    IN p_password VARCHAR(100),						    -- 密码
     IN p_email VARCHAR(100),							-- 邮箱
-    IN p_gender CHAR(1),
-    IN p_major VARCHAR(50),
-    IN p_phone VARCHAR(20),							    -- 电话
-    IN p_avatar VARCHAR(200)							-- 头像（移除末尾逗号）
+    IN p_phone VARCHAR(20)
+    -- IN p_avatar VARCHAR(200)							-- 头像（移除末尾逗号）
 )
 BEGIN
     DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
@@ -63,8 +60,8 @@ BEGIN
             SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 电话号码重复了
         ELSEIF EXISTS (SELECT 1 FROM Student_Info WHERE Semail = p_email) THEN
             SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 邮箱重复了
-        ELSE
-            SELECT 'ERROR:AVATAR_EXISTS' AS result_type;	-- 头像url重复了
+        -- ELSE
+        --     SELECT 'ERROR:AVATAR_EXISTS' AS result_type;	-- 头像url重复了
         END IF;
     END;
     
@@ -81,7 +78,7 @@ BEGIN
         SELECT 'ERROR:STUDENT_NOT_EXISTS' AS result_type;
     else
         update Student_Info
-        set Sname = p_name, Spassword = SHA2(p_password, 256), Semail = p_email, Sgender = p_gender, Smajor = p_major, Sphone = p_phone, Savatar = p_avatar
+        set Sname = p_name, Semail = p_email, Sphone = p_phone
         where Sno = p_sno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
@@ -203,11 +200,9 @@ DELIMITER $$
 CREATE PROCEDURE Edit_Teacher(
     IN p_tno INT,
     IN p_name VARCHAR(50),							    -- 用户名
-    IN p_password VARCHAR(100),						    -- 密码
     IN p_email VARCHAR(100),							-- 邮箱
-    IN p_gender CHAR(1),
-    IN p_phone VARCHAR(20),							    -- 电话
-    IN p_avatar VARCHAR(200)							-- 头像（移除末尾逗号）
+    IN p_phone VARCHAR(20)
+    -- IN p_avatar VARCHAR(200)							-- 头像（移除末尾逗号）
 )
 BEGIN
     DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
@@ -217,8 +212,8 @@ BEGIN
             SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 电话号码重复了
         ELSEIF EXISTS (SELECT 1 FROM Teacher_Info WHERE Temail = p_email) THEN
             SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 邮箱重复了
-        ELSE
-            SELECT 'ERROR:AVATAR_EXISTS' AS result_type;	-- 头像url重复了
+        -- ELSE
+        --     SELECT 'ERROR:AVATAR_EXISTS' AS result_type;	-- 头像url重复了
         END IF;
     END;
     
@@ -235,7 +230,7 @@ BEGIN
         SELECT 'ERROR:TEACHER_NOT_EXISTS' AS result_type;
     else
         update Teacher_Info
-        set Tname = p_name, Tpassword = SHA2(p_password, 256), Temail = p_email, Tgender = p_gender, Tphone = p_phone, Tavatar = p_avatar
+        set Tname = p_name, Temail = p_email, Tphone = p_phone
         where Tno = p_tno;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
