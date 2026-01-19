@@ -512,7 +512,7 @@ BEGIN
     );
     
     COMMIT;
-    SELECT 'SUCCESS' AS result_type,  (select Cno from Course where Cname =  p_cname) AS course_id;
+    SELECT 'SUCCESS' AS result_type,  (select Cno from Course where Cname =  p_cname and Tno = p_tno) AS course_id;
 END
 $$
 DELIMITER ;
