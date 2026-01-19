@@ -9,15 +9,6 @@ CREATE PROCEDURE S_Register(							    -- 注册账户，返回用户id
     IN p_email VARCHAR(100)							-- 邮箱（移除末尾逗号）
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
-    BEGIN
-        ROLLBACK;
-        IF EXISTS (SELECT 1 FROM Student_Info WHERE Sphone = p_phone) THEN
-            SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
-        ELSE
-            SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
-        END IF;
-    END;
     
     DECLARE EXIT HANDLER FOR SQLEXCEPTION			        -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
     BEGIN
@@ -26,7 +17,30 @@ BEGIN
     END;
     
     START TRANSACTION;								    -- 开始事务
+
+    main_proc: BEGIN
     
+    -- 电话号码存在于教师表中，触发异常
+    IF EXISTS (SELECT 1 FROM Teacher_Info WHERE Tphone = p_phone) THEN
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
+        LEAVE main_proc;
+    ELSEIF EXISTS (SELECT 1 FROM Teacher_Info WHERE Temail = p_email) THEN
+        ROLLBACK;
+        SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
+        LEAVE main_proc;
+    END IF;
+
+    -- 电话号码存在于学生表中，触发异常
+    IF EXISTS (SELECT 1 FROM Student_Info WHERE Sphone = p_phone) THEN
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
+        LEAVE main_proc;
+    ELSEIF EXISTS (SELECT 1 FROM Student_Info WHERE Semail = p_email) THEN
+        ROLLBACK;
+        SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
+        LEAVE main_proc;
+    END IF;
    
     INSERT INTO Student_Info (
         Sname, Spassword, Semail, Sphone
@@ -37,6 +51,8 @@ BEGIN
     
     COMMIT;											    -- 提交事务
     SELECT 'SUCCESS' AS result_type,  (select Sno from Student_Info where Sphone =  p_phone) AS user_id;
+
+    END main_proc;
 END
 $$
 DELIMITER ;
@@ -56,17 +72,6 @@ CREATE PROCEDURE Edit_Student(
     -- IN p_avatar VARCHAR(200)							-- 头像（移除末尾逗号）
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
-    BEGIN
-        ROLLBACK;
-        IF EXISTS (SELECT 1 FROM Student_Info WHERE Sphone = p_phone) THEN
-            SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 电话号码重复了
-        ELSEIF EXISTS (SELECT 1 FROM Student_Info WHERE Semail = p_email) THEN
-            SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 邮箱重复了
-        -- ELSE
-        --     SELECT 'ERROR:AVATAR_EXISTS' AS result_type;	-- 头像url重复了
-        END IF;
-    END;
     
     DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
     BEGIN
@@ -75,6 +80,30 @@ BEGIN
     END;
     
     START TRANSACTION;								    -- 开始事务
+
+    main_proc: BEGIN
+
+    -- 电话号码存在于教师表中，触发异常
+    IF EXISTS (SELECT 1 FROM Teacher_Info WHERE Tphone = p_phone) THEN
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
+        LEAVE main_proc;
+    ELSEIF EXISTS (SELECT 1 FROM Teacher_Info WHERE Temail = p_email) THEN
+        ROLLBACK;
+        SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
+        LEAVE main_proc;
+    END IF;
+
+    -- 电话号码存在于学生表中，触发异常
+    IF EXISTS (SELECT 1 FROM Student_Info WHERE Sphone = p_phone AND Sno != p_sno) THEN
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
+        LEAVE main_proc;
+    ELSEIF EXISTS (SELECT 1 FROM Student_Info WHERE Semail = p_email AND Sno != p_sno) THEN
+        ROLLBACK;
+        SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
+        LEAVE main_proc;
+    END IF;
     
     if not exists (select 1 from Student_Info where Sno = p_sno) then
         ROLLBACK;
@@ -86,6 +115,8 @@ BEGIN
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
     end if;
+
+    END main_proc;
 END
 $$
 DELIMITER ;
@@ -164,16 +195,7 @@ CREATE PROCEDURE T_Register(							-- 注册账户，返回用户id
     IN p_email VARCHAR(100)							-- 邮箱（移除末尾逗号）
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
-    BEGIN
-        ROLLBACK;
-        IF EXISTS (SELECT 1 FROM Teacher_Info WHERE Tphone = p_phone) THEN
-            SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
-        ELSE
-            SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
-        END IF;
-    END;
-    
+
     DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
     BEGIN
         ROLLBACK;
@@ -181,7 +203,30 @@ BEGIN
     END;
     
     START TRANSACTION;								    -- 开始事务
+
+    main_proc: BEGIN
     
+    -- 电话号码存在于教师表中，触发异常
+    IF EXISTS (SELECT 1 FROM Teacher_Info WHERE Tphone = p_phone) THEN
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
+        LEAVE main_proc;
+    ELSEIF EXISTS (SELECT 1 FROM Teacher_Info WHERE Temail = p_email) THEN
+        ROLLBACK;
+        SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
+        LEAVE main_proc;
+    END IF;
+
+    -- 电话号码存在于学生表中，触发异常
+    IF EXISTS (SELECT 1 FROM Student_Info WHERE Sphone = p_phone) THEN
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
+        LEAVE main_proc;
+    ELSEIF EXISTS (SELECT 1 FROM Student_Info WHERE Semail = p_email) THEN
+        ROLLBACK;
+        SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
+        LEAVE main_proc;
+    END IF;
    
     INSERT INTO Teacher_Info (
         Tname, Tpassword, Temail, Tphone
@@ -192,6 +237,8 @@ BEGIN
     
     COMMIT;											    -- 提交事务
     SELECT 'SUCCESS' AS result_type,  (select Tno from Teacher_Info where Tphone =  p_phone) AS user_id;
+
+    END main_proc;
 END
 $$
 DELIMITER ;
@@ -210,17 +257,6 @@ CREATE PROCEDURE Edit_Teacher(
     -- IN p_avatar VARCHAR(200)							-- 头像（移除末尾逗号）
 )
 BEGIN
-    DECLARE EXIT HANDLER FOR 1062  					    -- 违反主键或唯一约束时，进入到下面的代码执行
-    BEGIN
-        ROLLBACK;
-        IF EXISTS (SELECT 1 FROM Teacher_Info WHERE Tphone = p_phone) THEN
-            SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 电话号码重复了
-        ELSEIF EXISTS (SELECT 1 FROM Teacher_Info WHERE Temail = p_email) THEN
-            SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 邮箱重复了
-        -- ELSE
-        --     SELECT 'ERROR:AVATAR_EXISTS' AS result_type;	-- 头像url重复了
-        END IF;
-    END;
     
     DECLARE EXIT HANDLER FOR SQLEXCEPTION			    -- 这是通用错误处理函数，出现系统异常时，进入到下面的代码执行
     BEGIN
@@ -229,6 +265,30 @@ BEGIN
     END;
     
     START TRANSACTION;								    -- 开始事务
+
+    main_proc: BEGIN
+
+    -- 电话号码存在于教师表中，触发异常
+    IF EXISTS (SELECT 1 FROM Teacher_Info WHERE Tphone = p_phone AND Tno != p_tno) THEN
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
+        LEAVE main_proc;
+    ELSEIF EXISTS (SELECT 1 FROM Teacher_Info WHERE Temail = p_email AND Tno != p_tno) THEN
+        ROLLBACK;
+        SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
+        LEAVE main_proc;
+    END IF;
+
+    -- 电话号码存在于学生表中，触发异常
+    IF EXISTS (SELECT 1 FROM Student_Info WHERE Sphone = p_phone) THEN
+        ROLLBACK;
+        SELECT 'ERROR:PHONE_EXISTS' AS result_type;	    -- 要么是电话号码重复了
+        LEAVE main_proc;
+    ELSEIF EXISTS (SELECT 1 FROM Student_Info WHERE Semail = p_email) THEN
+        ROLLBACK;
+        SELECT 'ERROR:EMAIL_EXISTS' AS result_type;	    -- 要么是邮箱重复了
+        LEAVE main_proc;
+    END IF;
     
     if not exists (select 1 from Teacher_Info where Tno = p_tno) then
         ROLLBACK;
@@ -240,6 +300,8 @@ BEGIN
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
     end if;
+
+    END main_proc;
 END
 $$
 DELIMITER ;
