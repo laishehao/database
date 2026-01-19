@@ -93,6 +93,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "CourseModal",
   props: {
@@ -114,6 +116,7 @@ export default {
     titleWithIcon() {
       return this.isEdit ? "✨ 重新编排课程" : "🌟 召唤新课程";
     },
+    ...mapGetters(["userInfo"]),
   },
   watch: {
     visible(val) {
@@ -177,6 +180,7 @@ export default {
             apiType: apiType,
             data: {
               role: "teacher",
+              userId: this.userInfo.id,
               ...this.form,
             },
           })

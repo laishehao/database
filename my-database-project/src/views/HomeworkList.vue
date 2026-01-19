@@ -213,9 +213,10 @@ export default {
       this.getHomework();
     },
     handleGrade(row) {
+      if (!row) return;
       this.$router.push({
         name: "homeworkGrading",
-        params: { id: row.workId },
+        params: { workId: row.workId || row.id },
       });
     },
     getHomework() {

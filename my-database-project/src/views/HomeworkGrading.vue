@@ -181,10 +181,10 @@ export default {
   },
   created() {
     const routeId =
-      this.$route.params.id ||
       this.$route.params.workId ||
-      this.$route.query.id ||
+      this.$route.params.id ||
       this.$route.query.workId ||
+      this.$route.query.id ||
       "";
     this.workId = routeId ? String(routeId) : null;
     // 优先使用路由 query 中的 title

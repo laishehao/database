@@ -1,7 +1,7 @@
 <template>
-  <el-dialog 
-    :title="`正在批改：${submission.studentName || ''}`" 
-    :visible.sync="dialogVisible" 
+  <el-dialog
+    :title="`正在批改：${submission.studentName || ''}`"
+    :visible.sync="dialogVisible"
     width="700px"
     :close-on-click-modal="false"
     custom-class="grade-dialog"
@@ -9,13 +9,19 @@
   >
     <div class="grade-container">
       <div class="answer-section">
-        <div class="section-title"><i class="el-icon-document"></i> 学生提交内容</div>
+        <div class="section-title">
+          <i class="el-icon-document"></i> 学生提交内容
+        </div>
         <div class="answer-content-box">
-          <div v-if="submission.content" v-html="submission.content" class="rich-text-content"></div>
+          <div
+            v-if="submission.content"
+            v-html="submission.content"
+            class="rich-text-content"
+          ></div>
           <div v-else class="empty-answer">该学生未填写文本内容</div>
         </div>
         <div class="submit-info">
-          提交时间：{{ submission.submitTime || '--' }}
+          提交时间：{{ submission.submitTime || "--" }}
         </div>
       </div>
 
@@ -23,14 +29,19 @@
 
       <el-form :model="gradeForm" label-width="60px" class="grade-form">
         <el-form-item label="评分">
-          <el-input-number v-model="gradeForm.score" :min="0" :max="100" size="medium"></el-input-number>
+          <el-input-number
+            v-model="gradeForm.score"
+            :min="0"
+            :max="100"
+            size="medium"
+          ></el-input-number>
         </el-form-item>
-        
+
         <el-form-item label="评语">
-          <el-input 
-            type="textarea" 
-            v-model="gradeForm.comment" 
-            :rows="4" 
+          <el-input
+            type="textarea"
+            v-model="gradeForm.comment"
+            :rows="4"
             placeholder="请输入评语，鼓励一下学生吧~"
             maxlength="200"
             show-word-limit
@@ -41,35 +52,43 @@
 
     <span slot="footer" class="dialog-footer">
       <el-button @click="handleClose">取 消</el-button>
-      <el-button type="primary" :loading="submitting" @click="handleSubmit" class="pink-btn">确 定</el-button>
+      <el-button
+        type="primary"
+        :loading="submitting"
+        @click="handleSubmit"
+        class="pink-btn"
+        >确 定</el-button
+      >
     </span>
   </el-dialog>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: 'HomeworkGradeModal',
+  name: "HomeworkGradeModal",
   props: {
     visible: {
       type: Boolean,
-      default: false
+      default: false,
     },
     submission: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     homeworkId: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       submitting: false,
       gradeForm: {
         score: 80,
-        comment: ''
-      }
+        comment: "",
+      },
     };
   },
   computed: {
@@ -78,20 +97,25 @@ export default {
         return this.visible;
       },
       set(val) {
-        this.$emit('update:visible', val);
-      }
-    }
+        this.$emit("update:visible", val);
+      },
+    },
+    ...mapGetters(["userInfo"]),
   },
   watch: {
     visible(newVal) {
       if (newVal && this.submission) {
         // 弹窗打开时，初始化表单数据
         this.gradeForm = {
-          score: this.submission.score !== null && this.submission.score !== undefined ? this.submission.score : 85,
-          comment: this.submission.teacherComment || ''
+          score:
+            this.submission.score !== null &&
+            this.submission.score !== undefined
+              ? this.submission.score
+              : 85,
+          comment: this.submission.teacherComment || "",
         };
       }
-    }
+    },
   },
   methods: {
     // 关闭窗口
@@ -102,32 +126,37 @@ export default {
     handleSubmit() {
       this.submitting = true;
       this.$api({
-        apiType: 'homeworkGrade',
+        apiType: "homeworkGrade",
         data: {
-          workId: this.homeworkId,    //作业Id
-          userId: this.submission.userId,   //学生在数据库中的id
-          score: this.gradeForm.score,    //成绩
-          teacherComment: this.gradeForm.comment    //教师评语
-        }
-      }).then(res => {
-        this.$message.success('批改完成');
-        this.$emit('update:visible', false);
-        // 触发成功事件，传递更新后的数据
-        //父组件的回调函数会处理
-        this.$emit('success', {
-          ...res,
-          studentId: this.submission.studentId || this.submission.userId,
-          score: res.score !== undefined ? res.score : this.gradeForm.score,
-          teacherComment: res.teacherComment || res.comment || this.gradeForm.comment
+          workId: this.homeworkId, //作业Id
+          teacherId: this.userInfo.id, //教师Id
+          studentId: this.submission.userId, //学生在数据库中的id
+          score: this.gradeForm.score, //成绩
+          teacherComment: this.gradeForm.comment, //教师评语
+        },
+      })
+        .then((res) => {
+          this.$message.success("批改完成");
+          this.$emit("update:visible", false);
+          // 触发成功事件，传递更新后的数据
+          //父组件的回调函数会处理
+          this.$emit("success", {
+            ...res,
+            studentId: this.submission.studentId || this.submission.userId,
+            score: res.score !== undefined ? res.score : this.gradeForm.score,
+            teacherComment:
+              res.teacherComment || res.comment || this.gradeForm.comment,
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+          this.$message.error("批改失败，请重试");
+        })
+        .finally(() => {
+          this.submitting = false;
         });
-      }).catch(err => {
-        console.error(err);
-        this.$message.error('批改失败，请重试');
-      }).finally(() => {
-        this.submitting = false;
-      });
-    }
-  }
+    },
+  },
 };
 </script>
 
