@@ -451,7 +451,7 @@ BEGIN
     
     IF v_write_exists = 0 THEN
         SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;
-    ELSE 
+    ELSE
         SELECT 
             'SUCCESS' AS result_type,
             Wrcontent AS write_content, 
@@ -931,7 +931,7 @@ BEGIN
         IFNULL(WR.Score, NULL) AS Score
     FROM
         Work W
-    LEFT JOIN
+    JOIN
         `Write` WR ON W.Wno = WR.Wno AND WR.Sno = p_sno
     WHERE
         W.Wtitle LIKE CONCAT('%', p_keyword, '%')
@@ -1276,7 +1276,7 @@ BEGIN
         SELECT COUNT(DISTINCT W.Wno) INTO v_work_count
         FROM Work W
         JOIN SC ON W.Cno = SC.Cno
-        LEFT JOIN `Write` WR ON W.Wno = WR.Wno AND WR.Sno = p_sno
+        JOIN `Write` WR ON W.Wno = WR.Wno AND WR.Sno = p_sno
         WHERE SC.Sno = p_sno 
           AND NOW() < W.Wover
           AND (WR.State IS NULL OR WR.State = 0);  -- 未提交或未完成
