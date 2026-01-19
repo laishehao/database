@@ -131,12 +131,14 @@
 
 - 传入参数：
 
-  | 参数名  | 数据类型     |
-  | ------- | ------------ |
-  | p_sno   | INT          |
-  | p_name  | VARCHAR(50)  |
-  | p_email | VARCHAR(100) |
-  | p_phone | VARCHAR(20)  |
+  | 参数名   | 数据类型     |
+  | -------- | ------------ |
+  | p_sno    | INT          |
+  | p_name   | VARCHAR(50)  |
+  | p_email  | VARCHAR(100) |
+  | p_phone  | VARCHAR(20)  |
+  | p_gender | CHAR(1)      |
+  | p_major  | VARCHAR(50)  |
 
 - 返回值：
 
@@ -206,7 +208,7 @@
 
 
 
-### 6. Edit_Student
+### 6. Edit_Teacher
 
 - 功能：
 
@@ -214,12 +216,13 @@
 
 - 传入参数：
 
-  | 参数名  | 数据类型     |
-  | ------- | ------------ |
-  | p_sno   | INT          |
-  | p_name  | VARCHAR(50)  |
-  | p_email | VARCHAR(100) |
-  | p_phone | VARCHAR(20)  |
+  | 参数名   | 数据类型     |
+  | -------- | ------------ |
+  | p_sno    | INT          |
+  | p_name   | VARCHAR(50)  |
+  | p_email  | VARCHAR(100) |
+  | p_phone  | VARCHAR(20)  |
+  | p_gender | CHAR(1)      |
 
 - 返回值：
 
