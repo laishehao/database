@@ -451,7 +451,7 @@ BEGIN
     
     IF v_write_exists = 0 THEN
         SELECT 'ERROR:WORK_NOT_EXISTS' AS result_type;
-    ELSE
+    ELSE 
         SELECT 
             'SUCCESS' AS result_type,
             Wrcontent AS write_content, 

@@ -4,67 +4,11 @@ from py_sql import *
 from flask_cors import CORS
 import logging
 from flask import abort
-def setup_logger_py():
-    """配置日志记录器"""
-    logger = logging.getLogger(__name__)
-    
-    if not logger.handlers:  # 避免重复添加处理器
-        logger.setLevel(logging.DEBUG)
-        
-        # 控制台输出
-        ch = logging.StreamHandler()
-        ch.setLevel(logging.INFO)
-        
-        # 文件输出
-        fh = logging.FileHandler('sql_py.log', encoding='utf-8')
-        fh.setLevel(logging.DEBUG)
-        
-        # 格式
-        formatter = logging.Formatter(
-            '%(asctime)s [%(levelname)s] %(message)s',
-            datefmt='%Y-%m-%d %H:%M:%S'
-        )
-        
-        ch.setFormatter(formatter)
-        fh.setFormatter(formatter)
-        
-        logger.addHandler(ch)
-        logger.addHandler(fh)
-        logger.info('日志记录器已配置')
-    return logger
+from my_log import *
 
-
-def setup_logger():
-    """配置日志记录器"""
-    logger = logging.getLogger(__name__)
-    
-    if not logger.handlers:  # 避免重复添加处理器
-        logger.setLevel(logging.DEBUG)
-        
-        # 控制台输出
-        ch = logging.StreamHandler()
-        ch.setLevel(logging.INFO)
-        
-        # 文件输出
-        fh = logging.FileHandler('app.log', encoding='utf-8')
-        fh.setLevel(logging.DEBUG)
-        
-        # 格式
-        formatter = logging.Formatter(
-            '%(asctime)s [%(levelname)s] %(message)s',
-            datefmt='%Y-%m-%d %H:%M:%S'
-        )
-        
-        ch.setFormatter(formatter)
-        fh.setFormatter(formatter)
-        
-        logger.addHandler(ch)
-        logger.addHandler(fh)
-        logger.info('日志记录器已配置')
-    return logger
 logger = setup_logger()
 logger_py = setup_logger_py()
-
+# logger_py.info('日志记录器已配置')
 app = Flask(__name__)
 # # CORS(app)
 # CORS(app, resources={r"/homework/*": {"origins": "http://localhost:8080"}})
@@ -84,7 +28,7 @@ def app_test():
     """
     logger.info('访问了测试界面')
     return str(test())
-
+# TODO:注册
 @app.route('/register',methods=['POST'])
 def app_register():
     """ 注册用户，需要传入用户名、密码、姓名和邮箱
@@ -106,7 +50,7 @@ def app_register():
     
     logger.info(f'if_ok={if_ok}')
     return if_ok
-# TODO：用户信息修改
+# TODO：用户信息修改?
 @app.route('/api/user',methods=['POST'])
 def app_userinfo():
     """ 
@@ -120,9 +64,10 @@ def app_userinfo():
     phone = data.get('phone')
     name = data.get('name')
     email = data.get('email')
-    logger.info(f'phone={phone},name={name},email={email}')
+    role=data.get('role')
+    logger.info(f'phone={phone},name={name},email={email},role={role}')
     
-    if_ok= userinfo (phone, name, email)
+    if_ok= userinfo (phone, name, email,role)
     logger.info(f'if_ok={if_ok["msg"]}')
 
     return if_ok
@@ -142,7 +87,7 @@ def app_login():
     if_ok= login (phone, password)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-# TODO:老师查看学生列表
+# TODO:查看学生列表
 @app.route('/student',methods=['GET'])
 def app_select_student():
     """
@@ -154,13 +99,15 @@ def app_select_student():
     query=request.args.get('query')
     page=request.args.get('page')
     page_size=request.args.get('pageSize')
+    role=request.args.get('role')
+    id=request.args.get('id')
     # print(query,page,page_size)
     logger.info('访问了学生界面')
-    logger.info(f'query={query},page={page},page_size={page_size}')
-    ans = select_student (query, page, page_size)
+    logger.info(f'query={query},page={page},page_size={page_size},role={role},id={id}')
+    ans = select_student (query, page, page_size,role,id)
     logger.info(f'students[0]={ans["list"][0]}')
     return ans
-# TODO：添加学生
+# TODO：老师添加学生?
 @app.route('/student',methods=['POST'])
 def app_add_student():
     """
@@ -179,16 +126,17 @@ def app_add_student():
     gender=data.get('gender')
     major=data.get('major')
     phone = data.get('phone')   
-    
+    Cno=data.get('Cno')
+    Sno=data.get('Sno')
     logger.info(f'studentId={studentId},name={name},gender={gender},major={major},phone={phone}')
 
     # avatar = request.args.get('avatar')
     # age = request.form.get('age')
     
-    if_ok= add_student (studentId,name,gender,major,phone)
+    if_ok= add_student (studentId,name,gender,major,phone,Cno,Sno)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-# TODO: myapp更新学生信息
+# TODO: #老师查看学生详细信息
 @app.route('/student/<int:studentId>',methods=['PUT'])
 def app_update_student(studentId):
     """更新学生信息
@@ -215,13 +163,15 @@ def app_update_student(studentId):
     return if_ok
 
 # DELETE 请求处理
-@app.route('/student/<int:studentId>', methods=['DELETE'])
-def app_delete_student(studentId):
+# TODO：老师删除学生
+@app.route('/student/<int:studentId><int:Cno>', methods=['DELETE'])
+def app_delete_student(studentId,Cno):
     """删除学生信息
         成功：返回True
         失败：返回错误原因
     """
-    if_ok= delete_student (studentId)
+    logger_py.info(f'studentId={studentId},id={Cno}')
+    if_ok= delete_student (studentId,Cno)
     return if_ok
 
 # 课程处理
@@ -237,9 +187,10 @@ def app_select_course():
     query=request.args.get('query')
     page=request.args.get('page')
     pageSize=request.args.get('pageSize')
-    logger.info(f'query={query},page={page},pageSize={pageSize}')
+    id=request.args.get('id')
+    logger.info(f'query={query},page={page},pageSize={pageSize},id={id}')
     
-    ans = select_course (query, page, pageSize)
+    ans = select_course (query, page, pageSize,id)
     
     return ans
 # TODO：新建课程
@@ -268,7 +219,7 @@ def app_add_course():
     if_ok= add_course (courseId,CourseName,major,credits,type,teacher)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
-
+# TODO：老师编辑课程
 @app.route('/course/<int:courseId>',methods=['PUT'])
 def app_update_course(courseId):
     """
@@ -305,7 +256,7 @@ def app_delete_course(courseId):
     """
     logger.info('访问了课程删除界面')
     logger.info(f'courseId={courseId}')
-    if_ok= delete_student (courseId)
+    if_ok= delete_course (courseId)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 
@@ -320,17 +271,20 @@ def app_select_work():
     # abort(500)
     # data=request.get_json()
     query=request.args.get('query')
-    page = request.form.get('page')
-    pageSize=request.form.get('pageSize')
+    page = request.args.get('page')
+    pageSize=request.args.get('pageSize')
+    role = request.args.get('role')
+    id = request.args.get('id')
     # page = data.get("page")
     # pageSize = data.get("pageSize")
-    logger.info(f'query={query},page={page},pageSize={pageSize}')
+    logger.info(f'query={query},page={page},pageSize={pageSize},role={role},id={id}')
     
-    work = select_work (query,page,pageSize)
+    work = select_work (query,page,pageSize,role,id)
     logger.info(f'work[0]={work["list"][0]}')
     
     return work
-# TODO：老师·看作业做的怎么样
+# TODO：老师从作业列表跳到作业详情页查看学生
+
 @app.route('/homework/submissions',methods=['GET'])
 def app_check_work():
     """查询具体作业提交情况
@@ -405,15 +359,15 @@ def app_submit_work(workId):
     if_ok= submit_work (role,syudentId,workId,writecheck)
     return if_ok
 # TODO: 学生做作业界面
-@app.route('/homework/<int:UserId>',methods=['GET'])
-def app_watch_work(UserId):
+@app.route('/homework/<int:workId>',methods=['GET'])
+def app_watch_work(workId):
     """
     学生查看某一项作业bianji
     """
     logger.info('访问了作业查看界面')
     # data=request.get_json()
     # UserId = data.get('UserId')
-    workId = request.args.get('workId')
+    UserId = request.args.get('userId')
     logger.info(f'workId={workId},UserId={UserId}')
     
     if_ok= watch_work (workId,UserId)
@@ -439,6 +393,13 @@ def app_deal_work():
     
     # logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
+@app.route('/dashboard/stats')
+def app_hello_world():
+    id=request.args.get('id')
+    role=request.args.get('role')
+    logger.info(f'id={id},role={role}')
+    dashboard=dashboard_stats(id,role)
+    return 'Hello World!'
 # 修改这2行
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

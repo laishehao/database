@@ -5,7 +5,7 @@ from my_app import logger_py
 
 # 创建连接
 connection = pymysql.connect(
-    host='',
+    host='8.130.144.155',
     user='lzh',
     password='12345678',
     database='619database',
@@ -25,6 +25,8 @@ connection = pymysql.connect(
 #     # cursorclass=pymysql.cursors.DictCursor
 # )
 
+    
+    
 def test():
     """用于测试数据库连接是否成功
     Returns:
@@ -137,6 +139,7 @@ def login(phone, password):
         "username":result[1],
         "name":result[2],
         "role":role,
+        "id":result[1],
         "avatar":"https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
     }
     # 创建登录响应对象
@@ -145,7 +148,36 @@ def login(phone, password):
         "user" :user
     }
     return ans
-def userinfo(phone, name, email):
+def userinfo(phone, name, email,role):
+    if role=="teacher":
+        try:
+            with connection.cursor() as cursor:
+                # params = (name,phone,password, email)
+                logger_py.info('数据库开始修改用户信息')
+                # cursor.callproc('T_Register', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+        except:
+            connection.rollback()  # 异常时回滚
+    else:
+        try:
+            with connection.cursor() as cursor:
+                # params = (name,phone,password, email)
+                logger_py.info('数据库开始修改用户信息')
+                # cursor.callproc('T_Register', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+        except:
+            connection.rollback()  # 异常时回滚
+    # try:
+    #     with connection.cursor() as cursor:
+    #         # params = (name,phone,password, email)
+    #         logger_py.info('数据库开始修改用户信息')
+    #         # cursor.callproc('T_Register', params)
+    #         result = cursor.fetchall()
+    #         logger_py.info(result)
+    # except:
+    #     connection.rollback()  # 异常时回滚
     user={
         "email":"example@example.com",
         "name":"testname",
@@ -159,9 +191,32 @@ def userinfo(phone, name, email):
         "user" :user
     }
     return ans
-def select_student(query, page, page_size):
-    
-    students=[]
+# TODO:查看学生列表无法测试
+def select_student(query, page, page_size,role,id):
+    result=""
+    if role=="teacher":
+        try:
+            with connection.cursor() as cursor:
+                params = (id,query)
+                logger_py.info('数据库开始查询学生')
+                cursor.callproc('Teacher_View_Student_List', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+        except:
+            logger_py.info('查询失败')
+            connection.rollback()  # 异常时回滚
+        students=[]
+    else:
+        try:
+            with connection.cursor() as cursor:
+                params = (id,query)
+                logger_py.info('数据库开始查询学生')
+                cursor.callproc('Student_View_Work_List', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+        except:
+            connection.rollback()  # 异常时回滚
+        students=[]
     # test 王小明
     student= {
           "studentId": "2023001",
@@ -183,25 +238,73 @@ def select_student(query, page, page_size):
     }
     return ans
 
-def add_student (studentId, name, major, gender,phone):
+def add_student (studentId, name, major, gender,phone,cno,sno):
+    # try:
+    #     with connection.cursor() as cursor:
+    #         # params = (cno,sno)
+    #         logger_py.info('数据库开始添加学生')
+    #         # cursor.callproc('Select_Course', params)
+    #         result = cursor.fetchall()
+    #         logger_py.info(result)
+    # except:
+    #     connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"添加成功"
     }
     return ans
 def update_student(studentId, name, major, gender,phone):
+    try:
+        with connection.cursor() as cursor:
+            params = (studentId)
+            logger_py.info('数据库开始更新学生信息')
+            cursor.callproc('View_Student', params)
+            result = cursor.fetchall()
+            logger_py.info(result)
+    except:
+        connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"更新成功"
     }
     return ans
-def delete_student(studentId):
+def delete_student(studentId,cno):
+    try:
+        with connection.cursor() as cursor:
+            params = (cno,studentId)
+            logger_py.info('数据库开始查添加学生')
+            cursor.callproc('Delete_Student_From_Course', params)
+            result = cursor.fetchall()
+            logger_py.info(f"result={result}")
+    except:
+        logger_py.info('删除失败')
+        connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"删除成功"
     }
     return ans
-def select_course(query,page,pageSize):
+def select_course(query,page,pageSize,Tno):
+    # if query==None:
+        # try:
+        #     with connection.cursor() as cursor:
+        #         params = (Tno)
+        #         logger_py.info('数据库开始修改用户信息')
+        #         cursor.callproc('Teacher_View_Courses_By_Tno', params)
+        #         result = cursor.fetchall()
+        #         logger_py.info(result)
+        # except:
+        #     connection.rollback()  # 异常时回滚
+    #else 
+        # try:
+        #     with connection.cursor() as cursor:
+        #         params = (query)
+        #         logger_py.info('数据库开始修改用户信息')
+        #         cursor.callproc('Teacher_View_Course_List', params)
+        #         result = cursor.fetchall()
+        #         logger_py.info(result)
+        # except:
+        #     connection.rollback()  # 异常时回滚
     ans={
         "total":10,
         "list":[
@@ -221,6 +324,15 @@ def select_course(query,page,pageSize):
     }
     return ans
 def add_course(courseId,CourseName,major,credits,type,teacher):
+    # try:
+    #     with connection.cursor() as cursor:
+    #         params = (CourseName,major,credits,type,teacher)
+    #         logger_py.info('数据库开始修改用户信息')
+    #         cursor.callproc('Push_homework', params)
+    #         result = cursor.fetchall()
+    #         logger_py.info(result)
+    # except:
+    #     connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"添加成功"
@@ -228,38 +340,104 @@ def add_course(courseId,CourseName,major,credits,type,teacher):
     return ans
 
 def update_course(courseId,CourseName,major,credits,type,teacher):
+    try:
+        with connection.cursor() as cursor:
+            params = (courseId,CourseName,major,credits,type,teacher)
+            logger_py.info('老师编辑课程')
+            cursor.callproc('Edit_Course', params)
+            result = cursor.fetchall()
+            logger_py.info(result)
+    except:
+        logger_py.info('老师编辑课程')
+        connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"更新成功"
     }
     return ans
 def delete_course(courseId):
+    # try:
+    #     with connection.cursor() as cursor:
+    #         params = (courseId)
+    #         logger_py.info('数据库开始修改用户信息')
+    #         cursor.callproc('Delete_Course', params)
+    #         result = cursor.fetchall()
+    #         logger_py.info(result)
+    # except:
+    #     connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"删除成功"
     }
     return ans
     
-def select_work(query,page,pageSize):
+def select_work(query,page,pageSize,role,id):
+    
+    result=""
+    logger_py.info('query is None')
+    if role == "teacher":
+        
+        try:
+            with connection.cursor() as cursor:
+                params = (id,query)
+                logger_py.info('老师查询作业信息')
+                cursor.callproc('Teacher_View_Work_List', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+        except:
+            connection.rollback()  # 异常时回滚
+    else:
+        try:
+            with connection.cursor() as cursor:
+                params = (id,query)
+                logger_py.info('学生查询作业信息')
+                cursor.callproc('Student_View_Work_List', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+        except:
+            connection.rollback()  # 异常时回滚
+
     homwork={
-            'workId':'1',
+            'workId':'1000000',
             'title':'test',
             'course':'test',
             'content':'test',
             'active':True,
             'progerss':50,
-            'completed':False
+            'completed':True
         }
     homworks=[]
     homworks.append(homwork)
     total=homworks.__len__()
+    for item in result:
+        homework = {
+            'workId': item[0],
+            'title': item[1],
+            'course': f'课程{item[2]}',  # 根据实际情况调整
+            'content': item[3],
+            'startDate': item[4].isoformat() if item[4] else None,
+            'endDate': item[5].isoformat() if item[5] else None,
+            'active': True,  # 根据业务逻辑判断
+            'progress': item[7] ,
+            'completed': 1 if item[8] is not None else 0  # 假设第7位是完成状态
+        }
+        homworks.append(homework)
     ans={
         # "code":400,
         "total":total,
         "list":homworks
     }
     return ans
-def add_work(title,course,content,progress):
+def add_work(title,course,content,progress,start,over):
+    # try:
+        #     with connection.cursor() as cursor:
+        #         params = (title,course,start,over,content)
+        #         logger_py.info('数据库开始修改用户信息')
+        #         cursor.callproc('Push_homework', params)
+        #         result = cursor.fetchall()
+        #         logger_py.info(result)
+        # except:
+        #     connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"添加成功"
@@ -272,24 +450,126 @@ def update_work(workId,title,content):
     }
     return ans
 def delete_work(workId):
+    # try:
+        #     with connection.cursor() as cursor:
+        #         params = (workId)
+        #         logger_py.info('数据库开始修改用户信息')
+        #         cursor.callproc('Delete_Course', params)
+        #         result = cursor.fetchall()
+        #         logger_py.info(result)
+        # except:
+        #     connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"删除成功"
     }
     return ans
 def submit_work(role,studentId,workId,writecheck):
+     # try:
+        #     with connection.cursor() as cursor:
+        #         params = (workId)
+        #         logger_py.info('数据库开始修改用户信息')
+        #         cursor.callproc('Submit_Answer', params)
+        #         result = cursor.fetchall()
+        #         logger_py.info(result)
+        # except:
+        #     connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"提交成功"
     }
     return ans
 def watch_work(workId,UserId):
+    # TODO:作答无法修改、截止时间无法修改
+    work=""
+    write=""
+    course=""
+    detail={
+            "workId": 1,
+            "title": 1,
+            "course": 11,
+            "content": 1,
+            "startDate": 1,
+            "endDate": 1,
+            "context":"作答",
+            "score":11,
+            # "comment":"评语",
+            "teacherComment":"评语",
+            "completed":True
+            }
+    try:
+        with connection.cursor() as cursor:
+            params = (UserId,workId)
+            logger_py.info('学生做作业界面-写了什么')
+            cursor.callproc('View_homework', params)
+            write = cursor.fetchall()
+            wt=write[0]
+            logger_py.info(wt)
+            
+            params = (workId,)
+            logger_py.info('学生做作业界面-作业是什么')
+            cursor.callproc('View_work', params)
+            work = cursor.fetchall()
+            wk=work[0]
+            logger_py.info(f"wk={wk}")
+            
+            params = (int(wk[3]),)
+            logger_py.info('学生做作业界面-课程是什么')
+            cursor.callproc('View_Course', params)
+            course = cursor.fetchall()
+            cs=course[0]
+            logger_py.info(f"cs={cs}")
+            formatted_date = wt[6].strftime('%Y-%m-%d %H:%M')
+            detail={
+                "workId": workId,
+                "title": wk[2],# 作业名字
+                "course": cs[2],# 课程名字
+                "content": wk[4],# 作业具体内容
+                "startDate": wk[5],
+                "endDate": formatted_date,# 截止时间
+                "context":wt[1],# 作答
+                "score":wt[2],# 分数
+                "comment":wt[3],
+                "teacherComment":wt[4],# 老师评语
+                "completed":1 if wt[2] is not None else 0   # 是否有评语
+            }
+            logger_py.info(f"detail={detail}")
+    except:
+        logger_py.info('数据库查询失败')
+        connection.rollback()  # 异常时回滚
     ans={
         "code":200,
-        "msg":"查看成功"
+        "msg":"查看成功",
+        "detail":detail
     }
     return ans
+
 def check_work(workId):
+    result=""
+    try:
+        st=""
+        with connection.cursor() as cursor:
+            params = (3,)
+            logger_py.info('数据库开始查找老师作业下的学生')
+            cursor.callproc('Teacher_View_Writes_By_Wno', params)
+            result = cursor.fetchall()
+            logger_py.info(f"result={result}")
+            for row in result:
+                params = (row[0],)
+                logger_py.info('学生信息')
+                cursor.callproc('View_Student', params)
+                result = cursor.fetchall()
+                logger_py.info(f"result={result}")
+                
+                params = (row[0],)
+                logger_py.info('作业批改情况')
+                cursor.callproc('View_Student', params)
+                result = cursor.fetchall()
+                logger_py.info(f"result={result}")
+    except:
+        logger_py.info('数据库查询失败')
+        connection.rollback()  # 异常时回滚
+    
     data= {
         "title": "2023-2024学年第一学期作业汇总",
         "list": [
@@ -346,6 +626,29 @@ def deal_work (workId,UserId,teacherComment,score):
         # "teacherComment": "思路清晰，答案正确，继续保持！"
     }
     return ans
+def dashboard_stats(id,role):
+    pass
+    # if role=="teacher":
+    #     # try:
+    #     #     with connection.cursor() as cursor:
+    #     #         params = (id)
+    #     #         logger_py.info('数据库开始修改用户信息')
+    #     #         cursor.callproc('TcntCourse', params)
+    #     #         result = cursor.fetchall()
+    #     #         logger_py.info(result)
+    #     # except:
+    #     #     connection.rollback()  # 异常时回滚
+    # else:
+    #     # try:
+    #     #     with connection.cursor() as cursor:
+    #     #         params = (id)
+    #     #         logger_py.info('数据库开始修改用户信息')
+    #     #         cursor.callproc('Teacher_View_Writes_By_Wno', params)
+    #     #         result = cursor.fetchall()
+    #     #         logger_py.info(result)
+    #     # except:
+    #     #     connection.rollback()  # 异常时回滚ss
+    # pass
 if __name__ == '__main__':
     test()
 
