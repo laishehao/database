@@ -25,6 +25,42 @@
           <i slot="prefix" class="el-icon-postcard"></i>
         </el-input>
       </el-form-item>
+
+      <!-- View Mode Only Fields -->
+      <div v-if="isView">
+        <el-form-item label="🌸 姓名" prop="name">
+          <el-input v-model="form.name" readonly class="cute-input">
+            <i slot="prefix" class="el-icon-user"></i>
+          </el-input>
+        </el-form-item>
+
+        <el-form-item label="🌈 性别" prop="gender">
+          <el-radio-group
+            v-model="form.gender"
+            class="cute-radio-group"
+            disabled
+          >
+            <el-radio label="男" border class="cute-radio blue-radio"
+              >👦 男生</el-radio
+            >
+            <el-radio label="女" border class="cute-radio pink-radio"
+              >👧 女生</el-radio
+            >
+          </el-radio-group>
+        </el-form-item>
+
+        <el-form-item label="📚 专业" prop="major">
+          <el-input v-model="form.major" readonly class="cute-input">
+            <i slot="prefix" class="el-icon-reading"></i>
+          </el-input>
+        </el-form-item>
+
+        <el-form-item label="📞 电话" prop="phone">
+          <el-input v-model="form.phone" readonly class="cute-input">
+            <i slot="prefix" class="el-icon-mobile-phone"></i>
+          </el-input>
+        </el-form-item>
+      </div>
     </el-form>
 
     <span slot="footer" class="dialog-footer">
@@ -81,6 +117,11 @@ export default {
         } else {
           this.form = {
             studentId: "",
+            name: "",
+            gender: "男",
+            major: "",
+            phone: "",
+            avatar: "",
           };
         }
         this.$nextTick(() => {
@@ -94,6 +135,11 @@ export default {
       loading: false,
       form: {
         studentId: "",
+        name: "",
+        gender: "男",
+        major: "",
+        phone: "",
+        avatar: "",
       },
       rules: {
         studentId: [
@@ -209,6 +255,49 @@ export default {
   background-color: #f8f8f8;
   border-color: #eee;
   color: #aaa;
+}
+/* 单选框美化 (Restored for View Mode) */
+.cute-radio-group {
+  display: flex;
+  gap: 15px;
+}
+.cute-radio.is-bordered {
+  border-radius: 20px;
+  border-width: 2px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px 0 10px !important;
+}
+.cute-radio .el-radio__label {
+  font-weight: bold;
+}
+
+/* 男生单选样式 */
+.blue-radio.is-bordered {
+  border-color: #b2ebf2;
+  color: #5d4037;
+}
+.blue-radio.is-bordered.is-checked {
+  background-color: #e0f7fa;
+  border-color: #4dd0e1;
+}
+.blue-radio .el-radio__input.is-checked .el-radio__inner {
+  border-color: #4dd0e1;
+  background: #4dd0e1;
+}
+
+/* 女生单选样式 */
+.pink-radio.is-bordered {
+  border-color: #ffc0cb;
+  color: #5d4037;
+}
+.pink-radio.is-bordered.is-checked {
+  background-color: #fff0f5;
+  border-color: #ff69b4;
+}
+.pink-radio .el-radio__input.is-checked .el-radio__inner {
+  border-color: #ff69b4;
+  background: #ff69b4;
 }
 
 /* 底部按钮栏 */

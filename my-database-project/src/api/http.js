@@ -35,9 +35,9 @@ export default async function Http({ apiType, data }) {
       url = url.replace(/:(.*)$/, data[restSymbol])
     }
     // 适配 Axios 参数格式
-    // 'get' 请求参数需要放在 { params: ... } 中
+    // 'get' / 'delete' 请求参数需要放在 { params: ... } 中 (DELETE 也可以用 data: { ... } 传 body，这里优先 query)
     // 'post'/'put' 等请求参数直接作为第二个参数传递
-    data = method === 'get' ? { params: data } : data
+    data = (method === 'get' || method === 'delete') ? { params: data } : data
 
     // 发起网络请求
     let result = await service[method](url, data)
