@@ -317,7 +317,7 @@ export default {
       })
         .then((res) => {
           // 直接使用后端返回的统计数据
-          this.stats = res;
+          this.stats = res.stats || res.data.stats;
         })
         .catch((err) => {
           console.error("获取看板数据失败:", err);

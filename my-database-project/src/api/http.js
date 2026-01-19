@@ -44,7 +44,7 @@ export default async function Http({ apiType, data }) {
     return result
   } catch (error) {
     if (error.response) {
-      console.log('捕捉到response')
+      console.log('捕捉到response',error.response)
       let message = error.response.data?.msg || '' 
       this.$notify.error({ title: '错误', message })
     } 
