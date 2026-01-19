@@ -111,7 +111,11 @@ export default {
           // 2. 调用 API
           this.$api({
             apiType: "profileSubmit",
-            data: { ...submitData, role: this.storeUserInfo.role },
+            data: {
+              ...submitData,
+              id: this.storeUserInfo.id,
+              role: this.storeUserInfo.role,
+            },
           })
             .then((res) => {
               this.$message.success("资料更新成功");

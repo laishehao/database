@@ -24,9 +24,9 @@
             {{ detail.completed ? "已完成" : "未完成" }}
           </el-tag>
         </el-descriptions-item>
-        <el-descriptions-item label="截止时间"
-          >2025-12-31 23:59</el-descriptions-item
-        >
+        <el-descriptions-item label="截止时间">
+          {{ detail.overtime || "暂无" }}
+        </el-descriptions-item>
         <el-descriptions-item
           label="成绩"
           v-if="
@@ -129,9 +129,9 @@ export default {
     uploadServerUrl() {
       return process.env.VUE_APP_FILE_UPLOAD_PATH || "/api/upload/image";
     },
-    // 判断是否可以提交：score 为 null 且 completed 为 false 时可以提交
+    // 判断是否可以提交：completed 为 false 时可以反复修改，completed 为 true 后只读
     canSubmit() {
-      return this.detail.score === null && this.detail.completed === false;
+      return this.detail.completed === false;
     },
   },
   created() {
@@ -149,7 +149,11 @@ export default {
 
       this.$api({
         apiType: "homeworkDetail",
-        data: { workId: id, userId: this.userInfo && this.userInfo.id }, // restful 替换 :id
+        data: {
+          workId: id,
+          userId: this.userInfo && this.userInfo.id,
+          role: this.userInfo && this.userInfo.role,
+        },
       })
         .then((res) => {
           // 兼容后端返回不同字段名，优先使用 res.detail，如果没有则使用 res 本身
@@ -227,7 +231,7 @@ export default {
           this.$api({
             apiType: "homeworkSubmit",
             data: {
-              role: "student",
+              role: this.userInfo && this.userInfo.role,
               workId,
               studentId: userId,
               writeCheck: true,

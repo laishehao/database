@@ -1,29 +1,34 @@
 <template>
-  <el-dialog 
+  <el-dialog
     append-to-body
-    :title="titleWithIcon" 
-    :visible.sync="modalVisible" 
+    :title="titleWithIcon"
+    :visible.sync="modalVisible"
     width="600px"
     :before-close="handleClose"
     :close-on-click-modal="false"
     custom-class="cute-dialog-wrapper"
   >
-    <el-form :model="form" :rules="rules" ref="formRef" label-width="90px" class="cute-form">
-      
+    <el-form
+      :model="form"
+      :rules="rules"
+      ref="formRef"
+      label-width="90px"
+      class="cute-form"
+    >
       <el-form-item label="📝 名称" prop="title">
-        <el-input 
-          v-model="form.title" 
-          placeholder="给这次任务起个名字吧" 
+        <el-input
+          v-model="form.title"
+          placeholder="给这次任务起个名字吧"
           class="cute-input"
         >
           <i slot="prefix" class="el-icon-edit-outline"></i>
         </el-input>
       </el-form-item>
-      
+
       <el-form-item label="📚 课程" prop="course">
-        <el-select 
-          v-model="form.course" 
-          placeholder="属于哪门魔法专业呢?" 
+        <el-select
+          v-model="form.course"
+          placeholder="属于哪门魔法专业呢?"
           style="width: 100%"
           popper-class="cute-select-dropdown"
         >
@@ -35,9 +40,9 @@
       </el-form-item>
 
       <el-form-item label="📜 内容" prop="content">
-        <el-input 
-          type="textarea" 
-          v-model="form.content" 
+        <el-input
+          type="textarea"
+          v-model="form.content"
           :rows="5"
           placeholder="请写下详细的任务说明..."
           class="cute-textarea"
@@ -45,43 +50,78 @@
         ></el-input>
       </el-form-item>
 
+      <el-form-item label="⏰ 开始时间" prop="starttime">
+        <el-date-picker
+          v-model="form.starttime"
+          type="datetime"
+          placeholder="选择开始时间"
+          style="width: 100%"
+          value-format="yyyy-MM-dd HH:mm:ss"
+        ></el-date-picker>
+      </el-form-item>
+
+      <el-form-item label="⏳ 截止时间" prop="overtime">
+        <el-date-picker
+          v-model="form.overtime"
+          type="datetime"
+          placeholder="选择截止时间"
+          style="width: 100%"
+          value-format="yyyy-MM-dd HH:mm:ss"
+        ></el-date-picker>
+      </el-form-item>
     </el-form>
 
     <span slot="footer" class="dialog-footer">
-      <el-button @click="handleClose" class="cute-btn-cancel" round>暂不发布</el-button>
-      <el-button type="primary" :loading="loading" @click="handleSubmit" class="cute-btn-submit" round icon="el-icon-s-promotion">
-        {{ isEdit ? '保存修改' : '立即发布' }}
+      <el-button @click="handleClose" class="cute-btn-cancel" round
+        >暂不发布</el-button
+      >
+      <el-button
+        type="primary"
+        :loading="loading"
+        @click="handleSubmit"
+        class="cute-btn-submit"
+        round
+        icon="el-icon-s-promotion"
+      >
+        {{ isEdit ? "保存修改" : "立即发布" }}
       </el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: 'HomeworkModal',
+  name: "HomeworkModal",
   props: {
     visible: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 接收回显数据
     rowData: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     modalVisible: {
-      get() { return this.visible; },
-      set(val) { this.$emit('update:visible', val); }
+      get() {
+        return this.visible;
+      },
+      set(val) {
+        this.$emit("update:visible", val);
+      },
     },
     // 判断是否为编辑模式
     isEdit() {
       return !!this.rowData;
     },
     titleWithIcon() {
-      return this.isEdit ? '✨ 修正魔法任务' : '🌟 发布新任务';
-    }
+      return this.isEdit ? "✨ 修正魔法任务" : "🌟 发布新任务";
+    },
+    ...mapGetters(["userInfo"]),
   },
   watch: {
     visible(val) {
@@ -90,30 +130,74 @@ export default {
           this.form = JSON.parse(JSON.stringify(this.rowData));
         } else {
           this.form = {
-            title: '',
-            course: '',
-            content: '' 
+            title: "",
+            course: "",
+            content: "",
+            starttime: "",
+            overtime: "",
           };
         }
         this.$nextTick(() => {
           this.$refs.formRef && this.$refs.formRef.clearValidate();
         });
       }
-    }
+    },
   },
   data() {
     return {
       loading: false,
       form: {
-        title: '',
-        course: '',
-        content: ''
+        title: "",
+        course: "",
+        content: "",
+        starttime: "",
+        overtime: "",
       },
       rules: {
-        title: [{ required: true, message: '任务名称不能为空哦', trigger: 'blur' }],
-        course: [{ required: true, message: '请选择所属课程', trigger: 'change' }],
-        content: [{ required: true, message: '记得写上作业内容呀', trigger: 'blur' }]
-      }
+        title: [
+          { required: true, message: "任务名称不能为空哦", trigger: "blur" },
+        ],
+        course: [
+          { required: true, message: "请选择所属课程", trigger: "change" },
+        ],
+        content: [
+          { required: true, message: "记得写上作业内容呀", trigger: "blur" },
+        ],
+        starttime: [
+          { required: true, message: "请选择开始时间", trigger: "change" },
+          {
+            validator: (rule, value, callback) => {
+              if (value && this.form.overtime) {
+                if (new Date(value) >= new Date(this.form.overtime)) {
+                  callback(new Error("开始时间必须在截止时间之前哦~"));
+                } else {
+                  callback();
+                }
+              } else {
+                callback();
+              }
+            },
+            trigger: "change",
+          },
+        ],
+        overtime: [
+          { required: true, message: "请选择截止时间", trigger: "change" },
+          {
+            validator: (rule, value, callback) => {
+              if (value && this.form.starttime) {
+                if (new Date(value) <= new Date(this.form.starttime)) {
+                  callback(new Error("截止时间必须在开始时间之后哦~"));
+                } else {
+                  callback();
+                }
+              } else {
+                callback();
+              }
+            },
+            trigger: "change",
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -125,33 +209,41 @@ export default {
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           this.loading = true;
-          
+
           // 根据模式选择接口
-          const apiType = this.isEdit ? 'homeworkEdit' : 'homeworkAdd';
+          const apiType = this.isEdit ? "homeworkEdit" : "homeworkAdd";
 
           // 准备提交的数据
           const submitData = {
             ...this.form,
-            ...(this.isEdit ? {} : { progress: 0, active: true })
+            ...(this.isEdit ? {} : { progress: 0, active: true }),
           };
 
           this.$api({
             apiType: apiType,
-            data: submitData
-          }).then(() => {
-            this.$message.success(this.isEdit ? '任务修正成功~' : '新试炼发布成功~');
-            this.$emit('success');
-            this.handleClose();
-          }).catch(err => {
-             console.error(err);
-             this.$message.error('发布失败了QAQ');
-          }).finally(() => {
-            this.loading = false;
-          });
+            data: {
+              ...submitData,
+              userId: this.userInfo.id,
+            },
+          })
+            .then(() => {
+              this.$message.success(
+                this.isEdit ? "任务修正成功~" : "新试炼发布成功~"
+              );
+              this.$emit("success");
+              this.handleClose();
+            })
+            .catch((err) => {
+              console.error(err);
+              this.$message.error("发布失败了QAQ");
+            })
+            .finally(() => {
+              this.loading = false;
+            });
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -168,7 +260,7 @@ export default {
 
 /* 标题栏 */
 .cute-dialog-wrapper .el-dialog__header {
-  background: linear-gradient(135deg, #FFB7C5 0%, #FF69B4 100%);
+  background: linear-gradient(135deg, #ffb7c5 0%, #ff69b4 100%);
   padding: 15px 20px;
 }
 
@@ -176,7 +268,7 @@ export default {
   color: white;
   font-weight: bold;
   letter-spacing: 1px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .cute-dialog-wrapper .el-dialog__headerbtn .el-dialog__close {
@@ -184,7 +276,7 @@ export default {
   font-weight: bold;
 }
 .cute-dialog-wrapper .el-dialog__headerbtn:hover .el-dialog__close {
-  color: #FFF0F5;
+  color: #fff0f5;
   transform: rotate(90deg);
   transition: transform 0.3s;
 }
@@ -192,57 +284,57 @@ export default {
 /* 内容区域 */
 .cute-dialog-wrapper .el-dialog__body {
   padding: 30px 40px;
-  background-color: #FFFDFE;
+  background-color: #fffdfe;
 }
 
 /* 表单 Label */
 .cute-form .el-form-item__label {
-  color: #6B4C56;
+  color: #6b4c56;
   font-weight: bold;
 }
 
 /* 输入框美化 */
 .cute-input .el-input__inner {
   border-radius: 20px;
-  border: 2px solid #FFE4E1;
-  color: #6B4C56;
+  border: 2px solid #ffe4e1;
+  color: #6b4c56;
   padding-left: 35px;
   transition: all 0.3s;
 }
 .cute-input .el-input__inner:focus {
-  border-color: #FF69B4;
+  border-color: #ff69b4;
   box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.1);
 }
 .cute-input .el-input__prefix {
   left: 10px;
-  color: #FFB7C5;
+  color: #ffb7c5;
 }
 
 /* 文本域特殊处理 */
 .cute-textarea .el-textarea__inner {
   border-radius: 15px;
-  border: 2px solid #FFE4E1;
-  color: #6B4C56;
+  border: 2px solid #ffe4e1;
+  color: #6b4c56;
   padding: 15px;
   font-family: inherit;
   transition: all 0.3s;
 }
 .cute-textarea .el-textarea__inner:focus {
-  border-color: #FF69B4;
+  border-color: #ff69b4;
   box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.1);
 }
 
 /* 下拉框样式 */
 .cute-select-dropdown {
   border-radius: 15px !important;
-  border: 1px solid #FFE4E1 !important;
+  border: 1px solid #ffe4e1 !important;
 }
 .cute-select-dropdown .el-select-dropdown__item.selected {
-  color: #FF69B4 !important;
+  color: #ff69b4 !important;
   font-weight: bold;
 }
 .cute-select-dropdown .el-select-dropdown__item:hover {
-  background-color: #FFF0F5 !important;
+  background-color: #fff0f5 !important;
 }
 
 /* 底部按钮栏 */
@@ -252,18 +344,18 @@ export default {
 }
 
 .cute-btn-cancel {
-  border: 2px solid #FFE4E1;
+  border: 2px solid #ffe4e1;
   color: #888;
   padding: 10px 25px;
 }
 .cute-btn-cancel:hover {
-  background-color: #FFF0F5;
-  color: #6B4C56;
-  border-color: #FFB7C5;
+  background-color: #fff0f5;
+  color: #6b4c56;
+  border-color: #ffb7c5;
 }
 
 .cute-btn-submit {
-  background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
+  background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
   border: none;
   padding: 10px 30px;
   box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);

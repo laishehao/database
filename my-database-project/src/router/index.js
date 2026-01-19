@@ -2,7 +2,7 @@
  * @Author: Garyonit 3253975221@qq.com
  * @Date: 2025-12-07 19:47:33
  * @LastEditors: kusachan 3253975221@qq.com
- * @LastEditTime: 2026-01-19 01:30:39
+ * @LastEditTime: 2026-01-19 12:26:55
  * @FilePath: \my-database-project\src\router\index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AEVue
  */
@@ -52,14 +52,14 @@ const routes = [
         }
       },
       {
-        path: '/homework/grade/:id',
+        path: '/homework/grade/:workId',
         name: 'homeworkGrading',
         cname: '作业批改',
         component: HomeworkGrading,
         meta: { title: '作业批改' }
       },
       {
-        path: '/student',
+        path: '/student/:courseId',
         name: 'student',
         cname: '学生列表',
         component: StudentList
@@ -71,7 +71,7 @@ const routes = [
         component: CourseList
       },
       {
-        path:'/profile',
+        path: '/profile',
         name: 'profile',
         cname: '个人主页',
         component: ProfilePage

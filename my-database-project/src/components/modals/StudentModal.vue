@@ -104,6 +104,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "StudentModal",
   props: {
@@ -125,6 +127,7 @@ export default {
     titleWithIcon() {
       return this.isView ? "✨ 查看同学档案" : "🦄 召唤新同学";
     },
+    ...mapGetters(["userInfo"]),
   },
   watch: {
     visible(val) {
@@ -195,8 +198,8 @@ export default {
             apiType,
             data: {
               role: "teacher",
-              Cno: this.$route.params.courseId,
-              Sno: this.form.studentId,
+              teacherId: this.userInfo.id,
+              courseId: this.$route.params.courseId,
               ...this.form,
             },
           })

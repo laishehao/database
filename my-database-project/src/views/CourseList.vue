@@ -277,10 +277,20 @@ export default {
     },
     // 查看学生
     handleCheck(row) {
-      this.$router.push({
-        name: "student",
-        params: { courseId: row.courseId },
-      });
+      console.log("handleCheck row:", row);
+      if (!row || !row.courseId) {
+        console.error("Missing courseId in row:", row);
+        this.$message.error("课程ID丢失，无法跳转");
+        return;
+      }
+      this.$router
+        .push({
+          name: "student",
+          params: { courseId: row.courseId },
+        })
+        .catch((err) => {
+          console.error("Router Push Error:", err);
+        });
     },
     // 删除停开课程
     handleStop(row) {
