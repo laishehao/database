@@ -1104,3 +1104,157 @@
 2026-01-20 00:01:51 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
 2026-01-20 00:01:52 [INFO] id=14,role=student
 2026-01-20 00:01:52 [INFO] dashboard=
+2026-01-20 16:26:07 [INFO] my_app日志记录器已配置
+2026-01-20 16:26:09 [INFO] my_app日志记录器已配置
+2026-01-20 16:56:40 [INFO] id=6,role=teacher
+2026-01-20 16:57:05 [INFO] 访问了登录界面
+2026-01-20 16:57:05 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-20 16:57:28 [INFO] my_app日志记录器已配置
+2026-01-20 16:57:30 [INFO] my_app日志记录器已配置
+2026-01-20 16:57:32 [INFO] 访问了登录界面
+2026-01-20 16:57:32 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-20 16:57:32 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 11, 'name': 'lzh66', 'role': 'student', 'id': 11, 'phone': '13812341234', 'email': '123@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 16:57:32 [INFO] id=11,role=student
+2026-01-20 16:57:32 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 16}}
+2026-01-20 16:57:36 [INFO] 访问了作业查看界面
+2026-01-20 16:57:36 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 16:57:36 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 16:57:38 [INFO] id=11,role=student
+2026-01-20 16:57:38 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 16}}
+2026-01-20 16:57:48 [INFO] 访问了作业查看界面
+2026-01-20 16:57:48 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 16:57:48 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 16:57:54 [INFO] 访问了作业查看界面
+2026-01-20 16:57:54 [INFO] workId=3,UserId=11
+2026-01-20 16:57:55 [INFO] if_ok=查看成功
+2026-01-20 16:58:17 [INFO] 访问了登录界面
+2026-01-20 16:58:17 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-20 16:58:17 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 16:58:17 [INFO] id=6,role=teacher
+2026-01-20 16:58:18 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 16:58:27 [INFO] 访问了作业查看界面
+2026-01-20 16:58:27 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 16:58:28 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 16:58:56 [INFO] 访问了作业批改界面
+2026-01-20 16:58:56 [INFO] work=1000000
+2026-01-20 16:58:56 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-20 16:58:58 [INFO] 访问了作业查看界面
+2026-01-20 16:58:58 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 16:58:59 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 16:59:00 [INFO] 访问了作业批改界面
+2026-01-20 16:59:00 [INFO] work=6
+2026-01-20 16:59:00 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-20 16:59:02 [INFO] 访问了作业查看界面
+2026-01-20 16:59:02 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 16:59:02 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 16:59:04 [INFO] 访问了作业批改界面
+2026-01-20 16:59:04 [INFO] work=3
+2026-01-20 16:59:04 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-20 16:59:26 [INFO] 访问了作业查看界面
+2026-01-20 16:59:26 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 16:59:26 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 16:59:31 [INFO] 访问了登录界面
+2026-01-20 16:59:31 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-20 16:59:31 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 11, 'name': 'lzh66', 'role': 'student', 'id': 11, 'phone': '13812341234', 'email': '123@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 16:59:31 [INFO] id=11,role=student
+2026-01-20 16:59:31 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 16}}
+2026-01-20 16:59:32 [INFO] 访问了作业查看界面
+2026-01-20 16:59:32 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 16:59:32 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 16:59:33 [INFO] 访问了作业查看界面
+2026-01-20 16:59:33 [INFO] workId=3,UserId=11
+2026-01-20 16:59:33 [INFO] if_ok=查看成功
+2026-01-20 16:59:38 [INFO] role=student,syudentId=11,workId=3,writecheck=None
+2026-01-20 16:59:38 [INFO] 访问了作业查看界面
+2026-01-20 16:59:38 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 16:59:38 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 16:59:42 [INFO] id=11,role=student
+2026-01-20 16:59:42 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 15}}
+2026-01-20 16:59:47 [INFO] 访问了登录界面
+2026-01-20 16:59:47 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-20 16:59:47 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 16:59:47 [INFO] id=6,role=teacher
+2026-01-20 16:59:47 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 16:59:48 [INFO] 访问了作业查看界面
+2026-01-20 16:59:48 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 16:59:48 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 16:59:54 [INFO] 访问了作业批改界面
+2026-01-20 16:59:54 [INFO] work=3
+2026-01-20 16:59:55 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-20 16:59:59 [INFO] 访问了作业批改界面
+2026-01-20 16:59:59 [INFO] workId=3,UserId=11,score=85,teacherComment=
+2026-01-20 17:00:07 [INFO] 访问了作业查看界面
+2026-01-20 17:00:07 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:00:07 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:00:08 [INFO] 访问了课程查看界面
+2026-01-20 17:00:08 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:00:40 [INFO] 访问了学生界面
+2026-01-20 17:00:40 [INFO] query=,page=None,page_size=None,role=teacher,id=1
+2026-01-20 17:00:40 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-20 17:01:03 [INFO] 访问了登录界面
+2026-01-20 17:01:03 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-20 17:01:04 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 11, 'name': 'lzh66', 'role': 'student', 'id': 11, 'phone': '13812341234', 'email': '123@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 17:01:04 [INFO] id=11,role=student
+2026-01-20 17:01:04 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 15}}
+2026-01-20 17:01:16 [INFO] 访问了用户界面
+2026-01-20 17:01:16 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=男,password=None,major=hihihi
+2026-01-20 17:01:16 [INFO] if_ok=修改成功
+2026-01-20 17:01:21 [INFO] 访问了登录界面
+2026-01-20 17:01:21 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-20 17:01:21 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 17:01:21 [INFO] id=6,role=teacher
+2026-01-20 17:01:22 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 17:01:23 [INFO] 访问了作业查看界面
+2026-01-20 17:01:23 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:01:23 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:01:24 [INFO] 访问了课程查看界面
+2026-01-20 17:01:24 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:01:25 [INFO] 访问了学生界面
+2026-01-20 17:01:25 [INFO] query=,page=None,page_size=None,role=teacher,id=1
+2026-01-20 17:01:25 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-20 17:01:26 [INFO] 访问了课程查看界面
+2026-01-20 17:01:26 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:01:28 [INFO] 访问了学生界面
+2026-01-20 17:01:28 [INFO] query=,page=None,page_size=None,role=teacher,id=9
+2026-01-20 17:01:28 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-20 17:01:45 [INFO] 访问了课程查看界面
+2026-01-20 17:01:45 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:02:51 [INFO] 访问了登录界面
+2026-01-20 17:02:51 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-20 17:02:52 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 11, 'name': 'lzh66', 'role': 'student', 'id': 11, 'phone': '13812341234', 'email': '123@qq.com', 'gender': 'male', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 17:02:52 [INFO] id=11,role=student
+2026-01-20 17:02:52 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 15}}
+2026-01-20 17:03:12 [INFO] id=11,role=student
+2026-01-20 17:03:12 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 15}}
+2026-01-20 17:03:30 [INFO] 访问了作业查看界面
+2026-01-20 17:03:30 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 17:03:30 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:03:48 [INFO] 访问了作业查看界面
+2026-01-20 17:03:48 [INFO] workId=3,UserId=11
+2026-01-20 17:03:48 [INFO] if_ok=查看成功
+2026-01-20 17:04:18 [INFO] 访问了作业查看界面
+2026-01-20 17:04:18 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 17:04:18 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:04:19 [INFO] 访问了作业查看界面
+2026-01-20 17:04:19 [INFO] workId=6,UserId=11
+2026-01-20 17:04:19 [INFO] if_ok=查看成功
+2026-01-20 17:08:00 [INFO] 访问了登录界面
+2026-01-20 17:08:00 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-20 17:08:00 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 17:08:00 [INFO] id=6,role=teacher
+2026-01-20 17:08:01 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 17:08:11 [INFO] 访问了作业查看界面
+2026-01-20 17:08:11 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:08:11 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:08:20 [INFO] 访问了课程查看界面
+2026-01-20 17:08:20 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:08:33 [INFO] 访问了课程查看界面
+2026-01-20 17:08:33 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:09:02 [INFO] 访问了作业批改界面
+2026-01-20 17:09:02 [INFO] work=3
+2026-01-20 17:09:03 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-20 17:09:16 [INFO] 访问了课程查看界面
+2026-01-20 17:09:16 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:10:02 [INFO] 访问了学生界面
+2026-01-20 17:10:02 [INFO] query=,page=None,page_size=None,role=teacher,id=9
+2026-01-20 17:10:02 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
