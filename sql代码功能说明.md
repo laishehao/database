@@ -90,6 +90,8 @@ erDiagram
 | Tphone    | VARCHAR(20)  | 非空且唯一         |
 | Tavatar   | VARCHAR(200) | 唯一               |
 
+函数依赖：Tno->(Tname,Tpassword,Temail,Tgender,Tphone,Tavatar)
+
 
 
 ### 2. Student_Info
@@ -105,6 +107,8 @@ erDiagram
 | Sphone    | VARCHAR(20)  | 非空且唯一         |
 | Savatar   | VARCHAR(200) | 唯一               |
 
+函数依赖：Sno->(Sname,Spassword,Semail,Sgender,Smajor,Sphone,Savatar)
+
 
 
 ### 3. Course
@@ -118,6 +122,8 @@ erDiagram
 | Ctype   | VARCHAR(20)  | 值只能为‘必修’或‘选修’                                       |
 | Tno     | INT          | 参照Teacher_Info(Tno)的外键，且添加(Cname, Tno)作为唯一性约束 |
 
+函数依赖：Cno->(Cname,Cmajor,Ctype), (Cname, Tno)->(Cname,Cmajor,Ctype)
+
 
 
 ### 4. SC
@@ -126,6 +132,8 @@ erDiagram
 | ------ | -------- | ------------------------------------------------- |
 | Cno    | INT      | 参照Course(Cno)的外键                             |
 | Sno    | INT      | 参照Student_Info(Sno)的外键，且以(Cno, Sno)为主键 |
+
+函数依赖：(Cno, Sno)
 
 
 
@@ -141,6 +149,8 @@ erDiagram
 | Wstart    | DATETIME     |                       |
 | Wover     | DATETIME     |                       |
 
+函数依赖：Wno->(Wtitle,Cno,Wprogress,Wcontent,Wstart,Wover)
+
 
 
 ### 6. Write
@@ -154,6 +164,8 @@ erDiagram
 | Score     | TEXT         |                                                             |
 | Comment   | DATETIME     |                                                             |
 
+函数依赖：(Wno,Sno)->(State,Wrcontent,Score,Comment)
+
 
 
 ### 7. Title_Image
@@ -164,6 +176,8 @@ erDiagram
 | Cno        | INT          | 非空，且为参照Course(Cno)的外键，以(Wno, Cno)作为主键 |
 | image_path | VARCHAR(255) |                                                       |
 
+函数依赖：(Wno,Cno)->(image_path)
+
 
 
 ### 7. Answer_Image
@@ -173,6 +187,8 @@ erDiagram
 | Wno        | INT          | 非空，且为参照Work(Wno)的外键                               |
 | Sno        | INT          | 非空，且为参照Student_Info(Sno)的外键，以(Wno, Sno)作为主键 |
 | image_path | VARCHAR(255) |                                                             |
+
+函数依赖：(Wno,Sno)->(image_path)
 
 
 
