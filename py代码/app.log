@@ -1258,3 +1258,371 @@
 2026-01-20 17:10:02 [INFO] 访问了学生界面
 2026-01-20 17:10:02 [INFO] query=,page=None,page_size=None,role=teacher,id=9
 2026-01-20 17:10:02 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-20 17:27:54 [INFO] my_app日志记录器已配置
+2026-01-20 17:27:56 [INFO] my_app日志记录器已配置
+2026-01-20 17:31:08 [INFO] id=6,role=teacher
+2026-01-20 17:31:09 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 17:36:37 [INFO] 访问了注册界面
+2026-01-20 17:36:37 [INFO] role=student,password=Lzhjy050612,name=xsxs,email=xssx@qq.com
+2026-01-20 17:36:37 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-20 17:37:00 [INFO] 访问了注册界面
+2026-01-20 17:37:00 [INFO] role=student,password=Lzhjy050612,name=xsxs,email=1399219872@qq.com
+2026-01-20 17:37:00 [INFO] if_ok=ERROR:EMAIL_EXISTS
+2026-01-20 17:37:09 [INFO] 访问了注册界面
+2026-01-20 17:37:09 [INFO] role=student,password=Lzhjy050612,name=xsxs,email=xsxs@xs.com
+2026-01-20 17:37:09 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-20 17:37:18 [INFO] 访问了注册界面
+2026-01-20 17:37:18 [INFO] role=student,password=Lzhjy050612,name=xsxs,email=xsxs@xs.com
+2026-01-20 17:37:18 [INFO] if_ok=注册成功
+2026-01-20 17:37:18 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 13, 'username': 'xsxs', 'name': 'xsxs', 'role': 'student', 'phone': '13812344321', 'email': 'xsxs@xs.com', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}, 'code': 400}
+2026-01-20 17:37:18 [INFO] id=13,role=student
+2026-01-20 17:37:19 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-20 17:37:39 [INFO] 访问了用户界面
+2026-01-20 17:37:39 [INFO] phone=13812344321,name=xsxs,email=xsxs@xs.com,role=student,id=13,gender=男,password=None,major=计科
+2026-01-20 17:37:39 [INFO] if_ok=修改成功
+2026-01-20 17:37:50 [INFO] 访问了作业查看界面
+2026-01-20 17:37:50 [INFO] query=,page=None,pageSize=None,role=student,id=13
+2026-01-20 17:37:50 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:37:59 [INFO] 访问了作业查看界面
+2026-01-20 17:37:59 [INFO] workId=1000000,UserId=13
+2026-01-20 17:37:59 [INFO] if_ok=查看成功
+2026-01-20 17:38:02 [INFO] 访问了作业查看界面
+2026-01-20 17:38:02 [INFO] query=,page=None,pageSize=None,role=student,id=13
+2026-01-20 17:38:02 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:38:05 [INFO] 访问了作业查看界面
+2026-01-20 17:38:05 [INFO] workId=1000000,UserId=13
+2026-01-20 17:38:06 [INFO] if_ok=查看成功
+2026-01-20 17:39:05 [INFO] 访问了注册界面
+2026-01-20 17:39:05 [INFO] role=teacher,password=Lzhjy050612,name=lsls,email=ls@ls.com
+2026-01-20 17:39:05 [INFO] if_ok=注册成功
+2026-01-20 17:39:05 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 7, 'username': 'lsls', 'name': 'lsls', 'role': 'teacher', 'phone': '15812344321', 'email': 'ls@ls.com', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}, 'code': 400}
+2026-01-20 17:39:05 [INFO] id=7,role=teacher
+2026-01-20 17:39:05 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 0, 'courseCount': 0, 'ongoingHomework': 0, 'pendingGrade': 0}}
+2026-01-20 17:39:16 [INFO] 访问了用户界面
+2026-01-20 17:39:16 [INFO] phone=15812344321,name=lsls,email=ls@ls.com,role=teacher,id=7,gender=男,password=None,major=
+2026-01-20 17:39:16 [INFO] if_ok=修改成功
+2026-01-20 17:39:24 [INFO] 访问了登录界面
+2026-01-20 17:39:24 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-20 17:39:25 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 17:39:25 [INFO] id=6,role=teacher
+2026-01-20 17:39:25 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 17:39:33 [INFO] 访问了登录界面
+2026-01-20 17:39:33 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-20 17:39:34 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 11, 'name': 'lzh66', 'role': 'student', 'id': 11, 'phone': '13812341234', 'email': '123@qq.com', 'gender': 'male', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 17:39:34 [INFO] id=11,role=student
+2026-01-20 17:39:34 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 15}}
+2026-01-20 17:39:55 [INFO] 访问了用户界面
+2026-01-20 17:39:55 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=男,password=None,major=计科
+2026-01-20 17:39:55 [INFO] if_ok=修改成功
+2026-01-20 17:40:00 [INFO] 访问了作业查看界面
+2026-01-20 17:40:00 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 17:40:00 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:40:05 [INFO] 访问了作业查看界面
+2026-01-20 17:40:05 [INFO] workId=6,UserId=11
+2026-01-20 17:40:06 [INFO] if_ok=查看成功
+2026-01-20 17:40:09 [INFO] 访问了作业查看界面
+2026-01-20 17:40:09 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 17:40:09 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:40:11 [INFO] 访问了作业查看界面
+2026-01-20 17:40:11 [INFO] workId=6,UserId=11
+2026-01-20 17:40:12 [INFO] if_ok=查看成功
+2026-01-20 17:40:24 [INFO] role=student,syudentId=11,workId=6,writecheck=None
+2026-01-20 17:40:24 [INFO] 访问了作业查看界面
+2026-01-20 17:40:24 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 17:40:25 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:40:27 [INFO] 访问了作业查看界面
+2026-01-20 17:40:27 [INFO] workId=6,UserId=11
+2026-01-20 17:40:27 [INFO] if_ok=查看成功
+2026-01-20 17:40:29 [INFO] 访问了作业查看界面
+2026-01-20 17:40:29 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 17:40:29 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:40:33 [INFO] 访问了作业查看界面
+2026-01-20 17:40:33 [INFO] workId=3,UserId=11
+2026-01-20 17:40:34 [INFO] if_ok=查看成功
+2026-01-20 17:40:44 [INFO] 访问了作业查看界面
+2026-01-20 17:40:44 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-20 17:40:44 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:40:53 [INFO] 访问了登录界面
+2026-01-20 17:40:53 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-20 17:40:54 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-20 17:40:54 [INFO] id=6,role=teacher
+2026-01-20 17:40:54 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 17:41:00 [INFO] 访问了作业查看界面
+2026-01-20 17:41:00 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:41:00 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:41:03 [INFO] id=6,role=teacher
+2026-01-20 17:41:03 [INFO] 访问了作业查看界面
+2026-01-20 17:41:03 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:41:05 [INFO] 访问了课程查看界面
+2026-01-20 17:41:05 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:41:06 [INFO] 访问了作业查看界面
+2026-01-20 17:41:06 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:41:13 [INFO] my_app日志记录器已配置
+2026-01-20 17:41:15 [INFO] my_app日志记录器已配置
+2026-01-20 17:41:17 [INFO] id=6,role=teacher
+2026-01-20 17:41:18 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 17:41:19 [INFO] 访问了作业查看界面
+2026-01-20 17:41:19 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:41:19 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:41:20 [INFO] 访问了课程查看界面
+2026-01-20 17:41:20 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:41:24 [INFO] 访问了课程查看界面
+2026-01-20 17:41:24 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:41:50 [INFO] 访问了作业添加界面
+2026-01-20 17:41:50 [INFO] title=新作业,content=新作业要求,progress=0,course=人工智能基础
+2026-01-20 17:41:50 [INFO] if_ok=添加成功
+2026-01-20 17:41:50 [INFO] 访问了作业查看界面
+2026-01-20 17:41:50 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:41:50 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:41:56 [INFO] 访问了课程查看界面
+2026-01-20 17:41:56 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:42:18 [INFO] 访问了作业更新界面
+2026-01-20 17:42:18 [INFO] workId=25,title=新作业,content=新作业要求
+2026-01-20 17:42:18 [INFO] if_ok=更新成功
+2026-01-20 17:42:18 [INFO] 访问了作业查看界面
+2026-01-20 17:42:18 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:42:18 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:42:21 [INFO] 访问了课程查看界面
+2026-01-20 17:42:21 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:42:34 [INFO] 访问了作业更新界面
+2026-01-20 17:42:34 [INFO] workId=25,title=新作业,content=新作业
+2026-01-20 17:42:34 [INFO] if_ok=更新成功
+2026-01-20 17:42:34 [INFO] 访问了作业查看界面
+2026-01-20 17:42:34 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:42:34 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:42:37 [INFO] 访问了作业批改界面
+2026-01-20 17:42:37 [INFO] work=25
+2026-01-20 17:42:37 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-20 17:42:39 [INFO] 访问了作业查看界面
+2026-01-20 17:42:39 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:42:39 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:42:42 [INFO] 访问了课程查看界面
+2026-01-20 17:42:42 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:42:47 [INFO] 访问了作业更新界面
+2026-01-20 17:42:47 [INFO] workId=25,title=新作业,content=新作业
+2026-01-20 17:42:47 [INFO] if_ok=更新成功
+2026-01-20 17:42:47 [INFO] 访问了作业查看界面
+2026-01-20 17:42:47 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:42:47 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:42:50 [INFO] 访问了课程查看界面
+2026-01-20 17:42:50 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:43:37 [INFO] 访问了课程查看界面
+2026-01-20 17:43:37 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:44:15 [INFO] 访问了作业更新界面
+2026-01-20 17:44:15 [INFO] workId=20,title=计算机网络作业2,content=TESTWORK.
+2026-01-20 17:44:15 [INFO] if_ok=更新成功
+2026-01-20 17:44:15 [INFO] 访问了作业查看界面
+2026-01-20 17:44:15 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:44:15 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:45:09 [INFO] my_app日志记录器已配置
+2026-01-20 17:45:49 [INFO] my_app日志记录器已配置
+2026-01-20 17:46:05 [INFO] my_app日志记录器已配置
+2026-01-20 17:46:29 [INFO] my_app日志记录器已配置
+2026-01-20 17:46:42 [INFO] my_app日志记录器已配置
+2026-01-20 17:46:58 [INFO] my_app日志记录器已配置
+2026-01-20 17:47:24 [INFO] my_app日志记录器已配置
+2026-01-20 17:47:26 [INFO] my_app日志记录器已配置
+2026-01-20 17:48:02 [INFO] my_app日志记录器已配置
+2026-01-20 17:48:05 [INFO] 访问了课程查看界面
+2026-01-20 17:48:05 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:48:06 [INFO] 访问了作业更新界面
+2026-01-20 17:48:06 [INFO] workId=4,title=数据结构设计作业1,content=TESTWORK...,starttime=2026-01-18T00:00:00,overtime=2026-01-20T00:00:00
+2026-01-20 17:48:06 [INFO] if_ok=更新成功
+2026-01-20 17:48:07 [INFO] 访问了作业查看界面
+2026-01-20 17:48:07 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:48:07 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:48:21 [INFO] 访问了作业批改界面
+2026-01-20 17:48:21 [INFO] work=10
+2026-01-20 17:48:21 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-20 17:48:22 [INFO] 访问了作业查看界面
+2026-01-20 17:48:22 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:48:22 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:48:23 [INFO] 访问了课程查看界面
+2026-01-20 17:48:23 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:48:26 [INFO] 访问了作业更新界面
+2026-01-20 17:48:26 [INFO] workId=24,title=算法设计与分析作业3,content=TESTWOR,starttime=2026-01-24T00:00:00,overtime=2026-01-27T00:00:00
+2026-01-20 17:48:27 [INFO] if_ok=更新成功
+2026-01-20 17:48:27 [INFO] 访问了作业查看界面
+2026-01-20 17:48:27 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:48:27 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:48:28 [INFO] 访问了课程查看界面
+2026-01-20 17:48:28 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:48:30 [INFO] 访问了课程查看界面
+2026-01-20 17:48:30 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:48:34 [INFO] 访问了作业更新界面
+2026-01-20 17:48:34 [INFO] workId=3,title=数据库设计作业3,content=TESTWORK...,starttime=2026-01-24T00:00:00,overtime=2026-01-27T00:00:00
+2026-01-20 17:48:34 [INFO] if_ok=更新成功
+2026-01-20 17:48:34 [INFO] 访问了作业查看界面
+2026-01-20 17:48:34 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:48:34 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:48:35 [INFO] 访问了课程查看界面
+2026-01-20 17:48:35 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:48:37 [INFO] 访问了作业更新界面
+2026-01-20 17:48:37 [INFO] workId=3,title=数据库设计作业3,content=TESTWORK...,starttime=2026-01-24T00:00:00,overtime=2026-01-27T00:00:00
+2026-01-20 17:48:38 [INFO] if_ok=更新成功
+2026-01-20 17:48:38 [INFO] 访问了作业查看界面
+2026-01-20 17:48:38 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:48:38 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:49:18 [INFO] 访问了课程查看界面
+2026-01-20 17:49:18 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:49:22 [INFO] 访问了作业更新界面
+2026-01-20 17:49:22 [INFO] workId=9,title=操作系统3,content=TESTWORK...,starttime=2026-01-24T00:00:00,overtime=2026-01-27T00:00:00
+2026-01-20 17:49:22 [INFO] if_ok=更新成功
+2026-01-20 17:49:22 [INFO] 访问了作业查看界面
+2026-01-20 17:49:22 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:49:22 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:49:25 [INFO] 访问了课程查看界面
+2026-01-20 17:49:25 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:49:27 [INFO] 访问了作业更新界面
+2026-01-20 17:49:27 [INFO] workId=9,title=操作系统3,content=TESTWORK...,starttime=2026-01-24T00:00:00,overtime=2026-01-27T00:00:00
+2026-01-20 17:49:27 [INFO] if_ok=更新成功
+2026-01-20 17:49:28 [INFO] 访问了作业查看界面
+2026-01-20 17:49:28 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:49:28 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:49:30 [INFO] 访问了课程查看界面
+2026-01-20 17:49:30 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:50:32 [INFO] 访问了课程查看界面
+2026-01-20 17:50:32 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:50:35 [INFO] 访问了作业更新界面
+2026-01-20 17:50:35 [INFO] workId=6,title=数据结构设计作业3,content=TESTWORK...,starttime=2026-01-24T00:00:00,overtime=2026-01-27T00:00:00
+2026-01-20 17:50:35 [INFO] if_ok=更新成功
+2026-01-20 17:50:35 [INFO] 访问了作业查看界面
+2026-01-20 17:50:35 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:50:36 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:51:00 [INFO] 访问了课程查看界面
+2026-01-20 17:51:00 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:51:20 [INFO] 访问了课程查看界面
+2026-01-20 17:51:20 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:51:28 [INFO] 访问了课程查看界面
+2026-01-20 17:51:28 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:51:34 [INFO] 访问了作业更新界面
+2026-01-20 17:51:34 [INFO] workId=6,title=数据结构设计作业3,content=TESTWOR,starttime=2026-01-24T00:00:00,overtime=2026-01-27T00:00:00
+2026-01-20 17:51:34 [INFO] if_ok=更新成功
+2026-01-20 17:51:34 [INFO] 访问了作业查看界面
+2026-01-20 17:51:34 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:51:34 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:51:35 [INFO] 访问了课程查看界面
+2026-01-20 17:51:35 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:51:41 [INFO] 访问了课程查看界面
+2026-01-20 17:51:41 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:51:44 [INFO] 访问了课程查看界面
+2026-01-20 17:51:44 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:51:47 [INFO] 访问了课程查看界面
+2026-01-20 17:51:47 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:51:49 [INFO] 访问了作业更新界面
+2026-01-20 17:51:49 [INFO] workId=3,title=数据库设计作业3,content=TESTWOR,starttime=2026-01-24T00:00:00,overtime=2026-01-27T00:00:00
+2026-01-20 17:51:49 [INFO] if_ok=更新成功
+2026-01-20 17:51:49 [INFO] 访问了作业查看界面
+2026-01-20 17:51:49 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:51:49 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:51:51 [INFO] 访问了课程查看界面
+2026-01-20 17:51:51 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:51:59 [INFO] 访问了课程查看界面
+2026-01-20 17:51:59 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:53:03 [INFO] 访问了课程查看界面
+2026-01-20 17:53:03 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:53:08 [INFO] 访问了作业更新界面
+2026-01-20 17:53:08 [INFO] workId=9,title=操作系统3,content=TESTW,starttime=2026-01-24T00:00:00,overtime=2026-01-27T00:00:00
+2026-01-20 17:53:08 [INFO] if_ok=更新成功
+2026-01-20 17:53:08 [INFO] 访问了作业查看界面
+2026-01-20 17:53:08 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:53:08 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:53:10 [INFO] 访问了课程查看界面
+2026-01-20 17:53:10 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:53:17 [INFO] 访问了作业批改界面
+2026-01-20 17:53:17 [INFO] work=3
+2026-01-20 17:53:17 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-20 17:53:27 [INFO] 访问了作业批改界面
+2026-01-20 17:53:27 [INFO] workId=3,UserId=10,score=85,teacherComment=良好，算法实现正确
+2026-01-20 17:53:30 [INFO] 访问了作业批改界面
+2026-01-20 17:53:30 [INFO] workId=3,UserId=11,score=85,teacherComment=aa
+2026-01-20 17:53:33 [INFO] 访问了作业查看界面
+2026-01-20 17:53:33 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:53:33 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:53:38 [INFO] 访问了课程查看界面
+2026-01-20 17:53:38 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:53:48 [INFO] 访问了作业添加界面
+2026-01-20 17:53:48 [INFO] title=aa,content=asdffd,progress=0,course=数据结构
+2026-01-20 17:53:49 [INFO] if_ok=添加成功
+2026-01-20 17:53:49 [INFO] 访问了作业查看界面
+2026-01-20 17:53:49 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:53:49 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:53:52 [INFO] 访问了作业删除界面
+2026-01-20 17:53:52 [INFO] if_ok=删除成功
+2026-01-20 17:53:52 [INFO] 访问了作业查看界面
+2026-01-20 17:53:52 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:53:52 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:53:56 [INFO] 访问了作业删除界面
+2026-01-20 17:53:56 [INFO] if_ok=删除成功
+2026-01-20 17:53:56 [INFO] 访问了作业查看界面
+2026-01-20 17:53:56 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:53:56 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:54:59 [INFO] my_app日志记录器已配置
+2026-01-20 17:55:03 [INFO] 访问了作业删除界面
+2026-01-20 17:55:03 [INFO] if_ok=删除成功
+2026-01-20 17:55:03 [INFO] 访问了作业查看界面
+2026-01-20 17:55:03 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:55:03 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:55:06 [INFO] 访问了课程查看界面
+2026-01-20 17:55:06 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:55:17 [INFO] 访问了作业添加界面
+2026-01-20 17:55:17 [INFO] title=aa,content=csdzg,progress=0,course=操作系统
+2026-01-20 17:55:17 [INFO] if_ok=添加成功
+2026-01-20 17:55:18 [INFO] 访问了作业查看界面
+2026-01-20 17:55:18 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:55:18 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:55:29 [INFO] 访问了作业删除界面
+2026-01-20 17:55:29 [INFO] if_ok=删除成功
+2026-01-20 17:55:29 [INFO] 访问了作业查看界面
+2026-01-20 17:55:29 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:55:29 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:55:38 [INFO] 访问了课程查看界面
+2026-01-20 17:55:38 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:55:56 [INFO] 访问了课程添加界面
+2026-01-20 17:55:56 [INFO] courseId=,CourseName=计算机,major=计算机科学,credits=2,type=必修,teacher=6
+2026-01-20 17:55:56 [INFO] if_ok=添加成功
+2026-01-20 17:55:56 [INFO] 访问了课程查看界面
+2026-01-20 17:55:56 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:56:10 [INFO] 访问了课程更新界面
+2026-01-20 17:56:10 [INFO] courseId=18,CourseName=计算机,major=计算机科学,credits=3,type=必修,userId=6
+2026-01-20 17:56:10 [INFO] if_ok=更新成功
+2026-01-20 17:56:10 [INFO] 访问了课程查看界面
+2026-01-20 17:56:10 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:56:13 [INFO] 访问了课程删除界面
+2026-01-20 17:56:13 [INFO] courseId=18
+2026-01-20 17:56:13 [INFO] if_ok=删除成功
+2026-01-20 17:56:13 [INFO] 访问了课程查看界面
+2026-01-20 17:56:13 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:56:18 [INFO] 访问了学生界面
+2026-01-20 17:56:18 [INFO] query=,page=None,page_size=None,role=teacher,id=9
+2026-01-20 17:56:18 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-20 17:56:36 [INFO] 访问了学生添加界面
+2026-01-20 17:56:36 [INFO] studentId=1,name=,gender=男,major=,phone=,Cno=9,Sno=1
+2026-01-20 17:56:36 [INFO] if_ok=添加成功
+2026-01-20 17:56:36 [INFO] 访问了学生界面
+2026-01-20 17:56:36 [INFO] query=,page=None,page_size=None,role=teacher,id=9
+2026-01-20 17:56:37 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-20 17:56:41 [INFO] 访问了学生界面
+2026-01-20 17:56:41 [INFO] query=,page=None,page_size=None,role=teacher,id=9
+2026-01-20 17:56:41 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-20 17:56:48 [INFO] 访问了课程查看界面
+2026-01-20 17:56:48 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:56:51 [INFO] id=6,role=teacher
+2026-01-20 17:56:51 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 17:57:24 [INFO] 访问了作业查看界面
+2026-01-20 17:57:24 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 17:57:24 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 17:57:25 [INFO] 访问了课程查看界面
+2026-01-20 17:57:25 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 17:57:29 [INFO] 访问了课程查看界面
+2026-01-20 17:57:29 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 18:00:36 [INFO] 访问了课程查看界面
+2026-01-20 18:00:36 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-20 18:01:11 [INFO] 访问了作业更新界面
+2026-01-20 18:01:11 [INFO] workId=6,title=数据结构设计作业3,content=TESTWOR,starttime=2026-01-20 18:00:42,overtime=2026-01-27T00:00:00
+2026-01-20 18:01:11 [INFO] if_ok=更新成功
+2026-01-20 18:01:11 [INFO] 访问了作业查看界面
+2026-01-20 18:01:11 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 18:01:11 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 18:01:29 [INFO] id=6,role=teacher
+2026-01-20 18:01:30 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}

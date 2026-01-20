@@ -369,9 +369,11 @@ def app_update_work(workId):
     data=request.get_json()
     title = data.get('title')
     content = data.get('content')
+    starttime=data.get('starttime')
+    overtime=data.get('overtime')
     
-    logger.info(f'workId={workId},title={title},content={content}')
-    if_ok= update_work (workId,title,content)
+    logger.info(f'workId={workId},title={title},content={content},starttime={starttime},overtime={overtime}')
+    if_ok= update_work (workId,title,content,starttime,overtime)
     logger.info(f'if_ok={if_ok["msg"]}')
     return if_ok
 # TODO: 学生提交作业
