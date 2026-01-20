@@ -26,7 +26,19 @@
       </el-form-item>
 
       <el-form-item label="📚 课程" prop="course">
+        <!-- 编辑模式：只读显示 -->
+        <el-input
+          v-if="isEdit"
+          v-model="form.course"
+          readonly
+          class="cute-input"
+          style="width: 100%"
+        >
+          <i slot="prefix" class="el-icon-reading"></i>
+        </el-input>
+        <!-- 新建模式：下拉选择 -->
         <el-select
+          v-else
           v-model="form.course"
           placeholder="属于哪门魔法专业呢?"
           style="width: 100%"
@@ -215,7 +227,7 @@ export default {
         data: {
           role: this.userInfo.role,
           id: this.userInfo.id,
-          query: '',
+          query: "",
         },
       })
         .then((res) => {

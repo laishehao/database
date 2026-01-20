@@ -563,22 +563,33 @@ def add_work(title,course,content,progress,UserId,start,over):
         "msg":"添加成功"
     }
     return ans
-def update_work(workId,title,content):
+def update_work(workId,title,content,starttime,overtime):
+    try:
+        with connection.cursor() as cursor:
+            params = (workId,title,starttime,overtime,content)
+            logger_py.info('数据库开始修改用户信息')
+            cursor.callproc('Edit_homework', params)
+            result = cursor.fetchall()
+            logger_py.info(result)
+    except:
+        logger_py.info('修改失败')
+        abort(500)
+        connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"更新成功"
     }
     return ans
 def delete_work(workId):
-    # try:
-        #     with connection.cursor() as cursor:
-        #         params = (workId)
-        #         logger_py.info('数据库开始修改用户信息')
-        #         cursor.callproc('Delete_Course', params)
-        #         result = cursor.fetchall()
-        #         logger_py.info(result)
-        # except:
-        #     connection.rollback()  # 异常时回滚
+    try:
+            with connection.cursor() as cursor:
+                params = (workId)
+                logger_py.info('数据库开始修改用户信息')
+                cursor.callproc('Delete_homework', params)
+                result = cursor.fetchall()
+                logger_py.info(result)
+    except:
+        connection.rollback()  # 异常时回滚
     ans={
         "code":200,
         "msg":"删除成功"
