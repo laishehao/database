@@ -109,9 +109,16 @@ BEGIN
         ROLLBACK;
         SELECT 'ERROR:STUDENT_NOT_EXISTS' AS result_type;
     else
-        update Student_Info
-        set Sname = p_name, Semail = p_email, Sphone = p_phone, Sgender = p_gender, Smajor = p_major, Spassword = SHA2(p_password, 256)
-        where Sno = p_sno;
+        if p_password is not NULL then
+            update Student_Info
+            set Sname = p_name, Semail = p_email, Sphone = p_phone, Sgender = p_gender, Smajor = p_major, Spassword = SHA2(p_password, 256)
+            where Sno = p_sno;
+        else
+            update Student_Info
+            set Sname = p_name, Semail = p_email, Sphone = p_phone, Sgender = p_gender, Smajor = p_major
+            where Sno = p_sno;
+        end if;
+        
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
     end if;
@@ -294,9 +301,15 @@ BEGIN
         ROLLBACK;
         SELECT 'ERROR:TEACHER_NOT_EXISTS' AS result_type;
     else
-        update Teacher_Info
-        set Tname = p_name, Temail = p_email, Tphone = p_phone, Tgender = p_gender, Tpassword = SHA2(p_password, 256)
-        where Tno = p_tno;
+        if p_password is not NULL then
+            update Teacher_Info
+            set Tname = p_name, Temail = p_email, Tphone = p_phone, Tgender = p_gender, Tpassword = SHA2(p_password, 256)
+            where Tno = p_tno;
+        else 
+            update Teacher_Info
+            set Tname = p_name, Temail = p_email, Tphone = p_phone, Tgender = p_gender
+            where Tno = p_tno;
+        end if;
         COMMIT;
         SELECT 'SUCCESS' AS result_type;
     end if;
