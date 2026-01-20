@@ -143,7 +143,11 @@ export default {
       if (val) {
         this.fetchCourseList(); // 打开弹窗时获取课程列表
         if (this.rowData) {
-          this.form = JSON.parse(JSON.stringify(this.rowData));
+          const data = JSON.parse(JSON.stringify(this.rowData));
+          // 格式化日期，确保符合 el-date-picker 的格式要求
+          data.starttime = this.formatDateTime(data.starttime);
+          data.overtime = this.formatDateTime(data.overtime);
+          this.form = data;
         } else {
           this.form = {
             title: "",
@@ -220,6 +224,18 @@ export default {
     };
   },
   methods: {
+    // 格式化日期时间，确保符合 el-date-picker 的格式要求
+    formatDateTime(dateValue) {
+      if (!dateValue) return "";
+      const date = new Date(dateValue);
+      if (isNaN(date.getTime())) return dateValue; // 如果无法解析，返回原值
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
+        date.getDate()
+      )} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(
+        date.getSeconds()
+      )}`;
+    },
     // 获取课程列表
     fetchCourseList() {
       this.$api({
