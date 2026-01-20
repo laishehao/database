@@ -1,12 +1,1106 @@
-2026-01-19 13:47:43 [INFO] my_app日志记录器已配置
-2026-01-19 13:47:45 [INFO] my_app日志记录器已配置
-2026-01-19 13:47:48 [INFO] 访问了作业查看界面
-2026-01-19 13:47:48 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
-2026-01-19 13:47:48 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progerss': 50, 'completed': True}
-2026-01-19 13:47:50 [INFO] 访问了课程查看界面
-2026-01-19 13:47:50 [INFO] query=,page=1,pageSize=10,id=6
-2026-01-19 13:47:54 [INFO] 访问了课程更新界面
-2026-01-19 13:47:54 [INFO] courseId=1,CourseName=高等数学,major=计算机科学与技术,credits=4,type=选修,userId=6
-2026-01-19 13:47:54 [INFO] if_ok=更新成功
-2026-01-19 13:47:54 [INFO] 访问了课程查看界面
-2026-01-19 13:47:54 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:07:20 [INFO] my_app日志记录器已配置
+2026-01-19 18:07:21 [INFO] my_app日志记录器已配置
+2026-01-19 18:07:30 [INFO] 访问了登录界面
+2026-01-19 18:07:30 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 18:07:30 [INFO] if_ok=登录成功
+2026-01-19 18:07:30 [INFO] id=6,role=teacher
+2026-01-19 18:07:30 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 18:07:31 [INFO] 访问了课程查看界面
+2026-01-19 18:07:31 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:07:42 [INFO] 访问了课程添加界面
+2026-01-19 18:07:42 [INFO] courseId=,CourseName=aaa,major=计算机科学,credits=2,type=必修,teacher=6
+2026-01-19 18:07:42 [INFO] if_ok=添加成功
+2026-01-19 18:07:42 [INFO] 访问了课程查看界面
+2026-01-19 18:07:42 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:08:08 [INFO] 访问了课程删除界面
+2026-01-19 18:08:08 [INFO] courseId=18
+2026-01-19 18:08:08 [INFO] if_ok=删除成功
+2026-01-19 18:08:08 [INFO] 访问了课程查看界面
+2026-01-19 18:08:08 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:08:56 [INFO] my_app日志记录器已配置
+2026-01-19 18:09:03 [INFO] my_app日志记录器已配置
+2026-01-19 18:09:05 [INFO] 访问了课程删除界面
+2026-01-19 18:09:05 [INFO] courseId=18
+2026-01-19 18:09:05 [INFO] if_ok=删除成功
+2026-01-19 18:09:05 [INFO] 访问了课程查看界面
+2026-01-19 18:09:05 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:09:16 [INFO] 访问了学生界面
+2026-01-19 18:09:16 [INFO] query=,page=1,page_size=10,role=teacher,id=6
+2026-01-19 18:09:16 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:09:51 [INFO] 访问了作业查看界面
+2026-01-19 18:09:51 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 18:09:51 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 18:09:56 [INFO] id=6,role=teacher
+2026-01-19 18:09:57 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 18:13:20 [INFO] my_app日志记录器已配置
+2026-01-19 18:13:22 [INFO] my_app日志记录器已配置
+2026-01-19 18:13:26 [INFO] 访问了作业查看界面
+2026-01-19 18:13:26 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 18:13:26 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 18:13:27 [INFO] 访问了课程查看界面
+2026-01-19 18:13:27 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:13:29 [INFO] 访问了学生界面
+2026-01-19 18:13:29 [INFO] query=,page=1,page_size=10,role=teacher,id=6
+2026-01-19 18:13:29 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:13:52 [INFO] 访问了学生添加界面
+2026-01-19 18:13:52 [INFO] studentId=1,name=zdh,gender=男,major=计算机科学,phone=13421341234,Cno=9,Sno=zdh
+2026-01-19 18:13:52 [INFO] if_ok=添加成功
+2026-01-19 18:13:52 [INFO] 访问了学生界面
+2026-01-19 18:13:52 [INFO] query=,page=1,page_size=10,role=teacher,id=6
+2026-01-19 18:13:52 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:14:33 [INFO] my_app日志记录器已配置
+2026-01-19 18:15:17 [INFO] my_app日志记录器已配置
+2026-01-19 18:15:35 [INFO] 访问了学生添加界面
+2026-01-19 18:15:35 [INFO] studentId=1,name=1,gender=男,major=计算机科学,phone=13421234123,Cno=9,Sno=1
+2026-01-19 18:15:35 [INFO] if_ok=添加成功
+2026-01-19 18:15:35 [INFO] 访问了学生界面
+2026-01-19 18:15:35 [INFO] query=,page=1,page_size=10,role=teacher,id=6
+2026-01-19 18:15:35 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:15:45 [INFO] 访问了课程查看界面
+2026-01-19 18:15:45 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:15:47 [INFO] 访问了学生界面
+2026-01-19 18:15:47 [INFO] query=,page=1,page_size=10,role=teacher,id=6
+2026-01-19 18:15:47 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:15:52 [INFO] 访问了课程查看界面
+2026-01-19 18:15:52 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:15:54 [INFO] 访问了学生界面
+2026-01-19 18:15:54 [INFO] query=,page=1,page_size=10,role=teacher,id=6
+2026-01-19 18:15:54 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:15:56 [INFO] 访问了课程查看界面
+2026-01-19 18:15:56 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:15:58 [INFO] 访问了学生界面
+2026-01-19 18:15:58 [INFO] query=,page=1,page_size=10,role=teacher,id=6
+2026-01-19 18:15:58 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:16:24 [INFO] 访问了课程查看界面
+2026-01-19 18:16:24 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:16:25 [INFO] 访问了学生界面
+2026-01-19 18:16:25 [INFO] query=,page=1,page_size=10,role=teacher,id=6
+2026-01-19 18:16:25 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:16:54 [INFO] my_app日志记录器已配置
+2026-01-19 18:17:07 [INFO] 访问了课程查看界面
+2026-01-19 18:17:07 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:17:09 [INFO] 访问了学生界面
+2026-01-19 18:17:09 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:17:09 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:17:14 [INFO] 访问了课程查看界面
+2026-01-19 18:17:14 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:17:15 [INFO] 访问了学生界面
+2026-01-19 18:17:15 [INFO] query=,page=1,page_size=10,role=teacher,id=12
+2026-01-19 18:17:15 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:17:17 [INFO] 访问了课程查看界面
+2026-01-19 18:17:17 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:17:19 [INFO] 访问了学生界面
+2026-01-19 18:17:19 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:17:19 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:17:51 [INFO] 访问了课程查看界面
+2026-01-19 18:17:51 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:17:53 [INFO] 访问了学生界面
+2026-01-19 18:17:53 [INFO] query=,page=1,page_size=10,role=teacher,id=10
+2026-01-19 18:17:53 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:18:32 [INFO] 访问了课程查看界面
+2026-01-19 18:18:32 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:18:34 [INFO] 访问了学生界面
+2026-01-19 18:18:34 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:18:34 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:19:36 [INFO] my_app日志记录器已配置
+2026-01-19 18:20:36 [INFO] my_app日志记录器已配置
+2026-01-19 18:20:57 [INFO] my_app日志记录器已配置
+2026-01-19 18:21:07 [INFO] my_app日志记录器已配置
+2026-01-19 18:21:15 [INFO] my_app日志记录器已配置
+2026-01-19 18:21:17 [INFO] my_app日志记录器已配置
+2026-01-19 18:21:22 [INFO] 访问了登录界面
+2026-01-19 18:21:22 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 18:21:22 [INFO] if_ok=登录成功
+2026-01-19 18:21:22 [INFO] id=6,role=teacher
+2026-01-19 18:21:23 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 18:21:23 [INFO] 访问了课程查看界面
+2026-01-19 18:21:23 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:21:25 [INFO] 访问了学生界面
+2026-01-19 18:21:25 [INFO] query=,page=1,page_size=10,role=teacher,id=10
+2026-01-19 18:21:25 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:21:27 [INFO] 访问了课程查看界面
+2026-01-19 18:21:27 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:21:28 [INFO] 访问了学生界面
+2026-01-19 18:21:28 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:21:28 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:23:56 [INFO] my_app日志记录器已配置
+2026-01-19 18:24:27 [INFO] my_app日志记录器已配置
+2026-01-19 18:25:01 [INFO] my_app日志记录器已配置
+2026-01-19 18:25:35 [INFO] my_app日志记录器已配置
+2026-01-19 18:26:35 [INFO] my_app日志记录器已配置
+2026-01-19 18:26:59 [INFO] my_app日志记录器已配置
+2026-01-19 18:27:43 [INFO] my_app日志记录器已配置
+2026-01-19 18:27:45 [INFO] my_app日志记录器已配置
+2026-01-19 18:27:54 [INFO] 访问了登录界面
+2026-01-19 18:27:54 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 18:27:54 [INFO] if_ok=登录成功
+2026-01-19 18:27:54 [INFO] id=6,role=teacher
+2026-01-19 18:27:55 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 18:27:55 [INFO] 访问了课程查看界面
+2026-01-19 18:27:55 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:27:57 [INFO] 访问了学生界面
+2026-01-19 18:27:57 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:27:57 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:28:53 [INFO] my_app日志记录器已配置
+2026-01-19 18:29:34 [INFO] my_app日志记录器已配置
+2026-01-19 18:32:35 [INFO] my_app日志记录器已配置
+2026-01-19 18:32:38 [INFO] 访问了学生添加界面
+2026-01-19 18:32:38 [INFO] studentId=2,name=None,gender=None,major=None,phone=None,Cno=9,Sno=2
+2026-01-19 18:32:38 [INFO] if_ok=添加成功
+2026-01-19 18:32:38 [INFO] 访问了学生界面
+2026-01-19 18:32:38 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:32:38 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:32:43 [INFO] 访问了课程查看界面
+2026-01-19 18:32:43 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:32:57 [INFO] 访问了用户界面
+2026-01-19 18:32:57 [INFO] phone=15882805907,name=lzh,email=1399219872@qq.com,role=teacher
+2026-01-19 18:32:57 [INFO] if_ok=修改成功
+2026-01-19 18:34:06 [INFO] my_app日志记录器已配置
+2026-01-19 18:34:29 [INFO] my_app日志记录器已配置
+2026-01-19 18:34:38 [INFO] my_app日志记录器已配置
+2026-01-19 18:34:48 [INFO] my_app日志记录器已配置
+2026-01-19 18:35:28 [INFO] my_app日志记录器已配置
+2026-01-19 18:36:09 [INFO] my_app日志记录器已配置
+2026-01-19 18:37:00 [INFO] my_app日志记录器已配置
+2026-01-19 18:37:37 [INFO] my_app日志记录器已配置
+2026-01-19 18:37:46 [INFO] my_app日志记录器已配置
+2026-01-19 18:38:13 [INFO] 访问了用户界面
+2026-01-19 18:38:13 [INFO] phone=15882805907,name=lzh,email=1399219872@qq.com,role=teacher,id=6,gender=male,password=Lzhjy050612
+2026-01-19 18:38:13 [INFO] if_ok=修改成功
+2026-01-19 18:38:42 [INFO] my_app日志记录器已配置
+2026-01-19 18:38:47 [INFO] 访问了用户界面
+2026-01-19 18:38:47 [INFO] phone=15882805907,name=lzh,email=1399219872@qq.com,role=teacher,id=6,gender=male,password=Lzhjy050612
+2026-01-19 18:38:47 [INFO] if_ok=修改成功
+2026-01-19 18:39:56 [INFO] my_app日志记录器已配置
+2026-01-19 18:41:56 [INFO] my_app日志记录器已配置
+2026-01-19 18:41:58 [INFO] my_app日志记录器已配置
+2026-01-19 18:42:01 [INFO] 访问了作业查看界面
+2026-01-19 18:42:01 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 18:42:01 [INFO] 访问了课程查看界面
+2026-01-19 18:42:01 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:42:08 [INFO] 访问了登录界面
+2026-01-19 18:42:08 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 18:42:09 [INFO] 访问了登录界面
+2026-01-19 18:42:09 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 18:42:15 [INFO] my_app日志记录器已配置
+2026-01-19 18:42:17 [INFO] my_app日志记录器已配置
+2026-01-19 18:42:20 [INFO] 访问了登录界面
+2026-01-19 18:42:20 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 18:42:20 [INFO] if_ok=登录成功
+2026-01-19 18:42:20 [INFO] id=6,role=teacher
+2026-01-19 18:42:21 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 18:42:22 [INFO] 访问了课程查看界面
+2026-01-19 18:42:22 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:42:31 [INFO] 访问了学生界面
+2026-01-19 18:42:31 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:42:31 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:45:59 [INFO] id=6,role=teacher
+2026-01-19 18:46:00 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 18:46:40 [INFO] 访问了作业查看界面
+2026-01-19 18:46:40 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 18:46:40 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 18:46:49 [INFO] 访问了课程查看界面
+2026-01-19 18:46:49 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-19 18:46:51 [INFO] 访问了课程查看界面
+2026-01-19 18:46:51 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 18:46:53 [INFO] 访问了学生界面
+2026-01-19 18:46:53 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:46:53 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:48:45 [INFO] my_app日志记录器已配置
+2026-01-19 18:48:48 [INFO] 访问了学生界面
+2026-01-19 18:48:48 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:48:48 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 18:48:55 [INFO] 访问了学生添加界面
+2026-01-19 18:48:55 [INFO] studentId=1,name=,gender=男,major=,phone=,Cno=9,Sno=1
+2026-01-19 18:48:55 [INFO] if_ok=添加成功
+2026-01-19 18:48:55 [INFO] 访问了学生界面
+2026-01-19 18:48:55 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 18:48:55 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 19:16:56 [INFO] my_app日志记录器已配置
+2026-01-19 19:16:58 [INFO] my_app日志记录器已配置
+2026-01-19 19:17:02 [INFO] 访问了用户界面
+2026-01-19 19:17:02 [INFO] phone=15882805907,name=lzh,email=1399219872@qq.com,role=teacher,id=6,gender=male,password=Lzhjy050612
+2026-01-19 19:17:02 [INFO] if_ok=修改成功
+2026-01-19 20:23:50 [INFO] my_app日志记录器已配置
+2026-01-19 20:23:52 [INFO] my_app日志记录器已配置
+2026-01-19 20:23:57 [INFO] 访问了作业查看界面
+2026-01-19 20:23:57 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:23:57 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:23:58 [INFO] id=6,role=teacher
+2026-01-19 20:23:59 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 20:24:01 [INFO] 访问了作业查看界面
+2026-01-19 20:24:01 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:24:01 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:24:03 [INFO] 访问了作业批改界面
+2026-01-19 20:24:03 [INFO] work=3
+2026-01-19 20:24:04 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 20:24:06 [INFO] 访问了作业查看界面
+2026-01-19 20:24:06 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:24:06 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:24:07 [INFO] 访问了课程查看界面
+2026-01-19 20:24:07 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 20:24:12 [INFO] 访问了课程更新界面
+2026-01-19 20:24:12 [INFO] courseId=12,CourseName=软件工程导论,major=软件工程,credits=3,type=选修,userId=6
+2026-01-19 20:24:13 [INFO] if_ok=更新成功
+2026-01-19 20:24:13 [INFO] 访问了课程查看界面
+2026-01-19 20:24:13 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 20:24:21 [INFO] 访问了作业查看界面
+2026-01-19 20:24:21 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:24:21 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:24:40 [INFO] 访问了用户界面
+2026-01-19 20:24:40 [INFO] phone=15882805907,name=lzh,email=1399219872@qq.com,role=teacher,id=6,gender=,password=Lzhjy050612
+2026-01-19 20:24:40 [INFO] if_ok=修改成功
+2026-01-19 20:26:20 [INFO] my_app日志记录器已配置
+2026-01-19 20:26:35 [INFO] 访问了用户界面
+2026-01-19 20:26:35 [INFO] phone=15882805907,name=lzh,email=1399219870@qq.com,role=teacher,id=6,gender=,password=Lzhjy050612
+2026-01-19 20:26:35 [INFO] if_ok=修改成功
+2026-01-19 20:26:43 [INFO] 访问了课程查看界面
+2026-01-19 20:26:43 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 20:26:45 [INFO] 访问了学生界面
+2026-01-19 20:26:45 [INFO] query=,page=1,page_size=10,role=teacher,id=9
+2026-01-19 20:26:45 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 20:26:59 [INFO] 访问了登录界面
+2026-01-19 20:26:59 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 20:26:59 [INFO] if_ok=登录成功
+2026-01-19 20:26:59 [INFO] id=11,role=student
+2026-01-19 20:27:00 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 24}}
+2026-01-19 20:27:00 [INFO] 访问了作业查看界面
+2026-01-19 20:27:00 [INFO] query=,page=1,pageSize=10,role=student,id=11
+2026-01-19 20:27:00 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:27:10 [INFO] 访问了用户界面
+2026-01-19 20:27:10 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=male,password=Lzhjy050612
+2026-01-19 20:27:10 [INFO] if_ok=修改成功
+2026-01-19 20:28:25 [INFO] 访问了用户界面
+2026-01-19 20:28:25 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=male,password=Lzhjy050612
+2026-01-19 20:28:25 [INFO] if_ok=修改成功
+2026-01-19 20:29:20 [INFO] my_app日志记录器已配置
+2026-01-19 20:29:25 [INFO] 访问了用户界面
+2026-01-19 20:29:25 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=,password=Lzhjy050612,major=None
+2026-01-19 20:29:25 [INFO] if_ok=修改成功
+2026-01-19 20:29:39 [INFO] 访问了用户界面
+2026-01-19 20:29:39 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=male,password=Lzhjy050612,major=None
+2026-01-19 20:29:39 [INFO] if_ok=修改成功
+2026-01-19 20:36:46 [INFO] 访问了登录界面
+2026-01-19 20:36:46 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 20:36:46 [INFO] if_ok=登录成功
+2026-01-19 20:36:46 [INFO] id=11,role=student
+2026-01-19 20:36:47 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 24}}
+2026-01-19 20:37:33 [INFO] 访问了作业查看界面
+2026-01-19 20:37:33 [INFO] query=,page=1,pageSize=10,role=student,id=11
+2026-01-19 20:37:33 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:37:38 [INFO] 访问了作业查看界面
+2026-01-19 20:37:38 [INFO] workId=3,UserId=11
+2026-01-19 20:37:38 [INFO] if_ok=查看成功
+2026-01-19 20:37:46 [INFO] role=student,syudentId=11,workId=3,writecheck=None
+2026-01-19 20:37:46 [INFO] 访问了作业查看界面
+2026-01-19 20:37:46 [INFO] query=,page=1,pageSize=10,role=student,id=11
+2026-01-19 20:37:47 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:37:59 [INFO] 访问了登录界面
+2026-01-19 20:37:59 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 20:38:00 [INFO] if_ok=登录成功
+2026-01-19 20:38:00 [INFO] id=6,role=teacher
+2026-01-19 20:38:00 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 20:38:02 [INFO] 访问了作业查看界面
+2026-01-19 20:38:02 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:38:02 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:38:09 [INFO] 访问了作业批改界面
+2026-01-19 20:38:09 [INFO] work=3
+2026-01-19 20:38:09 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 20:38:17 [INFO] 访问了作业批改界面
+2026-01-19 20:38:17 [INFO] workId=3,UserId=None,score=85,teacherComment=sb
+2026-01-19 20:38:28 [INFO] 访问了登录界面
+2026-01-19 20:38:28 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 20:38:28 [INFO] if_ok=登录成功
+2026-01-19 20:38:29 [INFO] id=11,role=student
+2026-01-19 20:38:29 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 23}}
+2026-01-19 20:38:30 [INFO] 访问了作业查看界面
+2026-01-19 20:38:30 [INFO] query=,page=1,pageSize=10,role=student,id=11
+2026-01-19 20:38:30 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:38:34 [INFO] 访问了作业查看界面
+2026-01-19 20:38:34 [INFO] workId=3,UserId=11
+2026-01-19 20:38:34 [INFO] if_ok=查看成功
+2026-01-19 20:38:37 [INFO] 访问了作业查看界面
+2026-01-19 20:38:37 [INFO] query=,page=1,pageSize=10,role=student,id=11
+2026-01-19 20:38:38 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:38:39 [INFO] 访问了作业查看界面
+2026-01-19 20:38:39 [INFO] workId=3,UserId=11
+2026-01-19 20:38:39 [INFO] if_ok=查看成功
+2026-01-19 20:38:41 [INFO] 访问了作业查看界面
+2026-01-19 20:38:41 [INFO] query=,page=1,pageSize=10,role=student,id=11
+2026-01-19 20:38:41 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:38:46 [INFO] 访问了作业查看界面
+2026-01-19 20:38:46 [INFO] query=,page=2,pageSize=10,role=student,id=11
+2026-01-19 20:38:46 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:38:47 [INFO] 访问了作业查看界面
+2026-01-19 20:38:47 [INFO] query=,page=3,pageSize=10,role=student,id=11
+2026-01-19 20:38:47 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:38:47 [INFO] 访问了作业查看界面
+2026-01-19 20:38:47 [INFO] query=,page=1,pageSize=10,role=student,id=11
+2026-01-19 20:38:48 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:39:00 [INFO] 访问了登录界面
+2026-01-19 20:39:00 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 20:39:01 [INFO] if_ok=登录成功
+2026-01-19 20:39:01 [INFO] id=6,role=teacher
+2026-01-19 20:39:01 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 20:39:02 [INFO] 访问了作业查看界面
+2026-01-19 20:39:02 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:39:02 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:39:06 [INFO] 访问了作业批改界面
+2026-01-19 20:39:06 [INFO] work=3
+2026-01-19 20:39:07 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 20:39:16 [INFO] 访问了作业批改界面
+2026-01-19 20:39:16 [INFO] workId=3,UserId=None,score=85,teacherComment=aa
+2026-01-19 20:39:37 [INFO] 访问了作业批改界面
+2026-01-19 20:39:37 [INFO] workId=3,UserId=None,score=85,teacherComment=良好，算法实现正确
+2026-01-19 20:40:23 [INFO] my_app日志记录器已配置
+2026-01-19 20:40:26 [INFO] 访问了作业查看界面
+2026-01-19 20:40:26 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:40:26 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:40:28 [INFO] 访问了作业批改界面
+2026-01-19 20:40:28 [INFO] work=3
+2026-01-19 20:40:29 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 20:40:32 [INFO] 访问了作业批改界面
+2026-01-19 20:40:32 [INFO] workId=3,UserId=11,score=85,teacherComment=aa
+2026-01-19 20:40:37 [INFO] 访问了作业查看界面
+2026-01-19 20:40:37 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:40:37 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:40:41 [INFO] 访问了作业批改界面
+2026-01-19 20:40:41 [INFO] work=3
+2026-01-19 20:40:42 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 20:40:48 [INFO] 访问了登录界面
+2026-01-19 20:40:48 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 20:40:49 [INFO] if_ok=登录成功
+2026-01-19 20:40:49 [INFO] id=11,role=student
+2026-01-19 20:40:49 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 23}}
+2026-01-19 20:40:50 [INFO] 访问了作业查看界面
+2026-01-19 20:40:50 [INFO] query=,page=1,pageSize=10,role=student,id=11
+2026-01-19 20:40:50 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:41:00 [INFO] id=11,role=student
+2026-01-19 20:41:00 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 23}}
+2026-01-19 20:41:01 [INFO] 访问了作业查看界面
+2026-01-19 20:41:01 [INFO] query=,page=1,pageSize=10,role=student,id=11
+2026-01-19 20:41:01 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:41:47 [INFO] 访问了登录界面
+2026-01-19 20:41:47 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 20:41:47 [INFO] if_ok=登录成功
+2026-01-19 20:41:47 [INFO] id=6,role=teacher
+2026-01-19 20:41:47 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 20:41:48 [INFO] 访问了作业查看界面
+2026-01-19 20:41:48 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:41:48 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:41:50 [INFO] 访问了课程查看界面
+2026-01-19 20:41:50 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-19 20:42:08 [INFO] 访问了课程查看界面
+2026-01-19 20:42:08 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-19 20:42:14 [INFO] 访问了作业批改界面
+2026-01-19 20:42:14 [INFO] work=1000000
+2026-01-19 20:42:14 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 20:42:17 [INFO] 访问了作业查看界面
+2026-01-19 20:42:17 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:42:17 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:42:22 [INFO] 访问了作业批改界面
+2026-01-19 20:42:22 [INFO] work=22
+2026-01-19 20:42:23 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 20:42:25 [INFO] 访问了作业查看界面
+2026-01-19 20:42:25 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:42:25 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:42:26 [INFO] 访问了作业批改界面
+2026-01-19 20:42:26 [INFO] work=18
+2026-01-19 20:42:26 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 20:42:28 [INFO] 访问了作业查看界面
+2026-01-19 20:42:28 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:42:28 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:42:40 [INFO] 访问了课程查看界面
+2026-01-19 20:42:40 [INFO] query=,page=1,pageSize=10,id=6
+2026-01-19 20:45:24 [INFO] 访问了作业查看界面
+2026-01-19 20:45:24 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:45:24 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:46:57 [INFO] 访问了用户界面
+2026-01-19 20:46:57 [INFO] phone=15882805907,name=lzh,email=1399219870@qq.com,role=teacher,id=6,gender=male,password=Lzhjy050612,major=None
+2026-01-19 20:46:57 [INFO] if_ok=修改成功
+2026-01-19 20:47:43 [INFO] 访问了作业查看界面
+2026-01-19 20:47:43 [INFO] query=,page=1,pageSize=10,role=teacher,id=6
+2026-01-19 20:47:43 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:48:01 [INFO] 访问了作业查看界面
+2026-01-19 20:48:01 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-19 20:48:01 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:48:16 [INFO] 访问了登录界面
+2026-01-19 20:48:16 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 20:48:16 [INFO] if_ok=登录成功
+2026-01-19 20:48:16 [INFO] id=11,role=student
+2026-01-19 20:48:16 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 23}}
+2026-01-19 20:48:18 [INFO] 访问了作业查看界面
+2026-01-19 20:48:18 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 20:48:18 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:48:38 [INFO] 访问了用户界面
+2026-01-19 20:48:38 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=male,password=Lzhjy050612,major=计算机科学与技术
+2026-01-19 20:48:38 [INFO] if_ok=修改成功
+2026-01-19 20:51:24 [INFO] 访问了用户界面
+2026-01-19 20:51:24 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=male,password=Lzhjy050612,major=计科
+2026-01-19 20:51:25 [INFO] if_ok=修改成功
+2026-01-19 20:51:52 [INFO] 访问了用户界面
+2026-01-19 20:51:52 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=male,password=Lzhjy050612,major=13812341234
+2026-01-19 20:51:52 [INFO] if_ok=修改成功
+2026-01-19 20:52:37 [INFO] 访问了登录界面
+2026-01-19 20:52:37 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 20:52:37 [INFO] if_ok=登录成功
+2026-01-19 20:52:37 [INFO] id=6,role=teacher
+2026-01-19 20:52:37 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 20:52:49 [INFO] 访问了用户界面
+2026-01-19 20:52:49 [INFO] phone=15882805907,name=lzh,email=1399219870@qq.com,role=teacher,id=6,gender=male,password=Lzhjy050612,major=
+2026-01-19 20:52:50 [INFO] if_ok=修改成功
+2026-01-19 20:55:33 [INFO] my_app日志记录器已配置
+2026-01-19 20:55:35 [INFO] my_app日志记录器已配置
+2026-01-19 20:55:43 [INFO] 访问了用户界面
+2026-01-19 20:55:43 [INFO] phone=15882805907,name=lzh,email=1399219870@qq.com,role=teacher,id=6,gender=男,password=Lzhjy050612,major=
+2026-01-19 20:55:44 [INFO] if_ok=修改成功
+2026-01-19 20:55:56 [INFO] 访问了作业查看界面
+2026-01-19 20:55:56 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-19 20:55:56 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 20:55:57 [INFO] id=6,role=teacher
+2026-01-19 20:55:57 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 20:55:57 [INFO] 访问了课程查看界面
+2026-01-19 20:55:57 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-19 20:56:19 [INFO] 访问了用户界面
+2026-01-19 20:56:19 [INFO] phone=15882805907,name=lzh,email=1399219870@qq.com,role=teacher,id=6,gender=女,password=Lzhjy050612,major=
+2026-01-19 20:56:19 [INFO] if_ok=修改成功
+2026-01-19 20:56:25 [INFO] 访问了登录界面
+2026-01-19 20:56:25 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 20:56:26 [INFO] if_ok=登录成功
+2026-01-19 20:56:26 [INFO] id=11,role=student
+2026-01-19 20:56:26 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 23}}
+2026-01-19 20:56:44 [INFO] 访问了用户界面
+2026-01-19 20:56:44 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=男,password=Lzhjy050612,major=sd
+2026-01-19 20:56:44 [INFO] if_ok=修改成功
+2026-01-19 20:57:19 [INFO] my_app日志记录器已配置
+2026-01-19 20:57:32 [INFO] my_app日志记录器已配置
+2026-01-19 20:57:46 [INFO] 访问了用户界面
+2026-01-19 20:57:46 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=男,password=Lzhjy050612,major=计科
+2026-01-19 20:57:46 [INFO] if_ok=修改成功
+2026-01-19 20:58:29 [INFO] my_app日志记录器已配置
+2026-01-19 20:59:00 [INFO] my_app日志记录器已配置
+2026-01-19 20:59:05 [INFO] 访问了用户界面
+2026-01-19 20:59:05 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=男,password=Lzhjy050612,major=计科
+2026-01-19 20:59:05 [INFO] if_ok=修改成功
+2026-01-19 20:59:14 [INFO] 访问了用户界面
+2026-01-19 20:59:14 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=女,password=Lzhjy050612,major=计科
+2026-01-19 20:59:14 [INFO] if_ok=修改成功
+2026-01-19 21:00:19 [INFO] 访问了作业查看界面
+2026-01-19 21:00:19 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 21:00:19 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 21:00:26 [INFO] id=11,role=student
+2026-01-19 21:00:27 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 23}}
+2026-01-19 21:02:04 [INFO] 访问了作业查看界面
+2026-01-19 21:02:04 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 21:02:04 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 21:02:08 [INFO] 访问了作业查看界面
+2026-01-19 21:02:08 [INFO] workId=3,UserId=11
+2026-01-19 21:02:09 [INFO] if_ok=查看成功
+2026-01-19 21:02:13 [INFO] 访问了作业查看界面
+2026-01-19 21:02:13 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 21:02:13 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 21:02:27 [INFO] 访问了用户界面
+2026-01-19 21:02:27 [INFO] phone=13812341234,name=lzh66,email=123@qq.com,role=student,id=11,gender=男,password=Lzhjy050612,major=计科
+2026-01-19 21:02:27 [INFO] if_ok=修改成功
+2026-01-19 21:02:38 [INFO] 访问了作业查看界面
+2026-01-19 21:02:38 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 21:02:38 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 21:02:44 [INFO] id=11,role=student
+2026-01-19 21:02:44 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 23}}
+2026-01-19 21:02:48 [INFO] 访问了作业查看界面
+2026-01-19 21:02:48 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 21:02:48 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 21:02:49 [INFO] 访问了作业查看界面
+2026-01-19 21:02:49 [INFO] workId=1000000,UserId=11
+2026-01-19 21:02:49 [INFO] if_ok=查看成功
+2026-01-19 21:02:59 [INFO] 访问了作业查看界面
+2026-01-19 21:02:59 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 21:02:59 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 21:03:06 [INFO] 访问了登录界面
+2026-01-19 21:03:06 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 21:03:06 [INFO] if_ok=登录成功
+2026-01-19 21:03:06 [INFO] id=6,role=teacher
+2026-01-19 21:03:06 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 21:07:45 [INFO] my_app日志记录器已配置
+2026-01-19 21:07:58 [INFO] 访问了注册界面
+2026-01-19 21:07:58 [INFO] role=student,password=Lzhjy050612,name=ll,email=1@qq.com
+2026-01-19 21:07:58 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 0, 'username': 'll', 'name': 'll', 'role': 'student', 'phone': '13812341234', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}, 'code': 400}
+2026-01-19 21:07:58 [INFO] id=0,role=student
+2026-01-19 21:07:58 [INFO] dashboard=
+2026-01-19 21:13:48 [INFO] my_app日志记录器已配置
+2026-01-19 21:13:50 [INFO] my_app日志记录器已配置
+2026-01-19 21:13:53 [INFO] 访问了注册界面
+2026-01-19 21:13:53 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:14:17 [INFO] my_app日志记录器已配置
+2026-01-19 21:14:20 [INFO] 访问了注册界面
+2026-01-19 21:14:20 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:14:38 [INFO] my_app日志记录器已配置
+2026-01-19 21:14:40 [INFO] 访问了注册界面
+2026-01-19 21:14:40 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:14:58 [INFO] my_app日志记录器已配置
+2026-01-19 21:15:20 [INFO] my_app日志记录器已配置
+2026-01-19 21:15:22 [INFO] my_app日志记录器已配置
+2026-01-19 21:15:25 [INFO] 访问了注册界面
+2026-01-19 21:15:25 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:15:31 [INFO] 访问了注册界面
+2026-01-19 21:15:31 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:15:37 [INFO] 访问了注册界面
+2026-01-19 21:15:37 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:18:51 [INFO] my_app日志记录器已配置
+2026-01-19 21:18:54 [INFO] 访问了注册界面
+2026-01-19 21:18:54 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:20:04 [INFO] my_app日志记录器已配置
+2026-01-19 21:21:13 [INFO] 访问了注册界面
+2026-01-19 21:21:13 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:21:13 [INFO] if_ok=(<Response 53 bytes [200 OK]>, 500)
+2026-01-19 21:21:22 [INFO] 访问了注册界面
+2026-01-19 21:21:22 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:21:22 [INFO] if_ok=(<Response 53 bytes [200 OK]>, 500)
+2026-01-19 21:21:53 [INFO] my_app日志记录器已配置
+2026-01-19 21:22:10 [INFO] my_app日志记录器已配置
+2026-01-19 21:23:09 [INFO] my_app日志记录器已配置
+2026-01-19 21:23:11 [INFO] my_app日志记录器已配置
+2026-01-19 21:23:14 [INFO] 访问了注册界面
+2026-01-19 21:23:14 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:24:11 [INFO] my_app日志记录器已配置
+2026-01-19 21:24:21 [INFO] 访问了注册界面
+2026-01-19 21:24:21 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:26:19 [INFO] my_app日志记录器已配置
+2026-01-19 21:26:22 [INFO] 访问了注册界面
+2026-01-19 21:26:22 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:30:46 [INFO] my_app日志记录器已配置
+2026-01-19 21:30:48 [INFO] my_app日志记录器已配置
+2026-01-19 21:30:51 [INFO] 访问了注册界面
+2026-01-19 21:30:51 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:30:51 [INFO] id=None,role=student
+2026-01-19 21:30:51 [INFO] dashboard=
+2026-01-19 21:31:28 [INFO] 访问了注册界面
+2026-01-19 21:31:28 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:31:28 [INFO] id=None,role=student
+2026-01-19 21:31:28 [INFO] dashboard=
+2026-01-19 21:31:51 [INFO] my_app日志记录器已配置
+2026-01-19 21:31:59 [INFO] 访问了注册界面
+2026-01-19 21:31:59 [INFO] role=student,password=Lzhjy050612,name=ll,email=1399219872@qq.com
+2026-01-19 21:31:59 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:32:00 [INFO] id=None,role=student
+2026-01-19 21:32:00 [INFO] dashboard=
+2026-01-19 21:32:20 [INFO] my_app日志记录器已配置
+2026-01-19 21:32:36 [INFO] 访问了注册界面
+2026-01-19 21:32:36 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219872@qq.com
+2026-01-19 21:32:36 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:32:41 [INFO] 访问了注册界面
+2026-01-19 21:32:41 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219872@qq.com
+2026-01-19 21:32:42 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:33:50 [INFO] my_app日志记录器已配置
+2026-01-19 21:33:53 [INFO] 访问了注册界面
+2026-01-19 21:33:53 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219872@qq.com
+2026-01-19 21:33:53 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:34:05 [INFO] 访问了注册界面
+2026-01-19 21:34:05 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219872@qq.com
+2026-01-19 21:34:05 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:34:08 [INFO] my_app日志记录器已配置
+2026-01-19 21:34:11 [INFO] 访问了注册界面
+2026-01-19 21:34:11 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219872@qq.com
+2026-01-19 21:34:11 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:35:12 [INFO] 访问了注册界面
+2026-01-19 21:35:12 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219872@qq.com
+2026-01-19 21:35:13 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:36:01 [INFO] my_app日志记录器已配置
+2026-01-19 21:36:03 [INFO] my_app日志记录器已配置
+2026-01-19 21:36:07 [INFO] 访问了注册界面
+2026-01-19 21:36:07 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219872@qq.com
+2026-01-19 21:36:07 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:36:37 [INFO] my_app日志记录器已配置
+2026-01-19 21:36:48 [INFO] 访问了注册界面
+2026-01-19 21:36:48 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219872@qq.com
+2026-01-19 21:36:49 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:36:58 [INFO] 访问了注册界面
+2026-01-19 21:36:58 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219872@qq.com
+2026-01-19 21:36:58 [INFO] if_ok=ERROR:EMAIL_EXISTS
+2026-01-19 21:37:06 [INFO] 访问了注册界面
+2026-01-19 21:37:06 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219879@qq.com
+2026-01-19 21:37:06 [INFO] if_ok=SUCCESS
+2026-01-19 21:37:12 [INFO] 访问了注册界面
+2026-01-19 21:37:12 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219879@qq.com
+2026-01-19 21:37:12 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:37:25 [INFO] my_app日志记录器已配置
+2026-01-19 21:37:28 [INFO] 访问了注册界面
+2026-01-19 21:37:28 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219879@qq.com
+2026-01-19 21:37:28 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:37:34 [INFO] 访问了注册界面
+2026-01-19 21:37:34 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219879@qq.com
+2026-01-19 21:37:34 [INFO] if_ok=ERROR:EMAIL_EXISTS
+2026-01-19 21:37:38 [INFO] 访问了注册界面
+2026-01-19 21:37:38 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219870@qq.com
+2026-01-19 21:37:38 [INFO] if_ok=SUCCESS
+2026-01-19 21:37:53 [INFO] my_app日志记录器已配置
+2026-01-19 21:38:03 [INFO] 访问了注册界面
+2026-01-19 21:38:03 [INFO] role=student,password=Lzhjy050612,name=;,email=1399219873@qq.com
+2026-01-19 21:38:04 [INFO] if_ok=SUCCESS
+2026-01-19 21:38:04 [INFO] if_ok={'msg': 'SUCCESS', 'code': 404}
+2026-01-19 21:38:04 [INFO] id=None,role=student
+2026-01-19 21:38:04 [INFO] dashboard=
+2026-01-19 21:38:06 [INFO] 访问了作业查看界面
+2026-01-19 21:38:06 [INFO] query=,page=None,pageSize=None,role=student,id=None
+2026-01-19 21:38:06 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 21:38:07 [INFO] id=None,role=student
+2026-01-19 21:38:07 [INFO] dashboard=
+2026-01-19 21:39:41 [INFO] 访问了注册界面
+2026-01-19 21:39:41 [INFO] role=student,password=Lzhjy050612,name=llj,email=133@qq.com
+2026-01-19 21:39:41 [INFO] if_ok=SUCCESS
+2026-01-19 21:39:41 [INFO] if_ok={'msg': 'SUCCESS', 'code': 404}
+2026-01-19 21:39:41 [INFO] id=None,role=student
+2026-01-19 21:39:41 [INFO] dashboard=
+2026-01-19 21:43:05 [INFO] my_app日志记录器已配置
+2026-01-19 21:43:22 [INFO] my_app日志记录器已配置
+2026-01-19 21:44:08 [INFO] my_app日志记录器已配置
+2026-01-19 21:44:48 [INFO] my_app日志记录器已配置
+2026-01-19 21:45:31 [INFO] my_app日志记录器已配置
+2026-01-19 21:45:50 [INFO] my_app日志记录器已配置
+2026-01-19 21:46:02 [INFO] 访问了注册界面
+2026-01-19 21:46:02 [INFO] role=student,password=Lzhjy050612,name=q,email=133@qq.com
+2026-01-19 21:46:02 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:46:17 [INFO] 访问了注册界面
+2026-01-19 21:46:17 [INFO] role=student,password=Lzhjy050612,name=q,email=132@qq.com
+2026-01-19 21:46:17 [INFO] if_ok=SUCCESS
+2026-01-19 21:46:17 [INFO] if_ok={'msg': 'SUCCESS', 'code': 404}
+2026-01-19 21:46:17 [INFO] id=None,role=student
+2026-01-19 21:46:17 [INFO] dashboard=
+2026-01-19 21:46:25 [INFO] 访问了作业查看界面
+2026-01-19 21:46:25 [INFO] query=,page=None,pageSize=None,role=student,id=None
+2026-01-19 21:46:25 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 21:51:03 [INFO] my_app日志记录器已配置
+2026-01-19 21:51:25 [INFO] 访问了注册界面
+2026-01-19 21:51:25 [INFO] role=student,password=Lzhjy050612,name=q,email=123@x.com
+2026-01-19 21:51:25 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:51:40 [INFO] 访问了注册界面
+2026-01-19 21:51:40 [INFO] role=student,password=Lzhjy050612,name=q,email=123@x.com
+2026-01-19 21:51:40 [INFO] if_ok=SUCCESS
+2026-01-19 21:51:40 [INFO] if_ok={'msg': 'SUCCESS', 'code': 404}
+2026-01-19 21:51:40 [INFO] id=None,role=student
+2026-01-19 21:51:40 [INFO] dashboard=
+2026-01-19 21:53:28 [INFO] my_app日志记录器已配置
+2026-01-19 21:53:48 [INFO] 访问了注册界面
+2026-01-19 21:53:48 [INFO] role=student,password=Lzhjy050612,name=q,email=as@x.com
+2026-01-19 21:53:48 [INFO] if_ok=SUCCESS
+2026-01-19 21:53:48 [INFO] if_ok={'msg': 'SUCCESS', 'code': 404}
+2026-01-19 21:53:48 [INFO] id=None,role=student
+2026-01-19 21:53:49 [INFO] dashboard=
+2026-01-19 21:55:00 [INFO] my_app日志记录器已配置
+2026-01-19 21:55:16 [INFO] 访问了注册界面
+2026-01-19 21:55:16 [INFO] role=student,password=Lzhjy050612,name=q,email=zsg@x.com
+2026-01-19 21:55:36 [INFO] 访问了注册界面
+2026-01-19 21:55:36 [INFO] role=student,password=Lzhjy050612,name=q,email=zsg@x.com
+2026-01-19 21:56:49 [INFO] 访问了注册界面
+2026-01-19 21:56:49 [INFO] role=student,password=Lzhjy050612,name=q,email=zsg@x.com
+2026-01-19 21:56:51 [INFO] my_app日志记录器已配置
+2026-01-19 21:56:55 [INFO] 访问了注册界面
+2026-01-19 21:56:55 [INFO] role=student,password=Lzhjy050612,name=q,email=zsg@x.com
+2026-01-19 21:56:55 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:57:16 [INFO] 访问了注册界面
+2026-01-19 21:57:16 [INFO] role=student,password=Lzhjy050612,name=q,email=zsg@x.com
+2026-01-19 21:57:16 [INFO] if_ok=注册成功
+2026-01-19 21:58:38 [INFO] 访问了注册界面
+2026-01-19 21:58:38 [INFO] role=student,password=Lzhjy050612,name=q,email=zsg@x.com
+2026-01-19 21:58:38 [INFO] if_ok=ERROR:PHONE_EXISTS
+2026-01-19 21:59:15 [INFO] my_app日志记录器已配置
+2026-01-19 21:59:21 [INFO] 访问了注册界面
+2026-01-19 21:59:21 [INFO] role=student,password=Lzhjy050612,name=q,email=zsa@x.com
+2026-01-19 21:59:21 [INFO] if_ok=注册成功
+2026-01-19 21:59:21 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 44, 'username': 'q', 'name': 'q', 'role': 'student', 'phone': '15882855789', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}, 'code': 400}
+2026-01-19 21:59:21 [INFO] id=44,role=student
+2026-01-19 21:59:21 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 22:00:09 [INFO] 访问了注册界面
+2026-01-19 22:00:09 [INFO] role=teacher,password=Lzhjy050612,name=ls,email=ls@ls.com
+2026-01-19 22:00:41 [INFO] my_app日志记录器已配置
+2026-01-19 22:00:49 [INFO] 访问了注册界面
+2026-01-19 22:00:49 [INFO] role=teacher,password=Lzhjy050612,name=lss,email=lss@ls.com
+2026-01-19 22:00:49 [INFO] if_ok=SUCCESS
+2026-01-19 22:01:07 [INFO] my_app日志记录器已配置
+2026-01-19 22:01:13 [INFO] 访问了注册界面
+2026-01-19 22:01:13 [INFO] role=teacher,password=Lzhjy050612,name=lsss,email=lsss@ls.com
+2026-01-19 22:01:13 [INFO] if_ok=注册成功
+2026-01-19 22:01:13 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 10, 'username': 'lsss', 'name': 'lsss', 'role': 'teacher', 'phone': '15312341231', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}, 'code': 400}
+2026-01-19 22:01:13 [INFO] id=10,role=teacher
+2026-01-19 22:01:14 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 0, 'ongoingHomework': 0, 'pendingGrade': 0}}
+2026-01-19 22:01:16 [INFO] 访问了作业查看界面
+2026-01-19 22:01:16 [INFO] query=,page=None,pageSize=None,role=teacher,id=10
+2026-01-19 22:01:16 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 22:01:19 [INFO] 访问了课程查看界面
+2026-01-19 22:01:19 [INFO] query=,page=None,pageSize=None,id=10
+2026-01-19 22:01:33 [INFO] 访问了用户界面
+2026-01-19 22:01:33 [INFO] phone=15312341231,name=lsss,email=1399219800@qq.com,role=teacher,id=10,gender=男,password=None,major=
+2026-01-19 22:01:33 [INFO] if_ok=修改成功
+2026-01-19 22:01:48 [INFO] 访问了课程查看界面
+2026-01-19 22:01:48 [INFO] query=,page=None,pageSize=None,id=10
+2026-01-19 22:02:13 [INFO] 访问了登录界面
+2026-01-19 22:02:13 [INFO] phone=15312341231,password=Lzhjy050612
+2026-01-19 22:02:13 [INFO] if_ok=登录成功
+2026-01-19 22:02:13 [INFO] id=10,role=teacher
+2026-01-19 22:02:14 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 0, 'ongoingHomework': 0, 'pendingGrade': 0}}
+2026-01-19 22:02:59 [INFO] 访问了登录界面
+2026-01-19 22:02:59 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 22:03:00 [INFO] if_ok=登录成功
+2026-01-19 22:03:00 [INFO] id=14,role=student
+2026-01-19 22:03:00 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 22:03:13 [INFO] 访问了登录界面
+2026-01-19 22:03:13 [INFO] phone=15312341231,password=Lzhjy050612
+2026-01-19 22:03:13 [INFO] if_ok=登录成功
+2026-01-19 22:03:13 [INFO] id=10,role=teacher
+2026-01-19 22:03:14 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 0, 'ongoingHomework': 0, 'pendingGrade': 0}}
+2026-01-19 22:04:22 [INFO] my_app日志记录器已配置
+2026-01-19 22:04:29 [INFO] my_app日志记录器已配置
+2026-01-19 22:04:33 [INFO] 访问了登录界面
+2026-01-19 22:04:33 [INFO] phone=15312341231,password=Lzhjy050612
+2026-01-19 22:04:33 [INFO] if_ok=登录成功
+2026-01-19 22:04:33 [INFO] id=10,role=teacher
+2026-01-19 22:04:33 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 0, 'ongoingHomework': 0, 'pendingGrade': 0}}
+2026-01-19 22:04:42 [INFO] 访问了登录界面
+2026-01-19 22:04:42 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 22:04:42 [INFO] if_ok=登录成功
+2026-01-19 22:04:42 [INFO] id=14,role=student
+2026-01-19 22:04:42 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 22:05:57 [INFO] my_app日志记录器已配置
+2026-01-19 22:06:04 [INFO] 访问了登录界面
+2026-01-19 22:06:04 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 22:06:04 [INFO] if_ok=登录成功
+2026-01-19 22:06:04 [INFO] id=11,role=student
+2026-01-19 22:06:05 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 24}}
+2026-01-19 22:06:24 [INFO] 访问了登录界面
+2026-01-19 22:06:24 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 22:06:24 [INFO] if_ok=登录成功
+2026-01-19 22:06:24 [INFO] id=14,role=student
+2026-01-19 22:06:24 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 22:06:49 [INFO] 访问了登录界面
+2026-01-19 22:06:49 [INFO] phone=15882805901,password=Lzhjy050612
+2026-01-19 22:06:49 [INFO] if_ok=登录成功
+2026-01-19 22:06:49 [INFO] id=30,role=student
+2026-01-19 22:06:50 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 22:07:00 [INFO] 访问了登录界面
+2026-01-19 22:07:00 [INFO] phone=15882805902,password=Lzhjy050612
+2026-01-19 22:07:01 [INFO] if_ok=账号或密码错误
+2026-01-19 22:07:01 [INFO] id=None,role=None
+2026-01-19 22:07:01 [INFO] dashboard=
+2026-01-19 22:07:15 [INFO] 访问了登录界面
+2026-01-19 22:07:15 [INFO] phone=15882805903,password=Lzhjy050612
+2026-01-19 22:07:15 [INFO] if_ok=账号或密码错误
+2026-01-19 22:07:15 [INFO] id=None,role=None
+2026-01-19 22:07:16 [INFO] dashboard=
+2026-01-19 22:07:26 [INFO] 访问了登录界面
+2026-01-19 22:07:26 [INFO] phone=15882805900,password=Lzhjy050612
+2026-01-19 22:07:27 [INFO] if_ok=登录成功
+2026-01-19 22:07:27 [INFO] id=26,role=student
+2026-01-19 22:07:27 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 22:08:20 [INFO] 访问了登录界面
+2026-01-19 22:08:20 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 22:08:20 [INFO] if_ok=登录成功
+2026-01-19 22:08:20 [INFO] id=14,role=student
+2026-01-19 22:08:20 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 22:08:22 [INFO] 访问了作业查看界面
+2026-01-19 22:08:22 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 22:08:22 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 22:08:24 [INFO] id=14,role=student
+2026-01-19 22:08:24 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 22:10:14 [INFO] 访问了登录界面
+2026-01-19 22:10:14 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 22:10:14 [INFO] if_ok=登录成功
+2026-01-19 22:10:14 [INFO] id=14,role=student
+2026-01-19 22:10:15 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 22:58:21 [INFO] my_app日志记录器已配置
+2026-01-19 22:58:22 [INFO] my_app日志记录器已配置
+2026-01-19 23:00:58 [INFO] id=14,role=student
+2026-01-19 23:00:58 [INFO] dashboard=
+2026-01-19 23:01:14 [INFO] 访问了注册界面
+2026-01-19 23:01:14 [INFO] role=student,password=Tshe114514,name=zjl,email=2459076464@qq.com
+2026-01-19 23:01:14 [INFO] if_ok=注册成功
+2026-01-19 23:01:14 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 14, 'username': 'zjl', 'name': 'zjl', 'role': 'student', 'phone': '18078076208', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}, 'code': 400}
+2026-01-19 23:01:14 [INFO] id=14,role=student
+2026-01-19 23:01:14 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 23:01:16 [INFO] 访问了注册界面
+2026-01-19 23:01:16 [INFO] role=teacher,password=Qq12345678,name=Bricks0411,email=1072391442@qq.com
+2026-01-19 23:01:16 [INFO] if_ok=注册成功
+2026-01-19 23:01:16 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 8, 'username': 'Bricks0411', 'name': 'Bricks0411', 'role': 'teacher', 'phone': '16666666666', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}, 'code': 400}
+2026-01-19 23:01:16 [INFO] id=8,role=teacher
+2026-01-19 23:01:17 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 0, 'ongoingHomework': 0, 'pendingGrade': 0}}
+2026-01-19 23:01:20 [INFO] 访问了作业查看界面
+2026-01-19 23:01:20 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 23:01:20 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:01:21 [INFO] id=14,role=student
+2026-01-19 23:01:21 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 23:01:53 [INFO] 访问了用户界面
+2026-01-19 23:01:53 [INFO] phone=16666666666,name=Bricks0411,email=1072391442@qq.com,role=teacher,id=8,gender=男,password=None,major=
+2026-01-19 23:01:53 [INFO] if_ok=修改成功
+2026-01-19 23:02:00 [INFO] 访问了作业查看界面
+2026-01-19 23:02:00 [INFO] query=,page=None,pageSize=None,role=teacher,id=8
+2026-01-19 23:02:00 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:02:10 [INFO] 访问了作业查看界面
+2026-01-19 23:02:10 [INFO] query=,page=None,pageSize=None,role=teacher,id=8
+2026-01-19 23:02:10 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:02:11 [INFO] 访问了课程查看界面
+2026-01-19 23:02:11 [INFO] query=,page=None,pageSize=None,id=8
+2026-01-19 23:02:44 [INFO] 访问了用户界面
+2026-01-19 23:02:44 [INFO] phone=18078076208,name=zjl,email=2459076464@qq.com,role=student,id=14,gender=男,password=None,major=计算机科学与技术
+2026-01-19 23:02:44 [INFO] if_ok=修改成功
+2026-01-19 23:02:55 [INFO] 访问了作业查看界面
+2026-01-19 23:02:55 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 23:02:55 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:02:55 [INFO] 访问了课程添加界面
+2026-01-19 23:02:55 [INFO] courseId=,CourseName=一觉醒来全世界计算机水平下降一万倍，我竟成为当代图灵,major=计算机科学,credits=114514,type=必修,teacher=8
+2026-01-19 23:02:56 [INFO] if_ok=添加成功
+2026-01-19 23:02:56 [INFO] 访问了课程查看界面
+2026-01-19 23:02:56 [INFO] query=,page=None,pageSize=None,id=8
+2026-01-19 23:03:04 [INFO] 访问了作业查看界面
+2026-01-19 23:03:04 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 23:03:04 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:03:15 [INFO] 访问了学生界面
+2026-01-19 23:03:15 [INFO] query=,page=None,page_size=None,role=teacher,id=18
+2026-01-19 23:03:15 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 23:03:27 [INFO] 访问了学生添加界面
+2026-01-19 23:03:27 [INFO] studentId=14,name=,gender=男,major=,phone=,Cno=18,Sno=14
+2026-01-19 23:03:27 [INFO] if_ok=添加成功
+2026-01-19 23:03:27 [INFO] 访问了学生界面
+2026-01-19 23:03:27 [INFO] query=,page=None,page_size=None,role=teacher,id=18
+2026-01-19 23:03:27 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 23:03:36 [INFO] 访问了作业查看界面
+2026-01-19 23:03:36 [INFO] query=,page=None,pageSize=None,role=teacher,id=8
+2026-01-19 23:03:36 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:03:38 [INFO] 访问了课程查看界面
+2026-01-19 23:03:38 [INFO] query=,page=None,pageSize=None,id=8
+2026-01-19 23:03:43 [INFO] 访问了学生界面
+2026-01-19 23:03:43 [INFO] query=,page=None,page_size=None,role=teacher,id=18
+2026-01-19 23:03:43 [INFO] students[0]={'studentId': '2023001', 'name': '王小明', 'gender': '男', 'major': '计算机科学', 'phone': '13812345678', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}
+2026-01-19 23:04:39 [INFO] 访问了登录界面
+2026-01-19 23:04:39 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 23:04:39 [INFO] if_ok=登录成功
+2026-01-19 23:04:39 [INFO] id=6,role=teacher
+2026-01-19 23:04:39 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:04:41 [INFO] 访问了课程查看界面
+2026-01-19 23:04:41 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-19 23:05:08 [INFO] 访问了用户界面
+2026-01-19 23:05:08 [INFO] phone=15882805907,name=lzh,email=1399219872@qq.com,role=teacher,id=6,gender=男,password=Lzhjy050612,major=
+2026-01-19 23:05:08 [INFO] if_ok=修改成功
+2026-01-19 23:05:17 [INFO] 访问了作业查看界面
+2026-01-19 23:05:17 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-19 23:05:17 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:05:17 [INFO] id=6,role=teacher
+2026-01-19 23:05:18 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:05:18 [INFO] 访问了课程查看界面
+2026-01-19 23:05:18 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-19 23:05:28 [INFO] 访问了登录界面
+2026-01-19 23:05:28 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 23:05:28 [INFO] if_ok=登录成功
+2026-01-19 23:05:28 [INFO] id=6,role=teacher
+2026-01-19 23:05:29 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:06:47 [INFO] 访问了作业查看界面
+2026-01-19 23:06:47 [INFO] query=,page=None,pageSize=None,role=teacher,id=8
+2026-01-19 23:06:47 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:06:48 [INFO] 访问了课程查看界面
+2026-01-19 23:06:48 [INFO] query=,page=None,pageSize=None,id=8
+2026-01-19 23:06:48 [INFO] 访问了作业查看界面
+2026-01-19 23:06:48 [INFO] query=,page=None,pageSize=None,role=teacher,id=8
+2026-01-19 23:06:48 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:06:49 [INFO] 访问了课程查看界面
+2026-01-19 23:06:49 [INFO] query=,page=None,pageSize=None,id=8
+2026-01-19 23:06:52 [INFO] 访问了作业查看界面
+2026-01-19 23:06:52 [INFO] query=,page=None,pageSize=None,role=teacher,id=8
+2026-01-19 23:06:52 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:06:52 [INFO] 访问了课程查看界面
+2026-01-19 23:06:52 [INFO] query=,page=None,pageSize=None,id=8
+2026-01-19 23:07:11 [INFO] id=14,role=student
+2026-01-19 23:07:11 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 1, 'ongoingHomework': 0}}
+2026-01-19 23:07:15 [INFO] 访问了作业查看界面
+2026-01-19 23:07:15 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 23:07:15 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:07:17 [INFO] id=14,role=student
+2026-01-19 23:07:17 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 1, 'ongoingHomework': 0}}
+2026-01-19 23:07:38 [INFO] 访问了作业添加界面
+2026-01-19 23:07:38 [INFO] title=三角洲行动——阿萨拉地区的风土人情,content=至少写114514字，少一个字扣1919810分,progress=0,course=一觉醒来全世界计算机水平下降一万倍，我竟成为当代图灵
+2026-01-19 23:07:38 [INFO] if_ok=添加成功
+2026-01-19 23:07:38 [INFO] 访问了作业查看界面
+2026-01-19 23:07:38 [INFO] query=,page=None,pageSize=None,role=teacher,id=8
+2026-01-19 23:07:38 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:07:41 [INFO] id=14,role=student
+2026-01-19 23:07:41 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 1, 'ongoingHomework': 1}}
+2026-01-19 23:07:43 [INFO] 访问了作业查看界面
+2026-01-19 23:07:43 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 23:07:43 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:07:48 [INFO] 访问了作业查看界面
+2026-01-19 23:07:48 [INFO] workId=25,UserId=14
+2026-01-19 23:07:49 [INFO] if_ok=查看成功
+2026-01-19 23:07:58 [INFO] 访问了作业批改界面
+2026-01-19 23:07:58 [INFO] work=25
+2026-01-19 23:07:59 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 23:08:12 [INFO] role=student,syudentId=14,workId=25,writecheck=None
+2026-01-19 23:08:12 [INFO] 访问了作业查看界面
+2026-01-19 23:08:12 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 23:08:12 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:08:15 [INFO] 访问了作业查看界面
+2026-01-19 23:08:15 [INFO] query=,page=None,pageSize=None,role=teacher,id=8
+2026-01-19 23:08:16 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:08:17 [INFO] 访问了作业批改界面
+2026-01-19 23:08:17 [INFO] work=25
+2026-01-19 23:08:17 [INFO] work[0]={'workId': 'HW002', 'userId': '202301001', 'name': '张三', 'status': 'unsubmitted', 'score': 0, 'content': '', 'teacherComment': '还未提交'}
+2026-01-19 23:08:19 [INFO] 访问了作业查看界面
+2026-01-19 23:08:19 [INFO] workId=25,UserId=14
+2026-01-19 23:08:20 [INFO] if_ok=查看成功
+2026-01-19 23:08:27 [INFO] 访问了作业查看界面
+2026-01-19 23:08:27 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 23:08:27 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:08:28 [INFO] 访问了作业批改界面
+2026-01-19 23:08:28 [INFO] workId=25,UserId=14,score=100,teacherComment=0昏
+2026-01-19 23:08:30 [INFO] id=8,role=teacher
+2026-01-19 23:08:31 [INFO] 访问了作业查看界面
+2026-01-19 23:08:31 [INFO] query=,page=None,pageSize=None,role=teacher,id=8
+2026-01-19 23:08:31 [INFO] id=14,role=student
+2026-01-19 23:08:34 [INFO] 访问了作业查看界面
+2026-01-19 23:08:34 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 23:08:35 [INFO] id=14,role=student
+2026-01-19 23:08:36 [INFO] 访问了作业查看界面
+2026-01-19 23:08:36 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-19 23:08:58 [INFO] my_app日志记录器已配置
+2026-01-19 23:09:10 [INFO] my_app日志记录器已配置
+2026-01-19 23:09:12 [INFO] my_app日志记录器已配置
+2026-01-19 23:09:21 [INFO] id=6,role=teacher
+2026-01-19 23:09:21 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:11:20 [INFO] 访问了登录界面
+2026-01-19 23:11:20 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 23:11:20 [INFO] if_ok=登录成功
+2026-01-19 23:11:20 [INFO] id=6,role=teacher
+2026-01-19 23:11:20 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:11:47 [INFO] my_app日志记录器已配置
+2026-01-19 23:11:50 [INFO] 访问了登录界面
+2026-01-19 23:11:50 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 23:11:50 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': None, 'email': '1399219872@qq.com', 'gender': '男', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-19 23:11:50 [INFO] id=6,role=teacher
+2026-01-19 23:11:50 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:12:20 [INFO] my_app日志记录器已配置
+2026-01-19 23:12:30 [INFO] 访问了登录界面
+2026-01-19 23:12:30 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 23:12:31 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': '男', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-19 23:12:31 [INFO] id=6,role=teacher
+2026-01-19 23:12:31 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:13:49 [INFO] my_app日志记录器已配置
+2026-01-19 23:13:54 [INFO] my_app日志记录器已配置
+2026-01-19 23:14:00 [INFO] 访问了登录界面
+2026-01-19 23:14:00 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 23:14:00 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'male', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-19 23:14:00 [INFO] id=6,role=teacher
+2026-01-19 23:14:01 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:14:12 [INFO] 访问了登录界面
+2026-01-19 23:14:12 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 23:14:13 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 11, 'name': 'lzh66', 'role': 'student', 'id': 11, 'phone': '13812341234', 'email': '123@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-19 23:14:13 [INFO] id=11,role=student
+2026-01-19 23:14:13 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 24}}
+2026-01-19 23:15:17 [INFO] 访问了注册界面
+2026-01-19 23:15:17 [INFO] role=student,password=Lzhjy050612,name=xs,email=xs@xs.com
+2026-01-19 23:15:17 [INFO] if_ok=注册成功
+2026-01-19 23:15:17 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 15, 'username': 'xs', 'name': 'xs', 'role': 'student', 'phone': '15812341234', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}, 'code': 400}
+2026-01-19 23:15:18 [INFO] id=15,role=student
+2026-01-19 23:15:18 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 0, 'ongoingHomework': 0}}
+2026-01-19 23:15:36 [INFO] my_app日志记录器已配置
+2026-01-19 23:16:01 [INFO] 访问了注册界面
+2026-01-19 23:16:01 [INFO] role=teacher,password=Lzhjy050612,name=ls,email=ls@ls.com
+2026-01-19 23:16:01 [INFO] if_ok=注册成功
+2026-01-19 23:16:01 [INFO] if_ok={'msg': '注册成功', 'user': {'id': 9, 'username': 'ls', 'name': 'ls', 'role': 'teacher', 'phone': '15812344321', 'email': 'ls@ls.com', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}, 'code': 400}
+2026-01-19 23:16:01 [INFO] id=9,role=teacher
+2026-01-19 23:16:02 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 0, 'ongoingHomework': 0, 'pendingGrade': 0}}
+2026-01-19 23:16:16 [INFO] 访问了用户界面
+2026-01-19 23:16:16 [INFO] phone=15812344321,name=ls,email=ls@ls.com,role=teacher,id=9,gender=男,password=None,major=
+2026-01-19 23:16:16 [INFO] if_ok=修改成功
+2026-01-19 23:17:05 [INFO] my_app日志记录器已配置
+2026-01-19 23:17:09 [INFO] 访问了用户界面
+2026-01-19 23:17:09 [INFO] phone=15812344321,name=ls,email=ls@ls.com,role=teacher,id=9,gender=男,password=None,major=
+2026-01-19 23:17:09 [INFO] if_ok=修改成功
+2026-01-19 23:17:32 [INFO] my_app日志记录器已配置
+2026-01-19 23:19:04 [INFO] my_app日志记录器已配置
+2026-01-19 23:19:35 [INFO] my_app日志记录器已配置
+2026-01-19 23:21:38 [INFO] my_app日志记录器已配置
+2026-01-19 23:21:40 [INFO] my_app日志记录器已配置
+2026-01-19 23:21:46 [INFO] 访问了登录界面
+2026-01-19 23:21:46 [INFO] phone=13812341234,password=Lzhjy05061
+2026-01-19 23:21:46 [INFO] if_ok={'msg': '账号或密码错误', 'code': 404}
+2026-01-19 23:21:52 [INFO] 访问了登录界面
+2026-01-19 23:21:52 [INFO] phone=13812341234,password=Lzhjy050612
+2026-01-19 23:21:52 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 11, 'name': 'lzh66', 'role': 'student', 'id': 11, 'phone': '13812341234', 'email': '123@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-19 23:21:52 [INFO] id=11,role=student
+2026-01-19 23:21:53 [INFO] dashboard={'code': 200, 'stats': {'courseCount': 16, 'ongoingHomework': 24}}
+2026-01-19 23:21:57 [INFO] 访问了作业查看界面
+2026-01-19 23:21:57 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 23:21:58 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:21:59 [INFO] 访问了作业查看界面
+2026-01-19 23:21:59 [INFO] workId=1000000,UserId=11
+2026-01-19 23:21:59 [INFO] if_ok=查看成功
+2026-01-19 23:22:01 [INFO] 访问了作业查看界面
+2026-01-19 23:22:01 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 23:22:01 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:22:04 [INFO] 访问了作业查看界面
+2026-01-19 23:22:04 [INFO] workId=3,UserId=11
+2026-01-19 23:22:05 [INFO] if_ok=查看成功
+2026-01-19 23:22:07 [INFO] 访问了作业查看界面
+2026-01-19 23:22:07 [INFO] query=,page=None,pageSize=None,role=student,id=11
+2026-01-19 23:22:08 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:29:54 [INFO] my_app日志记录器已配置
+2026-01-19 23:29:56 [INFO] my_app日志记录器已配置
+2026-01-19 23:29:58 [INFO] 访问了登录界面
+2026-01-19 23:29:58 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 23:29:59 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-19 23:29:59 [INFO] id=6,role=teacher
+2026-01-19 23:29:59 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:30:05 [INFO] id=6,role=teacher
+2026-01-19 23:30:05 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:30:46 [INFO] 访问了用户界面
+2026-01-19 23:30:46 [INFO] phone=15882805907,name=lzh,email=1399219872@qq.com,role=teacher,id=6,gender=男,password=Lzhjy050612,major=
+2026-01-19 23:30:46 [INFO] if_ok=修改成功
+2026-01-19 23:30:54 [INFO] 访问了登录界面
+2026-01-19 23:30:54 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 23:30:55 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'male', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-19 23:30:55 [INFO] id=6,role=teacher
+2026-01-19 23:30:55 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:31:05 [INFO] 访问了用户界面
+2026-01-19 23:31:05 [INFO] phone=15882805907,name=lzh,email=1399219872@qq.com,role=teacher,id=6,gender=女,password=None,major=
+2026-01-19 23:31:05 [INFO] if_ok=修改成功
+2026-01-19 23:31:12 [INFO] 访问了登录界面
+2026-01-19 23:31:12 [INFO] phone=15882805907,password=Lzhjy050612
+2026-01-19 23:31:12 [INFO] if_ok={'msg': '登录成功', 'user': {'username': 6, 'name': 'lzh', 'role': 'teacher', 'id': 6, 'phone': '15882805907', 'email': '1399219872@qq.com', 'gender': 'female', 'avatar': 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'}}
+2026-01-19 23:31:12 [INFO] id=6,role=teacher
+2026-01-19 23:31:13 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:31:21 [INFO] id=6,role=teacher
+2026-01-19 23:31:21 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 120, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:31:59 [INFO] my_app日志记录器已配置
+2026-01-19 23:32:05 [INFO] 访问了作业查看界面
+2026-01-19 23:32:05 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-19 23:32:05 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:32:06 [INFO] id=6,role=teacher
+2026-01-19 23:32:06 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:32:55 [INFO] my_app日志记录器已配置
+2026-01-19 23:32:57 [INFO] my_app日志记录器已配置
+2026-01-19 23:33:06 [INFO] id=6,role=teacher
+2026-01-19 23:33:07 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:36:48 [INFO] my_app日志记录器已配置
+2026-01-19 23:38:43 [INFO] my_app日志记录器已配置
+2026-01-19 23:44:26 [INFO] my_app日志记录器已配置
+2026-01-19 23:48:45 [INFO] my_app日志记录器已配置
+2026-01-19 23:49:52 [INFO] my_app日志记录器已配置
+2026-01-19 23:50:19 [INFO] my_app日志记录器已配置
+2026-01-19 23:50:21 [INFO] my_app日志记录器已配置
+2026-01-19 23:51:27 [INFO] my_app日志记录器已配置
+2026-01-19 23:51:28 [INFO] my_app日志记录器已配置
+2026-01-19 23:51:40 [INFO] id=6,role=teacher
+2026-01-19 23:51:40 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 24, 'pendingGrade': 0}}
+2026-01-19 23:53:14 [INFO] 访问了作业查看界面
+2026-01-19 23:53:14 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-19 23:53:14 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:53:15 [INFO] 访问了课程查看界面
+2026-01-19 23:53:15 [INFO] query=,page=None,pageSize=None,id=6
+2026-01-19 23:53:15 [INFO] 访问了作业查看界面
+2026-01-19 23:53:15 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-19 23:53:15 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-19 23:54:06 [INFO] id=14,role=student
+2026-01-19 23:54:06 [INFO] dashboard=
+2026-01-20 00:01:50 [INFO] id=14,role=student
+2026-01-20 00:01:50 [INFO] dashboard=
+2026-01-20 00:01:51 [INFO] 访问了作业查看界面
+2026-01-20 00:01:51 [INFO] query=,page=None,pageSize=None,role=student,id=14
+2026-01-20 00:01:51 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 00:01:52 [INFO] id=14,role=student
+2026-01-20 00:01:52 [INFO] dashboard=
