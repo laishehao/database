@@ -1626,3 +1626,19 @@
 2026-01-20 18:01:11 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
 2026-01-20 18:01:29 [INFO] id=6,role=teacher
 2026-01-20 18:01:30 [INFO] dashboard={'code': 200, 'stats': {'studentCount': 4, 'courseCount': 8, 'ongoingHomework': 16, 'pendingGrade': 8}}
+2026-01-20 18:03:08 [INFO] 访问了作业查看界面
+2026-01-20 18:03:08 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 18:03:08 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 18:04:17 [INFO] my_app日志记录器已配置
+2026-01-20 18:04:18 [INFO] my_app日志记录器已配置
+2026-01-20 18:04:20 [INFO] id=6,role=teacher
+2026-01-20 18:04:20 [INFO] 访问了作业查看界面
+2026-01-20 18:04:20 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 18:04:21 [INFO] id=6,role=teacher
+2026-01-20 18:04:46 [INFO] my_app日志记录器已配置
+2026-01-20 18:04:48 [INFO] my_app日志记录器已配置
+2026-01-20 18:04:53 [INFO] 访问了作业查看界面
+2026-01-20 18:04:53 [INFO] query=,page=None,pageSize=None,role=teacher,id=6
+2026-01-20 18:04:54 [INFO] work[0]={'workId': '1000000', 'title': 'test', 'course': 'test', 'content': 'test', 'active': True, 'progress': 50, 'completed': True}
+2026-01-20 18:04:56 [INFO] 访问了课程查看界面
+2026-01-20 18:04:56 [INFO] query=,page=None,pageSize=None,id=6
